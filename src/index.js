@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 // import Signup from './signup';
 // import Login from './login';
 import routes from './routes';
+import 'bootstrap/dist/css/bootstrap.min.css';  
 
 import './assets/css/animate.css'
 import './assets/css/bootstrap.min.css'

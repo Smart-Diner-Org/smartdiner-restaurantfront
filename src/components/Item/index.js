@@ -7,7 +7,7 @@ class Item extends React.Component {
             <div class="product-items mt-30">
                 <div class="row product-items-active">
                     <div class="col-md-12">
-                
+                    
                             <div class="single-product-items">
                                 <div class="product-item-image">
                                     <a href="#"><img src={this.props.imgLink} alt="Product"/></a>
@@ -41,8 +41,8 @@ class Item extends React.Component {
                                         <li><i class="lni-star-filled"></i></li>
                          
                                     </ul>
-                            </div>
                             
+                            </div>       
                     </div>
                       
                 </div>
