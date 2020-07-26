@@ -6,14 +6,14 @@ class Item extends React.Component {
         return(
             
                 
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 
                             <div class="single-product-items">
                                 <div class="product-item-image">
                                 
                                     <a href="#"><img src={this.props.imgLink} alt="Product"/></a>
                                     <div class="product-discount-tag">
-                                        <p>{this.props.discount}</p>
+                                        <p>-{this.props.discount}</p>
                                     </div>
                                 </div>
                                 <div class="product-item-content mt-30">
