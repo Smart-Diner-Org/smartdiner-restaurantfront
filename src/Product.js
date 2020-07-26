@@ -160,6 +160,9 @@ class Product extends React.Component{
                         <div class="col-lg-9 col-md-8">
                             <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab">
+                            <div class="product-items mt-30">
+                <div class="row product-items-active">
+               
                                 {
                                     this.state.items.map((item, index) => {
                                         return <Item
@@ -175,9 +178,14 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
+                               
+                                </div>
+                                </div>
                             </div>
                             </div>
                             <div class="tab-pane fade" id="lunch" role="tabpanel" aria-labelledby="lunch-tab">
+                            <div class="product-items mt-30">
+                <div class="row product-items-active">
                             {
                                     this.state.items.map((item, index) => {
                                         return <Item
@@ -193,8 +201,12 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
+                                </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
+                            <div class="product-items mt-30">
+                <div class="row product-items-active">
                             {
                                     this.state.items.map((item, index) => {
                                         return <Item
@@ -210,9 +222,13 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
+                                </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-outdoor" role="tabpanel"
                             aria-labelledby="v-pills-outdoor-tab">
+                                <div class="product-items mt-30">
+                <div class="row product-items-active">
                                   {
                                     this.state.items.map((item, index) => {
                                         return <Item
@@ -228,9 +244,13 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
+                                </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-storage" role="tabpanel"
                             aria-labelledby="v-pills-storage-tab">
+                                <div class="product-items mt-30">
+                <div class="row product-items-active">
                                   {
                                     this.state.items.map((item, index) => {
                                         return <Item
@@ -246,6 +266,8 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
+                                </div>
+                                </div>
                             </div>
 
 
