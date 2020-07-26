@@ -21,7 +21,7 @@ class Slider extends Component {
                             </div>
                             <div className="col-lg-12 col-md-5">
                                 <div className="slider-product-image d-none d-md-block">
-                                    <img src={Image1} alt="Slider"/>
+                                    <img src={Image} alt="Slider"/>
                                 </div> 
                             </div>
                         </div> 
