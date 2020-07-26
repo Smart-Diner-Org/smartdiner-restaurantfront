@@ -10,6 +10,7 @@ class Item extends React.Component {
                     
                             <div class="single-product-items">
                                 <div class="product-item-image">
+                                
                                     <a href="#"><img src={this.props.imgLink} alt="Product"/></a>
                                     <div class="product-discount-tag">
                                         <p>{this.props.discount}</p>
@@ -43,8 +44,8 @@ class Item extends React.Component {
                                     </ul>
                             
                             </div>       
-                    </div>
-                      
+                    
+                    </div> 
                 </div>
                 </div>
                                     
