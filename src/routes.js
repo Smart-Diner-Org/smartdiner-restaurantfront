@@ -24,7 +24,7 @@ export default (
         <UnProtectedRoute path="/login" component={Login} />
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
-        <Route path="/" component={NewHome} />
+        <Route exact path="/" component={NewHome} />
 
     </div>
     </Switch>
