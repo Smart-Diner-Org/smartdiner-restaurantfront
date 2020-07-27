@@ -22,7 +22,7 @@ class Item extends React.Component {
                                         <p>Containments</p>
                                         <span class="discount-price">{this.props.discountPrice}</span>
                                         <span class="regular-price">{this.props.regularPrice}</span>
-                                    <div class="input-group mb-3 mt-10" style={{ maxwidth : '120px'}}>
+                                    <div class="input-group mb-3 mt-10" style={{ maxWidth : '120px'}}>
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-primary js-btn-minus"
                                                 type="button" onClick={this.props.decreasequantity}>−</button>

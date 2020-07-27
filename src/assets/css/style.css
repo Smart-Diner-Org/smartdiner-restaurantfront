@@ -347,9 +347,13 @@ p {
     2.HEADER css 
 ===========================*/
 .header-area {
-  padding: 30px 0;
+  /* padding: 30px 0; */
   background-color: #fff;
-  position: absolute;
+  /* position: absolute; */
+
+  position: fixed;
+  padding: 10px 0;
+
   top: 0;
   left: 0;
   width: 100%;
@@ -357,7 +361,7 @@ p {
   z-index: 9;
 }
 
-.header-area.sticky {
+.fixed-nav {
   position: fixed;
   top: 0;
   left: 0;

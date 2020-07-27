@@ -1,13 +1,40 @@
-import React from "react"
+import React ,{ Component } from "react"
 import BagImage from "./assets/images/bag.png"
 import Logo from "./assets/images/logo.png"
 
 
-function HeadComponent(props) {
-    return (
-    
 
-    <header class="header-area">
+class HeadComponent extends React.Component {
+//     constructor(props) {
+// 		super(props);
+
+// 		this.state = {};
+
+// 		this.handleScroll = this.handleScroll.bind(this);
+// 	}
+
+// 	handleScroll() {
+// 		this.setState({scroll: window.scrollY});
+// 	}
+  
+//   componentDidMount() {
+//         const el = document.querySelector('header-area');        
+//         this.setState({top: el.offsetTop, height: el.offsetHeight});
+// 		window.addEventListener('scroll', this.handleScroll);
+// 	}
+  
+//   componentDidUpdate() {
+// 		this.state.scroll > this.state.top ? 
+// 			document.body.style.paddingTop = `${this.state.height}px` :
+// 			document.body.style.paddingTop = 0;
+//     }
+
+
+    
+    render(){
+    return (
+        // <header className={this.state.scroll > this.state.top ? "fixed-nav" : ""}>
+        <header class="header-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -52,7 +79,8 @@ function HeadComponent(props) {
     </header>
 
     
-    )
+    );
+    }
 }
 
 export default HeadComponent
