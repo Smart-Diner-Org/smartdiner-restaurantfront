@@ -2,19 +2,27 @@ import React,{ Component } from 'react'
 import Item from './components/Item'
 import Food1 from './assets/images/food1.jpg'
 import Food2 from './assets/images/food2.jpg'
+import Carousel from 'react-bootstrap/Carousel' 
 
+const breakfast = 'breakfast';
+const dinner = 'dinner';
+const lunch = 'lunch';
+const burger = 'burger';
+const pizza = 'pizza';
 
 class Product extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            selectedType: breakfast,
             items:[{
                 imgLink: Food1,
                 itemName: 'Item1',
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: lunch
             },
             {
                 imgLink: Food1,
@@ -22,7 +30,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: lunch
             },
             {
                 imgLink: Food1,
@@ -30,7 +39,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: burger
             },
             {
                 imgLink: Food1,
@@ -38,7 +48,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: pizza
             },
             {
                 imgLink: Food2,
@@ -46,7 +57,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: lunch
             },
             {
                 imgLink: Food2,
@@ -54,7 +66,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: dinner
             },
             {
                 imgLink: Food1,
@@ -62,7 +75,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
             {
                 imgLink: Food2,
@@ -70,7 +84,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
             {
                 imgLink: Food2,
@@ -78,7 +93,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
             {
                 imgLink: Food2,
@@ -86,7 +102,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
             {
                 imgLink: Food1,
@@ -94,7 +111,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
             {
                 imgLink: Food1,
@@ -102,7 +120,8 @@ class Product extends React.Component{
                 quantity: 1,
                 regularPrice: 150,
                 discountPrice: 120,
-                discount: '20%'
+                discount: '20%',
+                type: breakfast
             },
         ]
         };
@@ -128,6 +147,14 @@ class Product extends React.Component{
         })
     }
 
+    setType(type){
+        this.setState(prevState =>{
+            return {
+                selectedType:type
+            }
+        })
+    }
+
     render(){
         return(
             <section id="product" class="product-area pt-100 pb-130">
@@ -139,19 +166,19 @@ class Product extends React.Component{
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
                                     <a class="active" id="breakfast-tab" data-toggle="pill" href="#breakfast" role="tab"
-                                        aria-controls="breakfast" aria-selected="true">Breakfast</a>
+                                        aria-controls="breakfast" aria-selected="true" onClick={()=>this.setType(breakfast)}>Breakfast</a>
 
                                     <a id="lunch-tab" data-toggle="pill" href="#lunch" role="tab" aria-controls="lunch"
-                                        aria-selected="false">Lunch</a>
+                                        aria-selected="false" onClick={()=>this.setType(lunch)}>Lunch</a>
 
                                     <a id="dinner-tab" data-toggle="pill" href="#dinner" role="tab" aria-controls="dinner"
-                                        aria-selected="false">Dinner</a>
+                                        aria-selected="false" onClick={()=>this.setType(dinner)}>Dinner</a>
 
                                     <a id="v-pills-outdoor-tab" data-toggle="pill" href="#v-pills-outdoor" role="tab"
-                                        aria-controls="v-pills-outdoor" aria-selected="false">Burgers</a>
+                                        aria-controls="v-pills-outdoor" aria-selected="false"onClick={()=>this.setType(burger)}>Burgers</a>
 
                                     <a id="v-pills-storage-tab" data-toggle="pill" href="#v-pills-storage" role="tab"
-                                        aria-controls="v-pills-storage" aria-selected="false">Pizza</a>
+                                        aria-controls="v-pills-storage" aria-selected="false" onClick={()=>this.setType(pizza)}>Pizza</a>
                                 </div> 
                             </div> 
                         </div>
@@ -159,13 +186,15 @@ class Product extends React.Component{
                         
                         <div class="col-lg-9 col-md-8">
                             <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab">
+                            <div class="tab-pane fade show active" id={this.state.selectedType} role="tabpanel" aria-labelledby={`${this.state.selectedType}-tab`}>
                             <div class="product-items mt-30">
                 <div class="row product-items-active">
                 
-               
+            
+
                                 {
                                     this.state.items.map((item, index) => {
+                                        if(item.type===this.state.selectedType)
                                         return <Item
                                             key={index}
                                             quantity={item.quantity}
@@ -179,99 +208,12 @@ class Product extends React.Component{
                                         />
                                     })
                                 }
-                               
+         
                                 </div>
                                 </div>
                             </div>
                             </div>
-                            <div class="tab-pane fade" id="lunch" role="tabpanel" aria-labelledby="lunch-tab">
-                            <div class="product-items mt-30">
-                <div class="row product-items-active">
-                            {
-                                    this.state.items.map((item, index) => {
-                                        return <Item
-                                            key={index}
-                                            quantity={item.quantity}
-                                            itemName={item.itemName}
-                                            imgLink={item.imgLink}
-                                            regularPrice={item.regularPrice}
-                                            discount={item.discount}
-                                            discountPrice={item.discountPrice}
-                                            increasequantity={() => this.changequantity(index, 1)}
-                                            decreasequantity={() => this.changequantity(index, -1)}
-                                        />
-                                    })
-                                }
-                                </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
-                            <div class="product-items mt-30">
-                <div class="row product-items-active">
-                            {
-                                    this.state.items.map((item, index) => {
-                                        return <Item
-                                            key={index}
-                                            quantity={item.quantity}
-                                            itemName={item.itemName}
-                                            imgLink={item.imgLink}
-                                            regularPrice={item.regularPrice}
-                                            discount={item.discount}
-                                            discountPrice={item.discountPrice}
-                                            increasequantity={() => this.changequantity(index, 1)}
-                                            decreasequantity={() => this.changequantity(index, -1)}
-                                        />
-                                    })
-                                }
-                                </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-outdoor" role="tabpanel"
-                            aria-labelledby="v-pills-outdoor-tab">
-                                <div class="product-items mt-30">
-                <div class="row product-items-active">
-                                  {
-                                    this.state.items.map((item, index) => {
-                                        return <Item
-                                            key={index}
-                                            quantity={item.quantity}
-                                            itemName={item.itemName}
-                                            imgLink={item.imgLink}
-                                            regularPrice={item.regularPrice}
-                                            discount={item.discount}
-                                            discountPrice={item.discountPrice}
-                                            increasequantity={() => this.changequantity(index, 1)}
-                                            decreasequantity={() => this.changequantity(index, -1)}
-                                        />
-                                    })
-                                }
-                                </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-storage" role="tabpanel"
-                            aria-labelledby="v-pills-storage-tab">
-                                <div class="product-items mt-30">
-                <div class="row product-items-active">
-                                  {
-                                    this.state.items.map((item, index) => {
-                                        return <Item
-                                            key={index}
-                                            quantity={item.quantity}
-                                            itemName={item.itemName}
-                                            imgLink={item.imgLink}
-                                            regularPrice={item.regularPrice}
-                                            discount={item.discount}
-                                            discountPrice={item.discountPrice}
-                                            increasequantity={() => this.changequantity(index, 1)}
-                                            decreasequantity={() => this.changequantity(index, -1)}
-                                        />
-                                    })
-                                }
-                                </div>
-                                </div>
-                            </div>
-
-
+                           
 
                         </div>
 

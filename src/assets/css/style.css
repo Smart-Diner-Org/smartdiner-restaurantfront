@@ -576,6 +576,10 @@ p {
   }
 }
 
+.carousel-control-next,.carousel-control-prev{
+  height: 80% ;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .single-slider .slider-product-image .slider-discount-tag {
     width: 100px;

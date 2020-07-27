@@ -8,7 +8,7 @@ class Slider extends Component {
     return (
         <section id="home" className="slider-area pt-100">
             <div className="container-fluid position-relative">
-            <Carousel controls={false}>
+            <Carousel >
             <Carousel.Item>
             <div className="single-slider">
                     <div className="slider-bg">
