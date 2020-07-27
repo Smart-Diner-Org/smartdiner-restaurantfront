@@ -19,12 +19,12 @@ export default (
     <Switch>
       <div>
 
-        <UnProtectedRoute exact path="/" component={App} />
+        {/* <Route exact path="/" component={App} /> */}
         <UnProtectedRoute path="/signup" component={Signup} />
         <UnProtectedRoute path="/login" component={Login} />
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
-        <Route path="/newhome" component={NewHome} />
+        <Route path="/" component={NewHome} />
 
     </div>
     </Switch>
