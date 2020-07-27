@@ -6,8 +6,8 @@ class Item extends React.Component {
         return(
             
                 
-            <div class="col-md-4 ">
-                <div className="row">
+            <div class="col-md-4 " style={{ marginBlockEnd : '2rem'}}>
+              
                 
                             <div class="single-product-items">
                                 <div class="product-item-image">
@@ -46,7 +46,7 @@ class Item extends React.Component {
                                     </div>
                                     </div>
                             </div>   
-                            </div>    
+                         
                 
                     
                
