@@ -6,6 +6,7 @@ import About from './About'
 import Contact from './Contact'
 import FootComponent from './FootComponent'
 import Product from './Product';
+import ScrollToTop from './ScrollToTop'
 
 class NewHome extends Component {
   
@@ -20,11 +21,13 @@ class NewHome extends Component {
         </div>
     </div> */}
          <HeadComponent />
+         
          <Slider />
          <Discount />
          <About />
          <Product />
          <Contact />
+         <ScrollToTop />
          <FootComponent />
           
         </div>

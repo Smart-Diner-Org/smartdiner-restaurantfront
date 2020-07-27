@@ -7,6 +7,7 @@ class Item extends React.Component {
             
                 
             <div class="col-md-4 ">
+                <div className="row">
                 
                             <div class="single-product-items">
                                 <div class="product-item-image">
@@ -43,7 +44,7 @@ class Item extends React.Component {
                          
                                     </ul>
                                     </div>
-                            
+                                    </div>
                             </div>   
                             </div>    
                 

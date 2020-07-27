@@ -589,6 +589,25 @@ p {
   }
 }
 
+.scroll-to-top{
+  background-color: #000;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 18px;
+  width: 40px;
+  line-height: 40px;
+  z-index: 99;
+  text-align: center;
+}
+
+.scroll-to-top:hover {
+  color: #000000;
+  background-color: #fff;
+}
+
+
+
 .single-slider .slider-product-image .slider-discount-tag p {
   display: table-cell;
   vertical-align: middle;
