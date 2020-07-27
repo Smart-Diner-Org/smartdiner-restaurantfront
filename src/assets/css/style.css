@@ -347,13 +347,9 @@ p {
     2.HEADER css 
 ===========================*/
 .header-area {
-  /* padding: 30px 0; */
+  padding: 30px 0;
   background-color: #fff;
-  /* position: absolute; */
-
-  position: fixed;
-  padding: 10px 0;
-
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -361,12 +357,8 @@ p {
   z-index: 9;
 }
 
-.fixed-nav {
+.header-area-sticky{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
   -webkit-box-shadow: 0px 0px 40px 0px rgba(156, 156, 156, 0.25);
   -moz-box-shadow: 0px 0px 40px 0px rgba(156, 156, 156, 0.25);
   box-shadow: 0px 0px 40px 0px rgba(156, 156, 156, 0.25);

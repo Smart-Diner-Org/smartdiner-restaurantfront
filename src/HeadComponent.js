@@ -5,36 +5,31 @@ import Logo from "./assets/images/logo.png"
 
 
 class HeadComponent extends React.Component {
-//     constructor(props) {
-// 		super(props);
+    constructor(props) {
+		super(props);
 
-// 		this.state = {};
+		this.state = {};
 
-// 		this.handleScroll = this.handleScroll.bind(this);
-// 	}
+		this.handleScroll = this.handleScroll.bind(this);
+	}
 
-// 	handleScroll() {
-// 		this.setState({scroll: window.scrollY});
-// 	}
+	handleScroll() {
+		this.setState({scroll: window.scrollY});
+	}
   
-//   componentDidMount() {
-//         const el = document.querySelector('header-area');        
-//         this.setState({top: el.offsetTop, height: el.offsetHeight});
-// 		window.addEventListener('scroll', this.handleScroll);
-// 	}
+  componentDidMount() {
+        const el = document.querySelector('header'); 
+        this.setState({top: el.offsetTop, height: el.offsetHeight});
+		window.addEventListener('scroll', this.handleScroll);
+	}
   
-//   componentDidUpdate() {
-// 		this.state.scroll > this.state.top ? 
-// 			document.body.style.paddingTop = `${this.state.height}px` :
-// 			document.body.style.paddingTop = 0;
-//     }
 
 
     
     render(){
     return (
-        // <header className={this.state.scroll > this.state.top ? "fixed-nav" : ""}>
-        <header class="header-area">
+        <header className={this.state.scroll > this.state.top ? " header-area header-area-sticky" : "header-area"}>
+         {/* <header class="header-area"> */}
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
