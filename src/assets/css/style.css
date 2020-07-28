@@ -357,6 +357,8 @@ p {
   z-index: 9;
 }
 
+
+
 .header-area-sticky{
   position: fixed;
   -webkit-box-shadow: 0px 0px 40px 0px rgba(156, 156, 156, 0.25);
@@ -474,6 +476,93 @@ p {
 .cart {
   height: 20px;
 }
+
+/*===========================
+    2.1 Bag css 
+===========================*/
+.bag-component{
+  position: absolute;
+  width: 40%;
+  height: 550px;
+  right: 0;
+  margin: auto;
+  background-color: white;
+  z-index: 99999;
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+  
+}
+
+.bag-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.bag-header .left{
+  width: 40%;
+
+}
+.bag-header .left button{
+  padding: 2px 5px 2px 5px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  border: 1px solid;
+  color: red;
+  border-color: red;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.bag-header .right{
+margin-left: auto;
+}
+
+.bag-item{
+  margin: 10px;
+  padding: 10px 10px 10px 10px ;
+  border: 1px solid blue;
+  border-radius: 20px;
+}
+
+
+
+
+
+.delivery-type{
+  margin-top: 5em;
+  margin-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delivery-type button{
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  font-family: fantasy;
+  color: white;
+  background-color: blue;
+  border: none;
+
+}
+
+.bill-container{
+  padding: 10px 10px 10px 10px;
+}
+ 
+
+
+
+
+
+
+
+
+
 
 /*===========================
     3.SLIDER css 

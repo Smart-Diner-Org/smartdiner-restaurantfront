@@ -18,7 +18,7 @@ class Product extends React.Component{
             items:[{
                 imgLink: Food1,
                 itemName: 'Item1',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -27,7 +27,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item2',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -36,7 +36,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item3',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -45,7 +45,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item4',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -54,7 +54,7 @@ class Product extends React.Component{
             {
                 imgLink: Food2,
                 itemName: 'Item5',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -63,7 +63,7 @@ class Product extends React.Component{
             {
                 imgLink: Food2,
                 itemName: 'Item6',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -72,7 +72,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item7',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -81,7 +81,7 @@ class Product extends React.Component{
             {
                 imgLink: Food2,
                 itemName: 'Item8',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -90,7 +90,7 @@ class Product extends React.Component{
             {
                 imgLink: Food2,
                 itemName: 'Item9',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -99,7 +99,7 @@ class Product extends React.Component{
             {
                 imgLink: Food2,
                 itemName: 'Item10',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -108,7 +108,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item11',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',
@@ -117,7 +117,7 @@ class Product extends React.Component{
             {
                 imgLink: Food1,
                 itemName: 'Item12',
-                quantity: 1,
+                quantity: 0,
                 regularPrice: 150,
                 discountPrice: 120,
                 discount: '20%',

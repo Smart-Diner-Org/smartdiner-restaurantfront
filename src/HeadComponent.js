@@ -1,6 +1,7 @@
 import React ,{ Component } from "react"
 import BagImage from "./assets/images/bag.png"
 import Logo from "./assets/images/logo.png"
+import Bag from "./Bag"
 
 
 
@@ -8,9 +9,10 @@ class HeadComponent extends React.Component {
     constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = { showPopup: false };
 
-		this.handleScroll = this.handleScroll.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
 	}
 
 	handleScroll() {
@@ -23,13 +25,17 @@ class HeadComponent extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
   
-
+    togglePopup() {
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
+      }
 
     
     render(){
     return (
         <header className={this.state.scroll > this.state.top ? " header-area header-area-sticky" : "header-area"}>
-         {/* <header class="header-area"> */}
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -61,9 +67,10 @@ class HeadComponent extends React.Component {
                                     <a data-scroll-nav="0" href="#contact">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#">
+                                    <a data-scroll-nav="0" href="#" onClick={this.togglePopup.bind(this)}>
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                     </a>
+                                    
                                 </li>
                             </ul> 
                         </div>
@@ -71,6 +78,7 @@ class HeadComponent extends React.Component {
                 </div>
             </div> 
         </div> 
+        { this.state.showPopup ?<Bag closePopup={this.togglePopup.bind(this)} /> : null }
     </header>
 
     
