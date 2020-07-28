@@ -14,7 +14,6 @@ class BagItemList extends React.Component {
                 discount: 0,
             },
             
-
             ]
         };
         this.changequantity = this.changequantity.bind(this)

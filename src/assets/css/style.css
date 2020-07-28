@@ -482,8 +482,8 @@ p {
 ===========================*/
 .bag-component{
   position: absolute;
-  width: 40%;
-  height: 550px;
+  width: 50%;
+  height: 770px;
   right: 0;
   margin: auto;
   background-color: white;
@@ -526,6 +526,17 @@ margin-left: auto;
   border-radius: 20px;
 }
 
+.bag-item{
+
+
+}
+
+
+
+
+
+
+
 
 
 
@@ -554,6 +565,116 @@ margin-left: auto;
   padding: 10px 10px 10px 10px;
 }
  
+.final-bill{
+  display: flex ;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.bag-item img{
+  width: 200px;
+  height: auto;
+  display: flex;
+}
+
+.quantity{
+  border: 2px solid;
+  border-color: blue;
+  width: auto;
+}
+.quantity label{
+  text-align: center;
+  color: blue;
+}
+.quantity button{
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: darkgoldenrod;
+}
+
+.cancelbutton button{
+ 
+  border: none;
+  color: red;
+  background-color: transparent;
+  
+}
+
+.top-up button {
+    
+  margin: 1%;
+  width: 150px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: white;
+  color: #1616bd;
+  font-weight: 700;
+}
+
+.top-up button:active{
+  background-color: #1616bd;
+  color: white;
+  border: none;
+}
+
+.final-bill input{
+  border-color: blue;
+  border-radius: 5px;
+  width: 8rem;
+  padding : 2px 2px;
+  margin: 0px 5px 5px 30px;
+ 
+}
+
+.final-bill button{
+  width:5em;
+  border: none;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+  
+}
+
+
+.foot-content{
+  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+
+}
+
+.span-left{
+  width: 60%;
+  
+}
+.foot-content strong{
+  font-size: 1.5em;
+  font-family: sans-serif;
+  color: #1616bd;
+  text-decoration: underline;
+  text-decoration-color: #f7f711;
+}
+
+.span-right{
+  margin-left: auto;
+  text-decoration: solid;
+  color: black;
+  padding: 5px 5px 5px 5px;
+  
+}
+
+.span-right a{
+  text-decoration: solid ;
+  font-size: 10px;
+  color: black;
+  padding: 5px 5px 5px 5px;
+}
+
+
 
 
 

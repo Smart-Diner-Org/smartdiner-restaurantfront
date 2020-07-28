@@ -12,7 +12,6 @@ class HeadComponent extends React.Component {
 		this.state = { showPopup: false };
 
         this.handleScroll = this.handleScroll.bind(this);
-        this.togglePopup = this.togglePopup.bind(this);
 	}
 
 	handleScroll() {
@@ -25,12 +24,6 @@ class HeadComponent extends React.Component {
 		window.addEventListener('scroll', this.handleScroll);
 	}
   
-    togglePopup() {
-        this.setState({
-          showPopup: !this.state.showPopup
-        });
-      }
-
     
     render(){
     return (
@@ -67,7 +60,7 @@ class HeadComponent extends React.Component {
                                     <a data-scroll-nav="0" href="#contact">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-scroll-nav="0" href="#" onClick={this.togglePopup.bind(this)}>
+                                    <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup}>
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                     </a>
                                     
@@ -78,7 +71,7 @@ class HeadComponent extends React.Component {
                 </div>
             </div> 
         </div> 
-        { this.state.showPopup ?<Bag closePopup={this.togglePopup.bind(this)} /> : null }
+        
     </header>
 
     
