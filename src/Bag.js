@@ -19,13 +19,17 @@ class Bag extends Component{
             // <Modal backdrop="static">
             <div className="bag-component">
                 <header className="bag-header">
-                    <div className="left">
-                    <button onClick={this.props.closePopup}>x</button>
+                    <div className="row">
+                        <div className="col-auto mr-auto">
+                        <button className="bag-close" onClick={this.props.closePopup}>X</button>
+                        </div>
+                        <div className="col-auto" >
+                        <label >Your PaperBag</label>
+                        <img src='./dummpy.jpg' alt="image"/>
+                        </div>
+
                     </div>
-                    <div className="right">
-                    <label >Your PaperBag</label>
-                    <img src='./dummpy.jpg' alt="image"/>
-                    </div>
+                    
                 </header>
                 {/* <BagHead /> */}
                 {/* {JSON.stringify(this.props.items)} */}

@@ -17,19 +17,21 @@ class Bill extends React.Component {
                         <label className="col-auto" style={{marginBottom:"5rem"}}>{`Rs ${this.props.values[1].toFixed(2)}`}</label>
                     </div>
                     <div className="row">
-                        
-                            <div class="col-auto mr-auto justify-content-between" >
-                                <div className="final-bill">
+                    <div className="final-bill">
+                            <div class="col-9" >
+                                
                                     <label >Coupon Code</label>
                                     <input type="textbox" />
                                     <button >Find</button>
+                                    
                                 </div>
-                           </div>
-                            <div class="col-auto">
-                                <label className="col-auto mr-auto">To Pay</label>
-                                <label className="col-auto"><strong>{`$${this.props.values[2].toFixed(2)}`}</strong></label>
+                          
+                            <div class="col-3S">
+                                <label className="col" >To Pay</label>
+                                <label className="col"><strong>{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
                             </div>
-                        
+                            
+                            </div>
                     </div>
                 </div>
             </div>

@@ -490,33 +490,21 @@ p {
   z-index: 99999;
   overflow-x: hidden;
   overflow-y: auto;
-  
-  
 }
 
 .bag-header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
+  margin: 10px;
+  padding: 10px;
 }
 
-.bag-header .left{
-  width: 40%;
 
-}
-.bag-header .left button{
-  padding: 2px 5px 2px 5px;
-  margin-left: 10px;
-  margin-bottom: 20px;
+
+.bag-close{
   border: 1px solid;
   color: red;
   border-color: red;
   border-radius: 5px;
   background-color: transparent;
-}
-.bag-header .right{
-margin-left: auto;
 }
 
 .bag-item{
@@ -545,7 +533,7 @@ margin-left: auto;
   border-radius: 20px;
   background-color: white;
   color: #1616bd;
-  font-weight: 700;
+  object-fit: scale-down;
 }
 
 .top-up button:active{
@@ -587,11 +575,7 @@ margin-left: auto;
   padding: 10px 10px 10px 10px;
 }
  
-.final-bill{
-  display: flex ;
-  flex-direction: row;
-  justify-content: space-around;
-}
+
 
 
 
@@ -627,25 +611,32 @@ margin-left: auto;
 }
 
 
-
+.final-bill{
+  display: flex;
+  flex-direction: row;
+  
+}
 
 
 .final-bill input{
   border-color: blue;
   border-radius: 5px;
-  width: 8rem;
-  padding : 2px 2px;
-  margin: 0px 5px 5px 30px;
+  width: 70px;
+  height: 20px;
+  margin: 0px 2px 0px 5px;
+  
  
 }
 
+
+
 .final-bill button{
-  width:5em;
+  width:50px;
   border: none;
   background-color: blue;
   border-radius: 5px;
   color: white;
-  
+  margin: 0px 2px 0px 5px;
 }
 
 
