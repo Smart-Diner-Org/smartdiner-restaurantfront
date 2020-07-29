@@ -2,7 +2,7 @@ import React,{Component} from "react"
 import BurgerImage from "../../assets/images/food1.jpg"
 
 
-class BillItem extends React.Component {
+class BillItem extends Component {
     constructor(props){
         super(props);
         
@@ -14,9 +14,9 @@ class BillItem extends React.Component {
                 <div class='container'>
                     <div className="row">
                     <div className="col-3">
-                        <div >
+                        
                             <img src={BurgerImage} class="food-image" alt='burger'/>    
-                        </div>
+                       
                     </div>
                     <div className="col-9" >
                         <div className="row">
@@ -26,7 +26,7 @@ class BillItem extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <h4 className="col-6" style={{color:'#1616bd'}}>{this.props.itemName}</h4>
+                            <h4 className="col-6" style={{color:'#1616bd',fontSize:'1em'}}>{this.props.itemName}</h4>
                             <div class='col-3'>
                                             {this.props.discount>0?
                                                 <>

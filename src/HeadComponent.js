@@ -64,7 +64,7 @@ class HeadComponent extends React.Component {
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                         <span class="badge">{this.props.total}</span>
                                     </a>
-                                    {console.log(this.props.total)}
+                        
                                 </li>
                             </ul> 
                         </div>

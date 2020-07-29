@@ -10,6 +10,9 @@ import ScrollToTop from './ScrollToTop'
 import Food1 from './assets/images/food1.jpg'
 import Food2 from './assets/images/food2.jpg'
 import Bag from './Bag'
+import axios from 'axios';
+
+
 
 const breakfast = 'breakfast';
 const dinner = 'dinner';
@@ -21,8 +24,32 @@ class NewHome extends Component {
   constructor(props){
     super(props);
     this.state = {
+
+        dataitems:[{
+            category_id: null,
+            coupon_valid: null,
+            createdAt: null,
+            description: null,
+            discount: null,
+            id: null,
+            image: null,
+            menu_type: null,
+            name: null,
+            price: "20",
+            restuarant_branch_id: null,
+            serving: null,
+            status: null,
+            updatedAt: null,
+            category:[]
+
+        }],
         selectedType: breakfast,
         total : 1,
+
+       
+            
+       
+
         items:[{
             imgLink: Food1,
             itemName: 'Item1',
@@ -58,86 +85,26 @@ class NewHome extends Component {
             discountPrice: 120,
             discount: 20,
             type: pizza
-        },
-        {
-            imgLink: Food2,
-            itemName: 'Item5',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: lunch
-        },
-        {
-            imgLink: Food2,
-            itemName: 'Item6',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: dinner
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item7',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-        {
-            imgLink: Food2,
-            itemName: 'Item8',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-        {
-            imgLink: Food2,
-            itemName: 'Item9',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-        {
-            imgLink: Food2,
-            itemName: 'Item10',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item11',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item12',
-            quantity: 1,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: breakfast
-        },
-    ]
+        }
+    ],
+    data : [],
     };
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
     
 }
+
+componentDidMount() {
+    axios.get(`./dbapi.json`)
+      .then(res => {
+        const data = res.data;
+        this.setState({ data });
+      })
+  }
+
+
+
 changequantity(index, value) {
     this.setState(prevState => {
         let newItemsStateArray = prevState.items;
@@ -190,7 +157,8 @@ togglePopup() {
          items={this.state.items}
          
          />}
-         
+         {console.log(this.state.data)}
+
          <HeadComponent
          togglePopup={this.togglePopup}
          total={this.state.total}
