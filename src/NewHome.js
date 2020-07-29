@@ -22,6 +22,7 @@ class NewHome extends Component {
     super(props);
     this.state = {
         selectedType: breakfast,
+        total : 1,
         items:[{
             imgLink: Food1,
             itemName: 'Item1',
@@ -192,6 +193,7 @@ togglePopup() {
          
          <HeadComponent
          togglePopup={this.togglePopup}
+         total={this.state.total}
          />
 
 

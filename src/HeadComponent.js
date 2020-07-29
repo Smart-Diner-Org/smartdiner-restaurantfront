@@ -62,8 +62,9 @@ class HeadComponent extends React.Component {
                                 <li class="nav-item">
                                     <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup}>
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
+                                        <span class="badge">{this.props.total}</span>
                                     </a>
-                                    
+                                    {console.log(this.props.total)}
                                 </li>
                             </ul> 
                         </div>
