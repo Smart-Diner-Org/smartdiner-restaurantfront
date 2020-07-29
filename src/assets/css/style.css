@@ -482,7 +482,7 @@ p {
 ===========================*/
 .bag-component{
   position: absolute;
-  width: 50%;
+  width: 35%;
   height: 770px;
   right: 0;
   margin: auto;
@@ -526,11 +526,33 @@ margin-left: auto;
   border-radius: 20px;
 }
 
-.bag-item{
-
-
+.item-middle{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-bottom: 20%;
+  
+}
+.price{
+  padding-top: 30%;
 }
 
+.top-up button {
+    
+  margin: 1%;
+  width: 150px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: white;
+  color: #1616bd;
+  font-weight: 700;
+}
+
+.top-up button:active{
+  background-color: #1616bd;
+  color: white;
+  border: none;
+}
 
 
 
@@ -572,7 +594,9 @@ margin-left: auto;
 }
 
 
-.bag-item img{
+
+
+/* .bag-item img{
   width: 200px;
   height: auto;
   display: flex;
@@ -592,7 +616,7 @@ margin-left: auto;
   border-color: transparent;
   border-radius: 5px;
   background-color: darkgoldenrod;
-}
+} */
 
 .cancelbutton button{
  
@@ -602,22 +626,9 @@ margin-left: auto;
   
 }
 
-.top-up button {
-    
-  margin: 1%;
-  width: 150px;
-  height: 30px;
-  border-radius: 20px;
-  background-color: white;
-  color: #1616bd;
-  font-weight: 700;
-}
 
-.top-up button:active{
-  background-color: #1616bd;
-  color: white;
-  border: none;
-}
+
+
 
 .final-bill input{
   border-color: blue;

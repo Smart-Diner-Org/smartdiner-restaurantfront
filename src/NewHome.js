@@ -28,7 +28,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: lunch
         },
         {
@@ -37,7 +37,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: lunch
         },
         {
@@ -46,7 +46,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: burger
         },
         {
@@ -55,7 +55,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: pizza
         },
         {
@@ -64,7 +64,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: lunch
         },
         {
@@ -73,7 +73,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: dinner
         },
         {
@@ -82,7 +82,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
         {
@@ -91,7 +91,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
         {
@@ -100,7 +100,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
         {
@@ -109,7 +109,7 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
         {
@@ -118,16 +118,16 @@ class NewHome extends Component {
             quantity: 0,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
         {
             imgLink: Food1,
             itemName: 'Item12',
-            quantity: 0,
+            quantity: 1,
             regularPrice: 150,
             discountPrice: 120,
-            discount: '20%',
+            discount: 20,
             type: breakfast
         },
     ]
@@ -135,6 +135,7 @@ class NewHome extends Component {
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
+    
 }
 changequantity(index, value) {
     this.setState(prevState => {
@@ -170,6 +171,8 @@ togglePopup() {
   });
 }
 
+
+
   render() {
     return (
         <div>
@@ -183,10 +186,13 @@ togglePopup() {
          togglePopup={this.togglePopup}
          />
 
-         { this.state.showPopup && <Bag 
+         { this.state.showPopup && 
+         <Bag 
+         style = {{overlay : {background : "grey"} }}
          closePopup={this.togglePopup.bind(this) }  
          changequantity={this.changequantity}
          items={this.state.items}
+         
          />}
          
          <Slider />

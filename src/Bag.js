@@ -22,7 +22,22 @@ class Bag extends Component{
                     </div>
                 </header>
                 {/* <BagHead /> */}
-                <BagItemList />
+                {/* {JSON.stringify(this.props.items)} */}
+                {
+                    this.props.items.map((item, index) => {
+                        if(item.quantity>=1)
+                        return <BagItemList
+                            key={index}
+                            items={this.props.items}
+                            quantity={item.quantity}
+                            itemName={item.itemName}
+                            price={item.price}
+                            discount={item.discount}
+                            increasequantity={() => this.props.changequantity(index,1)}
+                            decreasequantity={() => this.props.changequantity(index, -1)}
+                        />
+                    })
+                }
                 <Delivery />
                 <BagFoot />
             </div>
