@@ -1,16 +1,22 @@
 import React , {Component} from 'react'
 import BagHead from './BagHead'
 import BagItemList from './BagItemList';
-import Bill from './Bill';
+
 import Delivery from './Delivery';
-import BagFoot from './BagFoot'
+import BagFoot from './BagFoot';
+import Bill from './Bill';
+import Modal from "react-bootstrap/Modal"
 
 class Bag extends Component{
     constructor(props){
         super(props);
+        
     }
+
+    
     render(){
         return(
+            // <Modal backdrop="static">
             <div className="bag-component">
                 <header className="bag-header">
                     <div className="left">
@@ -23,24 +29,18 @@ class Bag extends Component{
                 </header>
                 {/* <BagHead /> */}
                 {/* {JSON.stringify(this.props.items)} */}
-                {
-                    this.props.items.map((item, index) => {
-                        if(item.quantity>=1)
-                        return <BagItemList
-                            key={index}
+<BagItemList
                             items={this.props.items}
-                            quantity={item.quantity}
-                            itemName={item.itemName}
-                            price={item.price}
-                            discount={item.discount}
-                            increasequantity={() => this.props.changequantity(index,1)}
-                            decreasequantity={() => this.props.changequantity(index, -1)}
+                            changequantity={this.props.changequantity}
+                            
                         />
-                    })
-                }
+
+                   
+                
                 <Delivery />
                 <BagFoot />
             </div>
+            // </Modal>
         );
     }
 }

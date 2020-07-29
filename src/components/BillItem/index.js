@@ -3,12 +3,16 @@ import BurgerImage from "../../assets/images/food1.jpg"
 
 
 class BillItem extends React.Component {
+    constructor(props){
+        super(props);
+        
+    }
+    
     render(){
         return(
             <div class='bag-item'>
                 <div class='container'>
                     <div className="row">
-                        
                         <div className="col-3">
                             <img src={BurgerImage} class="food-image" alt='burger'/>    
                         </div>
@@ -55,12 +59,13 @@ class BillItem extends React.Component {
                         </div>
                         <div className="col-1">
                             <div className='cancelbutton'>
-                                <button >X</button>                            </div>
+                                <button >X</button>                            
+                            </div>
                         </div>
                         
                 
                     </div>
-                
+                    
                 </div>
             </div>
         )

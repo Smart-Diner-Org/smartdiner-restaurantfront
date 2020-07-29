@@ -24,6 +24,8 @@ class BagItemList extends React.Component {
         return [total, tax, totalWithTax]
     }
 
+    
+
     render() {
 
 
@@ -39,8 +41,8 @@ class BagItemList extends React.Component {
                             itemName={item.itemName}
                             regularPrice={item.regularPrice}
                             discount={item.discount}
-                            increasequantity={this.props.increasequantity}
-                            decreasequantity={this.props.decreasequantity}
+                            increasequantity={() => this.props.changequantity(index,1)}
+                            decreasequantity={() => this.props.changequantity(index, -1)}
                         />
                     })
                 }

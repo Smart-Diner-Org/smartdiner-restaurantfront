@@ -25,7 +25,7 @@ class NewHome extends Component {
         items:[{
             imgLink: Food1,
             itemName: 'Item1',
-            quantity: 0,
+            quantity: 1,
             regularPrice: 150,
             discountPrice: 120,
             discount: 20,
@@ -182,18 +182,19 @@ togglePopup() {
             <div class="cube2"></div>
         </div>
     </div> */}
-         <HeadComponent
-         togglePopup={this.togglePopup}
-         />
-
-         { this.state.showPopup && 
+             { this.state.showPopup && 
          <Bag 
-         style = {{overlay : {background : "grey"} }}
          closePopup={this.togglePopup.bind(this) }  
          changequantity={this.changequantity}
          items={this.state.items}
          
          />}
+         
+         <HeadComponent
+         togglePopup={this.togglePopup}
+         />
+
+
          
          <Slider />
          <Discount />
@@ -207,7 +208,7 @@ togglePopup() {
          <Contact />
          <ScrollToTop />
          <FootComponent />
-          
+         
         </div>
     );
   }
