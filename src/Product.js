@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import Item from './components/Item'
-import Carousel from 'react-bootstrap/Carousel' 
+
 
 const breakfast = 'breakfast';
 const dinner = 'dinner';
@@ -8,15 +8,12 @@ const lunch = 'lunch';
 const burger = 'burger';
 const pizza = 'pizza';
 
-class Product extends React.Component{
-    constructor(props){
-        super(props)
-    }
-    
-
+class Product extends Component{
+  
     render(){
         return(
             <section id="product" class="product-area pt-100 pb-130">
+                {console.log(this.props.categoryArray)}
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-4">
@@ -49,15 +46,15 @@ class Product extends React.Component{
                             <div class="product-items mt-30">
                 <div class="row product-items-active">
                 
-            
+                                
 
                                 {
-                                    this.props.items.map((item, index) => {
-                                        if(item.type===this.props.selectedType)
+                                        this.props.items.map((item, index) => {
+                                        // if(item.type===this.props.selectedType)
                                         return <Item
                                             key={index}
                                             quantity={item.quantity}
-                                            itemName={item.itemName}
+                                            itemName={item.name}
                                             imgLink={item.imgLink}
                                             regularPrice={item.regularPrice}
                                             discount={item.discount}

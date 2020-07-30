@@ -24,86 +24,29 @@ class NewHome extends Component {
   constructor(props){
     super(props);
     this.state = {
-
-        dataitems:[{
-            category_id: null,
-            coupon_valid: null,
-            createdAt: null,
-            description: null,
-            discount: null,
-            id: null,
-            image: null,
-            menu_type: null,
-            name: null,
-            price: "20",
-            restuarant_branch_id: null,
-            serving: null,
-            status: null,
-            updatedAt: null,
-            category:[]
-
-        }],
         selectedType: breakfast,
-        total : 1,
-
-       
-            
-       
-
-        items:[{
-            imgLink: Food1,
-            itemName: 'Item1',
-            quantity: 1,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: lunch
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item2',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: lunch
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item3',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: burger
-        },
-        {
-            imgLink: Food1,
-            itemName: 'Item4',
-            quantity: 0,
-            regularPrice: 150,
-            discountPrice: 120,
-            discount: 20,
-            type: pizza
-        }
-    ],
+        items:[{}],
     data : [],
+    loading: false,
+    total : 0,
     };
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
-    
+    this.getCategories = this.getCategories.bind(this)
+    this.categoryArray = []
 }
+
+
 
 componentDidMount() {
     axios.get(`./dbapi.json`)
       .then(res => {
         const data = res.data;
-        this.setState({ data });
+        this.setState({ items : data.menus });
+        this.getCategories(data.menus);
       })
   }
-
-
 
 changequantity(index, value) {
     this.setState(prevState => {
@@ -139,6 +82,17 @@ togglePopup() {
   });
 }
 
+getCategories(items){
+    let categoryArray = []
+    items.map((item)=>{
+        if(item.category){
+
+            categoryArray.push(item.category)
+        
+        }
+    })
+    this.setState({categoryArray});
+}
 
 
   render() {
@@ -157,7 +111,8 @@ togglePopup() {
          items={this.state.items}
          
          />}
-         {console.log(this.state.data)}
+
+         
 
          <HeadComponent
          togglePopup={this.togglePopup}
@@ -174,6 +129,7 @@ togglePopup() {
          changequantity={this.changequantity}
          items={this.state.items}
          selectedType={this.state.selectedType}
+         categoryArray={this.state.categoryArray}
          />
          <Contact />
          <ScrollToTop />

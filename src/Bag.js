@@ -1,20 +1,12 @@
 import React , {Component} from 'react'
-import BagHead from './BagHead'
 import BagItemList from './BagItemList';
-
 import Delivery from './Delivery';
 import BagFoot from './BagFoot';
-import Bill from './Bill';
-import Modal from "react-bootstrap/Modal"
+// import BgImage from './assets/images/bag.png'
 
-class Bag extends Component{
-    constructor(props){
-        super(props);
-        
-    }
-
+class Bag extends Component{  
     
-    render(){
+render(){
         return(
             // <Modal backdrop="static">
             <div className="bag-component">
