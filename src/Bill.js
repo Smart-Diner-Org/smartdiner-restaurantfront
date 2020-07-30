@@ -3,7 +3,7 @@ import React,{Component} from "react"
 
 class Bill extends React.Component {
     render(){
-        console.log(this.props)
+        
         return(
             <div class="bill-container">
                 <hr/>

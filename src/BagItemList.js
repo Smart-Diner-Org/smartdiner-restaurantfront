@@ -38,8 +38,8 @@ class BagItemList extends React.Component {
                         return <BillItem
                             key={index}
                             quantity={item.quantity}
-                            itemName={item.itemName}
-                            regularPrice={item.regularPrice}
+                            itemName={item.name}
+                            regularPrice={item.price}
                             discount={item.discount}
                             increasequantity={() => this.props.changequantity(index,1)}
                             decreasequantity={() => this.props.changequantity(index, -1)}

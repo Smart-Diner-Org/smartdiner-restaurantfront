@@ -25,7 +25,7 @@ render(){
                 </header>
                 {/* <BagHead /> */}
                 {/* {JSON.stringify(this.props.items)} */}
-<BagItemList
+                <BagItemList 
                             items={this.props.items}
                             changequantity={this.props.changequantity}
                             
