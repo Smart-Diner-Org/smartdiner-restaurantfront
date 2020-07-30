@@ -28,7 +28,7 @@ class Bill extends React.Component {
                           
                             <div class="col-3S">
                                 <label className="col" >To Pay</label>
-                                <label className="col"><strong>{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
+                                <label className="col" ><strong style={{fontSize:"1.5em",fontFamily:"Museo moderno"}} >{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
                             </div>
                             
                             </div>

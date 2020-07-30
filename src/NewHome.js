@@ -112,7 +112,7 @@ togglePopup() {
 getCategories(items){
     let categoryArray = []
     let indexes = [];
-    items.map((item)=>{
+    items.map((item) => {
         if(item.category){
             // if(categoryArray.some(item.category => item.category_id != categoryArray.id)){
                 // if(!item.category_id in categoryArray){

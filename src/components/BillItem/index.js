@@ -26,25 +26,27 @@ class BillItem extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <h4 className="col-6" style={{color:'#1616bd',fontSize:'1em'}}>{this.props.itemName}</h4>
+                            <h4 className="col-6" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >{this.props.itemName}</h4>
                             <div class='col-3'>
                                             {this.props.discount>0?
                                                 <>
-                                                <label style={{textDecoration:'line-through'}}>Rs.{this.props.regularPrice}</label>
+                                                <label style={{textDecoration:'line-through',color:"#FFC009",fontFamily:"Museo moderno",fontSize:"1.125em"}}>{this.props.discPrice}</label>
                                                 </>
                                                 :
                                                 ""
                                                 }
                                         </div>
                                         <div className="col-3">
+                                            <div className="quantity">
                                 <button name='sub' onClick={this.props.decreasequantity}>-</button>
                                 <label>{this.props.quantity}</label>
                                 <button name='add' onClick={this.props.increasequantity}>+</button>
+                                </div>
                             </div>
                         </div>
                         <div className="row">
-                            <h6 className="col-6" style={{color:'grey'}}>Containments</h6>
-                            <label className="col-3">Rs.{this.props.regularPrice}</label>
+                            <h6 className="col-6" style={{color:'#828282',fontFamily:"Latto",fontSize:"0.75em"}}>Containments</h6>
+                            <label className="col-3" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{this.props.regularPrice}</label>
                             
                         </div>
                         <div className="row">
