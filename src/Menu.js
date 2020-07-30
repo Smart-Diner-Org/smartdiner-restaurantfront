@@ -13,7 +13,7 @@ class Menu extends Component{
                                 {
                                     this.props.categoryArray.map((category,index)=>{
                                         return(
-                                            <a class="active" id={`${category.name}`} data-toggle="pill" href="#breakfast" role="tab"
+                                            <a id={`${category.name}`} data-toggle="pill" href="#breakfast" role="tab"
                                 aria-controls="breakfast" 
                                 onClick={()=>this.props.setType(category.id)}
                                 aria-selected="true" >{category.name}</a>

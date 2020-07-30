@@ -1171,7 +1171,11 @@ p {
   color: #fff;
 }
 
-
+.collection-tilte:first-child:active{
+  background-color: #000000;
+  border-color: #000000;
+  color: #fff;
+}
 
 .single-product-items .product-item-image {
   position: relative;

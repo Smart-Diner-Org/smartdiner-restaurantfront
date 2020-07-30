@@ -42,9 +42,10 @@ async componentDidMount() {
         await axios.get(`./dbapi.json`)
       .then(res => {
         const data = res.data;
+        console.log(data.menus)
         this.getCategories(data.menus);
+        this.addDiscountQuantity(data.menus)
         this.setState({
-             items : data.menus ,
              isLoaded: true,
             });     
            
@@ -77,18 +78,19 @@ changequantity(index, value) {
     })
 }
 
-addDiscountQuantity(items,index){
+addDiscountQuantity(itemsArray){
     this.setState( prevState => {
-        let newItemsStateArray =  prevState.items;
-        newItemsStateArray[index].quantity = 0;
-        newItemsStateArray[index].discountPrice = (newItemsStateArray[index].price-(newItemsStateArray[index].price*newItemsStateArray[index].discount/100));
+        let newItemsStateArray =  [];
+        itemsArray.map((item,index)=>{
+         newItemsStateArray.push({...item,quantity:0,discountPrice:(item.price-(item.price*(item.discount/100)))})   
+        })
         return {
             items: newItemsStateArray
         }
 })
 }
 
-
+//im trying to add quantity and discount price to item of items array... so the other funtions will remain the same
 
 
 
@@ -109,16 +111,22 @@ togglePopup() {
 
 getCategories(items){
     let categoryArray = []
-   
+    let indexes = [];
     items.map((item)=>{
         if(item.category){
             // if(categoryArray.some(item.category => item.category_id != categoryArray.id)){
                 // if(!item.category_id in categoryArray){
-                    console.log(categoryArray)
-                    if(categoryArray.indexOf(item.category)=== -1){
-                        categoryArray.push(item.category);
-                    }
                    
+                    // if(categoryArray.indexOf(item.category)=== -1){
+                    //     categoryArray.push(item.category);
+                    // }
+
+
+                    
+                if(indexes.indexOf(item.category.name)=== -1){
+                                        indexes.push(item.category.name);
+                                        categoryArray.push(item.category);
+                                    }
              
                 
         }
@@ -131,7 +139,7 @@ getCategories(items){
 
   render() {
     const { isLoaded } = this.state;
-
+console.log(this.state.items)
     if (!isLoaded) {
       return (
         <div>

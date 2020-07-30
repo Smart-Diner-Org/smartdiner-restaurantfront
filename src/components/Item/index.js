@@ -14,7 +14,7 @@ class Item extends React.Component {
                                 
                                     <a href="#"><img src={this.props.image} alt="Product"/></a>
                                     <div class="product-discount-tag">
-                                        <p>-{this.props.discount}</p>
+                                        <p>-{this.props.discount}%</p>
                                     </div>
                                 </div>
                                 <div class="product-item-content mt-30">

@@ -1,6 +1,7 @@
 import React,{ Component } from 'react'
 import Item from './components/Item'
 import Menu from './Menu'
+import Burger from './assets/images/food1.jpg'
 
 
 const breakfast = 'breakfast';
@@ -46,7 +47,7 @@ class Product extends Component{
                                             key={index}
                                             quantity={item.quantity}
                                             itemName={item.name}
-                                            image={item.image}
+                                            image={Burger}
                                             regularPrice={item.price}
                                             discount={item.discount}
                                             discountPrice={item.discountPrice}
