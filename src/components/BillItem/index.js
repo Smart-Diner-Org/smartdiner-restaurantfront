@@ -3,10 +3,7 @@ import BurgerImage from "../../assets/images/food1.jpg"
 
 
 class BillItem extends Component {
-    constructor(props){
-        super(props);
-        
-    }
+    
     
     render(){
         return(
@@ -39,7 +36,8 @@ class BillItem extends Component {
                                                 <label  style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{ this.props.discountPrice }</label>
                                                 </>
                                                 :
-                                                ""
+                                                <label style={{color:"#000466",fontFamily:"Museo moderno",fontSize:"1.125em"}}>Rs.{this.props.price}</label>
+
                                                 }
 
 
@@ -57,7 +55,7 @@ class BillItem extends Component {
                             
                             
                         </div>
-                        <div className="row">
+                        <div className="row col-5">
                          {this.props.discount>0&&<h3 style={{fontSize:"0.875em",color:'#828282',fontFamily:"Museo moderno"}}>{this.props.discount}% OFFER APPLIED</h3>}
                         </div>
                         <div className="row">

@@ -13,7 +13,7 @@ class Bill extends Component {
                             <label className="col-auto" >{`Rs ${this.props.values[0].toFixed(2)}`}</label> <br/>
                         </div>
                     <div className="row">
-                        <label className="col-auto mr-auto" style={{textDecoration:'underline',textDecorationColor:'yellow',textDecorationThickness:'3px'}} >Tax Charges</label>
+                        <a className="col-auto mr-auto" href="#"  >Tax Charges</a>
                         <label className="col-auto" style={{marginBottom:"5rem"}}>{`Rs ${this.props.values[1].toFixed(2)}`}</label>
                     </div>
                     
@@ -26,9 +26,9 @@ class Bill extends Component {
                                     
                                 </div>
                           
-                            <div class="col-3" style={{textAlign:"right"}}>
-                                <label style={{width:"100%"}} >To Pay</label>
-                                <label style={{width:"100%"}} ><strong style={{fontSize:"1.5em",fontFamily:"Museo moderno"}} >{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
+                            <div class="col-3" style={{textAlign:"right",width:"100%" ,display:"flex"}}>
+                                <label style={{textAlign:"left"}} >To  Pay  </label>
+                                <label  ><strong style={{fontSize:"1.5em",fontFamily:"Museo moderno"}} >{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
                             </div>
                             
                         
