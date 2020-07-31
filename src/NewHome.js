@@ -18,7 +18,7 @@ class NewHome extends Component {
   constructor(props){
     super(props);
     this.state = {
-        selectedType: "1",
+        selectedType: "",
         items:[{}],
         isLoaded: false,
         total : 0,

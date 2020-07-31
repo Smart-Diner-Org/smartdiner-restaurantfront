@@ -26,27 +26,35 @@ class BillItem extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <h4 className="col-6" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >{this.props.itemName}</h4>
-                            <div class='col-3'>
+                            <div className="col">
+                            <h4 className="" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >{this.props.itemName}</h4>
+                            <h6 className="" style={{color:'#828282',fontFamily:"Latto",fontSize:"0.75em"}}>Containments</h6>
+                            </div>
+                            
+                            <div class='col-3' style={{display:"flex",flexDirection:"column"}}>
                                             {this.props.discount>0?
                                                 <>
+
                                                 <label style={{textDecoration:'line-through',color:"#FFC009",fontFamily:"Museo moderno",fontSize:"1.125em"}}>Rs.{this.props.price}</label>
+                                                <label  style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{ this.props.discountPrice }</label>
                                                 </>
                                                 :
                                                 ""
                                                 }
+
+
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-4">
                                             <div className="quantity">
                                 <button name='sub' onClick={this.props.decreasequantity}>-</button>
-                                <label>{this.props.quantity}</label>
+                         <label style={{width:"60px"}} >{this.props.quantity}</label>
                                 <button name='add' onClick={this.props.increasequantity}>+</button>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
-                            <h6 className="col-6" style={{color:'#828282',fontFamily:"Latto",fontSize:"0.75em"}}>Containments</h6>
-                            <label className="col-3" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{ this.props.discountPrice }</label>
+                           
+                            
                             
                         </div>
                         <div className="row">
