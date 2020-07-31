@@ -609,7 +609,7 @@ p {
   width: 300px;
   height: 40px;
   font-size: 1.25em;
-  font-family: "Museo moderno";
+  font-family: Museo moderno;
   color: white;
   background-color: #000466;
   border: none;
@@ -618,12 +618,16 @@ p {
 
 .bill-container{
   padding: 10px 10px 10px 10px;
+  font-size: 1.125em;
+  font-family: Latto;
+  color: #000466;
+  
 }
 .final-bill{
   display: flex;
   flex-direction: row;
   font-size: 1.125em;
-  font-family: 'Latto';
+  font-family: Latto;
   color: #000466;
   
 }
@@ -662,20 +666,23 @@ p {
 
 .span-left{
   width: 60%;
-  
+  font-size: 1.em;
+  color: #828282;
+  font-family: Latto;
 }
 .foot-content strong{
   font-size: 1.5em;
-  font-family: sans-serif;
+  font-family: Museo moderno ;
   color: #1616bd;
   text-decoration: underline;
   text-decoration-color: #f7f711;
 }
 
 .span-right{
+  font-size: 0.875em;
   margin-left: auto;
   text-decoration: solid;
-  color: black;
+  color: #828282;
   padding: 5px 5px 5px 5px;
   
 }

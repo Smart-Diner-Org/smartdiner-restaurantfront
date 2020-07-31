@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import BagItemList from './BagItemList';
 import Delivery from './Delivery';
-import BagFoot from './BagFoot';
+
 // import BgImage from './assets/images/bag.png'
 
 class Bag extends Component{  
@@ -23,8 +23,7 @@ render(){
                     </div>
                     
                 </header>
-                {/* <BagHead /> */}
-                {/* {JSON.stringify(this.props.items)} */}
+                
                 <BagItemList 
                             items={this.props.items}
                             changequantity={this.props.changequantity}
@@ -34,9 +33,15 @@ render(){
                    
                 
                 <Delivery />
-                <BagFoot />
+                <footer>
+                    <div className='foot-content'>
+                        <span className="span-left">Powered by <strong>Smart Diner</strong></span>
+                        <span className="span-right"><a href='#'>Terms and Conditions</a>
+                        <a href='#'>Contact Us</a></span>
+                    </div>
+                </footer>
             </div>
-            // </Modal>
+            
         );
     }
 }

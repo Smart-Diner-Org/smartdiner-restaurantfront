@@ -7,24 +7,18 @@ import Contact from './Contact'
 import FootComponent from './FootComponent'
 import Product from './Product';
 import ScrollToTop from './ScrollToTop'
-import Food1 from './assets/images/food1.jpg'
-import Food2 from './assets/images/food2.jpg'
 import Bag from './Bag'
 import axios from 'axios';
 
 
 
-const breakfast = 'breakfast';
-const dinner = 'dinner';
-const lunch = 'lunch';
-const burger = 'burger';
-const pizza = 'pizza';
+
 
 class NewHome extends Component {
   constructor(props){
     super(props);
     this.state = {
-        selectedType: "",
+        selectedType: "1",
         items:[{}],
         isLoaded: false,
         total : 0,
@@ -90,7 +84,7 @@ addDiscountQuantity(itemsArray){
 })
 }
 
-//im trying to add quantity and discount price to item of items array... so the other funtions will remain the same
+
 
 
 

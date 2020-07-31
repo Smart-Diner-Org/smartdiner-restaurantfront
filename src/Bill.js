@@ -1,7 +1,7 @@
 import React,{Component} from "react"
 
 
-class Bill extends React.Component {
+class Bill extends Component {
     render(){
         
         return(

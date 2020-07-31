@@ -1,7 +1,7 @@
 import React,{Component} from "react"
+import Burger from '../../assets/images/food1.jpg'
 
-
-class Item extends React.Component {
+class Item extends Component {
     render(){
         return(
             
@@ -11,16 +11,34 @@ class Item extends React.Component {
                 
                             <div class="single-product-items">
                                 <div class="product-item-image">
-                                
-                                    <a href="#"><img src={this.props.image} alt="Product"/></a>
+                                {this.props.image?
+                                    <>
+                                    <a href="#"><img src={this.props.image} alt="Product"/> </a>
+                                    </>
+                                    :
+                                    <a href="#"><img src={Burger} alt="Product"/> </a>
+        }  
+        
+                                    {this.props.discount>0?
+                                    <>
                                     <div class="product-discount-tag">
                                         <p>-{this.props.discount}%</p>
                                     </div>
-                                </div>
+                                    </>
+                                    :
+                                    ""
+                                }           
+                                    </div>
                                 <div class="product-item-content mt-30">
                                         <h5 class="product-title"><a href="#">{this.props.itemName}</a></h5>
                                         <p>Containments</p>
+                                        {this.props.discount>0?
+                                        <>
                                         <span class="discount-price">{this.props.discountPrice}</span>
+                                        </>
+                                        :
+                                        ""
+                                    }
                                         <span class="regular-price">{this.props.regularPrice}</span>
                                     <div class="input-group mb-3 mt-10" style={{ maxWidth : '120px'}}>
                                         <div class="input-group-prepend">

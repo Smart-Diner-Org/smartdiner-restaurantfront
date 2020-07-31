@@ -30,7 +30,7 @@ class BillItem extends Component {
                             <div class='col-3'>
                                             {this.props.discount>0?
                                                 <>
-                                                <label style={{textDecoration:'line-through',color:"#FFC009",fontFamily:"Museo moderno",fontSize:"1.125em"}}>{this.props.discPrice}</label>
+                                                <label style={{textDecoration:'line-through',color:"#FFC009",fontFamily:"Museo moderno",fontSize:"1.125em"}}>Rs.{this.props.price}</label>
                                                 </>
                                                 :
                                                 ""
@@ -46,8 +46,11 @@ class BillItem extends Component {
                         </div>
                         <div className="row">
                             <h6 className="col-6" style={{color:'#828282',fontFamily:"Latto",fontSize:"0.75em"}}>Containments</h6>
-                            <label className="col-3" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{this.props.regularPrice}</label>
+                            <label className="col-3" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{ this.props.discountPrice }</label>
                             
+                        </div>
+                        <div className="row">
+                         {this.props.discount>0&&<h3 style={{fontSize:"0.875em",color:'#828282',fontFamily:"Museo moderno"}}>{this.props.discount}% OFFER APPLIED</h3>}
                         </div>
                         <div className="row">
                             <div className='top-up'>

@@ -12,7 +12,7 @@ class BagItemList extends React.Component {
     values() {
         const total = this.props.items.reduce(function (accumulator, currentValue) {
             const valueToBeAdded = currentValue.discount>0 ? 
-            (currentValue.regularPrice*currentValue.quantity-(currentValue.regularPrice*currentValue.quantity*(currentValue.discount/100)))
+            (currentValue.discountPrice*currentValue.quantity)
             :
             (currentValue.price*currentValue.quantity);
             const newTotal = accumulator + valueToBeAdded 
@@ -39,8 +39,9 @@ class BagItemList extends React.Component {
                             key={index}
                             quantity={item.quantity}
                             itemName={item.name}
-                            regularPrice={item.price}
+                            price={item.price}
                             discount={item.discount}
+                            discountPrice={item.discountPrice}
                             increasequantity={() => this.props.changequantity(index,1)}
                             decreasequantity={() => this.props.changequantity(index, -1)}
                         />
