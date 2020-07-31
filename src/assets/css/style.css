@@ -496,7 +496,7 @@ p {
 .bag-component{
   position: absolute;
   width: auto;
-  height: 770px;
+  height: auto;
   right: 0;
   margin: auto;
   background-color: white;
@@ -1242,12 +1242,13 @@ p {
   position: relative;
 }
 
-.single-product-items .product-item-content .regular-price {
+.single-product-items .product-item-content .discount-price {
   color: #000000;
 }
 
-.single-product-items .product-item-content .discount-price {
+.single-product-items .product-item-content .regular-price {
   color: #c4c4c4;
+  
 }
 
 .single-product-items .product-item-content .discount-price::before {

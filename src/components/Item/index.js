@@ -34,11 +34,12 @@ class Item extends Component {
                                         <p>Containments</p>
                                         {this.props.discount>0?
                                         <>
-                                        <span class="discount-price">{this.props.discountPrice}</span>
-                                        <span class="regular-price">{this.props.regularPrice}</span>
+                                        <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>{this.props.regularPrice}</span>
+                                        <span style={{color:"#000000"}}>{this.props.discountPrice}</span>
+                                        
                                         </>
                                         :
-                                        <span class="regular-price">{this.props.regularPrice}</span>
+                                        <span style={{color:"#000000"}}>{this.props.regularPrice}</span>
                                     }
                                         
                                     <div class="input-group mb-3 mt-10" style={{ maxWidth : '120px'}}>

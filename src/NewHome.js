@@ -175,7 +175,7 @@ console.log(this.state.total)
          />
 
 
-         <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)'}:{}}>
+         <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider />
          <Discount />
          <About />
