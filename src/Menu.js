@@ -1,11 +1,19 @@
 import React,{ Component } from "react";
 
 class Menu extends Component{
-    async autoClick() {
-        // await this.menuElement.click ;
-        await console.log("i'm inside here")
-      }
+    constructor(props){
+        super(props);
+
+        this.ele = []
+
+    }
     
+      componentDidMount(){
+          //TODO : find which category has minimum 1 item and assing that value to ctaegoryToBeShown variable
+        
+            this.ele[0].click();
+      }
+      
     render(){
         return(
                 <div class="col-lg-3 col-md-4">
@@ -20,7 +28,7 @@ class Menu extends Component{
 
                                            
 
-<a ref={a => this.menuElement = a} className={index===0?"active":""} onload={index===0? this.autoClick() : ""} id={`${category.name}`} data-toggle="pill"  onClick={()=>this.props.setType(category.id)}
+<a ref={a => this.ele[index] = a} className={index===0?"active":""}  id={`${category.name}`} data-toggle="pill"  onClick={()=>{this.props.setType(category.id)}}
                                 aria-selected="true" >{category.name}</a>
                                           
                                            

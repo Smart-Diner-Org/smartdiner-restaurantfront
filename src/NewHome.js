@@ -39,6 +39,7 @@ async componentDidMount() {
         console.log(data.menus)
         this.getCategories(data.menus);
         this.addDiscountQuantity(data.menus)
+       
         this.setState({
              isLoaded: true,
             });     
@@ -50,24 +51,41 @@ async componentDidMount() {
     }
   }
 
-  
+ 
+
+
 
 changequantity(index, value) {
     this.setState( prevState => {
+     
+        let noOfSelectedItems = this.state.total
         let newItemsStateArray =  prevState.items;
+
+        if(newItemsStateArray[index].quantity == 0 && value==-1){
+            return
+        }
+
         if (newItemsStateArray[index].quantity === 0 ){
+            if(value==1){
+                noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
             return {
-                quantity: newItemsStateArray
+                quantity: newItemsStateArray,
+                total:noOfSelectedItems
             }
 
         }
         if (newItemsStateArray[index].quantity >= 1 ){
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + value;
+            if(value==-1 && (newItemsStateArray[index].quantity==0)){
+                noOfSelectedItems--
+            }
 
         }
         return {
-            items: newItemsStateArray
+            items: newItemsStateArray,
+            total:noOfSelectedItems
+
         }
     })
 }
@@ -108,15 +126,7 @@ getCategories(items){
     let indexes = [];
     items.map((item) => {
         if(item.category){
-            // if(categoryArray.some(item.category => item.category_id != categoryArray.id)){
-                // if(!item.category_id in categoryArray){
-                   
-                    // if(categoryArray.indexOf(item.category)=== -1){
-                    //     categoryArray.push(item.category);
-                    // }
-
-
-                    
+                  
                 if(indexes.indexOf(item.category.name)=== -1){
                                         indexes.push(item.category.name);
                                         categoryArray.push(item.category);
@@ -134,6 +144,7 @@ getCategories(items){
   render() {
     const { isLoaded } = this.state;
 console.log(this.state.items)
+console.log(this.state.total)
     if (!isLoaded) {
       return (
         <div>
@@ -164,7 +175,7 @@ console.log(this.state.items)
          />
 
 
-         
+         <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)'}:{}}>
          <Slider />
          <Discount />
          <About />
@@ -178,7 +189,7 @@ console.log(this.state.items)
          <Contact />
          <ScrollToTop />
          <FootComponent />
-         
+         </div>
         </div>
     );
   }

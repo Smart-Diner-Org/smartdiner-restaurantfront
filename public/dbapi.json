@@ -1,1 +1,121 @@
-{"status":true,"message":"successfully fetched menus","menus":[{"id":1,"restuarant_branch_id":"1","category_id":"1","name":"Chicken Biriyani","status":true,"description":"Delicious Home made chicken biriyani","image":null,"price":"200","serving":1,"discount":"20","menu_type":"2","coupon_valid":false,"createdAt":"2020-07-29T17:23:34.058Z","updatedAt":"2020-07-29T17:23:34.058Z","category":{"id":1,"name":"Main Course","status":true,"createdAt":"2020-07-29T17:20:35.406Z","updatedAt":"2020-07-29T17:20:35.406Z"}},{"id":2,"restuarant_branch_id":"1","category_id":"2","name":"Chicken 65","status":true,"description":"Home made chicken 65","image":null,"price":"100","serving":1,"discount":"0","menu_type":"2","coupon_valid":false,"createdAt":"2020-07-29T17:24:20.793Z","updatedAt":"2020-07-29T17:24:20.793Z","category":{"id":2,"name":"Side Dish","status":true,"createdAt":"2020-07-29T17:20:44.702Z","updatedAt":"2020-07-29T17:20:44.702Z"}},{"id":3,"restuarant_branch_id":"1","category_id":"2","name":"Raitha","status":true,"description":null,"image":null,"price":"20","serving":1,"discount":"0","menu_type":"1","coupon_valid":false,"createdAt":"2020-07-29T17:24:53.367Z","updatedAt":"2020-07-29T17:24:53.367Z","category":{"id":2,"name":"Side Dish","status":true,"createdAt":"2020-07-29T17:20:44.702Z","updatedAt":"2020-07-29T17:20:44.702Z"}},{"id":4,"restuarant_branch_id":"1","category_id":"3","name":"Butterscotch Ice Cream","status":true,"description":"2 Scopes","image":null,"price":"100","serving":1,"discount":"50","menu_type":"1","coupon_valid":false,"createdAt":"2020-07-30T11:13:55.717Z","updatedAt":"2020-07-30T11:13:55.717Z","category":{"id":3,"name":"Desserts","status":true,"createdAt":"2020-07-30T11:12:56.550Z","updatedAt":"2020-07-30T11:12:56.550Z"}},{"id":5,"restuarant_branch_id":"1","category_id":"3","name":"Tiramissu","status":true,"description":"Cake","image":null,"price":"50","serving":1,"discount":"0","menu_type":"1","coupon_valid":false,"createdAt":"2020-07-30T11:14:50.222Z","updatedAt":"2020-07-30T11:14:50.222Z","category":{"id":3,"name":"Desserts","status":true,"createdAt":"2020-07-30T11:12:56.550Z","updatedAt":"2020-07-30T11:12:56.550Z"}}]}
+{
+    "status": true,
+    "message": "successfully fetched menus",
+    "menus": [
+        {
+            "id": 1,
+            "restuarant_branch_id": "1",
+            "category_id": "1",
+            "name": "Chicken Biriyani",
+            "status": true,
+            "description": "Delicious Home made chicken biriyani",
+            "image": null,
+            "price": "200",
+            "serving": 1,
+            "discount": "20",
+            "menu_type": "2",
+            "coupon_valid": false,
+            "createdAt": "2020-07-29T17:23:34.058Z",
+            "updatedAt": "2020-07-29T17:23:34.058Z",
+            "category": {
+                "id": 1,
+                "name": "Main Course",
+                "status": true,
+                "createdAt": "2020-07-29T17:20:35.406Z",
+                "updatedAt": "2020-07-29T17:20:35.406Z"
+            }
+        },
+        {
+            "id": 2,
+            "restuarant_branch_id": "1",
+            "category_id": "2",
+            "name": "Chicken 65",
+            "status": true,
+            "description": "Home made chicken 65",
+            "image": null,
+            "price": "100",
+            "serving": 1,
+            "discount": "0",
+            "menu_type": "2",
+            "coupon_valid": false,
+            "createdAt": "2020-07-29T17:24:20.793Z",
+            "updatedAt": "2020-07-29T17:24:20.793Z",
+            "category": {
+                "id": 2,
+                "name": "Side Dish",
+                "status": true,
+                "createdAt": "2020-07-29T17:20:44.702Z",
+                "updatedAt": "2020-07-29T17:20:44.702Z"
+            }
+        },
+        {
+            "id": 3,
+            "restuarant_branch_id": "1",
+            "category_id": "2",
+            "name": "Raitha",
+            "status": true,
+            "description": null,
+            "image": null,
+            "price": "20",
+            "serving": 1,
+            "discount": "0",
+            "menu_type": "1",
+            "coupon_valid": false,
+            "createdAt": "2020-07-29T17:24:53.367Z",
+            "updatedAt": "2020-07-29T17:24:53.367Z",
+            "category": {
+                "id": 2,
+                "name": "Side Dish",
+                "status": true,
+                "createdAt": "2020-07-29T17:20:44.702Z",
+                "updatedAt": "2020-07-29T17:20:44.702Z"
+            }
+        },
+        {
+            "id": 4,
+            "restuarant_branch_id": "1",
+            "category_id": "3",
+            "name": "Butterscotch Ice Cream",
+            "status": true,
+            "description": "2 Scopes",
+            "image": null,
+            "price": "100",
+            "serving": 1,
+            "discount": "50",
+            "menu_type": "1",
+            "coupon_valid": false,
+            "createdAt": "2020-07-30T11:13:55.717Z",
+            "updatedAt": "2020-07-30T11:13:55.717Z",
+            "category": {
+                "id": 3,
+                "name": "Desserts",
+                "status": true,
+                "createdAt": "2020-07-30T11:12:56.550Z",
+                "updatedAt": "2020-07-30T11:12:56.550Z"
+            }
+        },
+        {
+            "id": 5,
+            "restuarant_branch_id": "1",
+            "category_id": "3",
+            "name": "Tiramissu",
+            "status": true,
+            "description": "Cake",
+            "image": null,
+            "price": "50",
+            "serving": 1,
+            "discount": "0",
+            "menu_type": "1",
+            "coupon_valid": false,
+            "createdAt": "2020-07-30T11:14:50.222Z",
+            "updatedAt": "2020-07-30T11:14:50.222Z",
+            "category": {
+                "id": 3,
+                "name": "Desserts",
+                "status": true,
+                "createdAt": "2020-07-30T11:12:56.550Z",
+                "updatedAt": "2020-07-30T11:12:56.550Z"
+            }
+        }
+    ]
+}

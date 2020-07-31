@@ -34,7 +34,7 @@ class Product extends Component{
                 
                                 {
                                         this.props.items.map((item, index) => {
-                                        if(item.category.id===this.props.selectedType)
+                                        if(item.category.id==this.props.selectedType)
                                         return <Item
                                             key={index}
                                             quantity={item.quantity}
