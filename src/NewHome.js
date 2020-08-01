@@ -103,10 +103,6 @@ addDiscountQuantity(itemsArray){
 }
 
 
-
-
-
-
 setType(type) {
     this.setState(prevState =>{
         return {
@@ -116,10 +112,10 @@ setType(type) {
 }
   
 togglePopup() {
-  this.setState({
-    showPopup: !this.state.showPopup
-  });
-}
+        this.setState({
+            showPopup: !this.state.showPopup
+          });
+    }
 
 getCategories(items){
     let categoryArray = []
@@ -164,6 +160,7 @@ console.log(this.state.total)
          closePopup={this.togglePopup.bind(this) }  
          changequantity={this.changequantity}
          items={this.state.items}
+         total={this.state.total}
          quantity={this.state.quantity}
          />}
 

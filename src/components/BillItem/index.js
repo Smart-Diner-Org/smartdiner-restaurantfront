@@ -23,20 +23,20 @@ class BillItem extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col">
-                            <h4 className="" style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >{this.props.itemName}</h4>
-                            <h6 className="" style={{color:'#828282',fontFamily:"Latto",fontSize:"0.75em"}}>Containments</h6>
+                            <div className="col-5 des">
+                            <h4 className="itemname"  >{this.props.itemName}</h4>
+                            <h6 className="containment" >Containments</h6>
                             </div>
                             
-                            <div class='col-3' style={{display:"flex",flexDirection:"column"}}>
+                            <div class='col-2 price-display' style={{display:"flex",flexDirection:"column"}}>
                                             {this.props.discount>0?
                                                 <>
 
-                                                <label style={{textDecoration:'line-through',color:"#FFC009",fontFamily:"Museo moderno",fontSize:"1.125em"}}>Rs.{this.props.price}</label>
-                                                <label  style={{color:'#000466',fontFamily:"Museo moderno",fontSize:"1.125em"}} >Rs.{ this.props.discountPrice }</label>
+                                                <label className="disc-price">Rs.{this.props.price}</label>
+                                                <label   >Rs.{ this.props.discountPrice }</label>
                                                 </>
                                                 :
-                                                <label style={{color:"#000466",fontFamily:"Museo moderno",fontSize:"1.125em"}}>Rs.{this.props.price}</label>
+                                                <label >Rs.{this.props.price}</label>
 
                                                 }
 
@@ -45,7 +45,7 @@ class BillItem extends Component {
                                         <div className="col-4">
                                             <div className="quantity">
                                 <button name='sub' onClick={this.props.decreasequantity}>-</button>
-                         <label style={{width:"60px"}} >{this.props.quantity}</label>
+                                    <label >{this.props.quantity}</label>
                                 <button name='add' onClick={this.props.increasequantity}>+</button>
                                 </div>
                             </div>

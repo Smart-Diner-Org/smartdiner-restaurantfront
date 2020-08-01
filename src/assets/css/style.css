@@ -493,6 +493,20 @@ p {
 /*===========================
     2.1 Bag css 
 ===========================*/
+/* @font-face {
+  font-family: 'Lato', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+  }
+
+  @font-face{
+    font-family: 'Lato', sans-serif;
+   font-family: 'MuseoModerno', cursive;
+   src: url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
+  } */
+
+  @import url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
+
+
 .bag-component{
   position: absolute;
   width: auto;
@@ -521,6 +535,18 @@ p {
 .bag-header{
   margin: 10px;
   padding: 10px;
+  
+}
+.bag-header label{
+  color: #000466;
+  font-family: "MuseoModerno";
+  margin: 10px;
+
+}
+
+.bag-header img{
+  width: 20px;
+  
 }
 
 
@@ -546,12 +572,36 @@ p {
   height: 134px;
 }
 
+.des .itemname{
+  color: #000466;
+  font-family: "MuseoModerno";
+  font-size: 1.125em;
+}
+.des .containment{
+  color:#828282;
+  font-family:"Latto";
+  font-size:"0.75em";
+}
+
+.price-display{
+  color:#000466;
+  font-family:"Museo moderno";
+  font-size:"1.125em"
+}
+.disc-price{
+  color:#FFC009;
+  font-family:"Museo moderno";
+  font-size:"1.125em";
+  text-decoration: line-through;
+}
+
 .quantity{
   width: auto;
   height: auto;
   padding: 5px;
   color:#000466;
-  font-family: "Museo moderno";
+  font-family: 'MuseoModerno';
+  
   font-size: 1em;
   border: 1px solid #000466;
   border-radius: 5px;
@@ -569,7 +619,12 @@ p {
   border-radius: 5px;
   border: none;
 
+}
 
+.quantity label{
+  width: 60px;
+  margin-bottom: 0;
+  font-family: "Lato";
 }
 .cancelbutton button{
  
@@ -605,7 +660,7 @@ p {
 
 .bill-container a{
   font-size: 1em;
-  font-family: Museo moderno ;
+  font-family: 'MuseoModerno';
   color: #000466;
   text-decoration: underline;
   -webkit-text-decoration-color: #FFC009; /* safari still uses vendor prefix */
@@ -625,7 +680,7 @@ p {
   width: 300px;
   height: 40px;
   font-size: 1.25em;
-  font-family: Museo moderno;
+  font-family: 'MuseoModerno';
   color: white;
   background-color: #000466;
   border: none;
@@ -635,7 +690,7 @@ p {
 .bill-container{
   padding: 10px 10px 10px 10px;
   font-size: 1.125em;
-  font-family: Latto;
+  font-family: "Lato";
   color: #000466;
   
 }
@@ -643,7 +698,7 @@ p {
   display: flex;
   flex-direction: row;
   font-size: 1.125em;
-  font-family: Latto;
+  font-family: "Lato";
   color: #000466;
   
 }
@@ -651,7 +706,6 @@ p {
 
 .final-bill input{
   border-color: #000466;
-
   border-radius: 5px;
   width: 9em;
   height: 2em;
@@ -659,8 +713,6 @@ p {
   
  
 }
-
-
 
 .final-bill button{
   font-size: 0.875em; 
@@ -686,11 +738,11 @@ p {
   width: 60%;
   font-size: 1em;
   color: #828282;
-  font-family: Latto;
+  font-family: "Lato";
 }
 .span-left a{
   font-size: 1em;
-  font-family: Museo moderno ;
+  font-family: 'MuseoModerno';
   color: #000466;
   text-decoration: underline;
   -webkit-text-decoration-color: #FFC009; /* safari still uses vendor prefix */

@@ -2,7 +2,7 @@ import React , {Component} from 'react'
 import BagItemList from './BagItemList';
 import Delivery from './Delivery';
 
-// import BgImage from './assets/images/bag.png'
+import Logo from './assets/images/bag.png'
 
 class Bag extends Component{  
     
@@ -17,7 +17,7 @@ render(){
                         </div>
                         <div className="col-auto" >
                         <label >Your PaperBag</label>
-                        <img src='./dummpy.jpg' alt="image"/>
+                        <img src={Logo} alt={Logo}/>
                         </div>
 
                     </div>
@@ -30,8 +30,6 @@ render(){
                             
                         />
 
-                   
-                
                 <Delivery />
                 <footer>
                     <div className='foot-content'>
