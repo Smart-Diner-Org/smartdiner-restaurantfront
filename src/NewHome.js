@@ -157,7 +157,7 @@ console.log(this.state.total)
           
              { this.state.showPopup && 
          <Bag 
-         closePopup={this.togglePopup.bind(this) }  
+         closePopup={this.togglePopup }  
          changequantity={this.changequantity}
          items={this.state.items}
          total={this.state.total}

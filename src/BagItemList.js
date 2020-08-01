@@ -4,10 +4,7 @@ import Bill from './Bill';
 
 
 class BagItemList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.values = this.values.bind(this)
-    }
+    
 
     values() {
         const total = this.props.items.reduce(function (accumulator, currentValue) {
@@ -23,19 +20,17 @@ class BagItemList extends React.Component {
     
         return [total, tax, totalWithTax]
     }
-
+    
     
 
     render() {
-
-
 
         return (
             <div>
                 {
                     this.props.items.map((item, index) => {
                         if(item.quantity>=1)
-                        return <BillItem
+                        return  <BillItem
                             key={index}
                             quantity={item.quantity}
                             itemName={item.name}
@@ -44,9 +39,9 @@ class BagItemList extends React.Component {
                             discountPrice={item.discountPrice}
                             increasequantity={() => this.props.changequantity(index,1)}
                             decreasequantity={() => this.props.changequantity(index, -1)}
-                        />
-                    })
-                }
+                        />}
+                    )
+}
                 <Bill values={this.values()} />
             </div>
         )

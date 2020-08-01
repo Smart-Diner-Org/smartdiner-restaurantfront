@@ -3,12 +3,27 @@ import BurgerImage from "../../assets/images/food1.jpg"
 
 
 class BillItem extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            removeItem : true,
+        }
+      
+        this.removeItem = this.removeItem.bind(this)
+    }
+    removeItem() {
+        this.setState({
+            removeItem : !this.state.removeItem
+          });
+    }
     
     render(){
         return(
+            
             <div class='bag-item'>
+                {this.state.removeItem &&
                 <div class='container'>
+                
                     <div className="row">
                     <div className="col-3">
                         
@@ -19,7 +34,7 @@ class BillItem extends Component {
                         <div className="row">
                             <label className="col-auto mr-auto"> icon</label>
                             <div className="col-auto">
-                                <button className='cancelbutton'>X</button>                            
+                                <button className='cancelbutton' onClick={this.state.removeItem}>X</button>                            
                             </div>
                         </div>
                         <div className="row">
@@ -58,7 +73,7 @@ class BillItem extends Component {
                         <div className="row col-6">
                          {this.props.discount>0 ?
                          <>
-                            <h3 style={{fontSize:"0.875em",color:'#828282',fontFamily:"Museo moderno"}}>{this.props.discount}% OFFER APPLIED</h3>
+                            <h3 className="offer-applied" >{this.props.discount}% OFFER APPLIED</h3>
                             </>
                             :
                             <div><br/></div>
@@ -75,9 +90,12 @@ class BillItem extends Component {
                 
                     </div>
                     </div>
+    
                 </div>
+    }
             </div>
         )
+                        
     }
 }
 

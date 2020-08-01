@@ -517,6 +517,7 @@ p {
   z-index: 99999;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 20px;
   box-shadow: 1px 1px 20px #333;
 }
 
@@ -579,18 +580,23 @@ p {
 }
 .des .containment{
   color:#828282;
-  font-family:"Latto";
+  font-family:"Lato";
   font-size:"0.75em";
 }
 
 .price-display{
   color:#000466;
-  font-family:"Museo moderno";
+  font-family:"MuseoModerno";
   font-size:"1.125em"
+}
+.offer-applied{
+  font-size: 0.875em;
+  color: #828282;
+    font-family:"Lato";
 }
 .disc-price{
   color:#FFC009;
-  font-family:"Museo moderno";
+  font-family:"MuseoModerno";
   font-size:"1.125em";
   text-decoration: line-through;
 }
@@ -645,6 +651,7 @@ p {
   background-color: white;
   color: #000466;
   font-size: 0.625em;
+  font-family: "MuseoModerno";
 }
 
 .top-up button:active{
@@ -708,7 +715,7 @@ p {
   border-radius: 5px;
   width: 6em;
   height: 2em;
-  margin: 0px 1px 0px 1px;
+  margin: 0px 10px 0px 10px;
   
 }
 
@@ -719,7 +726,7 @@ p {
   border-radius: 5px;
   color: white;
   margin: 0px 2px 0px 2px;
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 
 .total-amout{
@@ -749,6 +756,7 @@ p {
   font-family: "Lato";
 }
 .span-left a{
+  margin-left: 10px;
   font-size: 1em;
   font-family: 'MuseoModerno';
   color: #000466;
@@ -759,7 +767,6 @@ p {
 
 .span-right{
   font-size: 0.875em;
-  margin-left: auto;
   text-decoration: solid;
   color: #828282;
   padding: 5px 5px 5px 5px;
@@ -774,7 +781,25 @@ p {
 }
 
 
+@media screen and (max-width:50em){
+  .itemname{
+    font-size: 0.75em;
+  }
+  .containment{
+    font-size: 0.5em;
+  }
 
+  .price-display{
+    font-size: 0.75em;
+  }
+  .offer-applied{
+    font-size: 0.5em;
+  }
+  .top-up{
+    font-size: 0.8em;
+  
+  }
+}
 
 
 
