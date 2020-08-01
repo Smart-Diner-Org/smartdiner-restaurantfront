@@ -404,15 +404,7 @@ p {
   transform: rotate(45deg);
 }
 
- .badge{
-  position: absolute;
-  top: 10px;
-  right: -11px;
-  padding: 5px;
-  border-radius: 50%;
-  background: #E22A28;
-  color: white;
-}
+
 .header-area .navbar .navbar-toggler.active .bar-icon:nth-child(2) {
   opacity: 0;
 }
@@ -482,6 +474,19 @@ p {
   color: #000000;
 }
 
+.head-logo{
+margin: 20px;
+}
+
+.badge{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #E22A28;
+  color: white;
+}
 .cart {
   height: 20px;
 }
@@ -493,16 +498,6 @@ p {
 /*===========================
     2.1 Bag css 
 ===========================*/
-/* @font-face {
-  font-family: 'Lato', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-  }
-
-  @font-face{
-    font-family: 'Lato', sans-serif;
-   font-family: 'MuseoModerno', cursive;
-   src: url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
-  } */
 
   @import url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
 
@@ -628,11 +623,11 @@ p {
 }
 
 .quantity label{
-  width: 60px;
+  width: 3em;
   margin-bottom: 0;
   font-family: "Lato";
 }
-.cancelbutton button{
+.cancelbutton{
  
   border: none;
   color: #E22A28;
@@ -659,10 +654,7 @@ p {
   color: white;
   border: none;
 }
-.cancelbutton{
-  border: none;
-  color: #E22A28;
-}
+
 
 
 .bill-container a{
@@ -782,10 +774,13 @@ p {
 
 
 @media screen and (max-width:50em){
-  .itemname{
+  .desc .itemname{
     font-size: 0.75em;
   }
   .containment{
+    font-size: 0.5em;
+  }
+  .quantity{
     font-size: 0.5em;
   }
 
