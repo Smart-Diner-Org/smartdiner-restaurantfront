@@ -55,8 +55,14 @@ class BillItem extends Component {
                             
                             
                         </div>
-                        <div className="row col-5">
-                         {this.props.discount>0&&<h3 style={{fontSize:"0.875em",color:'#828282',fontFamily:"Museo moderno"}}>{this.props.discount}% OFFER APPLIED</h3>}
+                        <div className="row col-6">
+                         {this.props.discount>0 ?
+                         <>
+                            <h3 style={{fontSize:"0.875em",color:'#828282',fontFamily:"Museo moderno"}}>{this.props.discount}% OFFER APPLIED</h3>
+                            </>
+                            :
+                            <div><br/></div>
+                            }
                         </div>
                         <div className="row">
                             <div className='top-up'>
