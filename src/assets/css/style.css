@@ -668,8 +668,8 @@ p {
 }
 
 .delivery-type{
-  margin-top: 5em;
-  margin-bottom: 5em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -697,7 +697,6 @@ p {
 .final-bill{
   display: flex;
   flex-direction: row;
-  font-size: 1.125em;
   font-family: "Lato";
   color: #000466;
   
@@ -707,11 +706,10 @@ p {
 .final-bill input{
   border-color: #000466;
   border-radius: 5px;
-  width: 9em;
+  width: 6em;
   height: 2em;
-  margin: 0px 1px 0px 2px;
+  margin: 0px 1px 0px 1px;
   
- 
 }
 
 .final-bill button{
@@ -720,10 +718,20 @@ p {
   background-color: #000466;
   border-radius: 5px;
   color: white;
-  margin: 0px 2px 0px 5px;
-  padding: 5px 20px;
+  margin: 0px 2px 0px 2px;
+  padding: 5px 10px;
 }
 
+.total-amout{
+  text-align: right;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.total-amout span {
+  font-size: 1.5em;
+  font-family: "MuseoModerno";
+}
 
 .foot-content{
   
@@ -735,7 +743,7 @@ p {
 }
 
 .span-left{
-  width: 60%;
+  width: 50%;
   font-size: 1em;
   color: #828282;
   font-family: "Lato";

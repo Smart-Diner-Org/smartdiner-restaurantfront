@@ -18,7 +18,7 @@ class Bill extends Component {
                     </div>
                     
                     <div className="final-bill row">
-                            <div class="col-9" >
+                            <div class="col-8" >
                                 
                                     <label >Coupon Code</label>
                                     <input type="textbox" />
@@ -26,9 +26,9 @@ class Bill extends Component {
                                     
                                 </div>
                           
-                            <div class="col-3" style={{textAlign:"right",width:"100%" ,display:"flex"}}>
-                                <label style={{textAlign:"left"}} >To  Pay  </label>
-                                <label  ><strong style={{fontSize:"1.5em",fontFamily:"Museo moderno"}} >{`Rs${this.props.values[2].toFixed(2)}`}</strong></label>
+                            <div class="col-4 total-amount" >
+                                <label >To  Pay  <span style={{fontSize:"1.5em"}}>{`Rs${this.props.values[2].toFixed(2)}`}</span></label>
+                            
                             </div>
                             
                         
