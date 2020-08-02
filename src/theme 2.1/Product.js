@@ -18,7 +18,9 @@ class Product extends Component{
     render(){
         return(
             <section id="product" class="product-area pt-100 pb-130">
-            
+            <div className="row">
+                <h4 class="collection-tilte">Menu</h4>
+            </div>
                 <div class="container">
                     <div class="row">
                         <Menu categoryArray={this.props.categoryArray}

@@ -1288,21 +1288,22 @@ margin: 20px;
 }
 
 .single-product-items .product-item-image .product-discount-tag {
-  width: 70px;
-  height: 70px;
-  background-color: #000000;
+  width: 100px;
+  height: 25px;
+  background-color: white;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  right: 10px;
+  bottom: 10px;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 20px;
+  border: 2px solid;
 }
 
 .single-product-items .product-item-image .product-discount-tag p {
-  color: #fff;
+  color: black;
   font-weight: 600;
-  font-size: 22px;
-  line-height: 70px;
+  font-size: 15px;
+  line-height: 25px;
 }
 
 .single-product-items .product-item-content .product-title a {

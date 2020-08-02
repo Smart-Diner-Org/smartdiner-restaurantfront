@@ -9,7 +9,7 @@ class Menu extends Component{
     }
     
       componentDidMount(){
-          //TODO : find which category has minimum 1 item and assing that value to ctaegoryToBeShown variable
+          //TODO : find which category has minimum 1 item and assing that value to cataegoryToBeShown variable
         
             this.ele[0].click();
       }
@@ -18,7 +18,7 @@ class Menu extends Component{
         return(
                 <div class="col-lg-3 col-md-4">
                     <div class="collection-menu text-center mt-30">
-                        <h4 class="collection-tilte">Menu</h4>
+                        
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                             aria-orientation="vertical">
                                 {

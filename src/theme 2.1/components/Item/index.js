@@ -6,9 +6,8 @@ class Item extends Component {
         return(
             
                 
-            <div class="col-md-4 " style={{ marginBlockEnd : '2rem'}}>
+            <div class="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
               
-                
                             <div class="single-product-items">
                                 <div class="product-item-image">
                                 {this.props.image?
@@ -22,7 +21,7 @@ class Item extends Component {
                                     {this.props.discount>0?
                                     <>
                                     <div class="product-discount-tag">
-                                        <p>-{this.props.discount}%</p>
+                                        <p>{this.props.discount}% OFF</p>
                                     </div>
                                     </>
                                     :
