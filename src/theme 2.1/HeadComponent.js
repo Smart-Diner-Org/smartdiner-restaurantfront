@@ -36,7 +36,7 @@ class HeadComponent extends React.Component {
                         <a class="navbar-brand" href="index.html">
                             <img src={Logo} alt="Logo"/>
                         </a> 
-
+we are in theme 2.1
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ class HeadComponent extends React.Component {
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                         <span class="badge">{this.props.total}</span>
                                     </a>
-                        
+                       
                          </div>
                     </nav> 
                 </div>

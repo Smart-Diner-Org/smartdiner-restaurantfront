@@ -11,7 +11,7 @@ import Logout from './logout';
 import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
 import userProfile from './helpers/userProfile';
-import NewHome from './NewHome'
+import NewHome from './theme 2.1/NewHome'
 
 const authenticated = true;
 export default (  
