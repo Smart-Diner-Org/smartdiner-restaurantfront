@@ -819,6 +819,13 @@ margin: 20px;
   text-align: center;
 }
 
+.carousel-design div
+{
+  
+  border-radius:20px;
+  
+}
+
 @media only screen and (min-width: 1400px) {
   .slider-active .slick-dots {
     left: 30px;
@@ -901,9 +908,6 @@ margin: 20px;
   }
 }
 
-.carousel-control-next,.carousel-control-prev{
-  height: 80% ;
-}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .single-slider .slider-product-image .slider-discount-tag {
@@ -1219,23 +1223,23 @@ margin: 20px;
   }
 }
 
-.collection-menu .collection-tilte {
-  background-color: #ffffff;
-  border: 1px solid black;
-  font-size: 24px;
+ .collection-tilte {
+  font-size: 46px;
   font-weight: 600;
-  padding: 30px 20px;
+  margin-left: 50px;
+  padding: 30px 20px 0px 150px;
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .collection-menu .collection-tilte {
+  .collection-tilte {
     font-size: 20px;
     padding: 15px 10px;
   }
 }
 
 @media (max-width: 767px) {
-  .collection-menu .collection-tilte {
+   .collection-tilte {
     font-size: 20px;
     padding: 20px 15px;
   }
@@ -1477,6 +1481,8 @@ margin: 20px;
   overflow: visible;
 }
 
+
+
 /*===========================
      6.about css 
 ===========================*/
@@ -1491,8 +1497,20 @@ margin: 20px;
 .about-left {
   bottom: 0;
   margin: 0 20px 0;
+  
 }
 
+.about-left ::before{
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  right: 60px;
+  left: 0px;
+  bottom: 60px;
+  border: 1px solid #828282;
+  border-radius: 20px;
+}
 .location {
   position: absolute;
 }
@@ -2440,6 +2458,27 @@ p.form-message.error {
   left: auto;
   right: 0;
 }
+
+.button-round{
+  color: black;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 50%;
+padding: 0px 7.5px 0px 7.5px;
+border-top: 0px;
+border-bottom: 0px;
+
+
+}
+.total-quantity{
+  width:60px;
+border: 0px solid black;
+text-align: center;
+background-color: transparent;
+
+  
+}
+
 
 .product-description .product-add .product-add-count .nice-number input {
   width: 150px !important;

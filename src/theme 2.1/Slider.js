@@ -6,11 +6,11 @@ import Image1 from './assets/images/building2.jpg'
 class Slider extends Component {
     render(){
     return (
-        <section id="home" className="slider-area pt-100">
-            <div className="container-fluid position-relative">
-            <Carousel >
-            <Carousel.Item>
-            <div className="single-slider">
+        <section id="home" className="slider-area pt-130 ">
+            <div className="container-fluid position-relative carousel-design ">
+            <Carousel  >
+            <Carousel.Item > 
+            <div className="single-slider ">
                     <div className="slider-bg">
                         <div className="row no-gutters align-items-center ">
                             <div className="col-md-7">

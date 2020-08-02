@@ -3,25 +3,14 @@ import BurgerImage from "../../assets/images/food1.jpg"
 
 
 class BillItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            removeItem : true,
-        }
-      
-        this.removeItem = this.removeItem.bind(this)
-    }
-    removeItem() {
-        this.setState({
-            removeItem : !this.state.removeItem
-          });
-    }
+    
+    
     
     render(){
         return(
             
             <div class='bag-item'>
-                {this.state.removeItem &&
+                
                 <div class='container'>
                 
                     <div className="row">
@@ -34,7 +23,7 @@ class BillItem extends Component {
                         <div className="row">
                             <label className="col-auto mr-auto"> icon</label>
                             <div className="col-auto">
-                                <button className='cancelbutton' onClick={this.state.removeItem}>X</button>                            
+                                <button className='cancelbutton' onClick={this.props.removeItem}>X</button>                            
                             </div>
                         </div>
                         <div className="row">
@@ -92,7 +81,7 @@ class BillItem extends Component {
                     </div>
     
                 </div>
-    }
+    
             </div>
         )
                         

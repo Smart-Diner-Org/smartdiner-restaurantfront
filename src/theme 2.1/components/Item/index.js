@@ -41,16 +41,15 @@ class Item extends Component {
                                         <span style={{color:"#000000"}}>Rs.{this.props.regularPrice}</span>
                                     }
                                         
-                                    <div class="input-group mb-3 mt-10" style={{ maxWidth : '120px'}}>
-                                        <div class="input-group-prepend">
-                                            <button class="button-round"
+                                    <div class="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px"}}>
+                                        <div class="input-group-prepend" >
+                                            <button class="button-round" style={{borderLeft:"0px"}}
                                                 type="button" onClick={this.props.decreasequantity}>−</button>
                                         </div>
-                                        <input type="text" class="form-control text-center" value={this.props.quantity}
-                                            placeholder="" aria-label="Example text with button addon"
-                                            aria-describedby="button-addon1"/>
+                                        <input type="text" className="total-quantity" value={this.props.quantity}/>
+                                            
                                         <div class="input-group-append">
-                                            <button class="button-round"
+                                            <button class="button-round" style={{borderRight:"0px"}}
                                                 type="button" onClick={this.props.increasequantity}>+</button>
                                         </div>
                                     </div>
