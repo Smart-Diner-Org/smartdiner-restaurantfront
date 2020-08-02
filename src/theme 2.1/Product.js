@@ -19,7 +19,7 @@ class Product extends Component{
         return(
             <section id="product" class="product-area pt-100 pb-130">
             <div className="row " >
-                <h2 class="collection-tilte">Menu</h2>
+                <h2 class="col-4  collection-tilte">Menu</h2>
             </div>
                 <div class="container">
                     <div class="row">

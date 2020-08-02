@@ -5,7 +5,7 @@ class MapLocation extends Component{
     render(){
         return(
             <div className="google-map">
-                <div className="container">
+                <div className="container ">
                     <Map google={this.props.google} zoom={8} initialCenter={{ lat: 13.093410, lng: 77.399053}}>
                         <Marker position={{ lat: 13.093410, lng: 77.399053}} />
                     </Map>
