@@ -2,9 +2,9 @@ import React,{ Component } from "react"
 import ChefImage from './assets/images/chef.jpg';
 import Food1 from './assets/images/food1.jpg'
 import Food2 from './assets/images/food2.jpg'
-import MapImage from './assets/images/map.png'
 
-class About extends React.Component {
+
+class About extends Component {
     render(){
         return(
             <section id="about" class="about-area pt-125 pb-130">
@@ -51,12 +51,8 @@ class About extends React.Component {
                                     <img src={Food2} alt=""/>
                                 </div> 
 
-                                <div class="single-about text-center mt-30">
-                                    <a href="#" class="location">
-                                        Location
-                                    </a>
-                                    <img src={MapImage} alt=""/>
-                                </div> 
+                                
+                                
                             </div>
                         </div> 
                     </div> 

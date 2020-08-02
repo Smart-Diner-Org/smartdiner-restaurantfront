@@ -9,7 +9,7 @@ import Product from './Product';
 import ScrollToTop from './ScrollToTop'
 import Bag from './Bag'
 import axios from 'axios';
-
+import MapLocation from './MapLocation'
 
 
 
@@ -181,6 +181,7 @@ getCategories(items){
          categoryArray={this.state.categoryArray}
          />
          <About />
+         <MapLocation />
          <Contact />
          <ScrollToTop />
          <FootComponent />

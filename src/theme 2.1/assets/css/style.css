@@ -1272,10 +1272,12 @@ margin: 20px;
 .single-product-items .product-item-image {
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 .single-product-items .product-item-image a {
   display: block;
+  
 }
 
 .single-product-items .product-item-image img {
@@ -1303,7 +1305,7 @@ margin: 20px;
   color: black;
   font-weight: 600;
   font-size: 15px;
-  line-height: 25px;
+  line-height: 22px;
 }
 
 .single-product-items .product-item-content .product-title a {
@@ -1498,6 +1500,7 @@ margin: 20px;
 .about-left .about img {
   width: 100%;
   height: 100%;
+  border-radius: 20px
 }
 
 .single-about {
@@ -1508,6 +1511,7 @@ margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px
 }
 
 .single-about a{
@@ -1519,6 +1523,7 @@ margin: 20px;
 .single-about img{
   width: 100%;
   height: 100%;
+  border-radius: 20px
 }
 
 .timing {
@@ -1526,6 +1531,7 @@ margin: 20px;
   bottom: 0;
   border: 1px solid #ddd;
   padding: 50px;
+  border-radius: 20px
 }
 
 @media screen and (max-width:50em){
@@ -1547,6 +1553,17 @@ margin: 20px;
 .single-about .about-content .title {
   font-size: 20px;
   color: #000000;
+}
+
+/*===========================
+     Google Map Location css 
+===========================*/
+
+.google-map{
+  position: relative;
+  margin: 50px;
+  width: 90%;
+  height: 400px;
 }
 
 /*===========================

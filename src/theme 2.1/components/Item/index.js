@@ -33,24 +33,24 @@ class Item extends Component {
                                         <p>Containments</p>
                                         {this.props.discount>0?
                                         <>
-                                        <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>{this.props.regularPrice}</span>
-                                        <span style={{color:"#000000"}}>{this.props.discountPrice}</span>
+                                        <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.props.regularPrice}</span>
+                                        <span style={{color:"#000000"}}>Rs.{this.props.discountPrice}</span>
                                         
                                         </>
                                         :
-                                        <span style={{color:"#000000"}}>{this.props.regularPrice}</span>
+                                        <span style={{color:"#000000"}}>Rs.{this.props.regularPrice}</span>
                                     }
                                         
                                     <div class="input-group mb-3 mt-10" style={{ maxWidth : '120px'}}>
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus"
+                                            <button class="button-round"
                                                 type="button" onClick={this.props.decreasequantity}>−</button>
                                         </div>
                                         <input type="text" class="form-control text-center" value={this.props.quantity}
                                             placeholder="" aria-label="Example text with button addon"
                                             aria-describedby="button-addon1"/>
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus"
+                                            <button class="button-round"
                                                 type="button" onClick={this.props.increasequantity}>+</button>
                                         </div>
                                     </div>
