@@ -20,12 +20,15 @@ class NewHome extends Component {
     this.state = {
         selectedType: "",
         items:[{}],
+        restaurant_info:[{}],
+        restaurantBranch: [{}],
         isLoaded: false,
         total : 0,
     };
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
+    this.getItems = this.getItems.bind(this)
     this.getCategories = this.getCategories.bind(this)
     this.addDiscountQuantity = this.addDiscountQuantity.bind(this)
     this.categoryArray = []
@@ -36,11 +39,9 @@ async componentDidMount() {
         await axios.get(`./dbapi.json`)
       .then(res => {
         const data = res.data;
-        console.log(data.menus)
-        this.getCategories(data.menus);
-        this.addDiscountQuantity(data.menus)
-       
+        this.getItems(data.restaurant.restaurant_branches)
         this.setState({
+             restaurant_info:data.restaurant,
              isLoaded: true,
             });     
            
@@ -51,6 +52,23 @@ async componentDidMount() {
     }
   }
 
+  getItems(data){
+    let restaurantDetails = [];
+    let items = [];
+    data.map((item) =>{
+        restaurantDetails.push(item)
+    })
+    this.setState({restaurantBranch:restaurantDetails});
+
+    this.state.restaurantBranch.map((item)=>{
+        items.push(...item.restaurant_branch_menu)
+    })
+
+    this.setState({items:items})
+
+    this.getCategories(this.state.items);
+    this.addDiscountQuantity(this.state.items);
+  }
  
 
 
@@ -120,18 +138,18 @@ togglePopup() {
 getCategories(items){
     let categoryArray = []
     let indexes = [];
-    items.map((item) => {
+    items.map((item)=>{
         if(item.category){
-                  
-                if(indexes.indexOf(item.category.name)=== -1){
-                                        indexes.push(item.category.name);
-                                        categoryArray.push(item.category);
-                                    }
-             
-                
+            if(indexes.indexOf(item.category.name)=== -1){
+                indexes.push(item.category.name);
+                categoryArray.push(item.category);
+            }
         }
+        
     })
-    this.setState({categoryArray});
+    
+    this.setState({categoryArray:categoryArray});
+    
 }
 
   render() {
@@ -180,8 +198,9 @@ getCategories(items){
          <About />
          <MapLocation />
          <Contact />
+         {console.log(this.state.restaurant_info.restaurant_detail)}
          <ScrollToTop />
-         <FootComponent />
+         <FootComponent links={this.state.restaurant_info.restaurant_detail}/>
          </div>
         </div>
     );
