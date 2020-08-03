@@ -565,7 +565,7 @@ margin: 20px;
 
 .bag-item img{
   width:134px;
-  height: 134px;
+  height: auto;
 }
 
 .des .itemname{
@@ -705,9 +705,10 @@ margin: 20px;
 .final-bill input{
   border-color: #000466;
   border-radius: 5px;
-  width: 6em;
+  width: 9em;
   height: 2em;
   margin: 0px 10px 0px 10px;
+  padding : 0px 10px;
   
 }
 
@@ -721,15 +722,17 @@ margin: 20px;
   padding: 5px 20px;
 }
 
-.total-amout{
+.total-amount{
   text-align: right;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
 }
-.total-amout span {
-  font-size: 1.5em;
+.total-amount span {
+  font-size: 1em;
   font-family: "MuseoModerno";
+  
 }
 
 .foot-content{
@@ -774,7 +777,7 @@ margin: 20px;
 
 
 @media screen and (max-width:50em){
-  .desc .itemname{
+  .des .itemname{
     font-size: 0.75em;
   }
   .containment{
@@ -794,6 +797,7 @@ margin: 20px;
     font-size: 0.8em;
   
   }
+  
 }
 
 
@@ -1048,11 +1052,13 @@ margin: 20px;
   }
 }
 
-.slider-social {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  width: 100%;
+.social {
+
+  display: flex;
+}
+
+.social li{
+  margin: 0px 10px;
 }
 
 @media only screen and (min-width: 1400px) {
@@ -1226,7 +1232,7 @@ margin: 20px;
  .collection-tilte {
   font-size: 46px;
   font-weight: 900;
-  margin: 0px 30px 0px 30px;
+  /* margin: 0px 30px 0px 30px; */
   padding: 20px;
   display: flex;
   justify-content: space-around;
@@ -2115,7 +2121,7 @@ p.form-message.error {
 .footer-area::before {
   position: absolute;
   content: '';
-  background-image: url(../images/footer-bg.png);
+  /* background-image: url(../images/footer-bg.png); */
   background-repeat: no-repeat;
   background-position: top center;
   width: 100%;
@@ -2389,7 +2395,7 @@ p.form-message.error {
 
 .product-description .product-rating ul li i {
   font-size: 15px;
-  color: #fc924b;
+  color: #000000;
 }
 
 .product-description .product-rating .review {

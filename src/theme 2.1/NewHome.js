@@ -134,9 +134,6 @@ getCategories(items){
     this.setState({categoryArray});
 }
 
-
-
-
   render() {
     const { isLoaded } = this.state;
     if (!isLoaded) {

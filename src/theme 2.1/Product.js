@@ -18,10 +18,11 @@ class Product extends Component{
     render(){
         return(
             <section id="product" class="product-area pt-100 pb-130">
-            <div className="row " >
-                <h2 class="col-4  collection-tilte">Menu</h2>
-            </div>
+            
                 <div class="container">
+                <div className="row " >
+                <h2 class="col-lg-3 col-md-4 collection-tilte">Menu</h2>
+            </div>
                     <div class="row">
                         <Menu categoryArray={this.props.categoryArray}
                         setType = {this.props.setType}

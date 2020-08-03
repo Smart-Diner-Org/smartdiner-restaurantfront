@@ -13,7 +13,12 @@ function FootComponent(){
    
    display: 'flex',
    justifycontent: 'space-between'}}>
-                            <p style={{width: '80%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; chinese grill kitchen</a></p>
+                            <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; chinese grill kitchen</a></p>
+                            <ul className="social text-right">
+                                <li><a href="#"><i className="lni-facebook-filled"></i></a></li>
+                                <li><a href="#"><i className="lni-twitter-original"></i></a></li>
+                                <li><a href="#"><i className="lni-instagram"></i></a></li>
+                             </ul>
                             <p style={{marginleft: 'auto'}}>Term and Polices</p>
                         </div> 
                     </div>

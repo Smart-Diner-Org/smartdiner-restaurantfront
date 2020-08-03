@@ -15,9 +15,9 @@ class BillItem extends Component {
                 
                     <div className="row">
                     <div className="col-3">
-                        
+                        <div style={{height:"100%",display:"flex",alignItems:"centre"}}>
                             <img src={BurgerImage} class="food-image" alt='burger'/>    
-                       
+                    </div>
                     </div>
                     <div className="col-9" >
                         <div className="row">
@@ -32,7 +32,7 @@ class BillItem extends Component {
                             <h6 className="containment" >Containments</h6>
                             </div>
                             
-                            <div class='col-2 price-display' style={{display:"flex",flexDirection:"column"}}>
+                            <div class='col-3 price-display' style={{display:"flex",flexDirection:"column"}}>
                                             {this.props.discount>0?
                                                 <>
 
@@ -68,13 +68,13 @@ class BillItem extends Component {
                             <div><br/></div>
                             }
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className='top-up'>
                                 <button className="col-3" >Extra Cheese</button>
                                 <button className="col-3" >Extra suger</button>
                                 <button className="col-3" >Extra Patty</button>
                             </div>
-                        </div>
+                        </div> */}
                        
                 
                     </div>
