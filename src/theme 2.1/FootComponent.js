@@ -5,7 +5,7 @@ class FootComponent extends Component{
     render(){
         return(
             <div>
-                {console.log(this.props.links)}
+
             <section id="footer" class="footer-area mt-200">
             <div class="container">
                 <div class="footer-copyright pt-15 pb-15">

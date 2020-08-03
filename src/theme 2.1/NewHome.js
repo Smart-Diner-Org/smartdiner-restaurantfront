@@ -196,9 +196,8 @@ getCategories(items){
          categoryArray={this.state.categoryArray}
          />
          <About />
-         <MapLocation />
+         <MapLocation mapUrl={this.state.restaurantBranch[0].g_location} />
          <Contact />
-         {console.log(this.state.restaurant_info.restaurant_detail)}
          <ScrollToTop />
          <FootComponent links={this.state.restaurant_info.restaurant_detail}/>
          </div>
