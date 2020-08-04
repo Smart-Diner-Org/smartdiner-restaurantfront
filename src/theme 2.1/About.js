@@ -37,8 +37,8 @@ class About extends Component {
 
                                 <div class="timing text-center mt-100">
                                     <div class="about-content mt-20">
-                                        <h5 class="title mb-10">Mon - Sat</h5>
-                                        <p>9am - 7pm</p>
+                                        <h5 class="title mb-10">{this.props.timings}</h5>
+                            
                                     </div>
                                 </div> 
                             </div>

@@ -182,6 +182,7 @@ getCategories(items){
          <HeadComponent
          togglePopup={this.togglePopup}
          total={this.state.total}
+         logo={this.state.restaurant_info.logo}
          />
 
 
@@ -195,7 +196,7 @@ getCategories(items){
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
          />
-         <About />
+         <About timings={this.state.restaurantBranch[0].timings} />
          <MapLocation mapUrl={this.state.restaurantBranch[0].g_location} />
          <Contact />
          <ScrollToTop />

@@ -1,10 +1,10 @@
 import React, {Component} from "react"
 import { geolocated } from "react-geolocated";
 import { getDistance } from 'geolib';
-import GoogleMapReact from 'google-map-react';
+import Geocode from "react-geocode";
 
-const google = window.google;
-let geocoder = new google.maps.Geocoder();
+Geocode.setApiKey("AIzaSyC9XlbF_g7dah3jXgGg2qrSln43Eu2tQ0M");
+Geocode.enableDebug();
 
 class GetLocation extends Component{
     constructor(props){
@@ -16,6 +16,7 @@ class GetLocation extends Component{
         }
         this.checkDistance =  this.checkDistance.bind(this)
         this.getCoords = this.getCoords.bind(this)
+        this.handleChange = this.handleChange.bind(this);
     }
   
     checkDistance(){
@@ -26,10 +27,16 @@ class GetLocation extends Component{
                         latitude: position.coords.latitude,
                     longitude:position.coords.longitude},
                      {
-                        latitude: 12.972442,
-                        longitude: 77.580643 
+                        latitude: 13.093410,
+                        longitude: 77.399053
                     },1)
                 );
+                if(distance>=5000){
+                    alert("Sorry for our Incovenience.... You're out of our boundary")
+                }
+                else{
+                    alert("Welcome you sir... we are happy to serve you")
+                }
             },
 
             () => {
@@ -38,18 +45,22 @@ class GetLocation extends Component{
         );
     }
 
+    handleChange(event) {
+        this.setState({address: event.target.value});
+      }
+
     getCoords(event){
-        let location = null;
-        this.setState({address: event.target.value})
-        geocoder.geocode({'address': this.state.address}, function(results, status) {
-            if (status == 'OK') {
-              location = results.geometry.location
-              console.log(location)
-              }
-             else {
-              alert('Geocode was not successfull because ' + status)
+        console.log(`${this.state.address}`)
+        Geocode.fromAddress(`${this.state.address}`).then(
+            response => {
+              const { lat, lng } = response.results[0].geometry.location;
+              console.log(`${lat} and ${lng}`);
+            },
+            error => {
+              console.error(error);
             }
-        })
+          );
+        event.preventDefault()
     }
 
     // lat: 13.093410, lng: 77.399053
@@ -65,8 +76,8 @@ class GetLocation extends Component{
             <div>Geolocation is not enabled</div>
         ) : this.props.coords ?(
             <div>
-                <form onSubmit={this.getCoords()}>
-                <input type="text" placeholder="Enter your Location"/>
+                <form onSubmit={this.getCoords}>
+                <input type="text" placeholder="Enter your Location" onChange={this.handleChange}/>
                 <input type="submit" />
                 </form>
                 
@@ -85,4 +96,5 @@ export default geolocated({
         enableHighAccuracy: false,
     },
     userDecisionTimeout: 5000,
+    apiKey: 'AIzaSyC9XlbF_g7dah3jXgGg2qrSln43Eu2tQ0M',
 })(GetLocation)

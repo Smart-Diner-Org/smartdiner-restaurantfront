@@ -1,7 +1,6 @@
 import React ,{ Component } from "react"
 import BagImage from "./assets/images/bag.png"
 import Logo from "./assets/images/logo.png"
-import Bag from "./Bag"
 
 
 
@@ -34,7 +33,15 @@ class HeadComponent extends React.Component {
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" href="index.html">
-                            <img src={Logo} alt="Logo"/>
+                            {
+                                this.props.logo?
+                                <>
+                                <img src={this.props.logo} style={{width:"40px"}} alt="Logo"/>
+                                </>
+                                :
+                                <img src={Logo} style={{width:"40px"}} alt="Logo"/>    
+                            }
+                            
                         </a> 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
