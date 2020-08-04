@@ -6,10 +6,10 @@ class Item extends Component {
         return(
             
                 
-            <div class="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
+            <div className="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
               
-                            <div class="single-product-items">
-                                <div class="product-item-image">
+                            <div className="single-product-items">
+                                <div className="product-item-image">
                                 {this.props.image?
                                     <>
                                     <a href="#"><img src={this.props.image} alt="Product"/> </a>
@@ -20,7 +20,7 @@ class Item extends Component {
         
                                     {this.props.discount>0?
                                     <>
-                                    <div class="product-discount-tag">
+                                    <div className="product-discount-tag">
                                         <p>{this.props.discount}% OFF</p>
                                     </div>
                                     </>
@@ -28,8 +28,8 @@ class Item extends Component {
                                     ""
                                 }           
                                     </div>
-                                <div class="product-item-content mt-30">
-                                        <h5 class="product-title"><a href="#">{this.props.itemName}</a></h5>
+                                <div className="product-item-content mt-30">
+                                        <h5 className="product-title"><a href="#">{this.props.itemName}</a></h5>
                                         <p>Containments</p>
                                         {this.props.discount>0?
                                         <>
@@ -41,24 +41,24 @@ class Item extends Component {
                                         <span style={{color:"#000000"}}>Rs.{this.props.regularPrice}</span>
                                     }
                                         
-                                    <div class="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px"}}>
-                                        <div class="input-group-prepend" >
-                                            <button class="button-round" style={{borderLeft:"0px"}}
+                                    <div className="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px"}}>
+                                        <div className="input-group-prepend" >
+                                            <button className="button-round" style={{borderLeft:"0px"}}
                                                 type="button" onClick={this.props.decreasequantity}>−</button>
                                         </div>
                                         <input type="text" className="total-quantity" value={this.props.quantity}/>
                                             
-                                        <div class="input-group-append">
-                                            <button class="button-round" style={{borderRight:"0px"}}
+                                        <div className="input-group-append">
+                                            <button className="button-round" style={{borderRight:"0px"}}
                                                 type="button" onClick={this.props.increasequantity}>+</button>
                                         </div>
                                     </div>
-                                    <ul class="rating">
-                                        <li><i class="lni-star-filled"></i></li>
-                                        <li><i class="lni-star-filled"></i></li>
-                                        <li><i class="lni-star-filled"></i></li>
-                                        <li><i class="lni-star-filled"></i></li>
-                                        <li><i class="lni-star-filled"></i></li>
+                                    <ul className="rating">
+                                        <li><i className="lni-star-filled"></i></li>
+                                        <li><i className="lni-star-filled"></i></li>
+                                        <li><i className="lni-star-filled"></i></li>
+                                        <li><i className="lni-star-filled"></i></li>
+                                        <li><i className="lni-star-filled"></i></li>
                          
                                     </ul>
                                     </div>

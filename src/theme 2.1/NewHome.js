@@ -157,10 +157,10 @@ getCategories(items){
     if (!isLoaded) {
       return (
         <div>
-            <div class="preloader">
-                <div class="spin">
-                    <div class="cube1"></div>
-                    <div class="cube2"></div>
+            <div className="preloader">
+                <div className="spin">
+                    <div className="cube1"></div>
+                    <div className="cube2"></div>
                 </div>
             </div>
         </div>);

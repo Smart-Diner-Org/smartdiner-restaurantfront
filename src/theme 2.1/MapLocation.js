@@ -3,22 +3,22 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import axios from "axios";
 
 class MapLocation extends Component{
-    async getLocation(){
-        try{
-            await axios.get(`${this.props.mapUrl}`)
-            .then(res =>{
-                console.log(res.url)
-            })
+    // async getLocation(){
+    //     try{
+    //         await axios.get(`${this.props.mapUrl}`)
+    //         .then(res =>{
+    //             console.log(res.url)
+    //         })
 
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
+    //     }
+    //     catch(error){
+    //         console.log(error)
+    //     }
+    // }
 
     render()
     { 
-        this.getLocation()
+        // this.getLocation()
         return(
             <div className="google-map">
                 <div className="container ">
