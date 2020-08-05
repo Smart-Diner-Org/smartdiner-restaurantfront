@@ -15,7 +15,7 @@ class Payment extends React.Component{
                     </ul>
                 </div>
                 <div className="row mt-30">
-                    <button className="proceed">Proceed</button>
+                    <button className="proceed" style={{marginLeft:"80%"}}>Proceed</button>
                 </div>
             </div>
         )

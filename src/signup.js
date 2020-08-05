@@ -2,7 +2,7 @@ import React , {Component} from "react"
 import './App.css'
 import NewCustomer from "./NewCustomer"
 import Payment from "./Payment";
-import GetAdress from "./GetAdress"
+import GetAddress from "./GetAddress"
 import GetOTP from "./GetOTP"
 
 class SignUp extends Component{
@@ -24,33 +24,32 @@ class SignUp extends Component{
 
     render(){
         return(
-            <div className="signup">
+            <div className="signup  mt-50">
                 <div className="container">
                     <div className="row mb-50">
                         <h2>Customer Details</h2>
                     </div>
-                    <form>
-                        <div class="form-group">
-                            <div className="row">
-                              <div className="col-5">
+                 
+                    <div className="row">
+                              <div className="col-lg-6 col-sm-12">
+                              <form className="customer-details-form">
+                        <div className="form-group">
+                            
                                     <GetOTP />
                                     <NewCustomer />
-                                    <GetAdress />
-                                    <div className="row">
-                                        <label>Get Location</label>
-                                        <button>Add new adress</button>
-                                    </div>   
-                                    <div className="row">
-                                        <a href="#">*Give Location access for delivery</a>
-                                    </div>
-                                
+
+                                    <GetAddress />
                                 </div>
-                                <div className="col-5">
+                                
+                                </form>
+                            </div>
+
+
+                            <div className="col-lg-5 col-sm-12 ">
                                     <Payment />
                                 </div>
-                            </div>
                     </div>
-                    </form>
+                    
                 </div>
             </div>
         )

@@ -8,54 +8,75 @@
 .signup h2{
   color: #000466;
   text-decoration: underline;
-  text-decoration-color: yellow;
+  text-decoration-color: #FFC009;
   font-size: 2em;
 }
 
-.mobile-verification input{
-  width: 300px;
+.customer-details-form{
+  width: 70%;
+  min-width: 250px;
 }
+
+
 
 .OTP-verification {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  
+}
+
+.signup a{
+  font-size: 12px;
+  color: #000466;
 }
 
 
 .OTP-verification li input{
-  width: 20px;
-  font-size: 12px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+ 
+  font-size: 18px;
+  margin: 5px;
 }
 
 .new-customer input{
   color: #000466;
-  /* opacity: 20%; */
-  width: 300px;
+  opacity: 20%;
+  width: 100%;
   padding: 5px;
 }
 
-.adress{
-  border: 2px solid yellow;
-  padding: 10px;
-  width: 300px;
+.address{
+  border: 2px solid #FFC009;
+  padding: 20px;
+  
   color: #000466;
+  line-height: 0.7em;
 }
 
-.adress .edit{
+.address .edit{
+  
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
-  padding: 0px 10px;
+  padding: 10px 20px;
   border-radius: 5px;
+   display: flex;
+  flex-direction: row; 
+  justify-content: flex-end;
 }
 
-.adress .cancel{
+.address .cancel{
   border: none;
   color: #E22A28;
   background-color: white !important;
   font-size: 1em;
+}
+
+.payment-method{
+  position: fixed;
 }
 
 .payment-method button{
@@ -68,6 +89,18 @@
   border: 1px solid #000466;
 }
 
+.new-address{
+  color: white;
+  background-color: #000466;
+  font-size: 18px;
+  border: 1px solid #000466;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+
+
 .payment-method .proceed{
   width: auto;
   padding: 5px 20px;
@@ -75,4 +108,20 @@
   background-color: #000466;
   border: 1px solid #000466;
   font-size: 1em;
+}
+
+@media screen and (max-width:50em){
+  .payment-method{
+    position: absolute;
+  }
+  .signup{
+    padding: 30px;
+  }
+  .customer-details-form{
+    width: 100%;
+    min-width: 250px;
+  }
+  .payment-method button{
+    width: 400px;
+  }
 }
