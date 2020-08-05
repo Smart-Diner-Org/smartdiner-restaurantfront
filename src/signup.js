@@ -1,102 +1,61 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React , {Component} from "react"
+import './App.css'
+import NewCustomer from "./NewCustomer"
+import Payment from "./Payment";
+import GetAdress from "./GetAdress"
+import GetOTP from "./GetOTP"
 
-class Signup extends Component {
-  constructor(props) {
-    super(props);
+class SignUp extends Component{
+    constructor(props){
+        super();
+        this.state={
+            mobile : "",
 
-    this.state = {
-      name: '',
-      email: '',
-      mobile: '',
-      password: ''
-          };
-  }
+        }
+        this.handleChange = this.handleChange.bind(this)
 
-  handleInputChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+    }
+    handleChange(event) {
+        const {name, value} = event.target
+        this.setState({
+            [name]: value
+        })
+    }
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const { name, email, mobile, password } = this.state;
-
-    const customer = {
-      name,
-      email,
-      mobile,
-      password
-    };
-
-    axios
-      .post('http://localhost:9000/api/register', customer)
-      .then(() => console.log('Customer created'))
-      .catch(err => {
-        console.error(err);
-      });
-  };
-
-  render() {
-    return (
-      <div>
-        <br />
-        <div className="container">
-          <h4>Sign up</h4>
-          <form onSubmit={this.handleSubmit}>
-            <div style={{ width: '30%' }} className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                placeholder="name"
-                onChange={this.handleInputChange}
-              />
+    render(){
+        return(
+            <div className="signup">
+                <div className="container">
+                    <div className="row mb-50">
+                        <h2>Customer Details</h2>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <div className="row">
+                              <div className="col-5">
+                                    <GetOTP />
+                                    <NewCustomer />
+                                    <GetAdress />
+                                    <div className="row">
+                                        <label>Get Location</label>
+                                        <button>Add new adress</button>
+                                    </div>   
+                                    <div className="row">
+                                        <a href="#">*Give Location access for delivery</a>
+                                    </div>
+                                
+                                </div>
+                                <div className="col-5">
+                                    <Payment />
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
             </div>
-            <br />
-            <div style={{ width: '30%' }} className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                placeholder="email"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <br />
-            <div style={{ width: '30%' }} className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                name="mobile"
-                placeholder="mobile"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <br />
-            <div style={{ width: '30%' }} className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="password"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <br />
-            <div style={{ width: '30%' }}>
-              <button className="btn btn-success" type="submit">
-                Create
-              </button>
-            </div>
-            <p className="App-intro">{this.state.apiResponse}</p>
-          </form>
-        </div>
-      </div>
-    );
-  }
+        )
+    }
+
 }
 
-export default Signup;
+export default SignUp

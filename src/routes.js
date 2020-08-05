@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 // import { sessionService } from 'redux-react-session';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import App from './App';
-import Signup from './signup'  ;
+import Signup from './old_signup'  ;
 import Login from './login';
 import Home from './home';
 import Logout from './logout';
@@ -12,6 +12,7 @@ import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
 import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
+import SignUp from './SignUp'
 
 const authenticated = true;
 export default (  
@@ -20,7 +21,8 @@ export default (
       <div>
 
         {/* <Route exact path="/" component={App} /> */}
-        <UnProtectedRoute path="/signup" component={Signup} />
+        <UnProtectedRoute path="/oldsignup" component={Signup} />
+        <UnProtectedRoute path="/signup" component={SignUp} />
         <UnProtectedRoute path="/login" component={Login} />
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
