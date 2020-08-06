@@ -1,20 +1,31 @@
 import React from "react"
 
+
 class GetOTP extends React.Component{
+
     render(){
         return(
             <div className="mobile-verification ">
-                <input  type="text" class="form-control" name="mobile" placeholder="Enter Mobile Number" onChange={this.handleChange}/>
-                <div className="row mt-30">
-                    <ul className="form-goup col-8 OTP-verification">
-                        <li><input type="text"/> </li>
-                        <li><input type="text"/> </li>
-                        <li><input type="text"/> </li>
-                        <li><input type="text"/> </li>
-                        
-                    </ul>
-                    <a href="#" className="col-4" style={{marginTop:"20px"}}>Resend OTP</a>
-                </div>
+                <form onSubmit={this.props.requestOTP}>
+                    <input  type="tel" class="form-control" name="mobile" minLength="10" maxLength="10" placeholder="Enter Mobile Number" onChange={this.props.handleChange}/>
+                </form>
+                    <div className="row mt-30">
+                        { this.props.requestedOTP && 
+                            <>
+                            <form onSubmit={this.props.OTPverfication}>
+                            {/* <ul className="col-8 OTP-verification" name="OTP">
+                            <li><input type="text" maxLength="1" minLength="1"/> </li>
+                            <li><input type="text" maxLength="1" minLength="1"/> </li>
+                            <li><input type="text" maxLength="1" minLength="1"/> </li>
+                            <li><input type="text" maxLength="1" minLength="1"/> </li>
+                            </ul> */}
+                            <input type="text" maxLength="4" name="OTP" onChange={this.props.handleChange}/>
+                            </form>
+                            <a href="#" className="col-4" style={{marginTop:"20px"}} onClick={ this.props.resendOTP }>Resend OTP</a>
+                            </>
+                        }
+                    </div>
+                
             </div>
         )  
     }

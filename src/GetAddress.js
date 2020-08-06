@@ -15,6 +15,7 @@ class GetAddress extends React.Component{
                                 <label >Address line 2</label><br/>
                                 <label >Street,city</label><br/>
                                 <label >city-pincode</label>
+
                             </div>
                             
                         </div>
@@ -25,7 +26,7 @@ class GetAddress extends React.Component{
                             
                         </div>
                 </div>
-                 <div className="address mb-20 mt-30" style={{border:"none",boxShadow:"2px 2px 10px rgba(0,0,0,0.2)"}}>                   
+                 <div className="address mb-20 mt-30" >                   
                  <div className="row"style={{marginLeft:"90%"}}>
                      <button className="cancel">X</button>
                  </div>

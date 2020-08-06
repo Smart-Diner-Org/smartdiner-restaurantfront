@@ -1,0 +1,18 @@
+{user: {…}, accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwia…zODl9.Wy8uNlNSBTUtHfzA3pzJtwj-hw2UU1ks20UyJpbGrSE"}
+accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNTk2NzA5OTg5LCJleHAiOjE1OTY3OTYzODl9.Wy8uNlNSBTUtHfzA3pzJtwj-hw2UU1ks20UyJpbGrSE"
+user:
+createdAt: "2020-08-06T05:00:41.202Z"
+customer_detail: null
+email: null
+id: 9
+mobile: "9986693344"
+mobile_verification: true
+name: null
+otp_secret: null
+password: null
+remember_token: null
+role_id: null
+updatedAt: "2020-08-06T10:33:09.411Z"
+uuid: null
+__proto__: Object
+__proto__: Object}
