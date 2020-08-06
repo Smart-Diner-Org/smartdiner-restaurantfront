@@ -15,7 +15,7 @@ class FootComponent extends Component{
        
        display: 'flex',
        justifycontent: 'space-between'}}>
-                                <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; chinese grill kitchen</a></p>
+                                <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
                                 <ul className="social text-right">
                                     {
                                         this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`}><i className="lni-facebook-filled"></i></a></li>

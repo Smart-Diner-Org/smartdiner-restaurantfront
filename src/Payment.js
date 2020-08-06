@@ -4,7 +4,7 @@ import React from "react"
 class Payment extends React.Component{
     render(){
         return(
-            <div className="payment-method mt-30">
+            <div className="payment-method">
                 <div className="row">
                     <ul>
                         <li><button>Gpay</button></li>

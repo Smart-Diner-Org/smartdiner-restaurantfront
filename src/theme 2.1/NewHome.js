@@ -75,7 +75,8 @@ async componentDidMount() {
 
 changequantity(index, value) {
     this.setState( prevState => {
-     
+
+
         let noOfSelectedItems = this.state.total
         let newItemsStateArray =  prevState.items;
 
@@ -183,6 +184,7 @@ getCategories(items){
          togglePopup={this.togglePopup}
          total={this.state.total}
          logo={this.state.restaurant_info.logo}
+         restaurantName={this.state.restaurant_info.name}
          />
 
 
@@ -198,9 +200,9 @@ getCategories(items){
          />
          <About timings={this.state.restaurantBranch[0].timings} />
          <MapLocation mapUrl={this.state.restaurantBranch[0].g_location} />
-         <Contact />
+         <Contact address={this.state.restaurantBranch[0].address} />
          <ScrollToTop />
-         <FootComponent links={this.state.restaurant_info.restaurant_detail}/>
+         <FootComponent links={this.state.restaurant_info.restaurant_detail} restaurantName={this.state.restaurant_info.name}/>
          </div>
         </div>
     );

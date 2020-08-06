@@ -1,6 +1,6 @@
 import React , {Component} from 'react'
 import BagItemList from './BagItemList';
-import Delivery from './Delivery';
+
 
 import Logo from './assets/images/bag.png'
 
@@ -30,7 +30,7 @@ render(){
                             
                         />
 
-                <Delivery />
+                
                 <footer>
                     <div className='foot-content'>
                         <span className="span-left">Powered by <a href="">Smart Diner</a></span>

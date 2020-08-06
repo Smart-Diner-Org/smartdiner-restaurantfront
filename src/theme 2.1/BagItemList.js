@@ -1,6 +1,7 @@
 import React from "react"
 import BillItem from './components/BillItem'
 import Bill from './Bill';
+import Delivery from './Delivery';
 
 
 class BagItemList extends React.Component {
@@ -43,7 +44,8 @@ class BagItemList extends React.Component {
                         />}
                     )
 }
-                <Bill values={this.values()} />
+                <Bill values={this.values()}/>
+                <Delivery values={this.values()}  />
             </div>
         )
     }

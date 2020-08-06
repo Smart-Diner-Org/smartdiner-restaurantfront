@@ -26,7 +26,7 @@ class Bill extends Component {
                                     
                                 </div>
                           
-                            <div class="col-4 total-amount" >
+                            <div class="col-4 total-amount">
                                 <label >To  Pay : <span >{`Rs${this.props.values[2].toFixed(2)}`}</span></label>
                             
                             </div>

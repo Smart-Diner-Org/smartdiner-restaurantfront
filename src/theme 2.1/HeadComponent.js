@@ -41,8 +41,8 @@ class HeadComponent extends React.Component {
                                 :
                                 <img src={Logo} style={{width:"40px"}} alt="Logo"/>    
                             }
-                            
                         </a> 
+                        <h3>{this.props.restaurantName}</h3> 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">

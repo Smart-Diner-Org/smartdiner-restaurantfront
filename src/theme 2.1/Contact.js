@@ -79,7 +79,7 @@ class Contact extends Component{
                                             <i class="lni-home"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>Address, city, pincode</p>
+                                            <p>{this.props.address}</p>
                                         </div>
                                     </div> 
                                 </li>

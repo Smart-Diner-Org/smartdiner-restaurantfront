@@ -1,21 +1,24 @@
 import React,{Component} from "react"
-import { Redirect } from "react-router"
+import {Link} from 'react-router-dom'
 
 
 
 class Delivery extends Component {
-    handleClick(event){
-        return(
-            <Redirect to='/signup'/>
-        )
-    }
+    
     render(){
         return(
             <div>
                 <hr/>
                 <div className="delivery-type">
+                <Link 
+                    to={{
+                        pathname: '/signup',
+                        totalPrice: 
+                            this.props.values[2].toFixed(2)
+                        }} >
+                    <button >Checkout</button>
+                </Link>
                 
-                <button onClick={this.handleClick}>Checkout</button><br/>
                 
             </div>
             <hr/>

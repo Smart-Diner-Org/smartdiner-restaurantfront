@@ -31,18 +31,19 @@ class GetLocation extends Component{
                         longitude: 77.399053
                     },1)
                 );
-                if(distance>=5000){
-                    alert("Sorry for our Incovenience.... You're out of our boundary")
-                }
-                else{
-                    alert("Welcome you sir... we are happy to serve you")
-                }
-            },
+                },
 
             () => {
                 alert('Position could not be determined.');
             }
         );
+        // if(distance>=5000){
+        //     alert("Sorry for our Incovenience.... You're out of our boundary")
+        // }
+        // else{
+        //     alert("Welcome you sir... we are happy to serve you")
+        // }
+    
     }
 
     handleChange(event) {
