@@ -49,7 +49,7 @@ class SignUp extends Component{
             mobile : this.state.mobile,
             roleId : 4,
         }
-        axios.post('https://08becbfc2e62.ngrok.io/auth/check_for_account',data)
+        axios.post('https://639b6b213547.ngrok.io/auth/check_for_account',data)
             .then(res => {
                 console.log(res.data.message)
             })
@@ -65,7 +65,7 @@ class SignUp extends Component{
             mobile : this.state.mobile,
             otp : this.state.OTP
         }
-        axios.post('https://08becbfc2e62.ngrok.io/auth/verify_otp',data)
+        axios.post('https://639b6b213547.ngrok.io/auth/verify_otp',data)
             .then(res => {
                 this.setState ({user_info:res.data})
             })
@@ -79,7 +79,7 @@ class SignUp extends Component{
         const data ={
             mobile : this.state.mobile
         }
-        axios.post('https://08becbfc2e62.ngrok.io/auth/resend_otp',data)
+        axios.post('https://639b6b213547.ngrok.io/auth/resend_otp',data)
             .then(res => {
                 this.setState ({user_info:res.data})
             })
