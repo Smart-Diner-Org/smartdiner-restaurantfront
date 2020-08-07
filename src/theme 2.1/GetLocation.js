@@ -6,6 +6,7 @@ import Geocode from "react-geocode";
 Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
 Geocode.enableDebug();
 
+
 class GetLocation extends Component{
     constructor(props){
         super(props);
@@ -37,13 +38,12 @@ class GetLocation extends Component{
                 alert('Position could not be determined.');
             }
         );
-        // if(distance>=5000){
-        //     alert("Sorry for our Incovenience.... You're out of our boundary")
-        // }
-        // else{
-        //     alert("Welcome you sir... we are happy to serve you")
-        // }
-    
+        if(distance>=10000){
+            alert("Sorry for our Incovenience.... You're out of our boundary")
+        }else{
+            alert("Welcome you sir... we are happy to serve you")
+        }
+        
     }
 
     handleChange(event) {
@@ -52,10 +52,27 @@ class GetLocation extends Component{
 
     getCoords(event){
         console.log(`${this.state.address}`)
-        Geocode.fromAddress(`${this.state.address}`).then(
+        Geocode.fromAddress(`${this.state.address}`,null,null,'bangalore').then(
             response => {
-              const { lat, lng } = response.results[0].geometry.location;
-              console.log(`${lat} and ${lng}`);
+            const { lat, lng } = response.results[0].geometry.location;
+            
+            let distance = ( getDistance({
+                latitude:lat,
+                longitude: lng},
+             {
+                latitude: 12.988061,
+                longitude: 77.576988
+            },1))
+
+            console.log(distance)
+
+            if(distance>=10000){
+                alert("Sorry for our Incovenience.... You're out of our boundary")
+            }else{
+                alert("Welcome you sir... we are happy to serve you")
+            }
+
+
             },
             error => {
               console.error(error);
@@ -70,7 +87,7 @@ class GetLocation extends Component{
     
 
     render(){
-        this.checkDistance()
+        
         return !this.props.isGeolocationAvailable ? (
             <div>Your browser does not support Geolocation</div>
         ) : !this.props.isGeolocationEnabled ? (
@@ -81,7 +98,7 @@ class GetLocation extends Component{
                 <input type="text" placeholder="Enter your Location" onChange={this.handleChange}/>
                 <input type="submit" />
                 </form>
-                
+                <button onClick={this.checkDistance}>getCurrentPosition</button>
             </div>
         ):(
             <div>
