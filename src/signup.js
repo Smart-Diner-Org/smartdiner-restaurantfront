@@ -109,7 +109,8 @@ class SignUp extends Component{
                                     OTPverfication={this.OTPverfication}
                                     resendOTP={this.resendOTP}
                                     />
-                                    {this.state.user_info.accessToken&&(this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) }
+                                    {/* {this.state.user_info.accessToken&&(this.state.user_info.user.customer_detail ? <GetAddress /> : ) } */}
+                                    <NewCustomer />
                             </div>
                         </div>
                         <div className="col-lg-5 col-sm-12 ">

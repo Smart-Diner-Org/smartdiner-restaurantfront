@@ -11,11 +11,12 @@ render(){
     return(
         <div className="new-customer mt-30">
             <form >
-                <input className="mb-10" type="text" name="name" placeholder="Enter your Name"/>
-                <input className=" mb-10" type="text" name="email" placeholder="Enter your mailID"/>
-                <input className=" mb-10" type="text" name="addressLine1" placeholder="Adress Line 1"/>
-                <input className=" mb-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>
-                <div className="row-12 mb-30" style={{display:"flex",flexDirection:"row"}} >
+                <input className="mt-10" type="text" name="name" placeholder="Enter your Name"/>
+                <small className="error-message" style={{color:"#e22a28"}}>Wrong Name</small>
+                <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID"/>
+                <input className=" mt-10" type="text" name="addressLine1" placeholder="Adress Line 1"/>
+                <input className=" mt-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>
+                <div className="row-12 mt-30" style={{display:"flex",flexDirection:"row"}} >
                     <input className="col-5 mr-5" type="text" name="city" placeholder="City"/>
                     <input className="col-5 " type="text" name="state" placeholder="State"/>
                 </div>

@@ -6,15 +6,51 @@ class FootComponent extends Component{
         return(
             <div>
 
-            <section id="footer" class="footer-area mt-200">
+            <section id="footer" class="footer-area mt-50">
             <div class="container">
                 <div class="footer-copyright pt-15 pb-15">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div  style={{width: '100%',
-       
-       display: 'flex',
-       justifycontent: 'space-between'}}>
+                    <div class="col-lg-4">
+                    <div class="contact-info pt-25">
+                            <h4 class="info-title"  >Contact Info</h4>
+                            <ul>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="lni-phone-handset"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>+91 9876543210</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="lni-envelope"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>contact@yourmail.com</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            <i class="lni-home"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <p>{this.props.address}</p>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div> 
+                    </div>
+                    </div>
+                    <div className="row">
+                    <div class="col-lg-12 mt-30">
+                            <div  style={{width: '100%', display: 'flex',justifycontent: 'space-between'}}>
                                 <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
                                 <ul className="social text-right">
                                     {
@@ -31,7 +67,7 @@ class FootComponent extends Component{
                                 <p style={{marginleft: 'auto'}}>Term and Polices</p>
                             </div> 
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div> 
         </section>

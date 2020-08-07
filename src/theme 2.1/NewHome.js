@@ -200,9 +200,9 @@ getCategories(items){
          />
          <About timings={this.state.restaurantBranch[0].timings} />
          <MapLocation mapUrl={this.state.restaurantBranch[0].g_location} />
-         <Contact address={this.state.restaurantBranch[0].address} />
+         <Contact  />
          <ScrollToTop />
-         <FootComponent links={this.state.restaurant_info.restaurant_detail} restaurantName={this.state.restaurant_info.name}/>
+         <FootComponent links={this.state.restaurant_info.restaurant_detail} restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
          </div>
         </div>
     );

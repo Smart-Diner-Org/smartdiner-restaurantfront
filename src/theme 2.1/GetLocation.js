@@ -3,7 +3,7 @@ import { geolocated } from "react-geolocated";
 import { getDistance } from 'geolib';
 import Geocode from "react-geocode";
 
-Geocode.setApiKey("AIzaSyC9XlbF_g7dah3jXgGg2qrSln43Eu2tQ0M");
+Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
 Geocode.enableDebug();
 
 class GetLocation extends Component{
@@ -85,7 +85,7 @@ class GetLocation extends Component{
             </div>
         ):(
             <div>
-                {/* { console.log("getting location")} */}
+                { console.log("getting location")}
             </div>
             
         );
@@ -97,5 +97,4 @@ export default geolocated({
         enableHighAccuracy: false,
     },
     userDecisionTimeout: 5000,
-    apiKey: 'AIzaSyC9XlbF_g7dah3jXgGg2qrSln43Eu2tQ0M',
 })(GetLocation)

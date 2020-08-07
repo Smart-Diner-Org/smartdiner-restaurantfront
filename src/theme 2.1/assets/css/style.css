@@ -2026,8 +2026,9 @@ margin: 20px;
 }
 
 .contact-info .info-title {
-  font-size: 26px;
+  font-size: 18px;
   padding-bottom: 5px;
+  color: white;
 }
 
 .single-info {
@@ -2036,13 +2037,14 @@ margin: 20px;
 
 .single-info .info-icon {
   position: absolute;
+
   left: 0;
   top: 0;
 }
 
 .single-info .info-icon i {
   font-size: 20px;
-  color: #000000;
+  color: white;
 }
 
 .single-info .info-content {
@@ -2116,9 +2118,11 @@ p.form-message.error {
 .footer-area {
   position: relative;
   background-color: #000000;
+  border-top: none;
 }
 
 .footer-area::before {
+
   position: absolute;
   content: '';
   /* background-image: url(../images/footer-bg.png); */

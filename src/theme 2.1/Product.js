@@ -21,7 +21,6 @@ class Product extends Component{
                     <div className="row">
                         <Menu categoryArray={this.props.categoryArray}
                         setType = {this.props.setType}
-                        // autoclick={this.autoclick}
                         />
                       
                         <div className="col-lg-9 col-md-8">

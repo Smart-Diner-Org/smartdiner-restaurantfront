@@ -49,7 +49,7 @@ class Contact extends Component{
                             </form>
                         </div> 
                     </div>
-                    <div class="col-lg-4">
+                    {/* <div class="col-lg-4">
                         <div class="contact-info pt-25">
                             <h4 class="info-title">Contact Info</h4>
                             <ul>
@@ -85,7 +85,9 @@ class Contact extends Component{
                                 </li>
                             </ul>
                         </div> 
-                    </div>
+                    </div> */}
+
+
                 </div> 
             </div> 
         </div> 

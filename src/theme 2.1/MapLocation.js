@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import axios from "axios";
+// import axios from "axios";
 
 class MapLocation extends Component{
     // async getLocation(){
@@ -33,5 +33,5 @@ class MapLocation extends Component{
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyC9XlbF_g7dah3jXgGg2qrSln43Eu2tQ0M'
+    apiKey: 'AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8'
   })(MapLocation);
