@@ -12,9 +12,7 @@
   font-size: 2em;
 }
 
-.header{
-  
-}
+
 
 .customer-details-form{
   position: relative;
@@ -36,7 +34,7 @@
   font-size: 12px;
   color: #000466;
 }
-label{
+.signup label{
   font-size: 12px;
   color: #000466
 }

@@ -1,10 +1,23 @@
 import React , {Component} from 'react'
 import BagItemList from './BagItemList';
+import GetLocation from './GetLocation'
+import { geolocated } from "react-geolocated";
+import { getDistance } from 'geolib';
+import Geocode from "react-geocode";
 
 
 import Logo from './assets/images/bag.png'
 
 class Bag extends Component{  
+
+
+
+
+
+
+
+
+
     
 render(){
         return(
@@ -23,6 +36,7 @@ render(){
                     </div>
                     
                 </header>
+                <GetLocation />
                 
                 <BagItemList 
                             items={this.props.items}
@@ -31,13 +45,13 @@ render(){
                         />
 
                 
-                <footer>
+                {/* <footer>
                     <div className='foot-content'>
                         <span className="span-left">Powered by <a href="">Smart Diner</a></span>
                         <span className="span-right"><a href='#'>Terms and Conditions</a>
                         <a href='#'>Contact Us</a></span>
                     </div>
-                </footer>
+                </footer> */}
             </div>
             
         );

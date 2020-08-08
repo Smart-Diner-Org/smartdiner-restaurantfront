@@ -34,7 +34,7 @@ class NewHome extends Component {
     this.categoryArray = []
 }
 
-async componentDidMount() {
+async componentDidMount() {  //API call to get data from backend
     try{
         await axios.get(`./dbapi.json`)
       .then(res => {
@@ -52,7 +52,7 @@ async componentDidMount() {
     }
   }
 
-  getItems(data){
+  getItems(data){  //Storing API data into our state
     let restaurantDetails = [];
     let items = [];
     data.map((item) =>{
@@ -73,7 +73,7 @@ async componentDidMount() {
 
 
 
-changequantity(index, value) {
+changequantity(index, value) {   //this is for adding/increasing items to cart
     this.setState( prevState => {
 
 
@@ -109,7 +109,7 @@ changequantity(index, value) {
     })
 }
 
-addDiscountQuantity(itemsArray){
+addDiscountQuantity(itemsArray){  //discountPrice and quantity elements to Items Array 
     this.setState( prevState => {
         let newItemsStateArray =  [];
         itemsArray.map((item,index)=>{
@@ -121,8 +121,7 @@ addDiscountQuantity(itemsArray){
 })
 }
 
-
-setType(type) {
+setType(type) {  //to display respective items for menu items selected
     this.setState(prevState =>{
         return {
             selectedType:type
@@ -130,13 +129,13 @@ setType(type) {
     })
 }
   
-togglePopup() {
+togglePopup() {  //to open and close the cart(bag) component
         this.setState({
             showPopup: !this.state.showPopup
           });
     }
 
-getCategories(items){
+getCategories(items){  //fetching categories from itemsarray
     let categoryArray = []
     let indexes = [];
     items.map((item)=>{
@@ -157,7 +156,7 @@ getCategories(items){
     const { isLoaded } = this.state;
     if (!isLoaded) {
       return (
-        <div>
+        <div>  
             <div className="preloader">
                 <div className="spin">
                     <div className="cube1"></div>

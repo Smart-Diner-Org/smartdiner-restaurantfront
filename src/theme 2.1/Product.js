@@ -1,7 +1,7 @@
 import React,{ Component } from 'react'
 import Item from './components/Item'
 import Menu from './Menu'
-import GetLocation from './GetLocation'
+
 
 
 
@@ -16,7 +16,7 @@ class Product extends Component{
                 <div className="container">
                 <div className="row " >
                 <h2 className="col-lg-3 col-md-4 collection-tilte">Menu</h2>
-                <GetLocation />
+                
             </div>
                     <div className="row">
                         <Menu categoryArray={this.props.categoryArray}

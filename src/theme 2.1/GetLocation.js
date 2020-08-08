@@ -2,7 +2,8 @@ import React, {Component} from "react"
 import { geolocated } from "react-geolocated";
 import { getDistance } from 'geolib';
 import Geocode from "react-geocode";
-import LocationSearchInput from "./LocationSearchInput"
+// import LocationSearchInput from "./LocationSearchInput"
+import './map.css'
 
 Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
 Geocode.enableDebug();
@@ -94,13 +95,12 @@ class GetLocation extends Component{
         ) : !this.props.isGeolocationEnabled ? (
             <div>Geolocation is not enabled</div>
         ) : this.props.coords ?(
-            <div>
+            <div className="ask-location">
                 <form onSubmit={this.getCoords}>
-                <input type="text" placeholder="Enter your Location" onChange={this.handleChange}/>
-                <input type="submit" />
+                <input type="text" placeholder="Enter a Location" onChange={this.handleChange}/>
                 </form>
-                <button onClick={this.checkDistance}>getCurrentPosition</button>
-                <LocationSearchInput />
+                <button onClick={this.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
+                {/* <LocationSearchInput /> */}
             </div>
         ):(
             <div>
