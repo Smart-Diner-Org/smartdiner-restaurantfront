@@ -53,16 +53,16 @@ class GetOTP extends React.Component{
                     <input  type="tel" class="form-control" name="mobile" minLength="10" maxLength="10" placeholder="Enter Mobile Number" onChange={this.props.handleChange}/>
                 </form>
                     <div className="row mt-30">
-                        { !this.props.requestedOTP && 
+                        { this.props.requestedOTP && 
                             <>
                             <form onSubmit={this.props.OTPverfication}>
-                            <ul className="col-12 OTP-verification" name="OTP">
+                            {/* <ul className="col-12 OTP-verification" name="OTP">
                             <li><input ref={i => this.input_ref[0]=i} type="text" id="otpbox1" maxLength="1" minLength="1"/> </li>
                             <li><input ref={i => this.input_ref[1]=i} type="text" id="otpbox2" maxLength="1" minLength="1"/> </li>
                             <li><input ref={i => this.input_ref[2]=i} type="text" id="otpbox3" maxLength="1" minLength="1"/> </li>
                             <li><input ref={i => this.input_ref[3]=i} type="text" id="otpbox4" maxLength="1" minLength="1"/> </li>
-                            </ul>
-                            {/* <input type="text" maxLength="4" name="OTP" onChange={this.props.handleChange}/> */}
+                            </ul> */}
+                            <input type="text" maxLength="4" name="OTP" onChange={this.props.handleChange}/>
                             </form>
                             
                             <a href="#" className="col-4" style={{marginTop:"20px"}} onClick={ this.props.resendOTP }>Resend OTP</a>

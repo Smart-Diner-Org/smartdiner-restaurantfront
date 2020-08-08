@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import { geolocated } from "react-geolocated";
 import { getDistance } from 'geolib';
 import Geocode from "react-geocode";
+import LocationSearchInput from "./LocationSearchInput"
 
 Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
 Geocode.enableDebug();
@@ -99,6 +100,7 @@ class GetLocation extends Component{
                 <input type="submit" />
                 </form>
                 <button onClick={this.checkDistance}>getCurrentPosition</button>
+                <LocationSearchInput />
             </div>
         ):(
             <div>
