@@ -24,7 +24,7 @@ class GetLocation extends Component{
                 <button onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
                 <LocationSearchInput
                 address = {this.props.address}
-                 PAhandleChange = {this.props.PAhandleChange}
+                PAhandleChange = {this.props.PAhandleChange}
                 handleSelect = {this.props.handleSelect}/>
             </div>
         ):(

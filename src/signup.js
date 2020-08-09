@@ -6,6 +6,9 @@ import GetAddress from "./GetAddress"
 import GetOTP from "./GetOTP"
 import axios from "axios"
 
+
+
+
 class SignUp extends Component{
     constructor(props){
         super();
@@ -31,9 +34,12 @@ class SignUp extends Component{
             message: ""
         }
         this.handleChange = this.handleChange.bind(this)
+        this.MhandleChange = this.MhandleChange.bind(this)
         this.requestOTP = this.requestOTP.bind(this)
         this.OTPverfication = this.OTPverfication.bind(this)
         this.resendOTP = this.resendOTP.bind(this)
+        this.setOTPValue = this.setOTPValue.bind(this);
+
     }
     handleChange(event) {
         const {name, value} = event.target
@@ -41,6 +47,35 @@ class SignUp extends Component{
             [name]: value
         })
     }
+
+    MhandleChange(event){
+        const value = event.target.value
+        this.setState({
+            user_info : {accessToken: undefined,
+                user:{
+                createdAt: undefined,
+                customer_detail: undefined,
+                email: undefined,
+                id: undefined,
+                mobile: undefined,
+                mobile_verification: undefined,
+                name: undefined,
+                otp_secret: undefined,
+                password: undefined,
+                remember_token: undefined,
+                role_id: undefined,
+                updatedAt: undefined,
+                uuid: undefined,}},
+                mobile:value
+        })
+    }
+
+
+
+setOTPValue = (value)=>{
+this.setState({OTP:value})
+}
+
 
     requestOTP(event){
         event.preventDefault()
@@ -55,7 +90,7 @@ class SignUp extends Component{
                 console.log(res.data.message)
             })
             .catch(function (error) {
-                console.log(error.message);
+                console.log(error);
             })
     }
 
@@ -71,7 +106,7 @@ class SignUp extends Component{
                 this.setState ({user_info:res.data})
             })
             .catch(function (error) {
-                alert(error.data.message);
+                alert(error);
             })
         
     }
@@ -85,12 +120,13 @@ class SignUp extends Component{
                 this.setState ({user_info:res.data})
             })
             .catch(function (error) {
-                alert(error.response.message)
+                alert(error)
             })
 
     }
     
     render(){
+        console.log(this.state.OTP)
         return(
          
             <div className="signup ">
@@ -105,10 +141,11 @@ class SignUp extends Component{
                             <div className="customer-details-form">
                                     <GetOTP  
                                     requestedOTP = {this.state.requestedOTP}
-                                    handleChange={this.handleChange}
+                                    MhandleChange={this.MhandleChange}
                                     requestOTP={this.requestOTP}
                                     OTPverfication={this.OTPverfication}
                                     resendOTP={this.resendOTP}
+                                    setOTPValue={this.setOTPValue}
                                     />
                                     {this.state.user_info.accessToken&&(this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) }
                                     
