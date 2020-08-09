@@ -10,6 +10,13 @@ import ScrollToTop from './ScrollToTop'
 import Bag from './Bag'
 import axios from 'axios';
 import MapLocation from './MapLocation'
+import GetLocation from './GetLocation'
+import { getDistance } from 'geolib';
+import {
+    geocodeByAddress,
+    geocodeByPlaceId,
+    getLatLng,
+  } from 'react-places-autocomplete';
 
 
 
@@ -24,6 +31,10 @@ class NewHome extends Component {
         restaurantBranch: [{}],
         isLoaded: false,
         total : 0,
+        address:"",
+        lat:null,
+        long:null,
+        boundary: false,  
     };
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
@@ -32,6 +43,10 @@ class NewHome extends Component {
     this.getCategories = this.getCategories.bind(this)
     this.addDiscountQuantity = this.addDiscountQuantity.bind(this)
     this.categoryArray = []
+    this.checkDistance =  this.checkDistance.bind(this)
+    this.PAhandleChange = this.PAhandleChange.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
+
 }
 
 async componentDidMount() {  //API call to get data from backend
@@ -152,6 +167,57 @@ getCategories(items){  //fetching categories from itemsarray
     
 }
 
+checkDistance(){
+    let distance = 0;
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+                distance = ( getDistance({
+                    latitude: position.coords.latitude,
+                longitude:position.coords.longitude},
+                 {
+                    latitude: 12.988061,
+                    longitude: 77.576988
+                },1)
+            );
+            if(distance>=10000){
+                alert("Sorry for our Incovenience.... You're out of our boundary")
+            }else{
+                console.log(distance)
+                alert("Welcome you sir... we are happy to serve you")
+                this.setState({boundary:true})
+            }
+            },
+
+        () => {
+            alert('Position could not be determined.');
+        }
+    );
+    
+    
+}
+
+
+
+
+
+// particular for LocationSeacrhinput
+
+PAhandleChange = address => {
+    this.setState({ address });
+  };
+
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => {getLatLng(results[0]);sessionStorage.setItem('location',results)}
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error));
+  };
+
+
+// ends here
+
+
+
   render() {
     const { isLoaded } = this.state;
     if (!isLoaded) {
@@ -167,6 +233,16 @@ getCategories(items){  //fetching categories from itemsarray
     } else {
     return (
         <div>
+
+        {!this.state.boundary && this.state.total == 1 &&
+        <GetLocation 
+        address = {this.state.address}
+        getCoords={this.getCoords} 
+        handleChange={this.handleChange} 
+        checkDistance={this.checkDistance}
+        PAhandleChange = {this.PAhandleChange}
+        handleSelect = {this.handleSelect}
+        />}
           
              { this.state.showPopup && 
          <Bag 

@@ -27,7 +27,8 @@ class SignUp extends Component{
             remember_token: undefined,
             role_id: undefined,
             updatedAt: undefined,
-            uuid: undefined,}}
+            uuid: undefined,}},
+            message: ""
         }
         this.handleChange = this.handleChange.bind(this)
         this.requestOTP = this.requestOTP.bind(this)
@@ -54,7 +55,7 @@ class SignUp extends Component{
                 console.log(res.data.message)
             })
             .catch(function (error) {
-                alert(error.response.message);
+                alert(error.data.message);
             })
     }
 
@@ -70,7 +71,7 @@ class SignUp extends Component{
                 this.setState ({user_info:res.data})
             })
             .catch(function (error) {
-                alert(error.response.message);
+                alert(error.data.message);
             })
         
     }

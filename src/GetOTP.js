@@ -44,13 +44,14 @@ class GetOTP extends React.Component{
         //     });
         // });
     }
-
+  
 
     render(){
         return( 
             <div className="mobile-verification ">
                 <form onSubmit={this.props.requestOTP}>
                     <input  type="tel" class="form-control" name="mobile" minLength="10" maxLength="10" placeholder="Enter Mobile Number" onChange={this.props.handleChange}/>
+                    { !this.props.requestedOTP && <button type="submit">Get OTP</button>}
                 </form>
                     <div className="row mt-30">
                         { this.props.requestedOTP && 

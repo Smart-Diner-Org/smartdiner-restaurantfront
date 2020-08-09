@@ -12,6 +12,15 @@
   font-size: 2em;
 }
 
+.mobile-verification button{
+margin: 30px;
+padding: 10px 20px;
+color: white;
+background-color: #000466;
+border: none;
+border-radius: 8px;
+}
+
 
 
 .customer-details-form{
