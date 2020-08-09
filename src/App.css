@@ -35,8 +35,20 @@ border-radius: 8px;
 .OTP-verification {
   display: inline-flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  
+  flex-wrap: wrap; 
+}
+
+.OTP-verification input{
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+ text-align: center;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.OTP-verification button{
+  margin-top: 0px;
 }
 
 .signup a{
@@ -46,15 +58,6 @@ border-radius: 8px;
 .signup label{
   font-size: 12px;
   color: #000466
-}
-
-.OTP-verification li input{
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
- text-align: center;
-  font-size: 18px;
-  margin: 5px;
 }
 
 .new-customer input{

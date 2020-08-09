@@ -1,48 +1,63 @@
 import React from "react"
 
+const refArray = [];
+let value = "";
+const elementsArray = [1, 2, 3, 4];
+
 
 class GetOTP extends React.Component{
     constructor(props){
         super();
-        this.input_ref = []
+        this.state = {
+            minutes: 0,
+            seconds: 20
+        }
+    this.navigateBasedonArrowKeyPressed = this.navigateBasedonArrowKeyPressed.bind(this)
+}
+    navigateBasedonArrowKeyPressed(e, i){
+        if (e.key >= 0 && e.key <= 9) refArray[i].value = e.key;
+    if (e.target.value && i < 3) refArray[i + 1].focus();
+    switch (e.key) {
+      case "ArrowRight":
+        if (i < 3) refArray[i + 1].focus();
+        break;
+      case "ArrowLeft":
+        if (i > 0) refArray[i - 1].focus();
+        break;
+      case "Backspace":
+        if (i > 0 && !e.target.value) refArray[i - 1].focus();
+        break;
+      default:
+        break;
+    }
+    value = `${refArray[0].value}${refArray[1].value}${refArray[2].value}${refArray[3].value}`;
+    console.log(value)
     }
 
-    componentDidMount(){
-        this.input_ref.map((inputEle,index)=>{
-            inputEle.onKeyUp = e=>{
-                alert(`onkeydown`)
-                if(e.keyCode >= 48 || e.keyCode <= 57) {
-                    if(!this.input_ref[index+1].value)
-                    this.input_ref[index+1].focus()
-                 
-                }
-            }
-        })
-        // $('.digit-group').find('input').each(function() {
+    componentDidMount() {
+        this.myInterval = setInterval(() => {
+            const { seconds, minutes } = this.state
 
-        //     $(this).attr('maxlength', 1);
-        //     $(this).on('keyup', function(e) {
-        //         var parent = $($(this).parent());
-                
-        //         if(e.keyCode === 8 || e.keyCode === 37) {
-        //             var prev = parent.find('input#' + $(this).data('previous'));
-                    
-        //             if(prev.length) {
-        //                 $(prev).select();
-        //             }
-        //         } else if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
-        //             var next = parent.find('input#' + $(this).data('next'));
-                    
-        //             if(next.length) {
-        //                 $(next).select();
-        //             } else {
-        //                 if(parent.data('autosubmit')) {
-        //                     parent.submit();
-        //                 }
-        //             }
-        //         }
-        //     });
-        // });
+            if (seconds > 0) {
+                this.setState(({ seconds }) => ({
+                    seconds: seconds - 1
+                }))
+            }
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(this.myInterval)
+                } else {
+                    this.setState(({ minutes }) => ({
+                        minutes: minutes - 1,
+                        seconds: 59
+                    }))
+                }
+            } 
+        }, 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.myInterval)
     }
   
 
@@ -50,23 +65,38 @@ class GetOTP extends React.Component{
         return( 
             <div className="mobile-verification ">
                 <form onSubmit={this.props.requestOTP}>
-                    <input  type="tel" class="form-control" name="mobile" minLength="10" maxLength="10" placeholder="Enter Mobile Number" onChange={this.props.handleChange}/>
+                    <input  type="tel" class="form-control" autoFocus name="mobile" minLength="10" maxLength="10" placeholder="Enter Mobile Number" onChange={this.props.handleChange}/>
                     { !this.props.requestedOTP && <button type="submit">Get OTP</button>}
                 </form>
+
                     <div className="row mt-30">
                         { this.props.requestedOTP && 
                             <>
                             <form onSubmit={this.props.OTPverfication}>
-                            {/* <ul className="col-12 OTP-verification" name="OTP">
-                            <li><input ref={i => this.input_ref[0]=i} type="text" id="otpbox1" maxLength="1" minLength="1"/> </li>
-                            <li><input ref={i => this.input_ref[1]=i} type="text" id="otpbox2" maxLength="1" minLength="1"/> </li>
-                            <li><input ref={i => this.input_ref[2]=i} type="text" id="otpbox3" maxLength="1" minLength="1"/> </li>
-                            <li><input ref={i => this.input_ref[3]=i} type="text" id="otpbox4" maxLength="1" minLength="1"/> </li>
-                            </ul> */}
-                            <input type="text" maxLength="4" name="OTP" onChange={this.props.handleChange}/>
+                                <div className="col-12 OTP-verification" name="OTP">
+                                    {elementsArray.map((k, i) => (
+                                        <input 
+                                        ref={(ref) => (refArray[i] = ref)}
+                                        onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
+                                        maxLength={1}
+                                        />
+                                    ))}
+                                    {this.state.minutes == 0 && this.state.seconds==0 ?
+                                    <a href="#" className="ml-30 mt-10"  onClick={ this.props.resendOTP }>Resend OTP</a>
+                                    :
+                                    <>
+                                    <button type="submit" >Verify OTP</button>
+                                    <h6>{ this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</h6>
+                                    </>
+                                }
+                                    
+                                </div> 
                             </form>
+                                    
+
+                                
+
                             
-                            <a href="#" className="col-4" style={{marginTop:"20px"}} onClick={ this.props.resendOTP }>Resend OTP</a>
                             <small className="error-message col-12" style={{color:"#e22a28"}}>Wrong Name</small>
                             </>
                         }

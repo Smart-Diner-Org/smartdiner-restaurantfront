@@ -197,9 +197,6 @@ checkDistance(){
 }
 
 
-
-
-
 // particular for LocationSeacrhinput
 
 PAhandleChange = address => {
@@ -208,8 +205,25 @@ PAhandleChange = address => {
 
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => {getLatLng(results[0]);sessionStorage.setItem('location',results)}
-      .then(latLng => console.log('Success', latLng))
+      .then(results => getLatLng(results[0]))
+      .then(latLng =>{
+          console.log(latLng)
+        let distance = null 
+        distance = ( getDistance({
+                        latitude: latLng.lat ,
+                    longitude:latLng.lng },
+                     {
+                        latitude: 12.988061,
+                        longitude: 77.576988
+                    },1))
+                    if(distance>=10000){
+                        alert("Sorry for our Incovenience.... You're out of our boundary")
+                    }else{
+                        console.log(distance)
+                        alert("Welcome you sir... we are happy to serve you")
+                        this.setState({boundary:true})
+                    }
+      })
       .catch(error => console.error('Error', error));
   };
 
