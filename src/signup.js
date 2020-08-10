@@ -12,6 +12,7 @@ import axios from "axios"
 class SignUp extends Component{
     constructor(props){
         super();
+        this.apiLink = 'https://1f8d1d1a6670.ngrok.io/'
         this.state = {
             mobile : "",
             OTP : "",
@@ -85,42 +86,48 @@ this.setState({OTP:value})
             mobile : this.state.mobile,
             roleId : 4,
         }
-        axios.post('https://f4020d8becd6.ngrok.io/auth/check_for_account',data)
+        axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
                 console.log(res.data.message)
+                this.setState({message:res.data.message})
             })
             .catch(function (error) {
-                console.log(error);
+                // this.setState({message:error.response.data.message})
             })
     }
 
-    OTPverfication(event){
+    async OTPverfication(event){
         event.preventDefault()
-
+        let ermessage;
         const data ={
             mobile : this.state.mobile,
             otp : this.state.OTP
         }
-        axios.post('https://f4020d8becd6.ngrok.io/auth/verify_otp',data)
+        await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                this.setState({message:res.data.message})
             })
             .catch(function (error) {
-                alert(error);
-            })
+                ermessage = (error.response.data.message)
+    
         
+            })
+            this.setState({message:ermessage})
     }
 
     resendOTP(event){
         const data ={
             mobile : this.state.mobile
         }
-        axios.post('https://f4020d8becd6.ngrok.io/auth/resend_otp',data)
+        axios.post(`${this.apiLink}auth/resend_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                this.setState({message:res.data.message})
             })
             .catch(function (error) {
-                alert(error)
+                console.log(error.response.data.message)
+                // this.setState({message:error.response.data.message})
             })
 
     }
@@ -146,8 +153,9 @@ this.setState({OTP:value})
                                     OTPverfication={this.OTPverfication}
                                     resendOTP={this.resendOTP}
                                     setOTPValue={this.setOTPValue}
+                                    message={this.state.message}
                                     />
-                                    {this.state.user_info.accessToken&&(this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) }
+                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) }
                                     
                             </div>
                         </div>

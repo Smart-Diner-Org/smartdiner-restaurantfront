@@ -207,7 +207,7 @@ PAhandleChange = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng =>{
-          console.log(latLng)
+        console.log(latLng)
         let distance = null 
         distance = ( getDistance({
                         latitude: latLng.lat ,

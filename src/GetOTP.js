@@ -1,15 +1,15 @@
 import React from "react"
 
 const refArray = [];
-    let value = "";
-    const elementsArray = [1, 2, 3, 4];
+let value = "";
+const elementsArray = [1, 2, 3, 4];
 
 class GetOTP extends React.Component{
     constructor(props){
         super();
         this.state = {
             minutes: 0,
-            seconds: 20
+            seconds: 60
         }
 }
 navigateBasedonArrowKeyPressed(e, i){
@@ -92,6 +92,7 @@ this.props.setOTPValue(value)
                                     <h6>{ this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</h6>
                                     </>
                                 }
+                                <small className="error-message" style={{color:"#e22a28"}}>{this.props.message}</small>
                                     
                                 </div> 
                             </form>
