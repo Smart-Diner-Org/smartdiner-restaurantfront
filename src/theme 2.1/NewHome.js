@@ -227,14 +227,18 @@ PAhandleChange = address => {
                 latitude: 12.988061,
                 longitude: 77.576988
             },1))
-            let flag=false;
-            console.log(address)
+            let flag;
             for (let i=0; i< (results[0].address_components).length ;i++){
-                if(results[0].address_components[i].long_name == address || results[0].address_components[i].short_name == address){
-                    flag=true
-                    break;
+                console.log(results[0].address_components[i].long_name)
+                if( address.search(results[0].address_components[i].long_name) || address.search(results[0].address_components[i].short_name)){
+                    if(address.search(this.state.refregion)){
+                        flag=true
+                        console.log("i am here")
+                        break;
+
                 }
             }
+        }
             console.log(flag)
             if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
