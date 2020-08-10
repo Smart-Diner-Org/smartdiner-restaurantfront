@@ -32,9 +32,12 @@ class NewHome extends Component {
         isLoaded: false,
         total : 0,
         address:"",
-        lat:null,
-        long:null,
-        boundary: false,  
+        boundary: false,
+        postalcode : "",
+        lat : '',
+        long : '',
+        refpostcode : [560001,562123]
+
     };
     this.changequantity = this.changequantity.bind(this)
     this.setType = this.setType.bind(this)
@@ -179,6 +182,7 @@ checkDistance(){
                     longitude: 77.576988
                 },1)
             );
+            console.log(position)
             if(distance>=10000){
                 alert("Sorry for our Incovenience.... You're out of our boundary")
             }else{
@@ -204,26 +208,28 @@ PAhandleChange = address => {
   };
 
   handleSelect = address => {
+    let distance ;
     geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng =>{
-        console.log(latLng)
-        let distance = null 
-        distance = ( getDistance({
-                        latitude: latLng.lat ,
-                    longitude:latLng.lng },
-                     {
-                        latitude: 12.988061,
-                        longitude: 77.576988
-                    },1))
-                    if(distance>=10000){
-                        alert("Sorry for our Incovenience.... You're out of our boundary")
-                    }else{
-                        console.log(distance)
-                        alert("Welcome you sir... we are happy to serve you")
-                        this.setState({boundary:true})
-                    }
-      })
+      .then(results => {
+        this.setState({ postalcode : results[0].address_components[4].long_name})
+        
+        getLatLng(results[0]).then(latLng => {
+            distance = ( getDistance({
+                latitude: latLng.lat ,
+            longitude: latLng.lng},
+             {
+                latitude: 12.988061,
+                longitude: 77.576988
+            },1))
+            if(distance<=20000 && (this.state.postalcode in this.state.refpostcode)){
+                alert("Welcome you sir... we are happy to serve you")
+                this.setState({boundary:true})
+            }else{
+                alert("Sorry for our Incovenience.... You're out of our boundary")
+
+            }
+
+        })})
       .catch(error => console.error('Error', error));
   };
 
