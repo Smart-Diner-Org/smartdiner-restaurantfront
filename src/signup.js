@@ -155,7 +155,8 @@ this.setState({OTP:value})
                                     setOTPValue={this.setOTPValue}
                                     message={this.state.message}
                                     />
-                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) }
+                                    {/* {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) } */}
+                                    <NewCustomer/>
                                     
                             </div>
                         </div>

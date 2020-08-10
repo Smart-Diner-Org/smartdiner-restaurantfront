@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import HeadComponent from './HeadComponent'
 import Slider from './Slider'
-
 import About from './About'
 import Contact from './Contact'
 import FootComponent from './FootComponent'
@@ -15,7 +14,6 @@ import GetLocation from './GetLocation'
 import { getDistance } from 'geolib';
 import {
     geocodeByAddress,
-    geocodeByPlaceId,
     getLatLng,
   } from 'react-places-autocomplete';
 
@@ -192,6 +190,8 @@ checkDistance(){
                     address = response.results[0];
                     console.log(address);
                     this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
+                    this.setState({ address:address.formatted_address });
+                    localStorage.setItem('address',address)
                     let flag;
             for (let i=0; i< (address.address_components).length ;i++){
               for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
@@ -253,11 +253,14 @@ PAhandleChange = address => {
                 longitude: 77.576988
             },1))
             let flag;
+            console.log(address)
+            localStorage.setItem('address',`${results[0]}`)
             for (let i=0; i< (results[0].address_components).length ;i++){
                 console.log(results[0].address_components[i].long_name)
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
                   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
                     if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
+
                         flag=true
                         console.log('im here')
                         break
@@ -274,7 +277,7 @@ PAhandleChange = address => {
             }
         }
             console.log(flag)
-            if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+            if(distance<=999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})
             }else{
@@ -340,7 +343,7 @@ PAhandleChange = address => {
          />}
 
         
-
+        
          <HeadComponent
          togglePopup={this.togglePopup}
          total={this.state.total}
@@ -351,7 +354,6 @@ PAhandleChange = address => {
 
          <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider />
-         
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}
