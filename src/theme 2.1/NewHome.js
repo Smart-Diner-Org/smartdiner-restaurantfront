@@ -36,7 +36,8 @@ class NewHome extends Component {
         postalcode : "",
         lat : '',
         long : '',
-        refpostcode : [560001,562123]
+        refpostcode : [641012 , 641402],
+        refregion : ['gandhipuram', 'sulur','kangayampalayam']
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -170,6 +171,11 @@ getCategories(items){  //fetching categories from itemsarray
     
 }
 
+
+componentWillMount(){
+    this.checkDistance()
+}
+
 checkDistance(){
     let distance = 0;
     navigator.geolocation.getCurrentPosition(
@@ -182,7 +188,6 @@ checkDistance(){
                     longitude: 77.576988
                 },1)
             );
-            console.log(position)
             if(distance>=10000){
                 alert("Sorry for our Incovenience.... You're out of our boundary")
             }else{
@@ -211,7 +216,8 @@ PAhandleChange = address => {
     let distance ;
     geocodeByAddress(address)
       .then(results => {
-        this.setState({ postalcode : results[0].address_components[4].long_name})
+          console.log(results[0])
+        this.setState({ postalcode : results[0].address_components[(results[0].address_components).length - 1].long_name})
         
         getLatLng(results[0]).then(latLng => {
             distance = ( getDistance({
@@ -221,7 +227,16 @@ PAhandleChange = address => {
                 latitude: 12.988061,
                 longitude: 77.576988
             },1))
-            if(distance<=20000 && (this.state.postalcode in this.state.refpostcode)){
+            let flag=false;
+            console.log(address)
+            for (let i=0; i< (results[0].address_components).length ;i++){
+                if(results[0].address_components[i].long_name == address || results[0].address_components[i].short_name == address){
+                    flag=true
+                    break;
+                }
+            }
+            console.log(flag)
+            if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})
             }else{
@@ -254,7 +269,7 @@ PAhandleChange = address => {
     return (
         <div>
 
-        {!this.state.boundary && this.state.total == 1 &&
+        {!this.state.boundary &&                                                         //this.state.total == 1 &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -264,7 +279,7 @@ PAhandleChange = address => {
         handleSelect = {this.handleSelect}
         />}
           
-             { this.state.showPopup && 
+             { this.state.showPopup && this.state.boundary &&
          <Bag 
          closePopup={this.togglePopup }  
          changequantity={this.changequantity}

@@ -21,6 +21,11 @@ box-shadow: 1px 1px 20px #333;
     margin: 30px !important;
 }
 
+
+.location-search-input{
+    width: 300px;
+}
+
 .ask-location{
     display: flex;
     flex-direction: column;
@@ -34,6 +39,19 @@ box-shadow: 1px 1px 20px #333;
     font-size: 18px;
     border: none;
     border-radius: 8px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
+}
+
+.suggestion-item{
+    /* border: 0.3px solid #777;// */
+    font-size: 0.8em;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+}
+
+.autocomplete-dropdown-container{
+    max-width: 300px;
+    margin: 10px 30px;
 }
