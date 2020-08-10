@@ -12,7 +12,7 @@ import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
 import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
-import SignUp from './SignUp'
+import SignUp from './signup'
 
 const authenticated = true;
 export default (  
