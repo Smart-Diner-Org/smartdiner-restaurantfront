@@ -79,7 +79,7 @@ this.props.setOTPValue(value)
                                 <div className="col-12 OTP-verification" name="OTP">
                                     {elementsArray.map((k, i) => (
                                         <input 
-                                        ref={(ref) => (refArray[i] = ref)}
+                                        ref={(ref) => (refArray[i] = ref)} autoFocus
                                         onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
                                         maxLength={1}
                                         />

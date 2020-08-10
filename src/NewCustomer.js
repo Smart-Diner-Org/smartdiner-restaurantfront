@@ -11,7 +11,7 @@ render(){
     return(
         <div className="new-customer mt-30">
             <form >
-                <input className="mt-10" type="text" name="name" placeholder="Enter your Name"/>
+                <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name"/>
     <small className="error-message" style={{color:"#e22a28"}}>error</small>
                 <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID"/>
                 <input className=" mt-10" type="text" name="addressLine1" placeholder="Adress Line 1"/>

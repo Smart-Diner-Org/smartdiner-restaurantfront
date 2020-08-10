@@ -64,7 +64,6 @@ class FootComponent extends Component{
                                     }
                                     
                                  </ul>
-                                <p style={{marginleft: 'auto'}}>Term and Polices</p>
                             </div> 
                         </div>
                     </div>

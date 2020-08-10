@@ -28,7 +28,7 @@ this.setState({selected:object})
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input value={this.props.address}
+            <input autoFocus
               {...getInputProps({
                 placeholder: 'Search Places ...',
                 className: 'location-search-input',
