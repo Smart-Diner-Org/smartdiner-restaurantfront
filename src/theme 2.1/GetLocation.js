@@ -15,23 +15,15 @@ class GetLocation extends Component{
 
     render(){
         
-        return !this.props.isGeolocationAvailable ? (
-            <div>Your browser does not support Geolocation</div>
-        ) : !this.props.isGeolocationEnabled ? (
-            <div>Geolocation is not enabled</div>
-        ) : this.props.coords ?(
+        return (
             <div className="ask-location">
+                <button onClick={this.props.close}>X</button>
                 <button onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
                 <LocationSearchInput
                 address = {this.props.address}
                 PAhandleChange = {this.props.PAhandleChange}
                 handleSelect = {this.props.handleSelect}/>
             </div>
-        ):(
-            <div>
-                { console.log("getting location")}
-            </div>
-            
         );
     
     }

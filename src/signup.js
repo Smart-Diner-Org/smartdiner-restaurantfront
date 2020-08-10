@@ -12,7 +12,7 @@ import axios from "axios"
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://1f8d1d1a6670.ngrok.io/'
+        this.apiLink = 'https://160c6c5266e1.ngrok.io/'
         this.state = {
             mobile : "",
             OTP : "",

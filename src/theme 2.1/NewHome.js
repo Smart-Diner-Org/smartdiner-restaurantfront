@@ -10,6 +10,7 @@ import ScrollToTop from './ScrollToTop'
 import Bag from './Bag'
 import axios from 'axios';
 import MapLocation from './MapLocation'
+import Geocode from "react-geocode";
 import GetLocation from './GetLocation'
 import { getDistance } from 'geolib';
 import {
@@ -50,6 +51,7 @@ class NewHome extends Component {
     this.checkDistance =  this.checkDistance.bind(this)
     this.PAhandleChange = this.PAhandleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
+    this.close = this.close.bind(this)
 
 }
 
@@ -171,14 +173,11 @@ getCategories(items){  //fetching categories from itemsarray
 }
 
 
-componentWillMount(){
-    this.checkDistance()
-}
-
 checkDistance(){
-    let distance = 0;
+    let distance;
     navigator.geolocation.getCurrentPosition(
         (position) => {
+
                 distance = ( getDistance({
                     latitude: position.coords.latitude,
                 longitude:position.coords.longitude},
@@ -187,13 +186,33 @@ checkDistance(){
                     longitude: 77.576988
                 },1)
             );
-            if(distance>=10000){
-                alert("Sorry for our Incovenience.... You're out of our boundary")
-            }else{
-                console.log(distance)
-                alert("Welcome you sir... we are happy to serve you")
-                this.setState({boundary:true})
+            let address;
+            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+                response => {
+                    address = response.results[0];
+                    console.log(address);
+                    this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
+                    let flag;
+            for (let i=0; i< (address.address_components).length ;i++){
+                if(address.formatted_address.search(this.state.refregion)){
+                    flag=true
+                    console.log('im here')
+                    break
+                }
             }
+                if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+                    alert("Welcome you sir... we are happy to serve you")
+                    this.setState({boundary:true})
+                }else{
+                    alert("Sorry for our Incovenience.... You're out of our boundary")
+    
+                }
+                        
+               },
+                error => {
+                  console.error(error);
+                }
+              );
             },
 
         () => {
@@ -251,6 +270,17 @@ PAhandleChange = address => {
       .catch(error => console.error('Error', error));
   };
 
+  close(){
+      
+    this.setState(prevState=>{
+        let newArray = prevState.items
+        newArray.map(a=>a.quantity=0)
+        return {items:newArray }
+
+    })
+    this.setState({total:0})
+  }
+
 
 // ends here
 
@@ -280,9 +310,10 @@ PAhandleChange = address => {
         checkDistance={this.checkDistance}
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
+        close = {this.close}
         />}
         
-        <div style={!this.state.boundary && (this.state.total == 1)?{pointerEvents: 'none',position:"fixed"}:{}}>
+        <div style={!this.state.boundary && (this.state.total == 1)?{filter: 'blur(10px)'}:{}}>
              { this.state.showPopup && 
          <Bag 
          closePopup={this.togglePopup }  
