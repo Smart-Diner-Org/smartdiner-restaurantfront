@@ -93,9 +93,8 @@ async componentDidMount() {  //API call to get data from backend
 
 
 changequantity(index, value) {   //this is for adding/increasing items to cart
+    
     this.setState( prevState => {
-
-
         let noOfSelectedItems = this.state.total
         let newItemsStateArray =  prevState.items;
 
@@ -271,9 +270,9 @@ PAhandleChange = address => {
         </div>);
     } else {
     return (
-        <div>
+        <div >
 
-        {!this.state.boundary &&                                                         //this.state.total == 1 &&
+        {!this.state.boundary && (this.state.total == 1) &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -282,8 +281,9 @@ PAhandleChange = address => {
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
         />}
-          
-             { this.state.showPopup && this.state.boundary &&
+        
+        <div style={!this.state.boundary && (this.state.total == 1)?{pointerEvents: 'none',position:"fixed"}:{}}>
+             { this.state.showPopup && 
          <Bag 
          closePopup={this.togglePopup }  
          changequantity={this.changequantity}
@@ -317,6 +317,7 @@ PAhandleChange = address => {
          <Contact  />
          <ScrollToTop />
          <FootComponent links={this.state.restaurant_info.restaurant_detail} restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
+         </div>
          </div>
         </div>
     );
