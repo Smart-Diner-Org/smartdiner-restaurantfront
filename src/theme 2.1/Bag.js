@@ -4,6 +4,8 @@ import BagItemList from './BagItemList';
 
 
 class Bag extends Component{  
+
+    
     
 render(){
         return(

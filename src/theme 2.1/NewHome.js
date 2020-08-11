@@ -102,7 +102,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
     this.setState( prevState => {
         let noOfSelectedItems = this.state.total
         let newItemsStateArray =  prevState.items;
-
+        
         if(newItemsStateArray[index].quantity == 0 && value==-1){
             return
         }
@@ -111,6 +111,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
             if(value==1){
                 noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
+            localStorage.setItem('items',JSON.stringify( newItemsStateArray))
             return {
                 quantity: newItemsStateArray,
                 total:noOfSelectedItems
@@ -124,6 +125,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
             }
 
         }
+        localStorage.setItem('items',JSON.stringify( newItemsStateArray))
         return {
             items: newItemsStateArray,
             total:noOfSelectedItems

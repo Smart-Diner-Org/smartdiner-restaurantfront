@@ -175,7 +175,7 @@ this.setState({OTP:value})
                         {/* <h2>{this.props.location.totalPrice}</h2> */}
                         <h4>Rs.339</h4>
                     </div>
-                   
+                   { console.log(JSON.parse(localStorage.getItem('items')))}
                     <div className="row">
                         <div className="col-lg-6 col-sm-12">
                             <div className="customer-details-form">
