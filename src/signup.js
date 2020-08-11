@@ -140,7 +140,8 @@ this.setState({OTP:value})
                  <div className="container">
                     <div className="header mt-30">
                         <h2>Customer Details</h2>
-                        {this.props.location.totalPrice}
+                        {/* <h2>{this.props.location.totalPrice}</h2> */}
+                        <h4>Rs.339</h4>
                     </div>
                    
                     <div className="row">
@@ -160,8 +161,9 @@ this.setState({OTP:value})
                                     
                             </div>
                         </div>
-                        <div className="col-lg-5 col-sm-12 ">
-                        {this.state.user_info.accessToken && <Payment />}
+                        <div className="col-lg-6 col-sm-12 mt-40">
+                        {/* {this.state.user_info.accessToken && <Payment />} */}
+                        <Payment/>
                         </div>
                     </div>
                 </div>

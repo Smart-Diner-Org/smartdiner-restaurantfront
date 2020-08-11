@@ -62,6 +62,9 @@ class FootComponent extends Component{
                                     {
                                         this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`}><i className="lni-twitter-original"></i></a></li>
                                     }
+                                    {
+                                        this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`}><i class="lni lni-youtube"></i></a></li>
+                                    }
                                     
                                  </ul>
                             </div> 

@@ -1,7 +1,4 @@
 import PlacesAutocomplete from 'react-places-autocomplete';
-
- 
-
 import React from 'react';
 
 
@@ -33,7 +30,6 @@ this.setState({selected:object})
                 placeholder: 'Search Places ...',
                 className: 'location-search-input',
               })}
-              
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}

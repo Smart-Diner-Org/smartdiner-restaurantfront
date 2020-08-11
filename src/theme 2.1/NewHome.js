@@ -35,6 +35,7 @@ class NewHome extends Component {
         postalcode : "",
         lat : '',
         long : '',
+        showpopup: true,
         refpostcode : [641012 , 641402, 641401, 641044],
         refregion : ['gandhipuram', 'sulur','kanagaiyampalayam', 'sidhapudur']
 
@@ -191,7 +192,7 @@ checkDistance(){
                     console.log(address);
                     this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
                     this.setState({ address:address.formatted_address });
-                    localStorage.setItem('address',address)
+                    localStorage.setItem('address',this.state.address)
                     let flag;
             for (let i=0; i< (address.address_components).length ;i++){
               for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
@@ -254,7 +255,7 @@ PAhandleChange = address => {
             },1))
             let flag;
             console.log(address)
-            localStorage.setItem('address',`${results[0]}`)
+            localStorage.setItem('address',address)
             for (let i=0; i< (results[0].address_components).length ;i++){
                 console.log(results[0].address_components[i].long_name)
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
@@ -267,13 +268,6 @@ PAhandleChange = address => {
                     }
                   }
 
-
-                //     if(address.includes(this.state.refregion)){
-                //         flag=true
-                //         console.log("i am here")
-                //         break;
-
-                // }
             }
         }
             console.log(flag)
@@ -290,7 +284,13 @@ PAhandleChange = address => {
   };
 
   close(){
-      
+
+    if(this.state.boundary === true){
+        this.setState({showpopup:false})
+  }
+  else{
+    
+
     this.setState(prevState=>{
         let newArray = prevState.items
         newArray.map(a=>a.quantity=0)
@@ -299,6 +299,11 @@ PAhandleChange = address => {
     })
     this.setState({total:0})
   }
+    
+
+  }
+
+
 
 
 // ends here
@@ -321,7 +326,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        {!this.state.boundary && (this.state.total == 1) &&
+        { this.state.total !== 0 && this.state.showpopup  &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -332,7 +337,8 @@ PAhandleChange = address => {
         close = {this.close}
         />}
         
-        <div style={!this.state.boundary && (this.state.total == 1)?{filter: 'blur(10px)'}:{}}>
+        {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
+        <div>
              { this.state.showPopup && 
          <Bag 
          closePopup={this.togglePopup }  

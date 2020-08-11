@@ -19,6 +19,9 @@ class GetLocation extends Component{
             <div className="ask-location">
                 <button onClick={this.props.close}>X</button>
                 <button onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
+                <label>{localStorage.getItem('address')}</label>
+                <button>Continue Shopping</button>
+                <button>Go to Cart</button>
                 <LocationSearchInput
                 address = {this.props.address}
                 PAhandleChange = {this.props.PAhandleChange}

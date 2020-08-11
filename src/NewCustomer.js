@@ -4,8 +4,12 @@ import React , {Component} from "react"
 class NewCustomer extends Component{
     constructor(props){
         super();
-    
-}
+        this.state = {
+            address : localStorage.getItem('address')
+
+        }
+
+    }
 
 render(){
     return(
@@ -15,11 +19,12 @@ render(){
     <small className="error-message" style={{color:"#e22a28"}}>error</small>
                 <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID"/>
                 <input className=" mt-10" type="text" name="addressLine1" placeholder="Adress Line 1"/>
-                <input className=" mt-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>
+                <label style={{fontSize:"18px"}} className="mt-10">{this.state.address}</label>
+                {/* <input className=" mt-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>
                 <div className="row-12 mt-30" style={{display:"flex",flexDirection:"row"}} >
                     <input className="col-5 mr-5" type="text" name="city" placeholder="City"/>
                     <input className="col-5 " type="text" name="state" placeholder="State"/>
-                </div>
+                </div> */}
                 <div className="mt-30" >
                     <a href="#" style={{marginRight:"35%"}}>Get Location</a>
                     <button type="" className="new-address">Add address</button>
