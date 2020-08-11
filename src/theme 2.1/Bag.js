@@ -3,8 +3,6 @@ import BagItemList from './BagItemList';
 
 
 
-import Logo from './assets/images/bag.png'
-
 class Bag extends Component{  
     
 render(){
@@ -17,8 +15,8 @@ render(){
                         <button className="bag-close" onClick={this.props.closePopup}>X</button>
                         </div>
                         <div className="col-auto" >
-                        <label >Your PaperBag</label>
-                        <img src={Logo} alt={Logo}/>
+                            <a href="#" className="mt-10" onClick={this.props.editlocation}>{localStorage.getItem('address')}</a>
+                        
                         </div>
                     </div>
                 </header>

@@ -20,8 +20,8 @@ class MapLocation extends Component{
     { 
         // this.getLocation()
         return(
-            <div className="google-map">
-                <div className="container ">
+            <div className="container">
+                <div className="google-map ">
                     <Map google={this.props.google} zoom={8} initialCenter={{ lat: 13.093410, lng: 77.399053}}>
                         <Marker position={{ lat: 13.093410, lng: 77.399053}} />
                     </Map>

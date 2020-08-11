@@ -21,7 +21,7 @@ class BillItem extends Component {
                     </div>
                     <div className="col-9" >
                         <div className="row">
-                            <label className="col-auto mr-auto"> icon</label>
+                            <label className="col-auto mr-auto" style={{color:"e22a28"}}><i class="lni lni-dinner" ></i></label>
                             <div className="col-auto">
                                 <button className='cancelbutton' onClick={this.props.removeItem}>X</button>                            
                             </div>

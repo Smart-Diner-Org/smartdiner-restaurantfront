@@ -27,9 +27,10 @@ this.setState({selected:object})
           <div>
             <input autoFocus
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Street/Locality/City....',
                 className: 'location-search-input',
               })}
+          
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}

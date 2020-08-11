@@ -18,15 +18,15 @@ class Bill extends Component {
                     </div>
                     
                     <div className="final-bill row">
-                            <div class="col-8" >
+                            <div class="col-6" >
                                 
                                     {/* <label >Coupon Code</label> */}
-                                    <input type="textbox" placeholder="Coupon Code"/>
-                                    <button >Find</button>
+                                    {/* <input type="textbox" placeholder="Coupon Code"/>
+                                    <button >Find</button> */}
                                     
                                 </div>
                           
-                            <div class="col-4 total-amount">
+                            <div class="col-6 total-amount">
                                 <label >To  Pay : <span >{`Rs${this.props.values[2].toFixed(2)}`}</span></label>
                             
                             </div>

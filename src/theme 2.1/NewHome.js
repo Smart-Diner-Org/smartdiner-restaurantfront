@@ -8,6 +8,7 @@ import Product from './Product';
 import ScrollToTop from './ScrollToTop'
 import Bag from './Bag'
 import axios from 'axios';
+import Description from './Description'
 import MapLocation from './MapLocation'
 import Geocode from "react-geocode";
 import GetLocation from './GetLocation'
@@ -51,6 +52,9 @@ class NewHome extends Component {
     this.PAhandleChange = this.PAhandleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
     this.close = this.close.bind(this)
+    this.gotocart = this.gotocart.bind(this)
+    this.contshpng = this.contshpng.bind(this)
+    this.editlocation = this.editlocation.bind(this)
 
 }
 
@@ -192,7 +196,11 @@ checkDistance(){
                     console.log(address);
                     this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
                     this.setState({ address:address.formatted_address });
+
+                    localStorage.setItem('lat',position.coords.latitude)
+                    localStorage.setItem('long',position.coords.longitude)
                     localStorage.setItem('address',this.state.address)
+
                     let flag;
             for (let i=0; i< (address.address_components).length ;i++){
               for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
@@ -255,7 +263,11 @@ PAhandleChange = address => {
             },1))
             let flag;
             console.log(address)
+
+            localStorage.setItem('lat',latLng.lat)
+            localStorage.setItem('long',latLng.lng)
             localStorage.setItem('address',address)
+
             for (let i=0; i< (results[0].address_components).length ;i++){
                 console.log(results[0].address_components[i].long_name)
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
@@ -299,10 +311,34 @@ PAhandleChange = address => {
     })
     this.setState({total:0})
   }
-    
 
   }
 
+
+  gotocart(event){
+      if(this.state.boundary){
+        this.setState({showpopup:false})
+        this.togglePopup()
+      }
+      else{
+          alert('Please provide your Location')
+      }
+  }
+
+  contshpng(event){
+    if(this.state.boundary){
+        this.setState({showpopup:false})
+      }
+      else{
+          alert('Please provide your Location')
+      }
+  }
+  
+  editlocation(event){
+    this.togglePopup()
+      this.setState({showpopup:true})
+      this.setState({boundary:false})
+  }
 
 
 
@@ -326,7 +362,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        { this.state.total !== 0 && this.state.showpopup  &&
+        { this.state.total !== 0 && this.state.showpopup  &&   //(this.state.boundary===false) &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -335,6 +371,8 @@ PAhandleChange = address => {
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
         close = {this.close}
+        gotocart = {this.gotocart}
+        contshpng = {this.contshpng}
         />}
         
         {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
@@ -346,6 +384,8 @@ PAhandleChange = address => {
          items={this.state.items}
          total={this.state.total}
          quantity={this.state.quantity}
+         editlocation = {this.editlocation}
+         
          />}
 
         
@@ -360,6 +400,7 @@ PAhandleChange = address => {
 
          <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider />
+         <Description />
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}

@@ -32,7 +32,9 @@ class SignUp extends Component{
             role_id: undefined,
             updatedAt: undefined,
             uuid: undefined,}},
-            message: ""
+            message: "",
+            addressTwo : localStorage.getItem('address'),
+            addressOne: "",
         }
         this.handleChange = this.handleChange.bind(this)
         this.MhandleChange = this.MhandleChange.bind(this)
@@ -40,6 +42,7 @@ class SignUp extends Component{
         this.OTPverfication = this.OTPverfication.bind(this)
         this.resendOTP = this.resendOTP.bind(this)
         this.setOTPValue = this.setOTPValue.bind(this);
+        this.addCustomer = this.addCustomer.bind(this)
 
     }
     handleChange(event) {
@@ -106,6 +109,7 @@ this.setState({OTP:value})
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                localStorage.setItem('token',res.data.accessToken)
                 this.setState({message:res.data.message})
             })
             .catch(function (error) {
@@ -123,6 +127,7 @@ this.setState({OTP:value})
         axios.post(`${this.apiLink}auth/resend_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                localStorage.setItem('token',res.data.accessToken)
                 this.setState({message:res.data.message})
             })
             .catch(function (error) {
@@ -131,6 +136,33 @@ this.setState({OTP:value})
             })
 
     }
+
+    addCustomer(event){
+        const data = {
+            addressOne :this.state.addressOne,
+            addressTwo : this.state.addressTwo,
+            cityId : 1,  //coiambatore
+            stateId : 1, //tamilnadu
+            latitude : localStorage.getItem('lat'),
+            longitude : localStorage.getItem('long')
+        }
+        axios.post(`${this.apiLink}after_login/customer/update_details`,data ,{
+            headers: {
+              'x-access-token': `${localStorage.getItem('token')}` 
+            }})
+            .then(res =>{
+                this.setState({message:res.data.message})
+
+            })
+            .catch(function (error) {
+                console.log(error.response.data.message)
+                // this.setState({message:error.response.data.message})
+            })
+
+    }
+
+
+
     
     render(){
         console.log(this.state.OTP)
@@ -157,7 +189,11 @@ this.setState({OTP:value})
                                     message={this.state.message}
                                     />
                                     {/* {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? <GetAddress /> : <NewCustomer />) } */}
-                                    <NewCustomer/>
+                                    <NewCustomer
+                                    addressTwo = {this.state.addressTwo}
+                                    addCustomer = {this.addCustomer}
+                                    handleChange = {this.handleChange}
+                                    />
                                     
                             </div>
                         </div>

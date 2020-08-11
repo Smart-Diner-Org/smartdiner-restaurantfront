@@ -16,17 +16,25 @@ class GetLocation extends Component{
     render(){
         
         return (
+            
             <div className="ask-location">
-                <button onClick={this.props.close}>X</button>
-                <button onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
-                <label>{localStorage.getItem('address')}</label>
-                <button>Continue Shopping</button>
-                <button>Go to Cart</button>
+                <div className="row mb-10">
+                <p className="col-11">Give Location for Delivery Purposes</p>
+                <button className="col-1 p-0" style={{backgroundColor:"transparent",color:"#e22a28" }} onClick={this.props.close}>X</button>
+
+                </div>
+                <button className="crtlocbtn" onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Current Location</button>
+                {/* <button  onClick={this.props.gotocart}>Go to Cart</button>  */}
                 <LocationSearchInput
                 address = {this.props.address}
                 PAhandleChange = {this.props.PAhandleChange}
                 handleSelect = {this.props.handleSelect}/>
-            </div>
+                {/* <button onClick={this.props.contshpng}>Continue Shopping</button> */}
+                <div>
+                    <button style={{position:"fixed",right:"0"}}  onClick={this.props.gotocart}>Go to Cart</button> 
+                </div>
+                </div>   
+            
         );
     
     }
