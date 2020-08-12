@@ -10,12 +10,11 @@ class GetAddress extends React.Component{
                         </div>
                         <div className="row ">
                             <div className="col-12">
-                                <h4 >Name</h4><br/>
-                                <label >Address line 1</label><br/>
-                                <label >Address line 2</label><br/>
-                                <label >Street,city</label><br/>
-                                <label >city-pincode</label>
-
+                                {/* <h4 >Name</h4><br/> */}
+                                <label >{this.props.customer_detail.address_one}</label><br/>
+                                <label >{this.props.customer_detail.address_two}</label><br/>
+                                <label >{this.props.customer_detail.city.name}</label><br/>
+                                <label >{this.props.customer_detail.state.name}</label>
                             </div>
                             
                         </div>

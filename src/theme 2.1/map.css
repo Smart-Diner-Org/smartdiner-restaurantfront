@@ -19,7 +19,7 @@ box-shadow: 1px 1px 20px #333;
 .ask-location input{
     border: 1px solid #000466;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 0.8em;
     padding: 10px;
     margin-bottom: 30px;
 }
@@ -64,7 +64,7 @@ box-shadow: 1px 1px 20px #333;
 }
 
 .autocomplete-dropdown-container{
-    max-width: 300px;
+    max-width: 200px;
     margin: 0px 30px 10px;
     background-color: white;
     

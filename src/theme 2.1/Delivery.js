@@ -10,6 +10,7 @@ class Delivery extends Component {
             <div>
                 <hr/>
                 <div className="delivery-type">
+                {sessionStorage.setItem("total_price",this.props.values[2].toFixed(2))}
                 <Link 
                     to={{
                         pathname: '/signup',

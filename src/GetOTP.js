@@ -73,8 +73,7 @@ this.props.setOTPValue(value)
                 </form>
 
                     <div className="row mt-30">
-                        { this.props.requestedOTP && 
-                            <>
+                        
                             <form onSubmit={this.props.OTPverfication}>
                                 <div className="col-12 OTP-verification" name="OTP">
                                     {elementsArray.map((k, i) => (
@@ -84,26 +83,26 @@ this.props.setOTPValue(value)
                                         maxLength={1}
                                         />
                                     ))}
+                                    {this.props.requestedOTP && 
+                                    <>
                                     {this.state.minutes == 0 && this.state.seconds==0 ?
-                                    <a href="#" className="ml-30 mt-10"  onClick={ this.props.resendOTP }>Resend OTP</a>
+                                    <button  onClick={ this.props.resendOTP }>Resend OTP</button>
                                     :
                                     <>
                                     <button type="submit" >Verify OTP</button>
                                     <h6>{ this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</h6>
                                     </>
                                 }
+                                     </>}
+                                    
                                 <small className="error-message" style={{color:"#e22a28"}}>{this.props.message}</small>
                                     
                                 </div> 
                             </form>
-                                    
 
-                                
-
-                            
                             <small className="error-message col-12" style={{color:"#e22a28"}}>Wrong Name</small>
-                            </>
-                        }
+
+                        
                         
                     </div>
                 

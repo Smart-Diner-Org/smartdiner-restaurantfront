@@ -111,7 +111,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
             if(value==1){
                 noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
-            localStorage.setItem('items',JSON.stringify( newItemsStateArray))
+            sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
             return {
                 quantity: newItemsStateArray,
                 total:noOfSelectedItems
@@ -125,7 +125,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
             }
 
         }
-        localStorage.setItem('items',JSON.stringify( newItemsStateArray))
+        sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
         return {
             items: newItemsStateArray,
             total:noOfSelectedItems
@@ -199,9 +199,9 @@ checkDistance(){
                     this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
                     this.setState({ address:address.formatted_address });
 
-                    localStorage.setItem('lat',position.coords.latitude)
-                    localStorage.setItem('long',position.coords.longitude)
-                    localStorage.setItem('address',this.state.address)
+                    sessionStorage.setItem('lat',position.coords.latitude)
+                    sessionStorage.setItem('long',position.coords.longitude)
+                    sessionStorage.setItem('address',this.state.address)
 
                     let flag;
             for (let i=0; i< (address.address_components).length ;i++){
@@ -266,9 +266,9 @@ PAhandleChange = address => {
             let flag;
             console.log(address)
 
-            localStorage.setItem('lat',latLng.lat)
-            localStorage.setItem('long',latLng.lng)
-            localStorage.setItem('address',address)
+            sessionStorage.setItem('lat',latLng.lat)
+            sessionStorage.setItem('long',latLng.lng)
+            sessionStorage.setItem('address',address)
 
             for (let i=0; i< (results[0].address_components).length ;i++){
                 console.log(results[0].address_components[i].long_name)

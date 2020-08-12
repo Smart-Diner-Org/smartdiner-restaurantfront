@@ -474,14 +474,43 @@ p {
   color: #000000;
 }
 
-.head-logo{
-margin: 20px;
+
+
+.headlogo {
+  margin: 20px;
+  position: relative;
+  display: inline-block;
 }
+
+.headlogo .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  box-shadow: 0px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -200%;
+  left: 50%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+.headlogo:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 .badge{
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: -10px;
+  right: -12px;
   padding: 4px;
   border-radius: 50%;
   background: #E22A28;

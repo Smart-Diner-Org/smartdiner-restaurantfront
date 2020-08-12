@@ -4,7 +4,7 @@ import Logo from "./assets/images/logo.png"
 
 
 
-class HeadComponent extends React.Component {
+class HeadComponent extends Component {
     constructor(props) {
 		super(props);
 
@@ -68,12 +68,12 @@ class HeadComponent extends React.Component {
                                 
                             </ul> 
                         </div>
-                        <div class="head-logo">
-                                    <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup}>
+                        <div class="headlogo" >
+                            {this.props.total==0 && <span class="tooltiptext">Tooltip text</span>}
+                                    <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup} >
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                         <span class="badge">{this.props.total}</span>
-                                    </a>
-                       
+                                    </a> 
                          </div>
                     </nav> 
                 </div>
