@@ -95,12 +95,11 @@ this.props.setOTPValue(value)
                                 }
                                      </>}
                                     
-                                <small className="error-message" style={{color:"#e22a28"}}>{this.props.message}</small>
+                            <small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
+                             <small className="error-message" style={{color:"green"}}>{this.props.errorMessage}</small> 
                                     
                                 </div> 
                             </form>
-
-                            <small className="error-message col-12" style={{color:"#e22a28"}}>Wrong Name</small>
 
                         
                         

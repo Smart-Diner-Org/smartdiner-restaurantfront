@@ -12,29 +12,44 @@ import axios from "axios"
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://6e09100abf77.ngrok.io/'
+        this.apiLink = 'https://1052976e30ed.ngrok.io/'
         this.state = {
             mobile : "",
             OTP : "",
             requestedOTP : false,
+            
             user_info : {accessToken: undefined,
-            user:{
-            createdAt: undefined,
-            customer_detail: undefined,
-            email: undefined,
-            id: undefined,
-            mobile: undefined,
-            mobile_verification: undefined,
-            name: undefined,
-            otp_secret: undefined,
-            password: undefined,
-            remember_token: undefined,
-            role_id: undefined,
-            updatedAt: undefined,
-            uuid: undefined,}},
-            message: "",
+                user:{
+                createdAt: undefined,
+                customer_detail: {
+                    id: undefined,
+                    customer_id: 8,
+                    address_one: undefined,
+                    address_two: undefined,
+                    city_id: undefined,
+                    state_id: undefined,
+                    primary: undefined,
+                    address_type: undefined,
+                    lat: undefined,
+                    long: undefined,
+                    createdAt: undefined,
+                    updatedAt: undefined,
+                    },
+                email: undefined,
+                id: undefined,
+                mobile: undefined,
+                mobile_verification: undefined,
+                name: undefined,
+                otp_secret: undefined,
+                password: undefined,
+                remember_token: undefined,
+                role_id: undefined,
+                updatedAt: undefined,
+                uuid: undefined,}},
+            successMessage: "",
+            errorMessage: '',
             addressTwo : sessionStorage.getItem('address'),
-            addressOne: "skd road",
+            addressOne: "",
         }
         this.handleChange = this.handleChange.bind(this)
         this.MhandleChange = this.MhandleChange.bind(this)
@@ -44,6 +59,7 @@ class SignUp extends Component{
         this.setOTPValue = this.setOTPValue.bind(this);
         this.addCustomer = this.addCustomer.bind(this);
         this.goPayment = this.goPayment.bind(this)
+        this.edit = this.edit.bind(this)
 
     }
     handleChange(event) {
@@ -93,11 +109,12 @@ this.setState({OTP:value})
         axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
                 console.log(res.data.message)
-                this.setState({message:res.data.message})
+                this.setState({successMessage:res.data.message})
             })
             .catch(function (error) {
                 console.log(error)
                 // this.setState({message:error.response.data.message})
+                // this.setState({errorMessage:error.response.data.message})
             })
     }
 
@@ -112,10 +129,10 @@ this.setState({OTP:value})
             .then(res => {
                 this.setState ({user_info:res.data})
                 sessionStorage.setItem('token',res.data.accessToken)
-                this.setState({message:res.data.message})
+                this.setState({successMessage:res.data.message})
             })
             .catch(function (error) {
-                console.log(error)
+                // this.setState({errorMessage:error.response.data.message})
     
         
             })
@@ -130,16 +147,17 @@ this.setState({OTP:value})
             .then(res => {
                 this.setState ({user_info:res.data})
                 sessionStorage.setItem('token',res.data.accessToken)
-                this.setState({message:res.data.message})
+                this.setState({successMessage:res.data.message})
             })
             .catch(function (error) {
-                console.log(error.response.data.message)
+                this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
 
     }
 
     addCustomer(event){
+        event.preventDefault()
         const data = {
             addressOne :this.state.addressOne,
             addressTwo : this.state.addressTwo,
@@ -149,6 +167,7 @@ this.setState({OTP:value})
             longitude : sessionStorage.getItem('long')
         }
         alert("i'm vinay")
+        console.log(data)
         axios.post(`${this.apiLink}after_login/customer/update_details`,data ,{
             headers: {
               'x-access-token': `${sessionStorage.getItem('token')}` 
@@ -156,31 +175,34 @@ this.setState({OTP:value})
             .then(res =>{
                 // this.setState({message:res.data.message})
                 console.log(res.data.message)
+                this.setState({successMessage:res.data.message})
 
             })
             .catch(function (error) {
-                console.log(error.response.data.message)
+                this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
 
     }
     
-    goPayment(){
+    goPayment(event){
+        event.preventDefault()
         let newArray =  (JSON.parse(sessionStorage.getItem('items')))
         let selectedArray = []
         // console.log(newArray)
         newArray.map((item)=>{
-            if(item.quantity>=1){
-                let menu = [{id: item.id},{quantity: item.quantity}, {price:item.discountPrice},{originalPrice: item.price}]
-                selectedArray.push(...menu)
+            if(item.quantity>0){
+                let menu = {id: item.id, quantity: item.quantity, price:item.discountPrice ,originalPrice: Number(item.price)}
+                console.log(menu)
+                selectedArray.push(menu)
             }
         })
         console.log(selectedArray)
         const data ={
-            restuarantBranchId : newArray[0].restuarant_branch_id,
-            total_price : sessionStorage.getItem("total_price"),
-            latitude : sessionStorage.getItem("lat"),
-            longitude : sessionStorage.getItem("long"),
+            restuarantBranchId : Number(newArray[0].restuarant_branch_id),
+            total_price : Number(sessionStorage.getItem("total_price")),
+            latitude : Number(sessionStorage.getItem("lat")),
+            longitude : Number(sessionStorage.getItem("long")),
             menus : selectedArray,
         }
         console.log(data)
@@ -190,16 +212,50 @@ this.setState({OTP:value})
             }})
             .then(res =>{
                 console.log(res.data)
-                    window.open(res.data, '_blank')
-                this.setState({message:res.data.message})
+                window.open(res.data.paymentUrl, '_blank')
+                this.setState({successMessage:res.data.message})
 
             })
             .catch(function (error) {
-                console.log(error.response.data.message)
+                // this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
     }
+ edit(event){
+     console.log("hi")
+     this.setState(prevState =>{
+        return({...prevState.user,user:{
+            createdAt: undefined,
+            customer_detail: {
+                id: undefined,
+                customer_id: 8,
+                address_one: undefined,
+                address_two: undefined,
+                city_id: undefined,
+                state_id: undefined,
+                primary: undefined,
+                address_type: undefined,
+                lat: undefined,
+                long: undefined,
+                createdAt: undefined,
+                updatedAt: undefined,
+                },
+            email: undefined,
+            id: undefined,
+            mobile: undefined,
+            mobile_verification: undefined,
+            name: undefined,
+            otp_secret: undefined,
+            password: undefined,
+            remember_token: undefined,
+            role_id: undefined,
+            updatedAt: undefined,
+            uuid: undefined,}})
 
+        }
+        )
+
+ }
 
 
     
@@ -223,17 +279,24 @@ this.setState({OTP:value})
                                     OTPverfication={this.OTPverfication}
                                     resendOTP={this.resendOTP}
                                     setOTPValue={this.setOTPValue}
-                                    message={this.state.message}
+                                    successMessage={this.state.successMessage}
+                                    errorMessage = {this.state.errorMessage}
                                     />
-                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? 
+                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail.id ? 
                                     <GetAddress
-                                    customer_detail = {this.user.customer_detail}
+                                    name = {this.state.user_info.name}
+                                    customer_detail = {this.state.user_info.user.customer_detail}
+                                    successMessage={this.state.successMessage}
+                                    errorMessage = {this.state.errorMessage}
+                                    edit = {this.edit}
                                     />
                                     :
                                     <NewCustomer
                                     addressTwo = {this.state.addressTwo}
                                     addCustomer = {this.addCustomer}
                                     handleChange = {this.handleChange}
+                                    successMessage={this.state.successMessage}
+                                    errorMessage = {this.state.errorMessage}
                                     />
                                     )}
                                     
@@ -243,6 +306,8 @@ this.setState({OTP:value})
                         {/* {this.state.user_info.accessToken && <Payment />} */}
                         <Payment
                         goPayment = {this.goPayment}
+                        successMessage={this.state.successMessage}
+                        errorMessage = {this.state.errorMessage}
                         />
                         </div>
                     </div>
