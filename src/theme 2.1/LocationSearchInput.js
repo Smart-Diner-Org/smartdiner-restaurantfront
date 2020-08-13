@@ -3,15 +3,7 @@ import React from 'react';
 
 
 class LocationSearchInput extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={ selected :""}
-this.handleSelect = this.handleSelect.bind(this)
-  }
-  handleSelect(object) {
-  // Do something with address and placeId and suggestion
-this.setState({selected:object})
-}
+  
 
   
   
@@ -25,11 +17,14 @@ this.setState({selected:object})
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input 
+            <input autoFocus
               {...getInputProps({
                 className: 'location-search-input',
               })}
+              // defaultValue={this.props.address}
+              // onChange={this.props.PAhandleChange}
               // placeholder={localStorage.getItem('address')}
+              
               placeholder={sessionStorage.getItem('address') ? sessionStorage.getItem('address') : "Enter your location"}
             />
             <div className="autocomplete-dropdown-container">

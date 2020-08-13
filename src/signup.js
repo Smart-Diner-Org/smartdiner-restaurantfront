@@ -18,7 +18,7 @@ class SignUp extends Component{
             OTP : "",
             requestedOTP : false,
             name : "",
-            email : "",
+            email : "",    //user_info.user.customer_detail.
             user_info : {accessToken: null,
                 user:{
                 createdAt: null,
@@ -66,7 +66,9 @@ class SignUp extends Component{
     handleChange(event) {
         const {name, value} = event.target
         this.setState({
-            [name]: value
+            [name]: value,
+            // user_info:{...this.state.user_info.user,user:{customer_detail:{[name]: value}}}
+            
         })
     }
 
@@ -186,6 +188,8 @@ this.setState({OTP:value})
                 // this.setState({message:error.response.data.message})
             })
 
+
+
     }
     
     goPayment(event){
@@ -298,7 +302,7 @@ console.log(this.state.user_info)
                  <div className="container">
                     <div className="header mt-30">
                         <h2>Customer Details</h2>
-                        <h4>{sessionStorage.getItem("total_price")}</h4>
+                        <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
                     </div>
                   
                     <div className="row">

@@ -69,34 +69,46 @@ this.props.setOTPValue(value)
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
                     onChange={this.props.MhandleChange}/>
-                    { !this.props.requestedOTP && <button type="submit">Get OTP</button>}
             
-                                <div className="col-12 OTP-verification" name="OTP">
-                                    {elementsArray.map((k, i) => (
-                                        <input 
-                                        ref={(ref) => (refArray[i] = ref)} 
-                                        onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
-                                        maxLength={1}
-                                        />
-                                    ))}
+                                <div className="row mt-20 d-flex align-item-center" name="OTP">
+                                    <div className="col-7 d-inline-flex">
+                                        {elementsArray.map((k, i) => (
+                                            <input className="otp-box"
+                                            ref={(ref) => (refArray[i] = ref)} 
+                                            onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
+                                            maxLength={1}
+                                            />
+                                        ))}
+
+                               
+                                    </div>
+                                    
+                                   <div className="col-5 d-flex align-item-center">
+                                   {!this.props.requestedOTP && <button type="submit">Get OTP</button>}
                                     {this.props.requestedOTP && 
                                     <>
                                     {this.state.minutes == 0 && this.state.seconds==0 ?
                                     <button  onClick={ this.props.resendOTP }>Resend OTP</button>
                                     :
                                     <>
-                                    <button type="submit" >Verify OTP</button>
-                                    <h6>{ this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</h6>
-                                    </>
-                                }
-                                     </>}
+                                    <button type="submit" >Verify { this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</button>
                                     
-                            <small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
-                             <small className="error-message" style={{color:"green"}}>{this.props.successMessage}</small> 
+                                    </>}
+                                    </>}
+
+                                   </div>
+                                    
+                                    
+                            
                                     
                                 </div> 
-                            </form>
-
+                                
+                                
+                </form>
+                <div className="container mt-20 ">
+                                <small className="row message ml-5" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
+                             <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>
+                                </div>
                         
                         
                     </div>

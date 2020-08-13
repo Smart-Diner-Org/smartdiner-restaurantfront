@@ -14,7 +14,7 @@ class BillItem extends Component {
                 <div class='container'>
                 
                     <div className="row">
-                    <div className="col-3">
+                    <div className="col-3 p-0">
                         <div style={{height:"100%",display:"flex",alignItems:"centre"}}>
                             <img src={BurgerImage} class="food-image" alt='burger'/>    
                     </div>
@@ -46,7 +46,7 @@ class BillItem extends Component {
 
 
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-4 ">
                                             <div className="quantity">
                                 <button name='sub' onClick={this.props.decreasequantity}>-</button>
                                     <label >{this.props.quantity}</label>

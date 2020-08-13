@@ -5,6 +5,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: row;
+  font-family: "Lato";
  
 }
 
@@ -19,22 +20,27 @@
   text-decoration: underline;
   text-decoration-color: #FFC009;
   font-size: 2em;
+  font-family: "MuseoModerno";
 }
 
 .mobile-verification button{
-margin: 30px;
 padding: 10px 20px;
 color: white;
 background-color: #000466;
 border: none;
 border-radius: 8px;
+font-size: 0.9em;
+width:100%;
+font-family: "Lato";
+
 }
 
 .signup h4{
   font-size: 1.5em;
-  color: white;
-  background-color: #000466;
-  padding: 10px 20px;
+  color: #000466;
+  background-color: white;
+  padding: 10px 0px;
+  font-family: "MuseoModerno";
 }
 
 
@@ -42,13 +48,24 @@ border-radius: 8px;
 .customer-details-form{
   position: relative;
   top: 50px;
-  width: 70%;
+  width: 80%;
+  font-family: "Lato";
   min-width: 250px;
 }
 
+.mobile-verification .otp-box{
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  /* padding: 20px; */
+  text-align: center;
+  font-size: 18px;
+  margin: 5px; 
+  font-family: "Lato";
+}
 
 
-.OTP-verification {
+/* .OTP-verification {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap; 
@@ -59,32 +76,34 @@ border-radius: 8px;
   min-width: 40px;
   height: 40px;
   /* padding: 20px; */
- text-align: center;
+ /* text-align: center;
   font-size: 18px;
-  margin: 5px;
-}
+  margin: 5px; */
+/* } */
 
-.OTP-verification button{
-  margin-top: 0px;
-}
+
 
 .signup a{
   font-size: 12px;
+  font-family: "Lato";
   color: #000466;
 }
 .signup label{
   font-size: 12px;
-  color: #000466
+  color: #000466;
+  font-family: "Lato";
 }
 
 .new-customer input{
   color: #000466;
   width: 100%;
   padding: 5px;
+  font-family: "Lato";
 }
 
 
 .address{
+  font-family: "Lato";
   border: none;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
   padding: 20px;
@@ -108,7 +127,7 @@ address:active{
 
 
 .address .edit{
-  
+  font-family: "Lato";
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
@@ -120,6 +139,7 @@ address:active{
 }
 
 .address .cancel{
+  font-family: "Lato";
   border: none;
   color: #E22A28;
   background-color: white !important;
@@ -132,6 +152,7 @@ address:active{
 }
 
 .payment-method button{
+  font-family: "Lato";
   display: block;
   width: 100%;
   padding: 5px;
@@ -149,6 +170,7 @@ address:active{
 
 
 .new-address{
+  font-family: "Lato";
   color: white;
   background-color: #000466;
   font-size: 18px;
@@ -163,10 +185,12 @@ address:active{
 .payment-method .proceed{
   width: auto;
   padding: 5px 20px;
+  border-radius: 8px;
+  font-family: "Lato";
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 @media screen and (max-width:50em){
