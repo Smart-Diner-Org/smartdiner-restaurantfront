@@ -10,7 +10,7 @@ class GetAddress extends React.Component{
                         </div>
                         <div className="row ">
                             <div className="col-12">
-                                <h4 style={{backgroundColor:"transparent"}} >{this.props.name}</h4><br/>
+                                <h4 >{this.props.name}</h4><br/>
                                 <label >{this.props.customer_detail.address_one}</label><br/>
                                 <label >{this.props.customer_detail.address_two}</label><br/>
                                 <label >{this.props.customer_detail.city.name}</label><br/>

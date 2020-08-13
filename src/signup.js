@@ -151,7 +151,7 @@ this.setState({OTP:value})
                 this.setState({successMessage:res.data.message})
             })
             .catch(function (error) {
-                this.setState({errorMessage:error.response.data.message})
+                // this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
 
@@ -316,7 +316,7 @@ console.log(this.state.user_info)
                                     />
                                     {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail.id ? 
                                     <GetAddress
-                                    name = {this.state.user_info.name}
+                                    name = {this.state.user_info.user.name}
                                     customer_detail = {this.state.user_info.user.customer_detail}
                                     successMessage={this.state.successMessage}
                                     errorMessage = {this.state.errorMessage}

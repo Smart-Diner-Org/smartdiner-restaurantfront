@@ -64,17 +64,13 @@ this.props.setOTPValue(value)
     render(){
         return( 
             <div className="mobile-verification ">
-                <form onSubmit={this.props.requestOTP}>
+                <form onSubmit={!this.props.requestedOTP? this.props.requestOTP : this.props.OTPverfication }>
                     <input  type="tel" class="form-control" 
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
                     onChange={this.props.MhandleChange}/>
                     { !this.props.requestedOTP && <button type="submit">Get OTP</button>}
-                </form>
-
-                    <div className="row mt-30">
-                        
-                            <form onSubmit={this.props.OTPverfication}>
+            
                                 <div className="col-12 OTP-verification" name="OTP">
                                     {elementsArray.map((k, i) => (
                                         <input 
@@ -96,7 +92,7 @@ this.props.setOTPValue(value)
                                      </>}
                                     
                             <small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
-                             <small className="error-message" style={{color:"green"}}>{this.props.errorMessage}</small> 
+                             <small className="error-message" style={{color:"green"}}>{this.props.successMessage}</small> 
                                     
                                 </div> 
                             </form>
@@ -105,7 +101,7 @@ this.props.setOTPValue(value)
                         
                     </div>
                 
-            </div>
+         
         )  
     }
 }
