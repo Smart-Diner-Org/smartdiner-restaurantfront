@@ -20,7 +20,7 @@ class GetAddress extends React.Component{
                         </div>
                         <div className="row" style={{marginLeft:"70%"}}>
                             <div className="col" >
-                            <button className="edit" onClick={this.props.edit}>Edit</button>
+                            <button className="edit" onClick={this.props.editbtn}>Edit</button>
                             </div>
                             
                         </div>

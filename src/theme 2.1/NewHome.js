@@ -295,6 +295,7 @@ PAhandleChange = address => {
 
         })})
       .catch(error => console.error('Error', error));
+    //   address = null
   };
 
   close(){

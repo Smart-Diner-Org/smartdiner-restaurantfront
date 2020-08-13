@@ -579,7 +579,7 @@ p {
 .bag-close{
   border: 1px solid;
   color: #E22A28;
-  padding: 5px;
+  padding: 5px 10px;
   border-color: #E22A28;
   border-radius: 5px;
   background-color: transparent;
@@ -603,7 +603,7 @@ p {
   font-size: 1.125em;
 }
 .des .containment{
-  color:#828282;
+  color:#b1b1b1;
   font-family:"Lato";
   font-size:"0.75em";
 }
@@ -615,7 +615,7 @@ p {
 }
 .offer-applied{
   font-size: 0.875em;
-  color: #828282;
+  color: #b1b1b1;
     font-family:"Lato";
 }
 .disc-price{
@@ -776,7 +776,7 @@ p {
 .span-left{
   width: 50%;
   font-size: 1em;
-  color: #828282;
+  color: #b1b1b1;
   font-family: "Lato";
 }
 .span-left a{
@@ -792,7 +792,7 @@ p {
 .span-right{
   font-size: 0.875em;
   text-decoration: solid;
-  color: #828282;
+  color: #b1b1b1;
   padding: 5px 5px 5px 5px;
   
 }
@@ -1546,7 +1546,7 @@ p {
   right: 60px;
   left: 0px;
   bottom: 60px;
-  border: 1px solid #828282;
+  border: 1px solid #b1b1b1;
   border-radius: 20px;
 }
 .location {

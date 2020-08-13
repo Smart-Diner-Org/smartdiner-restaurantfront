@@ -25,12 +25,12 @@ this.setState({selected:object})
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input autoFocus
+            <input 
               {...getInputProps({
                 className: 'location-search-input',
               })}
               // placeholder={localStorage.getItem('address')}
-              placeholder={localStorage.getItem('address') ? localStorage.getItem('address') : "Enter your location"}
+              placeholder={sessionStorage.getItem('address') ? sessionStorage.getItem('address') : "Enter your location"}
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}

@@ -12,40 +12,41 @@ import axios from "axios"
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://1052976e30ed.ngrok.io/'
+        this.apiLink = 'https://f65498dbd740.ngrok.io/'
         this.state = {
             mobile : "",
             OTP : "",
             requestedOTP : false,
-            
-            user_info : {accessToken: undefined,
+            name : "",
+            email : "",
+            user_info : {accessToken: null,
                 user:{
-                createdAt: undefined,
+                createdAt: null,
                 customer_detail: {
-                    id: undefined,
-                    customer_id: 8,
-                    address_one: undefined,
-                    address_two: undefined,
-                    city_id: undefined,
-                    state_id: undefined,
-                    primary: undefined,
-                    address_type: undefined,
-                    lat: undefined,
-                    long: undefined,
-                    createdAt: undefined,
-                    updatedAt: undefined,
+                    id: null,
+                    customer_id: null,
+                    address_one: null,
+                    address_two: null,
+                    city_id: null,
+                    state_id: null,
+                    primary: null,
+                    address_type: null,
+                    lat: null,
+                    long: null,
+                    createdAt: null,
+                    updatedAt: null,
                     },
-                email: undefined,
-                id: undefined,
-                mobile: undefined,
-                mobile_verification: undefined,
-                name: undefined,
-                otp_secret: undefined,
-                password: undefined,
-                remember_token: undefined,
-                role_id: undefined,
-                updatedAt: undefined,
-                uuid: undefined,}},
+                email: null,
+                id: null,
+                mobile: null,
+                mobile_verification: null,
+                name: null,
+                otp_secret: null,
+                password: null,
+                remember_token: null,
+                role_id: null,
+                updatedAt: null,
+                uuid: null,}},
             successMessage: "",
             errorMessage: '',
             addressTwo : sessionStorage.getItem('address'),
@@ -59,7 +60,7 @@ class SignUp extends Component{
         this.setOTPValue = this.setOTPValue.bind(this);
         this.addCustomer = this.addCustomer.bind(this);
         this.goPayment = this.goPayment.bind(this)
-        this.edit = this.edit.bind(this)
+        this.editbtn = this.editbtn.bind(this)
 
     }
     handleChange(event) {
@@ -72,21 +73,21 @@ class SignUp extends Component{
     MhandleChange(event){
         const value = event.target.value
         this.setState({
-            user_info : {accessToken: undefined,
+            user_info : {accessToken: null,
                 user:{
-                createdAt: undefined,
-                customer_detail: undefined,
-                email: undefined,
-                id: undefined,
-                mobile: undefined,
-                mobile_verification: undefined,
-                name: undefined,
-                otp_secret: undefined,
-                password: undefined,
-                remember_token: undefined,
-                role_id: undefined,
-                updatedAt: undefined,
-                uuid: undefined,}},
+                createdAt: null,
+                customer_detail: null,
+                email: null,
+                id: null,
+                mobile: null,
+                mobile_verification: null,
+                name: null,
+                otp_secret: null,
+                password: null,
+                remember_token: null,
+                role_id: null,
+                updatedAt: null,
+                uuid: null,}},
                 mobile:value
         })
     }
@@ -159,6 +160,8 @@ this.setState({OTP:value})
     addCustomer(event){
         event.preventDefault()
         const data = {
+            name : this.state.name,
+            email : this.state.email,
             addressOne :this.state.addressOne,
             addressTwo : this.state.addressTwo,
             cityId : 1,  //coiambatore
@@ -179,7 +182,7 @@ this.setState({OTP:value})
 
             })
             .catch(function (error) {
-                this.setState({errorMessage:error.response.data.message})
+                // this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
 
@@ -221,40 +224,69 @@ this.setState({OTP:value})
                 // this.setState({message:error.response.data.message})
             })
     }
- edit(event){
+    
+ editbtn(event){
      console.log("hi")
-     this.setState(prevState =>{
-        return({...prevState.user,user:{
-            createdAt: undefined,
-            customer_detail: {
-                id: undefined,
-                customer_id: 8,
-                address_one: undefined,
-                address_two: undefined,
-                city_id: undefined,
-                state_id: undefined,
-                primary: undefined,
-                address_type: undefined,
-                lat: undefined,
-                long: undefined,
-                createdAt: undefined,
-                updatedAt: undefined,
-                },
-            email: undefined,
-            id: undefined,
-            mobile: undefined,
-            mobile_verification: undefined,
-            name: undefined,
-            otp_secret: undefined,
-            password: undefined,
-            remember_token: undefined,
-            role_id: undefined,
-            updatedAt: undefined,
-            uuid: undefined,}})
+    //  this.setState(prevState =>{
+    //     return({...prevState.user,user:{
+    //         customer_detail: {
+    //             id: null,
+    //             customer_id: null,
+    //             address_one: null,
+    //             address_two: null,
+    //             city_id: null,
+    //             state_id: null,
+    //             primary: null,
+    //             address_type: null,
+    //             lat: null,
+    //             long: null,
+    //             createdAt: null,
+    //             updatedAt: null,
+    //             },
+    //         email: null,
+    //         id: null,
+    //         mobile: null,
+    //         mobile_verification: null,
+    //         name: null,
+    //         otp_secret: null,
+    //         password: null,
+    //         remember_token: null,
+    //         role_id: null,
+    //         }})
 
-        }
-        )
+    //     }
+    //    )
+    //    console.log()
 
+    this.setState({user_info : {accessToken: sessionStorage.getItem("token"),
+        user:{
+        createdAt: this.state.user_info.createdAt,
+        customer_detail: {
+            id: null,
+            customer_id: null,
+            address_one: null,
+            address_two: null,
+            city_id: null,
+            state_id: null,
+            primary: null,
+            address_type: null,
+            lat: null,
+            long: null,
+            createdAt: null,
+            updatedAt: null,
+            },
+        email: null,
+        id: this.state.user_info.id,
+        mobile: this.state.user_info.mobile,
+        mobile_verification: this.state.user_info.mobile_verification,
+        name: null,
+        otp_secret: null,
+        password: null,
+        remember_token: null,
+        role_id: null,
+        updatedAt: this.state.user_info.updatedAt,
+        uuid: null,}}})
+console.log(this.state.user_info)
  }
 
 
@@ -288,7 +320,7 @@ this.setState({OTP:value})
                                     customer_detail = {this.state.user_info.user.customer_detail}
                                     successMessage={this.state.successMessage}
                                     errorMessage = {this.state.errorMessage}
-                                    edit = {this.edit}
+                                    editbtn = {this.editbtn}
                                     />
                                     :
                                     <NewCustomer
