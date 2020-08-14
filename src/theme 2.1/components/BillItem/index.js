@@ -16,8 +16,14 @@ class BillItem extends Component {
                     <div className="row">
                     <div className="col-3 p-0">
                         <div style={{height:"100%",display:"flex",alignItems:"centre"}}>
-                            <img src={BurgerImage} class="food-image" alt='burger'/>    
-                    </div>
+                                {this.props.image?
+                                    <>
+                                    <a href="#"><img src={this.props.image} alt="Product"/> </a>
+                                    </>
+                                    :
+                                    <a href="#"><img src={BurgerImage} alt="Product"/> </a>
+                                }   
+                        </div>
                     </div>
                     <div className="col-9" >
                         <div className="row">

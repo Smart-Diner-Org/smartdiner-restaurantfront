@@ -16,7 +16,7 @@ class Item extends Component {
                                     </>
                                     :
                                     <a href="#"><img src={Burger} alt="Product"/> </a>
-        }  
+                                }  
         
                                     {this.props.discount>0?
                                     <>
