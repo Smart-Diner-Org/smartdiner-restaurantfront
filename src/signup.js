@@ -188,7 +188,7 @@ class SignUp extends Component{
             })
          this.setState({seconds:60}) 
          this.setState({isVerified:false})
-         this.OTPverfication(event) 
+        //  this.OTPverfication(event) 
     }
 
     async addCustomer(event){
@@ -249,7 +249,7 @@ class SignUp extends Component{
             }})
             .then(res =>{
                 console.log(res.data)
-                window.open(res.data.paymentUrl)
+                window.open(res.data.paymentUrl,"_self")
                 this.setState({successMessage:res.data.message})
 
             })
