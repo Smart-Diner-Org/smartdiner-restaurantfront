@@ -5,7 +5,7 @@ import LocationSearchInput from "./LocationSearchInput"
 import './map.css'
 
 Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
-Geocode.enableDebug();
+// Geocode.enableDebug();
 
 
 class GetLocation extends Component{
@@ -30,9 +30,11 @@ class GetLocation extends Component{
                 PAhandleChange = {this.props.PAhandleChange}
                 handleSelect = {this.props.handleSelect}/>
                 {/* <button onClick={this.props.contshpng}>Continue Shopping</button> */}
-                <div>
-                    <button style={{position:"fixed",right:"0"}}  onClick={this.props.gotocart}>Go to Cart</button> 
-                </div>
+                {this.props.boundary &&
+                <div className="d-flex align-items-center continue-labels mt-20">
+                    <label className="pr-20 d-flex align-items-center" onClick={this.props.contshpng}>Continue Shopping <i class="lni lni-arrow-right ml-1"></i></label> 
+                    <label className="pl-20 d-flex align-items-center" onClick={this.props.gotocart}>Go to Cart <i class="lni lni-arrow-right ml-1"></i></label>
+                </div>}
                 </div>   
             
         );

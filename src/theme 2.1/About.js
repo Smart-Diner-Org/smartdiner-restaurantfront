@@ -42,7 +42,7 @@ class About extends Component {
                                     </div>
                                 </div> 
                             </div>
-                            <div class="col-md-6 col-sm-8" id="location">
+                            <div class="col-md-6 col-sm-8" >
                                 <div class="single-about text-center">
                                     <img src={Food1} alt=""/>
                                 </div> 

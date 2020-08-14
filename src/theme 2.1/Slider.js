@@ -14,7 +14,7 @@ class Slider extends Component {
                     <div className="slider-bg">
                         <div className="row no-gutters align-items-center ">
                             <div className="col-md-7">
-                                <div className="slider-product-content mt-200">
+                                <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
                                     <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
                                         Chinese Grill Kitchen</h1>
                                 </div> 
@@ -34,7 +34,7 @@ class Slider extends Component {
                     <div className="slider-bg">
                         <div className="row no-gutters align-items-center ">
                             <div className="col-md-7">
-                                <div className="slider-product-content mt-200">
+                                <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
                                 <h1 className="slider-title p-3" data-animation="fadeInUp" data-delay="0.3s">
                                         Winter Sale! is Here</h1>
                                 </div> 

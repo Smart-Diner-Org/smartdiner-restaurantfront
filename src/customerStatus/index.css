@@ -1,14 +1,4 @@
 
-a{
-  color: white;
-  text-decoration: underline;
-  text-decoration-color: yellow;
-}
-
-a:hover{
-  color: yellow;
-  text-decoration: none;
-}
 
 .customerStatusContainer {
   padding: 30px;
@@ -117,7 +107,7 @@ a:hover{
   border-radius: 8px;
 }
 
-.footer {
+.status-footer {
   width: 100%;
   height: 100px;
   display: flex;
@@ -126,6 +116,20 @@ a:hover{
   color: white;
   background-color: #000466;
 }
+
+.status-footer a{
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: yellow;
+}
+
+.status-footer a:hover{
+  color: yellow;
+  text-decoration: none;
+}
+
+
+
 
 @media screen and (max-width:50em) {
   .restaurantDetails{

@@ -320,22 +320,13 @@ PAhandleChange = address => {
 
 
   gotocart(event){
-      if(this.state.boundary){
         this.setState({showPopup:false})
         this.togglePopup()
-      }
-      else{
-          alert('Please provide your Location')
-      }
   }
 
   contshpng(event){
-    if(this.state.boundary){
         this.setState({showPopup:false})
-      }
-      else{
-          alert('Please provide your Location')
-      }
+     
   }
   
   editlocation(event){
@@ -375,6 +366,7 @@ PAhandleChange = address => {
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
         close = {this.close}
+        boundary = {this.state.boundary}
         gotocart = {this.gotocart}
         contshpng = {this.contshpng}
         />}

@@ -22,7 +22,7 @@ box-shadow: 1px 1px 20px #333;
     border-radius: 8px;
     font-size: 0.8em;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .crtlocbtn{
@@ -54,20 +54,40 @@ box-shadow: 1px 1px 20px #333;
     margin-bottom: 30px;
 }
 
+.continue-labels label{
+    cursor: pointer;
+    font-family: "Lato";
+    z-index: 1;
+}
+
+.continue-labels label:hover{
+    cursor: pointer;
+    color: #000466;
+    
+}
+
 
 
 .suggestion-item{
     /* border: 0.3px solid #777;// */
     font-size: 0.8em;
     border-radius: 4px;
-    margin-bottom: 5px;
+    /* margin-bottom: 10px; */
+    padding: 10px;
 
 }
+
 
 .autocomplete-dropdown-container{
-    max-width: 200px;
-    margin: 0px 30px 10px;
+    /* max-width: 200px; */
+    /* margin:  30px 10px; */
     background-color: white;
-    
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    z-index: 2;
+
 }
+
+
 

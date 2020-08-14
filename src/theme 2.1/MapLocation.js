@@ -20,13 +20,15 @@ class MapLocation extends Component{
     { 
         // this.getLocation()
         return(
-            <div className="container">
+            <section id="location" class="pt-125 pb-130">
+            <div className="container" >
                 <div className="google-map ">
                     <Map google={this.props.google} zoom={8} initialCenter={{ lat: 13.093410, lng: 77.399053}}>
                         <Marker position={{ lat: 13.093410, lng: 77.399053}} />
                     </Map>
                 </div>
             </div>
+            </section>
         )
     }
 

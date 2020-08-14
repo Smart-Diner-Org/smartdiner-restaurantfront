@@ -12,7 +12,7 @@ let myInterval;
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://80b047bae3e5.ngrok.io/'
+        this.apiLink = 'https://49f2470565fa.ngrok.io/'
         this.state = {
             minutes: 0,
             seconds: 40,
@@ -23,7 +23,7 @@ class SignUp extends Component{
             name : "",
             email : "",    //user_info.user.customer_detail.
             user_info : {accessToken: null,
-                user:{
+                customer:{
                 createdAt: null,
                 customer_detail: {
                     id: null,
@@ -79,7 +79,7 @@ class SignUp extends Component{
         const value = event.target.value
         this.setState({
             user_info : {accessToken: null,
-                user:{
+                customer:{
                 createdAt: null,
                 customer_detail: null,
                 email: null,
@@ -199,14 +199,15 @@ class SignUp extends Component{
             latitude : sessionStorage.getItem('lat'),
             longitude : sessionStorage.getItem('long')
         }
-        console.log(data)
         await axios.post(`${this.apiLink}after_login/customer/update_details`,data ,{
             headers: {
               'x-access-token': `${sessionStorage.getItem('token')}` 
             }})
             .then(res =>{
                 // this.setState({message:res.data.message})
-                console.log(res.data.message)
+
+                this.setState({user_info:res.data})
+                console.log(this.state.user_info)
                 this.setState({successMessage:res.data.message})
 
             })
@@ -257,22 +258,9 @@ class SignUp extends Component{
  editbtn(event){
 
     this.setState({user_info : {accessToken: sessionStorage.getItem("token"),
-        user:{
+        customer:{
         createdAt: this.state.user_info.createdAt,
-        customer_detail: {
-            id: null,
-            customer_id: null,
-            address_one: null,
-            address_two: null,
-            city_id: null,
-            state_id: null,
-            primary: null,
-            address_type: null,
-            lat: null,
-            long: null,
-            createdAt: null,
-            updatedAt: null,
-            },
+        customer_detail: null,
         email: null,
         id: this.state.user_info.id,
         mobile: this.state.user_info.mobile,
@@ -311,10 +299,10 @@ class SignUp extends Component{
                                     seconds = {this.state.seconds}
                                     isVerified = {this.state.isVerified}
                                     />
-                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? 
+                                    {sessionStorage.getItem("token") && (this.state.user_info.customer.customer_detail ? 
                                     <GetAddress
-                                    name = {this.state.user_info.user.name}
-                                    customer_detail = {this.state.user_info.user.customer_detail}
+                                    name = {this.state.user_info.customer.name}
+                                    customer_detail = {this.state.user_info.customer.customer_detail}
                                     successMessage={this.state.successMessage}
                                     errorMessage = {this.state.errorMessage}
                                     editbtn = {this.editbtn}

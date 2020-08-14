@@ -7,10 +7,7 @@ const elementsArray = [1, 2, 3, 4];
 class GetOTP extends React.Component{
     constructor(props){
         super();
-        this.state = {
-            minutes: 0,
-            seconds: 60
-        }
+        
 }
 navigateBasedonArrowKeyPressed(e, i){
     
@@ -34,31 +31,7 @@ this.props.setOTPValue(value)
 }
    
 
-    // componentDidMount() {
-    //     this.myInterval = setInterval(() => {
-    //         const { seconds, minutes } = this.state
-
-    //         if (seconds > 0) {
-    //             this.setState(({ seconds }) => ({
-    //                 seconds: seconds - 1
-    //             }))
-    //         }
-    //         if (seconds === 0) {
-    //             if (minutes === 0) {
-    //                 clearInterval(this.myInterval)
-    //             } else {
-    //                 this.setState(({ minutes }) => ({
-    //                     minutes: minutes - 1,
-    //                     seconds: 59
-    //                 }))
-    //             }
-    //         } 
-    //     }, 1000)
-    // }
-
-    // componentWillUnmount() {
-    //     clearInterval(this.myInterval)
-    // }
+    
   
 
     render(){

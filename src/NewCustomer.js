@@ -12,9 +12,9 @@ render(){
     return(
         <div className="new-customer mt-30">
             <form onSubmit={this.props.addCustomer}>
-                <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name" onChange={this.props.handleChange}/>
-                <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange}/>
-                <input className=" mt-10" type="text" name="addressOne" placeholder="Adress Line 1" onChange={this.props.handleChange}/>
+                <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name" onChange={this.props.handleChange} required="required"/>
+                <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange} required="required"/>
+                <input className=" mt-10" type="text" name="addressOne" placeholder="Adress Line 1" onChange={this.props.handleChange} required="required"/>
                 <label style={{fontSize:"18px"}} className="mt-10">{this.props.addressTwo}</label>
                 {<small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> || <small className="error-message" style={{color:"green"}}>{this.props.errorMessage}</small> }
 

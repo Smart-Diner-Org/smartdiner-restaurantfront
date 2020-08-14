@@ -8,32 +8,75 @@ class StatusPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            stage: null,
+            stage_id : 1,
+            deliveryAddressOne : null,
+            deliveryAddressTwo : null,
+            flag1 : false,
+            flag2 : false,
+            flag3 : false,
+            flag4 : false,
+            progress: "",
         }
         
     }
 
 
-    async componentDidMount() {
-        try {
-          setInterval(
-            await axios.get(`https://f65498dbd740.ngrok.i/before_login/order/78/status`)
-            .then(res => {
-              const data = res.data;
-              this.setState({
-                stage: data.stage_id,
-                  });     
+    componentDidMount(){
+        // try {
+        //   setInterval(
+        //     await axios.get(`https://f65498dbd740.ngrok.i/before_login/order/id/status`)
+        //     .then(res => {
+        //       const data = res.data;
+        //       this.setState({
+        //         statge_id : data.statge_id,
+        //         deliveryAddressOne : data.deliveryAddressOne ,
+        //         deliveryAddressTwo : data.deliveryAddressTwo,
+        //           });     
                  
-            }), 600000);
-        } 
-        catch(error){
-            console.log(error)
+        //     }), 600000);
+        // } 
+        // catch(error){
+        //     console.log(error)
+        // }
+        
+        
+        if(this.state.stage_id===1 || this.state.stage_id===2){
+            this.setState({
+                flag1 : true,
+                progress : "25%"
+            })
         }
+        else if(this.state.stage_id===3 || this.state.stage_id===4){
+            this.setState({
+                flag1 : true,
+                flag2 : true,
+                progress : "50%"
+            })
+        }
+        else if(this.state.stage_id===5 || this.state.stage_id===6){
+            this.setState({
+                flag1 : true,
+                flag2 : true,
+                flag3 : true,
+                progress : "75%"
+            })
+        }
+        else if(this.state.stage_id===7 || this.state.stage_id===8){
+            this.setState({
+                flag1 : true,
+                flag2 : true,
+                flag3 : true,
+                flag4 : true,
+                progress : "100%"
+            })
+        }
+
   }
 
 
 
     render(){
+        // this.check()
         return(
             <div>
             <div className="container customerStatusContainer">
@@ -67,7 +110,7 @@ class StatusPage extends React.Component{
                         <div class="col-lg-1 col-1 deliveryProgress">
                             <div class="progress progress-bar-vertical">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="100"
-                                    aria-valuemax="0" style={{height: "60%"}}>
+                                    aria-valuemax="0" style={{height: `${this.state.progress}`}}>
                                     <span class="sr-only"></span>
                                 </div>
                             </div>
@@ -75,7 +118,7 @@ class StatusPage extends React.Component{
                    
                     
                     <div class="col-lg-5 col-11 d-flex flex-column justify-content-around">
-                        <div class="progressDetails ">
+                        <div class={this.state.flag1 ?"progressDetails ":"progressDetails inactive"}>
                             <div class="row">
                                 <div class="orderIcon">
                                     <img class="icon shopping-bag" aria-hidden="true"/>
@@ -86,7 +129,7 @@ class StatusPage extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <div class="progressDetails inactive">
+                        <div class={this.state.flag2 ?"progressDetails":"progressDetails inactive"}>
                             <div class="row">
                                 <div class="orderIcon">
                                     <img class="icon restaurant-icon" aria-hidden="true"/>
@@ -100,7 +143,7 @@ class StatusPage extends React.Component{
                             </div>
                         </div>
 
-                        <div class="progressDetails ">
+                        <div class={this.state.flag3 ?"progressDetails":"progressDetails inactive"}>
                             <div class="row">
                                 <div class="orderIcon">
                                     <img class="icon delivery-icon" aria-hidden="true"/>
@@ -120,7 +163,7 @@ class StatusPage extends React.Component{
                             </div>
                         </div>
 
-                        <div class="progressDetails inactive">
+                        <div class={this.state.flag4 ?"progressDetails":"progressDetails inactive"}>
                             <div class="row">
                                 <div class="orderIcon">
                                     <img class="icon shopping-bag" aria-hidden="true"/>
@@ -178,7 +221,7 @@ class StatusPage extends React.Component{
                 </div>
                 </div>
 
-                <div class="footer">
+                <div class="status-footer">
                     <p>Powered by <a href="https://smartdiner.co" target="_lank">Smart Diner</a></p>
                 </div>
 

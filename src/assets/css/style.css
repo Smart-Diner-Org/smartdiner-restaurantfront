@@ -1008,7 +1008,7 @@ p {
   background-color: rgba(254, 120, 101, 0.5);
   left: 0;
   bottom: 17px;
-  z-index: auto;
+  z-index: 5;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

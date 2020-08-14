@@ -3,7 +3,7 @@ import React from "react"
 class Description extends React.Component{
     render(){
         return(
-            <section id="about" class="about-area mt-50 pt-50 ">
+            <section  class="about-area mt-50 pt-50 ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
