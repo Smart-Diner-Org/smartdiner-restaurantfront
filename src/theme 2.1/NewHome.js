@@ -36,7 +36,8 @@ class NewHome extends Component {
         postalcode : "",
         lat : '',
         long : '',
-        showpopup: true,
+        showPopup: true,
+        togglePopup : false,
         refpostcode : [641012 , 641402, 641401, 641044],
         refregion : ['gandhipuram', 'sulur','kanagaiyampalayam', 'sidhapudur']
 
@@ -156,7 +157,7 @@ setType(type) {  //to display respective items for menu items selected
   
 togglePopup() {  //to open and close the cart(bag) component
         this.setState({
-            showPopup: !this.state.showPopup
+            togglePopup: !this.state.togglePopup
           });
     }
 
@@ -301,7 +302,7 @@ PAhandleChange = address => {
   close(){
 
     if(this.state.boundary === true){
-        this.setState({showpopup:false})
+        this.setState({showPopup:false})
   }
   else{
     
@@ -320,7 +321,7 @@ PAhandleChange = address => {
 
   gotocart(event){
       if(this.state.boundary){
-        this.setState({showpopup:false})
+        this.setState({showPopup:false})
         this.togglePopup()
       }
       else{
@@ -330,7 +331,7 @@ PAhandleChange = address => {
 
   contshpng(event){
     if(this.state.boundary){
-        this.setState({showpopup:false})
+        this.setState({showPopup:false})
       }
       else{
           alert('Please provide your Location')
@@ -339,7 +340,7 @@ PAhandleChange = address => {
   
   editlocation(event){
     this.togglePopup()
-      this.setState({showpopup:true})
+      this.setState({showPopup:true})
       this.setState({boundary:false})
   }
 
@@ -365,7 +366,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        { this.state.total !== 0 && this.state.showpopup  &&   //(this.state.boundary===false) &&
+        { this.state.total !== 0 && this.state.showPopup  &&   //(this.state.boundary===false) &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -380,7 +381,7 @@ PAhandleChange = address => {
         
         {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
         <div>
-             { this.state.showPopup && 
+             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 &&
          <Bag 
          closePopup={this.togglePopup }  
          changequantity={this.changequantity}
@@ -401,7 +402,7 @@ PAhandleChange = address => {
          />
 
 
-         <div style={this.state.showPopup?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
+         <div style={this.state.togglePopup && !this.state.showPopup && this.state.total !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider />
          <Description />
          <Product 

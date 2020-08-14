@@ -69,7 +69,7 @@ class HeadComponent extends Component {
                             </ul> 
                         </div>
                         <div class="headlogo" >
-                            {this.props.total==0 && <span class="tooltiptext">Tooltip text</span>}
+                            {this.props.total==0 && <span class="tooltiptext">Your Cart is Empty</span>}
                                     <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup} >
                                         <img src={BagImage} class="img-responsive cart" alt="Cart"/>
                                         <span class="badge">{this.props.total}</span>
