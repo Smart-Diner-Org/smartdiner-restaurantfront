@@ -224,7 +224,7 @@ checkDistance(){
                     this.setState({boundary:true})
                 }else{
                     alert("Sorry for our Incovenience.... You're out of our boundary")
-    
+                    this.setState({boundary:false})
                 }
                         
                },
@@ -291,7 +291,7 @@ PAhandleChange = address => {
                 this.setState({boundary:true})
             }else{
                 alert("Sorry for our Incovenience.... You're out of our boundary")
-
+                this.setState({boundary:false})
             }
 
         })})

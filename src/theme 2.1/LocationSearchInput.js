@@ -24,8 +24,7 @@ class LocationSearchInput extends React.Component {
               // defaultValue={this.props.address}
               // onChange={this.props.PAhandleChange}
               // placeholder={localStorage.getItem('address')}
-              
-              placeholder={sessionStorage.getItem('address') ? sessionStorage.getItem('address') : "Enter your location"}
+              placeholder= "Enter your location"
             />
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}

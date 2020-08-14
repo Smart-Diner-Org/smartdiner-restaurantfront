@@ -12,7 +12,7 @@ import axios from "axios"
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://f65498dbd740.ngrok.io/'
+        this.apiLink = 'https://80b047bae3e5.ngrok.io/'
         this.state = {
             mobile : "",
             OTP : "",
@@ -90,26 +90,28 @@ class SignUp extends Component{
                 role_id: null,
                 updatedAt: null,
                 uuid: null,}},
-                mobile:value
+                mobile:value,
+                requestedOTP : false,
+
         })
     }
 
 
 
-setOTPValue = (value)=>{
-this.setState({OTP:value})
-}
+    setOTPValue = (value)=>{
+    this.setState({OTP:value})
+    }
 
 
-    requestOTP(event){
+    async requestOTP(event){
+     
         event.preventDefault()
-        
         this.setState({requestedOTP:true})
         const data = {
             mobile : this.state.mobile,
             roleId : 4,
         }
-        axios.post(`${this.apiLink}auth/check_for_account`,data)
+        await axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
                 console.log(res.data.message)
                 this.setState({successMessage:res.data.message})
@@ -142,11 +144,11 @@ this.setState({OTP:value})
             this.setState({message:ermessage})
     }
 
-    resendOTP(event){
+    async resendOTP(event){
         const data ={
             mobile : this.state.mobile
         }
-        axios.post(`${this.apiLink}auth/resend_otp`,data)
+        await axios.post(`${this.apiLink}auth/resend_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
                 sessionStorage.setItem('token',res.data.accessToken)
@@ -159,7 +161,7 @@ this.setState({OTP:value})
 
     }
 
-    addCustomer(event){
+    async addCustomer(event){
         event.preventDefault()
         const data = {
             name : this.state.name,
@@ -171,9 +173,8 @@ this.setState({OTP:value})
             latitude : sessionStorage.getItem('lat'),
             longitude : sessionStorage.getItem('long')
         }
-        alert("i'm vinay")
         console.log(data)
-        axios.post(`${this.apiLink}after_login/customer/update_details`,data ,{
+        await axios.post(`${this.apiLink}after_login/customer/update_details`,data ,{
             headers: {
               'x-access-token': `${sessionStorage.getItem('token')}` 
             }})
@@ -192,7 +193,7 @@ this.setState({OTP:value})
 
     }
     
-    goPayment(event){
+    async goPayment(event){
         event.preventDefault()
         let newArray =  (JSON.parse(sessionStorage.getItem('items')))
         let selectedArray = []
@@ -204,7 +205,6 @@ this.setState({OTP:value})
                 selectedArray.push(menu)
             }
         })
-        console.log(selectedArray)
         const data ={
             restuarantBranchId : Number(newArray[0].restuarant_branch_id),
             total_price : Number(sessionStorage.getItem("total_price")),
@@ -212,8 +212,7 @@ this.setState({OTP:value})
             longitude : Number(sessionStorage.getItem("long")),
             menus : selectedArray,
         }
-        console.log(data)
-        axios.post(`${this.apiLink}after_login/order/place_order`,data ,{
+        await axios.post(`${this.apiLink}after_login/order/place_order`,data ,{
             headers: {
               'x-access-token': `${sessionStorage.getItem('token')}` 
             }})
@@ -318,7 +317,7 @@ console.log(this.state.user_info)
                                     successMessage={this.state.successMessage}
                                     errorMessage = {this.state.errorMessage}
                                     />
-                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail.id ? 
+                                    {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? 
                                     <GetAddress
                                     name = {this.state.user_info.user.name}
                                     customer_detail = {this.state.user_info.user.customer_detail}
