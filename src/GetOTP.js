@@ -34,31 +34,31 @@ this.props.setOTPValue(value)
 }
    
 
-    componentDidMount() {
-        this.myInterval = setInterval(() => {
-            const { seconds, minutes } = this.state
+    // componentDidMount() {
+    //     this.myInterval = setInterval(() => {
+    //         const { seconds, minutes } = this.state
 
-            if (seconds > 0) {
-                this.setState(({ seconds }) => ({
-                    seconds: seconds - 1
-                }))
-            }
-            if (seconds === 0) {
-                if (minutes === 0) {
-                    clearInterval(this.myInterval)
-                } else {
-                    this.setState(({ minutes }) => ({
-                        minutes: minutes - 1,
-                        seconds: 59
-                    }))
-                }
-            } 
-        }, 1000)
-    }
+    //         if (seconds > 0) {
+    //             this.setState(({ seconds }) => ({
+    //                 seconds: seconds - 1
+    //             }))
+    //         }
+    //         if (seconds === 0) {
+    //             if (minutes === 0) {
+    //                 clearInterval(this.myInterval)
+    //             } else {
+    //                 this.setState(({ minutes }) => ({
+    //                     minutes: minutes - 1,
+    //                     seconds: 59
+    //                 }))
+    //             }
+    //         } 
+    //     }, 1000)
+    // }
 
-    componentWillUnmount() {
-        clearInterval(this.myInterval)
-    }
+    // componentWillUnmount() {
+    //     clearInterval(this.myInterval)
+    // }
   
 
     render(){
@@ -69,7 +69,7 @@ this.props.setOTPValue(value)
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
                     onChange={this.props.MhandleChange}/>
-            
+                        {!this.props.isVerified &&
                                 <div className="row mt-20 d-flex align-item-center" name="OTP">
                                     <div className="col-7 d-inline-flex">
                                         {elementsArray.map((k, i) => (
@@ -87,21 +87,17 @@ this.props.setOTPValue(value)
                                    {!this.props.requestedOTP && <button type="submit">Get OTP</button>}
                                     {this.props.requestedOTP && 
                                     <>
-                                    {this.state.minutes == 0 && this.state.seconds==0 ?
+                                    {this.props.minutes == 0 && this.props.seconds==0 ?
                                     <button  onClick={ this.props.resendOTP }>Resend OTP</button>
                                     :
                                     <>
-                                    <button type="submit" >Verify { this.state.minutes }:{ this.state.seconds < 10 ? `0${this.state.seconds }` : this.state.seconds }</button>
+                                    <button type="submit" >Verify { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }</button>
                                     
                                     </>}
                                     </>}
 
                                    </div>
-                                    
-                                    
-                            
-                                    
-                                </div> 
+                                    </div> }
                                 
                                 
                 </form>

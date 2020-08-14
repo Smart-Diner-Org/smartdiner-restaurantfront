@@ -7,16 +7,19 @@ import GetOTP from "./GetOTP"
 import axios from "axios"
 
 
-
+let myInterval;
 
 class SignUp extends Component{
     constructor(props){
         super();
         this.apiLink = 'https://80b047bae3e5.ngrok.io/'
         this.state = {
+            minutes: 0,
+            seconds: 40,
             mobile : "",
             OTP : "",
             requestedOTP : false,
+            isVerified : false,
             name : "",
             email : "",    //user_info.user.customer_detail.
             user_info : {accessToken: null,
@@ -92,6 +95,7 @@ class SignUp extends Component{
                 uuid: null,}},
                 mobile:value,
                 requestedOTP : false,
+                isVerified : false,
 
         })
     }
@@ -103,18 +107,37 @@ class SignUp extends Component{
     }
 
 
-    async requestOTP(event){
-     
+     requestOTP(event){
         event.preventDefault()
         this.setState({requestedOTP:true})
         const data = {
             mobile : this.state.mobile,
             roleId : 4,
         }
-        await axios.post(`${this.apiLink}auth/check_for_account`,data)
+        myInterval =  setInterval(() => {
+            const { seconds, minutes } = this.state
+
+            if (seconds > 0) {
+                this.setState(({ seconds }) => ({
+                    seconds: seconds - 1
+                }))
+            }
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(this.myInterval)
+                } else {
+                    this.setState(({ minutes }) => ({
+                        minutes: minutes - 1,
+                        seconds: 59
+                    }))
+                }
+            } 
+        }, 1000)
+        axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
                 console.log(res.data.message)
                 this.setState({successMessage:res.data.message})
+                
             })
             .catch(function (error) {
                 console.log(error)
@@ -125,7 +148,6 @@ class SignUp extends Component{
 
     async OTPverfication(event){
         event.preventDefault()
-        let ermessage;
         const data ={
             mobile : this.state.mobile,
             otp : this.state.OTP
@@ -135,16 +157,19 @@ class SignUp extends Component{
                 this.setState ({user_info:res.data})
                 sessionStorage.setItem('token',res.data.accessToken)
                 this.setState({successMessage:res.data.message})
+                this.setState({isVerified:true})
+                clearInterval(myInterval)
             })
             .catch(function (error) {
                 // this.setState({errorMessage:error.response.data.message})
     
         
             })
-            this.setState({message:ermessage})
+        
     }
 
     async resendOTP(event){
+        alert("im here")
         const data ={
             mobile : this.state.mobile
         }
@@ -158,7 +183,8 @@ class SignUp extends Component{
                 // this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
-
+         this.setState({seconds:40}) 
+         this.requestOTP(event)  
     }
 
     async addCustomer(event){
@@ -229,37 +255,6 @@ class SignUp extends Component{
     }
     
  editbtn(event){
-     console.log("hi")
-    //  this.setState(prevState =>{
-    //     return({...prevState.user,user:{
-    //         customer_detail: {
-    //             id: null,
-    //             customer_id: null,
-    //             address_one: null,
-    //             address_two: null,
-    //             city_id: null,
-    //             state_id: null,
-    //             primary: null,
-    //             address_type: null,
-    //             lat: null,
-    //             long: null,
-    //             createdAt: null,
-    //             updatedAt: null,
-    //             },
-    //         email: null,
-    //         id: null,
-    //         mobile: null,
-    //         mobile_verification: null,
-    //         name: null,
-    //         otp_secret: null,
-    //         password: null,
-    //         remember_token: null,
-    //         role_id: null,
-    //         }})
-
-    //     }
-    //    )
-    //    console.log()
 
     this.setState({user_info : {accessToken: sessionStorage.getItem("token"),
         user:{
@@ -289,14 +284,10 @@ class SignUp extends Component{
         role_id: null,
         updatedAt: this.state.user_info.updatedAt,
         uuid: null,}}})
-console.log(this.state.user_info)
  }
 
-
-    
     render(){
         return(
-         
             <div className="signup ">
                  <div className="container">
                     <div className="header mt-30">
@@ -316,6 +307,9 @@ console.log(this.state.user_info)
                                     setOTPValue={this.setOTPValue}
                                     successMessage={this.state.successMessage}
                                     errorMessage = {this.state.errorMessage}
+                                    minutes = {this.state.minutes}
+                                    seconds = {this.state.seconds}
+                                    isVerified = {this.state.isVerified}
                                     />
                                     {this.state.user_info.accessToken && (this.state.user_info.user.customer_detail ? 
                                     <GetAddress
