@@ -8,7 +8,7 @@ import axios from "axios"
 
 
 let myInterval;
-
+sessionStorage.removeItem("token")
 class SignUp extends Component{
     constructor(props){
         super();
@@ -96,7 +96,7 @@ class SignUp extends Component{
                 mobile:value,
                 requestedOTP : false,
                 isVerified : false,
-
+                seconds : 60, 
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -173,6 +173,7 @@ class SignUp extends Component{
     }
 
     async resendOTP(event){
+        event.preventDefault()
         alert("im here")
         const data ={
             mobile : this.state.mobile

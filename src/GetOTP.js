@@ -37,7 +37,7 @@ this.props.setOTPValue(value)
     render(){
         return( 
             <div className="mobile-verification ">
-                <form onSubmit={!this.props.requestedOTP && !this.props.isVerified? this.props.requestOTP : this.props.OTPverfication }>
+                <form >
                     <input  type="tel" class="form-control" 
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
@@ -55,14 +55,14 @@ this.props.setOTPValue(value)
                                     </div>
                                     
                                    <div className="col-5 d-flex align-item-center">
-                                   {!this.props.requestedOTP && <button type="submit">Get OTP</button>}
+                                   {!this.props.requestedOTP &&  <button type="submit" onClick={this.props.requestOTP}>Get OTP</button>}
                                     {this.props.requestedOTP && 
                                     <>
                                     {this.props.minutes == 0 && this.props.seconds==0 ?
                                     <button  onClick={ this.props.resendOTP }>Resend OTP</button>
                                     :
                                     <>
-                                    <button type="submit" >Verify { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }</button>
+                                    <button type="submit" onClick={this.props.OTPverfication }>Verify { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }</button>
                                     
                                     </>}
                                     </>}
