@@ -15,7 +15,7 @@ class SignUp extends Component{
         this.apiLink = 'https://49f2470565fa.ngrok.io/'
         this.state = {
             minutes: 0,
-            seconds: 40,
+            seconds: 60,
             mobile : "",
             OTP : "",
             requestedOTP : false,
@@ -98,6 +98,8 @@ class SignUp extends Component{
                 isVerified : false,
 
         })
+        sessionStorage.removeItem("token");
+        clearInterval(myInterval);
     }
 
 
@@ -107,13 +109,14 @@ class SignUp extends Component{
     }
 
 
-     requestOTP(event){
+    async requestOTP(event){
         event.preventDefault()
         this.setState({requestedOTP:true})
         const data = {
             mobile : this.state.mobile,
             roleId : 4,
         }
+        clearInterval(myInterval)
         myInterval =  setInterval(() => {
             const { seconds, minutes } = this.state
 
@@ -133,7 +136,7 @@ class SignUp extends Component{
                 }
             } 
         }, 1000)
-        axios.post(`${this.apiLink}auth/check_for_account`,data)
+        await axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
                 console.log(res.data.message)
                 this.setState({successMessage:res.data.message})
@@ -152,6 +155,7 @@ class SignUp extends Component{
             mobile : this.state.mobile,
             otp : this.state.OTP
         }
+        sessionStorage.removeItem("token")
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
@@ -173,18 +177,18 @@ class SignUp extends Component{
         const data ={
             mobile : this.state.mobile
         }
+        sessionStorage.removeItem("token")
         await axios.post(`${this.apiLink}auth/resend_otp`,data)
             .then(res => {
-                this.setState ({user_info:res.data})
-                sessionStorage.setItem('token',res.data.accessToken)
                 this.setState({successMessage:res.data.message})
             })
             .catch(function (error) {
                 // this.setState({errorMessage:error.response.data.message})
                 // this.setState({message:error.response.data.message})
             })
-         this.setState({seconds:40}) 
-         this.requestOTP(event)  
+         this.setState({seconds:60}) 
+         this.setState({isVerified:false})
+         this.OTPverfication(event) 
     }
 
     async addCustomer(event){
