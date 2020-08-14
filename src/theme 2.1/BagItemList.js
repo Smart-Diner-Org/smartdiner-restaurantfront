@@ -35,6 +35,7 @@ class BagItemList extends React.Component {
                             key={index}
                             quantity={item.quantity}
                             itemName={item.name}
+                            image={item.image}
                             price={item.price}
                             discount={item.discount}
                             discountPrice={item.discountPrice}
