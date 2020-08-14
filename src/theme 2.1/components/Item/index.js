@@ -53,14 +53,14 @@ class Item extends Component {
                                                 type="button" onClick={this.props.increasequantity}>+</button>
                                         </div>
                                     </div>
-                                    <ul className="rating">
+                                    {/* <ul className="rating">
                                         <li><i className="lni-star-filled"></i></li>
                                         <li><i className="lni-star-filled"></i></li>
                                         <li><i className="lni-star-filled"></i></li>
                                         <li><i className="lni-star-filled"></i></li>
                                         <li><i className="lni-star-filled"></i></li>
                          
-                                    </ul>
+                                    </ul> */}
                                     </div>
                                     </div>
                             </div>   

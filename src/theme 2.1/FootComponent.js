@@ -54,16 +54,16 @@ class FootComponent extends Component{
                                 <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
                                 <ul className="social text-right">
                                     {
-                                        this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`}><i className="lni-facebook-filled"></i></a></li>
+                                        this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
                                     }
                                     {
-                                        this.props.links.instagram_link && <li><a href={`${this.props.links.instagram_link }`}><i className="lni-instagram"></i></a></li>
+                                        this.props.links.instagram_link && <li><a href={`${this.props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
                                     }
                                     {
-                                        this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`}><i className="lni-twitter-original"></i></a></li>
+                                        this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
                                     }
                                     {
-                                        this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`}><i class="lni lni-youtube"></i></a></li>
+                                        this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
                                     }
                                     
                                  </ul>

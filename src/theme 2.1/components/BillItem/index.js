@@ -29,7 +29,7 @@ class BillItem extends Component {
                         <div className="row">
                             <div className="col-5 des">
                             <h4 className="itemname"  >{this.props.itemName}</h4>
-                            <h6 className="containment" >Containments</h6>
+                            {/* <h6 className="containment" >Containments</h6> */}
                             </div>
                             
                             <div class='col-3 price-display' style={{display:"flex",flexDirection:"column"}}>

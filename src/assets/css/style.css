@@ -944,7 +944,7 @@ p {
   max-width: 670px;
   margin-left: 125px;
   position: absolute;
-  z-index: 999;
+  z-index: 5;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {

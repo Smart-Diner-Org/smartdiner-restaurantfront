@@ -244,7 +244,7 @@ class SignUp extends Component{
             }})
             .then(res =>{
                 console.log(res.data)
-                window.open(res.data.paymentUrl, '_blank')
+                window.open(res.data.paymentUrl)
                 this.setState({successMessage:res.data.message})
 
             })
