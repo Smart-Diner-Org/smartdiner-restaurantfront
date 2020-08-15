@@ -62,10 +62,11 @@ class NewHome extends Component {
 
 async componentDidMount() {  //API call to get data from backend
     try{
-    //  /await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
-        await axios.get(`http://localhost:9000/before_login/restaurant/get_full_details`)
+    //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
+        await axios.get(`https://06de93a44b1a.ngrok.io/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
+        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
@@ -398,7 +399,7 @@ PAhandleChange = address => {
 
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider />
-         <Description />
+         <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}
@@ -406,11 +407,19 @@ PAhandleChange = address => {
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
          />
-         <About timings={this.state.restaurantBranch[0].timings} />
-         <MapLocation mapUrl={this.state.restaurantBranch[0].g_location} />
+         <About
+         about = {this.state.restaurant_info.about}
+          timings={this.state.restaurantBranch[0].timings} />
+         <MapLocation lat={this.state.restaurantBranch[0].lat} long={this.state.restaurantBranch[0].long} />
          <Contact  />
          <ScrollToTop />
-         <FootComponent links={this.state.restaurant_info.restaurant_detail} restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
+         <FootComponent 
+         links={this.state.restaurant_info.restaurant_detail} 
+         restaurantName={this.state.restaurant_info.name} 
+         address={this.state.restaurantBranch[0].address} 
+         email={this.state.restaurantBranch[0].email}
+         contact_number ={this.state.restaurantBranch[0].contact_number}
+         />
          </div>
          </div>
         </div>

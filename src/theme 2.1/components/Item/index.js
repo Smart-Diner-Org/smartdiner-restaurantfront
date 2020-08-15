@@ -30,7 +30,8 @@ class Item extends Component {
                                     </div>
                                 <div className="product-item-content mt-30">
                                         <h5 className="product-title"><a href="#">{this.props.itemName}</a></h5>
-                                        <p>Containments</p>
+                                        {/* <p>Containments</p> */}
+                                        <p>{this.props.description}</p>
                                         {this.props.discount>0?
                                         <>
                                         <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.props.regularPrice}</span>

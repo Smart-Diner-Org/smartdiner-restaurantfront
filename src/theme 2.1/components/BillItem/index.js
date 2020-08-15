@@ -24,7 +24,7 @@ class BillItem extends Component {
                                     <a href="#"><img src={BurgerImage} alt="Product"/> </a>
                                 }   
                         </div>
-                    </div>
+                    </div>{this.props.description}
                     <div className="col-9" >
                         <div className="row">
                             <label className="col-auto mr-auto" style={{color:"#e22a28"}}><i class="lni lni-dinner" ></i></label>
@@ -36,6 +36,8 @@ class BillItem extends Component {
                             <div className="col-5 des">
                             <h4 className="itemname"  >{this.props.itemName}</h4>
                             {/* <h6 className="containment" >Containments</h6> */}
+                            <h6 className="containment" >{this.props.description}</h6>
+
                             </div>
                             
                             <div class='col-3 price-display' style={{display:"flex",flexDirection:"column"}}>

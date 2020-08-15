@@ -33,6 +33,7 @@ class BagItemList extends React.Component {
                         if(item.quantity>=1)
                         return  <BillItem
                             key={index}
+                            description={item.description}
                             quantity={item.quantity}
                             itemName={item.name}
                             image={item.image}

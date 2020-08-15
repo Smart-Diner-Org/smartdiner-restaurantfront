@@ -5,6 +5,12 @@ import Food2 from './assets/images/food2.jpg'
 
 
 class About extends Component {
+    constructor(props){
+        super(props)
+        this.state= {
+            timings : this.props.timings.split(" ")
+        }
+    }
     render(){
         return(
             <section id="about" class="about-area pt-125 pb-130">
@@ -31,13 +37,13 @@ class About extends Component {
                             <div class="col-md-6 col-sm-8">
                                 <div class="about-content mt-20">
                                     <h5 class="title mb-10">About Us</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od
-                                        tempor.</p>
+                                        <p>{this.props.about}</p>
                                 </div>
 
                                 <div class="timing text-center mt-100">
                                     <div class="about-content mt-20">
-                                        <h5 class="title mb-10">{this.props.timings}</h5>
+                                        <h5 class="title mb-10">{this.state.timings[0]}{this.state.timings[2]}</h5>
+                                        <h5 class="title mb-10">{this.state.timings[3]}{this.state.timings[5]}</h5>
                             
                                     </div>
                                 </div> 

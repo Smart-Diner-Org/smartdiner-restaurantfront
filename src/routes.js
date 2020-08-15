@@ -24,7 +24,9 @@ export default (
         {/* <Route exact path="/" component={App} /> */}
         <UnProtectedRoute path="/oldsignup" component={Signup} />
         <UnProtectedRoute path="/signup" component={SignUp} />
-        <UnProtectedRoute path="/statuspage" component={StatusPage} />
+        {/* <UnProtectedRoute path="/before_login/order/:id/status" component={StatusPage} /> */}
+        <UnProtectedRoute path="/status" component={StatusPage} />
+
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
         <Route exact path="/" component={NewHome} />

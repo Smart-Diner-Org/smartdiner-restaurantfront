@@ -20,7 +20,7 @@ class FootComponent extends Component{
                                             <i class="lni-phone-handset"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>+91 9876543210</p>
+                                <p>{this.props.contact_number}</p>
                                         </div>
                                     </div> 
                                 </li>
@@ -30,7 +30,7 @@ class FootComponent extends Component{
                                             <i class="lni-envelope"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>contact@yourmail.com</p>
+        <p>{this.props.email}</p>
                                         </div>
                                     </div> 
                                 </li>

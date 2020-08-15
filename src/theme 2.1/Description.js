@@ -1,6 +1,18 @@
 import React from "react"
 
+let location;
 class Description extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            location : this.props.delivery_locations.split(",")
+        }
+    }
+    
+    // componentDidMount(){
+    //     location=this.props.delivery_locations.split(",")
+    // }
+
     render(){
         return(
             <section  class="about-area mt-50 pt-50 ">
@@ -13,10 +25,16 @@ class Description extends React.Component{
                     </div>
                     <div class="col-lg-6">
                         <ul className="d-flex justify-content-around ">
-                            <ol class="font-weight-bold"><i class="lni lni-map-marker mr-10 "></i>Location 1</ol>
-                            <ol class="font-weight-bold"><i class="lni lni-map-marker mr-10"></i>Location 2</ol>
-                            <ol class="font-weight-bold"><i class="lni lni-map-marker mr-10"></i>Location 3</ol>
-                            
+                            {
+                                this.state.location.map((item) => {
+                                    return(
+
+                                        <ol class="font-weight-bold"><i class="lni lni-map-marker mr-10 "></i>{item}</ol>  
+                                    )
+                                })
+
+                            } 
+                         
                         </ul>
                     </div>
                 </div>
