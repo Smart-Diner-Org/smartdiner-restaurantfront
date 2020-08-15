@@ -32,7 +32,7 @@ class HeadComponent extends Component {
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand d-inline-flex" href="index.html">
+                        <a class="navbar-brand d-inline-flex" href="./">
                             {
                                 this.props.logo?
                                 <>
@@ -41,7 +41,7 @@ class HeadComponent extends Component {
                                 :
                                 <img src={Logo} style={{width:"40px"}} alt="Logo"/>    
                             }
-                            <h3 className="pl-20">{this.props.restaurantName}</h3>
+                            <h4 className="pl-20">{this.props.restaurantName}</h4>
                         </a> 
                          
                         <button class="navbar-toggler" type="button" data-toggle="collapse"

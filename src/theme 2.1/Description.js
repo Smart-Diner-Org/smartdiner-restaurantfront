@@ -18,18 +18,18 @@ class Description extends React.Component{
             <section  class="about-area mt-50 pt-50 ">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="section-title">
                             <h5 class="mb-15">Our Delivey Locations</h5>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <ul className="d-flex justify-content-around ">
+                    <div class="col-lg-9">
+                        <ul className="row d-flex justify-content-around ">
                             {
                                 this.state.location.map((item) => {
                                     return(
 
-                                        <ol class="font-weight-bold"><i class="lni lni-map-marker mr-10 "></i>{item}</ol>  
+                                        <ol class="font-weight-bold col-lg-3 col-md-12 col-sm-12"><i class="lni lni-map-marker mr-10 "></i>{item}</ol>  
                                     )
                                 })
 

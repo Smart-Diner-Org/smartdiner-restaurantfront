@@ -13,7 +13,7 @@ sessionStorage.removeItem("token")
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://49f2470565fa.ngrok.io/'
+        this.apiLink = 'https://daf737ff788d.ngrok.io/'
         this.state = {
             minutes: 0,
             seconds: 60,
@@ -146,7 +146,7 @@ class SignUp extends Component{
             .catch(function (error) {
                 console.log(error)
                 // this.setState({message:error.response.data.message})
-                // this.setState({errorMessage:error.response.data.message})
+                // this.setState({errorMessage:error.response.data.message})/
             })
     }
 
@@ -175,7 +175,6 @@ class SignUp extends Component{
 
     async resendOTP(event){
         event.preventDefault()
-        alert("im here")
         const data ={
             mobile : this.state.mobile
         }

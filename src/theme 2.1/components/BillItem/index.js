@@ -13,9 +13,9 @@ class BillItem extends Component {
                 
                 <div class='container'>
                 
-                    <div className="row">
+                    <div className="row d-flex align-items-center">
                     <div className="col-3 p-0">
-                        <div style={{height:"100%",display:"flex",alignItems:"centre"}}>
+                        <div style={{height:"130px",width:"130px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
                                 {this.props.image?
                                     <>
                                     <a href="#"><img src={this.props.image} alt="Product"/> </a>
@@ -24,7 +24,7 @@ class BillItem extends Component {
                                     <a href="#"><img src={BurgerImage} alt="Product"/> </a>
                                 }   
                         </div>
-                    </div>{this.props.description}
+                    </div>
                     <div className="col-9" >
                         <div className="row">
                             <label className="col-auto mr-auto" style={{color:"#e22a28"}}><i class="lni lni-dinner" ></i></label>
@@ -32,7 +32,7 @@ class BillItem extends Component {
                                 <button className='cancelbutton' onClick={this.props.removeItem}>X</button>                            
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row mt-10 mb-10">
                             <div className="col-5 des">
                             <h4 className="itemname"  >{this.props.itemName}</h4>
                             {/* <h6 className="containment" >Containments</h6> */}

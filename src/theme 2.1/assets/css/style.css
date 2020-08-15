@@ -190,7 +190,7 @@ p {
   font-size: 18px;
   color: #000000;
   font-weight: 500;
-  padding-left: 110px;
+  padding-left: 60px;
 }
 
 .section-title h5::before {
@@ -198,7 +198,7 @@ p {
   content: '';
   top: 50%;
   left: 0;
-  width: 100px;
+  width: 50px;
   height: 1px;
   background-color: #000000;
   -webkit-transform: translateY(-50%);
@@ -486,7 +486,7 @@ p {
   visibility: hidden;
   width: 120px;
   background-color: white;
-  box-shadow: 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   color: black;
   text-align: center;
   border-radius: 6px;
@@ -534,7 +534,7 @@ p {
 .bag-component{
   position: absolute;
   width: auto;
-  height: auto;
+  height: 100%;
   right: 0;
   margin: auto;
   background-color: white;
@@ -589,24 +589,25 @@ p {
   margin: 5px;
   padding: 10px ;
   border: 1px solid #000466;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 .bag-item img{
-  width:134px;
-  height: auto;
-  border-radius: 8px;
+
+  height: 100%;
+ 
+  border-radius: 12px;
 }
 
 .des .itemname{
   color: #000466;
   font-family: "MuseoModerno";
-  font-size: 1.125em;
+  font-size: 1em;
 }
 .des .containment{
   color:#b1b1b1;
   font-family:"Lato";
-  font-size:"0.75em";
+  font-size: 0.75em;
 }
 
 .price-display{
@@ -760,7 +761,8 @@ p {
   text-align: right;
 }
 .total-amount span {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  padding-left: 5px;
   font-family: "MuseoModerno";
   
 }

@@ -9,7 +9,7 @@ class StatusPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            stage_id : 1,
+            stage_id : null,
             deliveryAddressOne : null,
             deliveryAddressTwo : null,
             flag1 : false,
@@ -22,23 +22,24 @@ class StatusPage extends React.Component{
     }
 
 
-    componentDidMount(){
-        // try {
-        //   setInterval(
-        //     await axios.get(`https://f65498dbd740.ngrok.i/before_login/order/id/status`)
-        //     .then(res => {
-        //       const data = res.data;
-        //       this.setState({
-        //         statge_id : data.statge_id,
-        //         deliveryAddressOne : data.deliveryAddressOne ,
-        //         deliveryAddressTwo : data.deliveryAddressTwo,
-        //           });     
+    async componentDidMount(){
+        try {
+          setInterval(
+            await axios.get(`https://daf737ff788d.ngrok.io/before_login/order/id/status`)
+            .then(res => {
+              const data = res.data;
+              console.log(data)
+              this.setState({
+                statge_id : data.statge_id,
+                deliveryAddressOne : data.deliveryAddressOne ,
+                deliveryAddressTwo : data.deliveryAddressTwo,
+                  });     
                  
-        //     }), 600000);
-        // } 
-        // catch(error){
-        //     console.log(error)
-        // }
+            }), 600000);
+        } 
+        catch(error){
+            console.log(error)
+        }
         
         
         if(this.state.stage_id===1 || this.state.stage_id===2){
@@ -214,14 +215,15 @@ class StatusPage extends React.Component{
                             <div class="col-6 d-flex flex-column justify-content-around">
                                 <h6>Delivery address:</h6>
                                 <p>name</p>
-                                <p>address line 1</p>
-                                <p>address line 2</p>
-                                <p>Pincode</p>
+                        <p>{this.state.deliveryAddressOne}</p>
+                        <p>{this.state.deliveryAddressTwo}</p>
+                                                <p>Pincode</p>
                             </div>
-                            <div class="location col-6 pt-10">
-                                <h6><i class="lni lni-phone"></i>9999999</h6><br/>
-                                <h6>lalla,lalalla</h6><br/>
-                                <h6>coimbatore</h6><br/>
+                            <div class="location col-6 pt-10 d-flex flex-column justify-content-around">
+                                <h6>Restaurant Contact details</h6>
+                                <p>9999999</p><br/>
+                                <p>lalla,lalalla</p><br/>
+                                <p>coimbatore</p><br/>
                             </div>
                         </div>
                     </div>

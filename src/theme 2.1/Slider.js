@@ -16,7 +16,7 @@ class Slider extends Component {
                             <div className="col-md-7">
                                 <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
                                     <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
-                                        Chinese Grill Kitchen</h1>
+                                    {this.props.restaurantName}</h1>
                                 </div> 
                             </div>
                             <div className="col-lg-12 col-md-5">
