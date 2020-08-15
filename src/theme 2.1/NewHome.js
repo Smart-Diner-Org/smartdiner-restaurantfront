@@ -191,8 +191,8 @@ checkDistance(){
                     latitude: position.coords.latitude,
                 longitude:position.coords.longitude},
                  {
-                    latitude: 12.988061,
-                    longitude: 77.576988
+                    latitude: Number(this.state.restaurantBranch[0].lat),
+                    longitude: Number(this.state.restaurantBranch[0].long)
                 },1)
             );
             let address;
@@ -264,8 +264,8 @@ PAhandleChange = address => {
                 latitude: latLng.lat ,
             longitude: latLng.lng},
              {
-                latitude: 12.988061,
-                longitude: 77.576988
+                latitude: Number(this.state.restaurantBranch[0].lat),
+                longitude: Number(this.state.restaurantBranch[0].long)
             },1))
             let flag;
             console.log(address)
