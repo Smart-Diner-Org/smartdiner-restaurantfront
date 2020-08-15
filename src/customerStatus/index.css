@@ -102,6 +102,10 @@
   background-color: black;
   position: relative !important;
 }
+.location h6{
+  color: white;
+  margin-bottom: 5px;
+}
 
 .restaurantImages img{
   border-radius: 8px;

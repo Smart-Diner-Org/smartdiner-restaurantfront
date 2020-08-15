@@ -5,6 +5,7 @@ import Payment from "./Payment";
 import GetAddress from "./GetAddress"
 import GetOTP from "./GetOTP"
 import axios from "axios"
+import Footer from './Footer'
 
 
 let myInterval;
@@ -281,8 +282,9 @@ class SignUp extends Component{
 
     render(){
         return(
+            <>
             <div className="signup ">
-                 <div className="container">
+                <div className="container">
                     <div className="header mt-30">
                         <h2>Customer Details</h2>
                         <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
@@ -333,8 +335,12 @@ class SignUp extends Component{
                         />
                         </div>
                     </div>
+               
                 </div>
+                
             </div>
+            <Footer />
+            </>
         )
     }
 

@@ -2,6 +2,7 @@ import React from "react"
 import "./index.css"
 import ChefImg from './chef.jpg'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 
 class StatusPage extends React.Component{
@@ -182,7 +183,9 @@ class StatusPage extends React.Component{
                     </div>
 
                     <div class="col-lg-6 col-sm-0 restaurantDetails">
+                        <Link to="/">
                         <h1 class="mb-5">A3 biriyani</h1>
+                        </Link>
                         <div class="restaurantImages">
                             <div class="row">
                                 <div class="col-3 d-flex flex-column justify-content-between">
@@ -215,7 +218,11 @@ class StatusPage extends React.Component{
                                 <p>address line 2</p>
                                 <p>Pincode</p>
                             </div>
-                            <div class="location col-6 d-flex justify-content-around align-items-center">Location</div>
+                            <div class="location col-6 pt-10">
+                                <h6><i class="lni lni-phone"></i>9999999</h6><br/>
+                                <h6>lalla,lalalla</h6><br/>
+                                <h6>coimbatore</h6><br/>
+                            </div>
                         </div>
                     </div>
                 </div>
