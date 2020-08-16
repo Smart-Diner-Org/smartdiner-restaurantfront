@@ -238,7 +238,7 @@ checkDistance(){
             },
 
         () => {
-            alert('Position could not be determined.');
+            alert('Please allow location access to determine your location');
         }
     );
     

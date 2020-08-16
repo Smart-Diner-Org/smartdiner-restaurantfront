@@ -8,7 +8,7 @@ class MapLocation extends Component{
     { 
         // this.getLocation()
         return(
-            <section id="location" class="pt-125 pb-130">
+            <section id="location" class="pt-100 pb-100">
             <div className="container" >
                 <div className="google-map ">
                     <Map google={this.props.google} zoom={15} initialCenter={{ lat: this.props.lat, lng: this.props.long}}>

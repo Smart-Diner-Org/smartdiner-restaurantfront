@@ -17,7 +17,7 @@ render(){
                         <button className="bag-close" onClick={this.props.closePopup}>X</button>
                         </div>
                         <div className="col-auto" >
-                            <a href="#" className="mt-10" onClick={this.props.editlocation}>{sessionStorage.getItem('address')}</a>
+                            <a href="#" className="mt-10" onClick={this.props.editlocation}>{sessionStorage.getItem('address').split(",")[0]}</a>
                         
                         </div>
                     </div>

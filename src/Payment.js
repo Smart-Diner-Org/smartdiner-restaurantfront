@@ -14,7 +14,7 @@ class Payment extends React.Component{
                         <li><button>Cash</button></li>
                     </ul>
                     <div className="mt-30 d-flex justify-content-end" style={{width:"100%"}}>
-                    <button className="proceed" onClick={this.props.goPayment} >Proceed</button>
+                    <button className="proceed" onClick={this.props.canProcced && this.props.goPayment} >Proceed</button>
                 </div>
                 </div>
                 
