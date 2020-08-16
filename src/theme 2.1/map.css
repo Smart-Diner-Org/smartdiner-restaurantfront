@@ -74,6 +74,8 @@ box-shadow: 1px 1px 20px #333;
     border-radius: 4px;
     /* margin-bottom: 10px; */
     padding: 10px;
+    transition: none;
+    transition-property: none;
 
 }
 
@@ -88,6 +90,7 @@ box-shadow: 1px 1px 20px #333;
     width: 100%;
     padding: 10px;
     z-index: 2;
+    transition: none;
 
 }
 

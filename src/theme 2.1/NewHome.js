@@ -63,10 +63,10 @@ class NewHome extends Component {
 async componentDidMount() {  //API call to get data from backend
     try{
     //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
-        await axios.get(`https://daf737ff788d.ngrok.io/before_login/restaurant/get_full_details`)
+        await axios.get(`https://dee890a08845.ngrok.io/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
+        // console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,

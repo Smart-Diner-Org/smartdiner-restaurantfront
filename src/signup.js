@@ -13,7 +13,7 @@ sessionStorage.removeItem("token")
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://daf737ff788d.ngrok.io/'
+        this.apiLink = 'https://dee890a08845.ngrok.io/'
         this.state = {
             minutes: 0,
             seconds: 60,
