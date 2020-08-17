@@ -63,7 +63,7 @@ class NewHome extends Component {
 async componentDidMount() {  //API call to get data from backend
     try{
     //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
-        await axios.get(`https://dee890a08845.ngrok.io/before_login/restaurant/get_full_details`)
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
         // console.log(data)
@@ -346,6 +346,7 @@ PAhandleChange = address => {
 
   render() {
     const { isLoaded } = this.state;
+    // console.log(process.env.REACT_APP_BASE_URL)
     if (!isLoaded) {
       return (
         <div>  

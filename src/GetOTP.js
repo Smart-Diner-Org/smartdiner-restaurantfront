@@ -37,7 +37,7 @@ this.props.setOTPValue(value)
     render(){
         return( 
             <div className="mobile-verification ">
-                <form >
+                <form>
                     <input  type="tel" class="form-control" 
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
@@ -68,15 +68,17 @@ this.props.setOTPValue(value)
                                     </>}
 
                                    </div>
-                                    </div> }
+                                  
+                                    <div className="container mt-20 ">
+                                        {this.props.errorMessage ?
+                                        <small className="row message ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
+                                        :
+                                        <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
+                                    </div>
+                                </div>}
                                 
                                 
                 </form>
-                <div className="container mt-20 ">
-                                <small className="row message ml-5" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
-                             <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>
-                                </div>
-                        
                         
                     </div>
                 

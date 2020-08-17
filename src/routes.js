@@ -15,6 +15,8 @@ import NewHome from './theme 2.1/NewHome'
 import SignUp from './signup'
 import StatusPage from './customerStatus/StatusPage'
 
+
+
 // const authenticated = true;
 export default (  
   <Router>
@@ -23,6 +25,7 @@ export default (
 
         {/* <Route exact path="/" component={App} /> */}
         <UnProtectedRoute path="/oldsignup" component={Signup} />
+    
         <UnProtectedRoute path="/signup" component={SignUp} />
         <UnProtectedRoute path="/order/:id/status" component={StatusPage} />
         {/* <UnProtectedRoute path="/status" component={StatusPage} /> */}

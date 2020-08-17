@@ -10,7 +10,7 @@ class StatusPage extends React.Component{
         super(props);
         this.state = {
             
-            data : null,
+            data : {},
             flag1 : false,
             flag2 : false,
             flag3 : false,
@@ -23,36 +23,37 @@ class StatusPage extends React.Component{
 
     async componentDidMount(){
         try {
-          setInterval(
-            await axios.get(`https://dee890a08845.ngrok.io/before_login/order/id/status`)
+            let id = this.props.match.params;
+            id = (id.id.split("=")[1])
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
-              console.log(data)
+              let i=0
+              console.log(i++)
               this.setState({
                 data : data,
                   });     
-                 
-            }), 600000);
+            });
         } 
         catch(error){
-            console.log(error)
+            alert("Failed to fetch information from server")
         }
         
         
-        if(this.state.datat.stage_id===1 || this.state.data.stage_id===2){
+        if(this.state.data.stage_id==1 || this.state.data.stage_id==2){
             this.setState({
                 flag1 : true,
                 progress : "25%"
             })
         }
-        else if(this.state.data.stage_id===3 || this.state.data.stage_id===4){
+        else if(this.state.data.stage_id==3 || this.state.data.stage_id==4){
             this.setState({
                 flag1 : true,
                 flag2 : true,
                 progress : "50%"
             })
         }
-        else if(this.state.data.stage_id===5 || this.state.data.stage_id===6){
+        else if(this.state.data.stage_id==5 || this.state.data.stage_id==6){
             this.setState({
                 flag1 : true,
                 flag2 : true,
@@ -60,7 +61,7 @@ class StatusPage extends React.Component{
                 progress : "75%"
             })
         }
-        else if(this.state.data.stage_id===7 || this.state.data.stage_id===8){
+        else if(this.state.data.stage_id==7 || this.state.data.stage_id==8){
             this.setState({
                 flag1 : true,
                 flag2 : true,
@@ -75,7 +76,7 @@ class StatusPage extends React.Component{
 
 
     render(){
-        // this.check()
+    
         return(
             <div>
             <div className="container customerStatusContainer">
@@ -92,7 +93,7 @@ class StatusPage extends React.Component{
                         </div>
                         <div className="col-6 d-flex justify-content-end">
                             <div className="priceBg">
-                                <h1 className="price">{this.state.data.totalAmount}</h1>
+                                <h1 className="price">Rs. {this.state.data.totalAmount}</h1>
                             </div>
                         </div>
                     </div>
@@ -182,7 +183,7 @@ class StatusPage extends React.Component{
 
                     <div className="col-lg-6 col-sm-0 restaurantDetails">
                         <Link to="/">
-        <h1 className="mb-5">{this.state.data.resturantName}</h1>
+        <h1 className="mb-5">{this.state.data.restuarantName}</h1>
                         </Link>
                         <div className="restaurantImages">
                             <div className="row">
@@ -211,16 +212,16 @@ class StatusPage extends React.Component{
                         <div className="address row mt-5 ">
                             <div className="col-6 d-flex flex-column justify-content-around">
                                 <h6>Delivery address:</h6>
-        <p>{this.state.data.name}</p>
-                        <p>{this.state.deliveryAddressOne}</p>
-                        <p>{this.state.deliveryAddressTwo}</p>
+        <p>{this.state.data.name}</p> 
+                        <p>{this.state.data.deliveryAddressOne}</p>
+                        <p>{this.state.data.deliveryAddressTwo}</p>
                                                 {/* <p>Pincode</p> */}
                             </div>
                             <div className="location col-6 pt-10 d-flex flex-column justify-content-around">
                                 <h6>Restaurant Contact details</h6>
-        <p>{this.state.data.resturantContactNumber}</p><br/>
-                                <p>{this.state.data.resturantEmailID}</p><br/>
-        <p>{this.state.data.resturantAddress}</p><br/>
+         <p>{this.state.data.restaurantContactNumber}</p><br/>
+                                <p>{this.state.data.restuarantEmailId}</p><br/>
+        <p>{this.state.data.restuarantAddress}</p><br/>
                             </div>
                         </div>
                     </div>
