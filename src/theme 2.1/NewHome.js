@@ -78,7 +78,8 @@ async componentDidMount() {  //API call to get data from backend
                 this.setState({
                     items : JSON.parse(sessionStorage.getItem("items")),
                     boundary : Boolean(sessionStorage.getItem("boundary")),
-                    total : sessionStorage.getItem('total')
+                    total : sessionStorage.getItem('total'),
+                    showPopup : false
                 })
                 console.log(this.state.items)
             }
