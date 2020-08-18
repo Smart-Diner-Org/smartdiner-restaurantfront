@@ -30,7 +30,7 @@ class FootComponent extends Component{
                                             <i class="lni-envelope"></i>
                                         </div>
                                         <div class="info-content">
-        <p>{this.props.email}</p>
+                                            <p>{this.props.email}</p>
                                         </div>
                                     </div> 
                                 </li>
@@ -47,12 +47,34 @@ class FootComponent extends Component{
                             </ul>
                         </div> 
                     </div>
+                    <div className="col-lg-6 d-flex justify-content-end pt-25 align-items-center" >
+                        <div className ="d-flex-column">
+                                <h6 style={{color: 'white'}}>SOCIAL MEDIA</h6>
+                                <ul className="social text-right mt-10">
+                                                {
+                                                    this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
+                                                }
+                                                {
+                                                    this.props.links.instagram_link && <li><a href={`${this.props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
+                                                }
+                                                {
+                                                    this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
+                                                }
+                                                {
+                                                    this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
+                                                }
+                                                
+                                            </ul>
+
+                        </div>
+                        
+                    </div>
                     </div>
                     <div className="row">
                     <div class="col-lg-12 mt-30">
                             <div  style={{width: '100%', display: 'flex',justifycontent: 'space-between'}}>
                                 <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
-                                <ul className="social text-right">
+                                {/* <ul className="social text-right">
                                     {
                                         this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
                                     }
@@ -66,7 +88,7 @@ class FootComponent extends Component{
                                         this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
                                     }
                                     
-                                 </ul>
+                                 </ul> */}
                             </div> 
                         </div>
                     </div>

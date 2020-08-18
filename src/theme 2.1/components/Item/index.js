@@ -42,7 +42,7 @@ class Item extends Component {
                                         <span style={{color:"#000000"}}>Rs.{this.props.regularPrice}</span>
                                     }
                                         
-                                    <div className="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px"}}>
+                                    <div className="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px",maxWidth:"112px"}}>
                                         <div className="input-group-prepend" >
                                             <button className="button-round" style={{borderLeft:"0px"}}
                                                 type="button" onClick={this.props.decreasequantity}>−</button>

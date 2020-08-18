@@ -39,8 +39,8 @@ class NewHome extends Component {
         long : '',
         showPopup: true,
         togglePopup : false,
-        refpostcode : [641012 , 641402, 641401, 641044],
-        refregion : ['gandhipuram', 'sulur','kanagaiyampalayam', 'sidhapudur']
+        refpostcode : "",
+        refregion : null,
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -63,15 +63,19 @@ class NewHome extends Component {
 async componentDidMount() {  //API call to get data from backend
     try{
     //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
-        await axios.get(`https://daf737ff788d.ngrok.io/before_login/restaurant/get_full_details`)
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
         console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
+             refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
+             refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
             });     
+
+            console.log(this.state.refregion)
            
       })
     }catch(error){
@@ -216,11 +220,7 @@ checkDistance(){
                     break
                 }
               }
-                // if(address.formatted_address.includes(this.state.refregion)){
-                //     flag=true
-                //     console.log('im here')
-                //     break
-                // }
+               
             }
                 if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
@@ -238,7 +238,7 @@ checkDistance(){
             },
 
         () => {
-            alert('Position could not be determined.');
+            alert('Please allow location access to determine your location');
         }
     );
     
@@ -346,6 +346,7 @@ PAhandleChange = address => {
 
   render() {
     const { isLoaded } = this.state;
+    // console.log(process.env.REACT_APP_BASE_URL)
     if (!isLoaded) {
       return (
         <div>  

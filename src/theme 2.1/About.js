@@ -13,7 +13,7 @@ class About extends Component {
     }
     render(){
         return(
-            <section id="about" class="about-area pt-125 pb-130">
+            <section id="about" class="about-area pt-100 pb-60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">

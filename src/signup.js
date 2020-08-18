@@ -13,7 +13,7 @@ sessionStorage.removeItem("token")
 class SignUp extends Component{
     constructor(props){
         super();
-        this.apiLink = 'https://daf737ff788d.ngrok.io/'
+        this.apiLink = `${process.env.REACT_APP_BASE_URL}/`
         this.state = {
             minutes: 0,
             seconds: 60,
@@ -52,9 +52,10 @@ class SignUp extends Component{
                 updatedAt: null,
                 uuid: null,}},
             successMessage: "",
-            errorMessage: '',
+            errorMessage: "",
             addressTwo : sessionStorage.getItem('address'),
             addressOne: "",
+            canProceed: false,
         }
         this.handleChange = this.handleChange.bind(this)
         this.MhandleChange = this.MhandleChange.bind(this)
@@ -65,7 +66,6 @@ class SignUp extends Component{
         this.addCustomer = this.addCustomer.bind(this);
         this.goPayment = this.goPayment.bind(this)
         this.editbtn = this.editbtn.bind(this)
-
     }
     handleChange(event) {
         const {name, value} = event.target
@@ -98,6 +98,7 @@ class SignUp extends Component{
                 requestedOTP : false,
                 isVerified : false,
                 seconds : 60, 
+                canProceed: false,
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -143,10 +144,10 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
                 
             })
-            .catch(function (error) {
-                console.log(error)
-                // this.setState({message:error.response.data.message})
-                // this.setState({errorMessage:error.response.data.message})/
+            .catch( (error) => {
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
             })
     }
 
@@ -156,7 +157,6 @@ class SignUp extends Component{
             mobile : this.state.mobile,
             otp : this.state.OTP
         }
-        sessionStorage.removeItem("token")
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
@@ -164,8 +164,12 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
                 this.setState({isVerified:true})
                 clearInterval(myInterval)
+                this.state.user_info.customer_detail && this.setState({canProceed: true})
             })
-            .catch(function (error) {
+            .catch( (error) => {
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
                 // this.setState({errorMessage:error.response.data.message})
     
         
@@ -183,9 +187,10 @@ class SignUp extends Component{
             .then(res => {
                 this.setState({successMessage:res.data.message})
             })
-            .catch(function (error) {
-                // this.setState({errorMessage:error.response.data.message})
-                // this.setState({message:error.response.data.message})
+            .catch( (error) => {
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
             })
          this.setState({seconds:60}) 
          this.setState({isVerified:false})
@@ -212,13 +217,15 @@ class SignUp extends Component{
                 // this.setState({message:res.data.message})
 
                 this.setState({user_info:res.data})
+                this.setState({canProceed: true})
                 console.log(this.state.user_info)
                 this.setState({successMessage:res.data.message})
 
             })
-            .catch(function (error) {
-                // this.setState({errorMessage:error.response.data.message})
-                // this.setState({message:error.response.data.message})
+            .catch( (error) => {
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
             })
 
 
@@ -254,9 +261,10 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
 
             })
-            .catch(function (error) {
-                // this.setState({errorMessage:error.response.data.message})
-                // this.setState({message:error.response.data.message})
+            .catch( (error) => {
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
             })
     }
     
@@ -277,6 +285,7 @@ class SignUp extends Component{
         role_id: null,
         updatedAt: this.state.user_info.updatedAt,
         uuid: null,}}})
+        this.setState({canProceed: false})
  }
 
     render(){
@@ -331,6 +340,7 @@ class SignUp extends Component{
                         goPayment = {this.goPayment}
                         successMessage={this.state.successMessage}
                         errorMessage = {this.state.errorMessage}
+                        canProceed = {this.state.canProceed}
                         />
                         </div>
                     </div>

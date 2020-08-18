@@ -21,12 +21,10 @@ class LocationSearchInput extends React.Component {
               {...getInputProps({
                 className: 'location-search-input',
               })}
-              // defaultValue={this.props.address}
-              // onChange={this.props.PAhandleChange}
-              // placeholder={localStorage.getItem('address')}
               placeholder= "Enter your location"
+
             />
-            <div className="autocomplete-dropdown-container">
+            <div className="autocomplete-dropdown-container" >
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
@@ -34,10 +32,10 @@ class LocationSearchInput extends React.Component {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { color:"#000466" , cursor: 'pointer' , fontSize:"0.8em" }
+                  ? { color:"#000466" , cursor: 'pointer' , fontSize:"0.8em",  }
                   : { backgroundColor: '#ffffff', cursor: 'pointer', fontSize:"0.8em" };
                 return (
-                  <div
+                  <div aria-expanded="false"
                     {...getSuggestionItemProps(suggestion, {
                       className,
                       style,

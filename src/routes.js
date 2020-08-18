@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import React from 'react';
+// import { Redirect } from 'react-router';
 // import { Route, IndexRoute } from 'react-router';
 // import { sessionService } from 'redux-react-session';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import App from './App';
+// import App from './App';
 import Signup from './old_signup'  ;
-import Login from './login';
+// import Login from './login';
 import Home from './home';
 import Logout from './logout';
 import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
-import userProfile from './helpers/userProfile';
+// import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
 import SignUp from './signup'
 import StatusPage from './customerStatus/StatusPage'
 import LoanBalancerTest from './loanBalancerTest'
 
-const authenticated = true;
+
+
+// const authenticated = true;
 export default (  
   <Router>
     <Switch>
@@ -24,8 +26,9 @@ export default (
 
         {/* <Route exact path="/" component={App} /> */}
         <UnProtectedRoute path="/oldsignup" component={Signup} />
+    
         <UnProtectedRoute path="/signup" component={SignUp} />
-        <UnProtectedRoute path="/before_login/order/:id/status" component={StatusPage} />
+        <UnProtectedRoute path="/order/:id/status" component={StatusPage} />
         {/* <UnProtectedRoute path="/status" component={StatusPage} /> */}
 
         <ProtectedRoute path='/home' component={Home} />
