@@ -11,7 +11,7 @@ class Product extends Component{
 
     render(){
         return(
-            <section id="product" className="product-area pt-100 pb-130">
+            <section id="product" className="product-area pt-100 ">
             
                 <div className="container">
                 <div className="row " >

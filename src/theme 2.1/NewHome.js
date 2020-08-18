@@ -216,11 +216,7 @@ checkDistance(){
                     break
                 }
               }
-                // if(address.formatted_address.includes(this.state.refregion)){
-                //     flag=true
-                //     console.log('im here')
-                //     break
-                // }
+               
             }
                 if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
