@@ -24,7 +24,6 @@ class LocationSearchInput extends React.Component {
               placeholder= "Enter your location"
 
             />
-            {console.log(this.props.address)}
             <div className="autocomplete-dropdown-container" >
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {

@@ -36,12 +36,12 @@ class HeadComponent extends Component {
                             {
                                 this.props.logo?
                                 <>
-                                <img src={this.props.logo} style={{width:"40px"}} alt="Logo"/>
+                                <img src={this.props.logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>
                                 </>
                                 :
-                                <img src={Logo} style={{width:"40px"}} alt="Logo"/>    
+                                <img src={Logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>    
                             }
-                            <h4 className="pl-20">{this.props.restaurantName}</h4>
+                            <h4 className="pl-20 d-flex align-items-center">{this.props.restaurantName}</h4>
                         </a> 
                          
                         <button className="navbar-toggler" type="button" data-toggle="collapse"

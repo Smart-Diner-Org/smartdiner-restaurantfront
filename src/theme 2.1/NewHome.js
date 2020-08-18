@@ -39,8 +39,8 @@ class NewHome extends Component {
         long : '',
         showPopup: true,
         togglePopup : false,
-        refpostcode : [641012 , 641402, 641401, 641044],
-        refregion : ['gandhipuram', 'sulur','kanagaiyampalayam', 'sidhapudur']
+        refpostcode : "",
+        refregion : null,
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -66,12 +66,16 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        // console.log(data)
+        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
+             refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
+             refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
             });     
+
+            console.log(this.state.refregion)
            
       })
     }catch(error){

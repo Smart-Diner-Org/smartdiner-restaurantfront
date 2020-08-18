@@ -15,7 +15,7 @@ class BillItem extends Component {
                 
                     <div className="row d-flex align-items-center">
                     <div className="col-3 p-0">
-                        <div style={{height:"130px",width:"130px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
+                        <div style={{height:"100%",width:"100%",maxHeight:"100px",maxWidth:"100px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
                                 {this.props.image?
                                     <>
                                     <a href="#"><img src={this.props.image} alt="Product"/> </a>
@@ -56,9 +56,9 @@ class BillItem extends Component {
                                         </div>
                                         <div className="col-4 ">
                                             <div className="quantity">
-                                <button name='sub' onClick={this.props.decreasequantity}>-</button>
+                                <button name='sub' className="d-flex  " onClick={this.props.decreasequantity}>-</button>
                                     <label >{this.props.quantity}</label>
-                                <button name='add' onClick={this.props.increasequantity}>+</button>
+                                <button name='add' className="d-flex  " onClick={this.props.increasequantity}>+</button>
                                 </div>
                             </div>
                         </div>
