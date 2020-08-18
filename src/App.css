@@ -32,6 +32,7 @@ border-radius: 8px;
 font-size: 0.9em;
 width:100%;
 font-family: "Lato";
+max-width: 120px;
 
 }
 
@@ -107,21 +108,22 @@ font-family: "Lato";
   border: none;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
   padding: 20px;
-  
   color: #000466;
   line-height: 0.7em;
   border: none;
+  transition: box-shadow 0.4s ease-out;
+  -webkit-transition: box-shadow 0.4s ease-out;
+  -moz-transition: box-shadow 0.4s ease-out;
+  -ms-transition: box-shadow 0.4s ease-out;
+  -o-transition: box-shadow 0.4s ease-out;
 }
 
 .address:hover{
-  box-shadow: none;
+  box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
   cursor: hand;
    cursor: pointer;
 }
 
-address:active{
-  border: 2px solid #FFC009
-}
 
 
 
@@ -193,12 +195,13 @@ address:active{
   font-size: 1.3em;
 }
 
+
 .payment-method img{
   margin : 0px 5px;
   height: 30px;
 }
 
-@media screen and (max-width:50em){
+@media screen and (max-width:65em){
   
   .signup{
     padding: 30px;
@@ -211,6 +214,10 @@ address:active{
   .customer-details-form{
     width: 100%;
     min-width: 250px;
+  }
+
+  .signup{
+    position: relative;
   }
   
 }
