@@ -1,4 +1,18 @@
 import React from "react"
+import BHIM from './assets/images/bhim.svg' 
+import Gpay from './assets/images/google-pay.svg'
+import paytm from './assets/images/paytm.svg'
+import phonepe from './assets/images/phonepe.svg'
+import master from './assets/images/025-mastercard.svg'
+import visa from './assets/images/visa.svg'
+import rupay from './assets/images/hiclipart.com.png'
+import jio from './assets/images/jiomoney.png'
+import ola from './assets/images/ola money icon.png'
+import freeRe from  './assets/images/searchpng.com-freecharge-icon-png-image-free-download.png'
+import mobwik from  './assets/images/searchpng.com-mobikwik-logo-icon-png-images-free-download.png'
+
+
+
 
 
 class Payment extends React.Component{
@@ -7,11 +21,34 @@ class Payment extends React.Component{
             <div className="payment-method mt-30">
                 <div className="row">
                     <ul style={{width:"100%"}}>
-                        <li><button>Gpay</button></li>
-                        <li><button>PhonePe</button></li>
-                        <li><button>BHIM</button></li>
-                        <li><button>PayTM</button></li>
-                        <li><button>Cash</button></li>
+                        <li><button className="d-flex align-item-center">UPI Wallets
+                                <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                                <img src={BHIM} alt=""></img>
+                                <img src={Gpay} alt=""></img>
+                                <img src={paytm} alt=""></img>
+                                <img src={phonepe} alt=""></img>
+                                </div>
+                            </button>
+                        </li>
+                        <li><button className="d-flex align-item-center">Credit Card
+                                
+                                </button></li>
+                        <li><button className="d-flex align-item-center">Debit card
+                        <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                        <img src={master} alt=""></img>
+                                <img src={visa} alt=""></img>
+                                <img src={rupay} alt=""></img></div>
+                                </button></li>
+                        <li><button className="d-flex align-item-center">Net Banking</button></li>
+                        <li><button className="d-flex align-item-center">Other Wallets
+                        <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                                <img src={jio} alt=""></img>
+                                <img src={ola} alt=""></img>
+                                <img src={mobwik} alt=""></img>
+                                <img src={freeRe} alt=""></img>
+                            
+                            </div>
+                            </button></li>
                     </ul>
                     <div className="mt-30 d-flex justify-content-end" style={{width:"100%"}}>
                     <button className="proceed" onClick={this.props.canProcced && this.props.goPayment} >Proceed</button>

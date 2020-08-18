@@ -1,5 +1,5 @@
 import React from "react"
-import LogoImg from "./SmartDiner_logo.png"
+import LogoImg from "./assets/images/SmartDiner_logo.png"
 
 
 
