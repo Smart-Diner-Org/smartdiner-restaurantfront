@@ -77,7 +77,8 @@ async componentDidMount() {  //API call to get data from backend
             if(sessionStorage.getItem("items")){
                 this.setState({
                     items : JSON.parse(sessionStorage.getItem("items")),
-                    boundary : Boolean(sessionStorage.getItem("boundary"))
+                    boundary : Boolean(sessionStorage.getItem("boundary")),
+                    total : sessionStorage.getItem('total')
                 })
                 console.log(this.state.items)
             }
@@ -126,6 +127,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
                 noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
             sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+            sessionStorage.setItem('total',noOfSelectedItems)
         
             return {
                 quantity: newItemsStateArray,
@@ -141,6 +143,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
 
         }
         sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+        sessionStorage.setItem('total',noOfSelectedItems)
         return {
             items: newItemsStateArray,
             total:noOfSelectedItems
