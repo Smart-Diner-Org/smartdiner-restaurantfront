@@ -98,7 +98,7 @@ class SignUp extends Component{
                 requestedOTP : false,
                 isVerified : false,
                 seconds : 60, 
-                canProceed: false,
+
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -255,6 +255,7 @@ class SignUp extends Component{
             }})
             .then(res =>{
                 console.log(res.data)
+                sessionStorage.clear()
                 window.open(res.data.paymentUrl,"_self")
                 this.setState({successMessage:res.data.message})
 
