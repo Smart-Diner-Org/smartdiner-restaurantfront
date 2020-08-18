@@ -6,6 +6,7 @@ import GetAddress from "./GetAddress"
 import GetOTP from "./GetOTP"
 import axios from "axios"
 import Footer from './Footer'
+import {Link} from 'react-router-dom'
 
 
 let myInterval;
@@ -294,6 +295,9 @@ class SignUp extends Component{
             <div className="signup ">
                 <div className="container">
                     <div className="header mt-30">
+                        <Link to="/">
+                            <button>Go Back to menu</button>
+                        </Link>
                         <h2>Customer Details</h2>
                         <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
                     </div>

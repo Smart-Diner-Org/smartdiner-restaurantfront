@@ -74,8 +74,14 @@ async componentDidMount() {  //API call to get data from backend
              refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
             });     
-
-            console.log(this.state.refregion)
+            if(sessionStorage.getItem("items")){
+                this.setState({
+                    items : JSON.parse(sessionStorage.getItem("items")),
+                    boundary : Boolean(sessionStorage.getItem("boundary"))
+                })
+                console.log(this.state.items)
+            }
+           
            
       })
     }catch(error){
@@ -120,6 +126,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
                 noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
             sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+        
             return {
                 quantity: newItemsStateArray,
                 total:noOfSelectedItems
@@ -225,6 +232,7 @@ checkDistance(){
                 if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
                     this.setState({boundary:true})
+                    sessionStorage.setItem("boundary",true)
                 }else{
                     alert("Sorry for our Incovenience.... You're out of our boundary")
                     this.setState({boundary:false})
@@ -292,6 +300,7 @@ PAhandleChange = address => {
             if(distance<=999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})
+                sessionStorage.setItem("boundary",true)
             }else{
                 alert("Sorry for our Incovenience.... You're out of our boundary")
                 this.setState({boundary:false})
