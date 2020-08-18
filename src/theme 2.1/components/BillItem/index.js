@@ -56,9 +56,9 @@ class BillItem extends Component {
                                         </div>
                                         <div className="col-4 ">
                                             <div className="quantity">
-                                <button name='sub' className="d-flex  " onClick={this.props.decreasequantity}>-</button>
+                                <button name='sub' className="d-flex justify-content-center " onClick={this.props.decreasequantity}>-</button>
                                     <label >{this.props.quantity}</label>
-                                <button name='add' className="d-flex  " onClick={this.props.increasequantity}>+</button>
+                                <button name='add' className="d-flex justify-content-center" onClick={this.props.increasequantity}>+</button>
                                 </div>
                             </div>
                         </div>

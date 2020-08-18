@@ -49,7 +49,7 @@ class FootComponent extends Component{
                     </div>
                     <div className="col-lg-6 d-flex justify-content-end pt-25 align-items-center" >
                         <div className ="d-flex-column">
-                                <h6 style={{color: 'white'}}>Social Media</h6>
+                                <h6 style={{color: 'white'}}>SOCIAL MEDIA</h6>
                                 <ul className="social text-right mt-10">
                                                 {
                                                     this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
