@@ -14,6 +14,7 @@ import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
 import SignUp from './signup'
 import StatusPage from './customerStatus/StatusPage'
+import LoanBalancerTest from './loanBalancerTest'
 
 const authenticated = true;
 export default (  
@@ -31,6 +32,8 @@ export default (
         <Route path="/logout" component={Logout} />
         <Route exact path="/" component={NewHome} />
 
+        <Route exact path="/loadbalancerTest" component={LoanBalancerTest} status={200}/>
+        /* Please do not remove the above route. This is for AWS loan balancing*/
     </div>
     </Switch>
   </Router>
