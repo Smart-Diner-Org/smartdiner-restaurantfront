@@ -194,6 +194,7 @@ max-width: 120px;
   background-color: #000466;
   border: 1px solid #000466;
   font-size: 1.3em;
+  pointer-events: all;
   
 }
 

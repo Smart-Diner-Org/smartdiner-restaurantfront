@@ -9,6 +9,7 @@ import Footer from './Footer'
 import {Link} from 'react-router-dom'
 
 
+
 let myInterval;
 sessionStorage.removeItem("token")
 class SignUp extends Component{
@@ -67,6 +68,7 @@ class SignUp extends Component{
         this.goPayment = this.goPayment.bind(this)
         this.editbtn = this.editbtn.bind(this)
     }
+
     handleChange(event) {
         const {name, value} = event.target
         this.setState({
@@ -254,9 +256,10 @@ class SignUp extends Component{
               'x-access-token': `${sessionStorage.getItem('token')}` 
             }})
             .then(res =>{
-                console.log(res.data)
                 sessionStorage.clear()
+                window.history.replaceState(null, '', '/');
                 window.open(res.data.paymentUrl,"_self")
+                
                 this.setState({successMessage:res.data.message})
 
             })
@@ -287,8 +290,10 @@ class SignUp extends Component{
  }
 
     render(){
+       
         return(
             <>
+            {}
             <div className="signup ">
                 <div className="container">
                     <div className="header mt-30">
