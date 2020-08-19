@@ -36,7 +36,6 @@ export default (
         <Route exact path="/" component={NewHome} />
 
         <Route exact path="/loadbalancerTest" component={LoanBalancerTest} status={200}/>
-        /* Please do not remove the above route. This is for AWS loan balancing*/
     </div>
     </Switch>
   </Router>
