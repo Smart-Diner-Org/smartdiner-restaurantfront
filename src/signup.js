@@ -55,7 +55,6 @@ class SignUp extends Component{
             errorMessage: "",
             addressTwo : sessionStorage.getItem('address'),
             addressOne: "",
-            canProceed: false,
         }
         this.handleChange = this.handleChange.bind(this)
         this.MhandleChange = this.MhandleChange.bind(this)
@@ -164,7 +163,6 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
                 this.setState({isVerified:true})
                 clearInterval(myInterval)
-                this.state.user_info.customer_detail && this.setState({canProceed: true})
             })
             .catch( (error) => {
                 let er = error.response.data.message
@@ -217,7 +215,6 @@ class SignUp extends Component{
                 // this.setState({message:res.data.message})
 
                 this.setState({user_info:res.data})
-                this.setState({canProceed: true})
                 console.log(this.state.user_info)
                 this.setState({successMessage:res.data.message})
 
@@ -285,7 +282,6 @@ class SignUp extends Component{
         role_id: null,
         updatedAt: this.state.user_info.updatedAt,
         uuid: null,}}})
-        this.setState({canProceed: false})
  }
 
     render(){
@@ -340,7 +336,7 @@ class SignUp extends Component{
                         goPayment = {this.goPayment}
                         successMessage={this.state.successMessage}
                         errorMessage = {this.state.errorMessage}
-                        canProceed = {this.state.canProceed}
+                        check = {this.state.user_info.customer.customer_detail}
                         />
                         </div>
                     </div>

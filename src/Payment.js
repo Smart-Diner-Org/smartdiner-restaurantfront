@@ -5,11 +5,11 @@ import paytm from './assets/images/paytm.svg'
 import phonepe from './assets/images/phonepe.svg'
 import master from './assets/images/025-mastercard.svg'
 import visa from './assets/images/visa.svg'
-import rupay from './assets/images/hiclipart.com.png'
-import jio from './assets/images/jiomoney.png'
-import ola from './assets/images/ola money icon.png'
-import freeRe from  './assets/images/searchpng.com-freecharge-icon-png-image-free-download.png'
-import mobwik from  './assets/images/searchpng.com-mobikwik-logo-icon-png-images-free-download.png'
+import rupay from './assets/images/rupay.svg'
+import jio from './assets/images/jiomoney.svg'
+import ola from './assets/images/olamoney.svg'
+import freeRe from  './assets/images/freecharge.svg'
+import mobwik from  './assets/images/mobiwiki.svg'
 
 
 
@@ -51,7 +51,7 @@ class Payment extends React.Component{
                             </button></li>
                     </ul>
                     <div className="mt-30 d-flex justify-content-end" style={{width:"100%"}}>
-                    <button className="proceed" onClick={this.props.canProcced && this.props.goPayment} >Proceed</button>
+                    <button className="proceed" onClick={this.props.check && this.props.goPayment} >Proceed</button>
                 </div>
                 </div>
                 
