@@ -6,10 +6,10 @@ class GetAddress extends React.Component{
             <div>
             <div className="address mb-20 mt-30">                   
                         <div className="row"style={{marginLeft:"90%"}}>
-                            <button className="cancel">X</button>
+                            {/* <button className="cancel">X</button> */}
                         </div>
                         <div className="row ">
-                            <div className="col-12">
+                            <div className="col-6">
                                 <h4 >{this.props.name}</h4><br/>
                                 <label >{this.props.customer_detail.address_one}</label><br/>
                                 <label >{this.props.customer_detail.address_two}</label><br/>

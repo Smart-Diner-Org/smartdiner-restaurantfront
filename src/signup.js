@@ -6,6 +6,7 @@ import GetAddress from "./GetAddress"
 import GetOTP from "./GetOTP"
 import axios from "axios"
 import Footer from './Footer'
+import {Link} from 'react-router-dom'
 
 
 let myInterval;
@@ -97,7 +98,7 @@ class SignUp extends Component{
                 requestedOTP : false,
                 isVerified : false,
                 seconds : 60, 
-                canProceed: false,
+
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -254,6 +255,7 @@ class SignUp extends Component{
             }})
             .then(res =>{
                 console.log(res.data)
+                sessionStorage.clear()
                 window.open(res.data.paymentUrl,"_self")
                 this.setState({successMessage:res.data.message})
 
@@ -290,8 +292,16 @@ class SignUp extends Component{
             <div className="signup ">
                 <div className="container">
                     <div className="header mt-30">
-                        <h2>Customer Details</h2>
-                        <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
+                        <div className="col-lg-11 col-sm-12">
+                            <Link to="/">
+                                <label className="mb-20"><i class="lni lni-arrow-left"></i>  Back to A3 Biryani </label>
+                            </Link>
+                            <h2>Customer Details</h2>
+
+                        </div>
+                        <div className="col-lg-1 col-sm-12">
+                            <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
+                        </div>
                     </div>
                   
                     <div className="row">
