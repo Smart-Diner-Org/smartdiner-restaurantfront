@@ -292,20 +292,20 @@ class SignUp extends Component{
             <div className="signup ">
                 <div className="container">
                     <div className="header mt-30">
-                        <div className="col-lg-11 col-sm-12">
+                        <div className="col-lg-10 col-sm-12">
                             <Link to="/">
                                 <label className="mb-20"><i class="lni lni-arrow-left"></i>  Back to A3 Biryani </label>
                             </Link>
                             <h2>Customer Details</h2>
 
                         </div>
-                        <div className="col-lg-1 col-sm-12">
+                        <div className="col-lg-2 col-sm-12">
                             <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
                         </div>
                     </div>
                   
                     <div className="row">
-                        <div className="col-lg-6 col-sm-12">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
                             <div className="customer-details-form">
                                     <GetOTP  
                                     requestedOTP = {this.state.requestedOTP}
@@ -340,7 +340,7 @@ class SignUp extends Component{
                                     
                             </div>
                         </div>
-                        <div className="col-lg-6 col-sm-12 mt-40">
+                        <div className="col-lg-6 col-md-12 col-sm-12 mt-40">
                         {/* {this.state.user_info.accessToken && <Payment />} */}
                         <Payment
                         goPayment = {this.goPayment}

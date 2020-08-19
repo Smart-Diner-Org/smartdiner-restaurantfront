@@ -158,11 +158,12 @@ max-width: 120px;
   display: block;
   width: 100%;
   padding: 5px;
-  font-size: 24px;
+  font-size: 20px;
   text-align: left;
   background-color: white;
   color: #000466;
   border: 1px solid #000466;
+  pointer-events: none;
 }
 
 .payment-method button:hover , button:active{
@@ -193,11 +194,12 @@ max-width: 120px;
   background-color: #000466;
   border: 1px solid #000466;
   font-size: 1.3em;
+  
 }
 
 .payment-method img{
   margin : 0px 5px;
-  height: 30px;
+  height: 25px;
 }
 
 @media screen and (max-width:65em){
