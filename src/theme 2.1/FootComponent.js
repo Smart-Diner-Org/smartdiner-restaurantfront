@@ -17,9 +17,10 @@ class FootComponent extends Component{
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i class="lni-phone-handset"></i>
+                                            <i class="lni-phone-handset mr-10"></i>
+                                            <i class="lni lni-whatsapp "></i>
                                         </div>
-                                        <div class="info-content">
+                                        <div class="info-content ml-20">
                                 <p>{this.props.contact_number}</p>
                                         </div>
                                     </div> 
