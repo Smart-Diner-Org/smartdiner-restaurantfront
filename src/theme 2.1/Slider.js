@@ -19,7 +19,7 @@ class Slider extends Component {
                                     {this.props.restaurantName}</h1>
                                     <div className="row">
                                         <a href="#product">Place order</a>
-                                        <a href="#contact">Call us</a>
+                                        <a href="#footer">Call us</a>
                                     </div>
                                     
                                 </div> 
@@ -44,7 +44,7 @@ class Slider extends Component {
                                         Winter Sale! is Here</h1>
                                         <div className="row">
                                         <a href="#product">Place order</a>
-                                        <a href="#contact">Call us</a>
+                                        <a href="#footer">Call us</a>
                                     </div>
                                 </div> 
                             </div>
