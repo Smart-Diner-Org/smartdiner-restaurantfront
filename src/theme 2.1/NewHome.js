@@ -18,7 +18,6 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 
-// import API_URL from "../constant"
 
 
 
@@ -81,7 +80,6 @@ async componentDidMount() {  //API call to get data from backend
                     total : sessionStorage.getItem('total'),
                     showPopup : false
                 })
-                console.log(this.state.items)
             }
            
            
@@ -280,20 +278,16 @@ PAhandleChange = address => {
                 longitude: Number(this.state.restaurantBranch[0].long)
             },1))
             let flag;
-            console.log(address)
-
             sessionStorage.setItem('lat',latLng.lat)
             sessionStorage.setItem('long',latLng.lng)
             sessionStorage.setItem('address',address)
 
             for (let i=0; i< (results[0].address_components).length ;i++){
-                console.log(results[0].address_components[i].long_name)
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
                   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
                     if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
 
                         flag=true
-                        console.log('im here')
                         break
                     }
                   }

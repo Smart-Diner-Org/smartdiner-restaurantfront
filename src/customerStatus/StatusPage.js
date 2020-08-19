@@ -24,7 +24,7 @@ class StatusPage extends React.Component{
     async componentDidMount(){
         try {
             let id = this.props.match.params;
-            id = (id.id.split("=")[1])
+            id = id.id
             await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
