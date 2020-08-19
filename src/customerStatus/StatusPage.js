@@ -89,7 +89,7 @@ class StatusPage extends React.Component{
                     <div className="row ">
                         <div className="col-6">
                             <p className="date mt-10">wed,12 july</p>
-                            <p className="orderId mt-10">Order id: efgi-987</p>
+                            <p className="orderId mt-10">Order id: {this.props.match.params.id} </p>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
                             <div className="priceBg">
@@ -97,11 +97,11 @@ class StatusPage extends React.Component{
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-12 mt-10">
                             <h4 className="etaTime mb-4">ETA : 10min <i className="lni lni-alarm-clock"></i></h4>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
 

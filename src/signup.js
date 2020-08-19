@@ -246,7 +246,7 @@ class SignUp extends Component{
         })
         const data ={
             restuarantBranchId : Number(newArray[0].restuarant_branch_id),
-            total_price : Number(sessionStorage.getItem("total_price")),
+            total_price : Number(sessionStorage.getItem("total")),
             latitude : Number(sessionStorage.getItem("lat")),
             longitude : Number(sessionStorage.getItem("long")),
             menus : selectedArray,
@@ -305,7 +305,7 @@ class SignUp extends Component{
 
                         </div>
                         <div className="col-lg-2 col-sm-12">
-                            <h4>Rs. {sessionStorage.getItem("total_price")}</h4>
+                            <h4>Rs. {(sessionStorage.getItem("totalWithTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   
