@@ -13,8 +13,8 @@ class Bill extends Component {
                             <label className="col-auto" >{`Rs ${this.props.values[0].toFixed(2)}`}</label> <br/>
                         </div>
                     <div className="row">
-                        <a className="col-auto mr-auto" href="#"  >Tax Charges</a>
-                        <label className="col-auto" style={{marginBottom:"5rem"}}>{`Rs ${this.props.values[1].toFixed(2)}`}</label>
+                        {/* <a className="col-auto mr-auto" href="#"  >Tax Charges</a>
+                        <label className="col-auto" style={{marginBottom:"5rem"}}>{`Rs ${this.props.values[1].toFixed(2)}`}</label> */}
                     </div>
                     
                     <div className="final-bill row">
@@ -27,7 +27,7 @@ class Bill extends Component {
                                 </div>
                           
                             <div class="col-6 total-amount">
-                                <label >To  Pay : <span >{`Rs${this.props.values[2].toFixed(2)}`}</span></label>
+                                <label >To  Pay : <span >{`Rs${this.props.values[0].toFixed(2)}`}</span></label>
                             
                             </div>
                             

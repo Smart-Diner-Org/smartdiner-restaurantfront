@@ -65,7 +65,6 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
@@ -212,7 +211,6 @@ checkDistance(){
             Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
                 response => {
                     address = response.results[0];
-                    console.log(address);
                     this.setState({ postalcode : address.address_components[(address.address_components).length - 1].long_name})
                     this.setState({ address:address.formatted_address });
 
@@ -225,7 +223,6 @@ checkDistance(){
               for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
                 if(address.formatted_address.includes(this.state.refregion[ss].toLowerCase())){
                     flag=true
-                    console.log('im here')
                     break
                 }
               }
@@ -266,7 +263,6 @@ PAhandleChange = address => {
     let distance ;
     geocodeByAddress(address)
       .then(results => {
-          console.log(results[0])
         this.setState({ postalcode : results[0].address_components[(results[0].address_components).length - 1].long_name})
         
         getLatLng(results[0]).then(latLng => {
@@ -294,7 +290,7 @@ PAhandleChange = address => {
 
             }
         }
-            console.log(flag)
+           
             if(distance<=999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})

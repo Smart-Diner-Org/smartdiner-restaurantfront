@@ -28,8 +28,6 @@ class StatusPage extends React.Component{
             await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
-              let i=0
-              console.log(i++)
               this.setState({
                 data : data,
                   });     
@@ -88,7 +86,7 @@ class StatusPage extends React.Component{
                     </div>
                     <div className="row ">
                         <div className="col-6">
-                            <p className="date mt-10">wed,12 july</p>
+                            {/* <p className="date mt-10">wed,12 july</p> */}
                             <p className="orderId mt-10">Order id: {this.props.match.params.id} </p>
                         </div>
                         <div className="col-6 d-flex justify-content-end">

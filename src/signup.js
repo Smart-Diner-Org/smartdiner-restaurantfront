@@ -142,7 +142,6 @@ class SignUp extends Component{
         }, 1000)
         await axios.post(`${this.apiLink}auth/check_for_account`,data)
             .then(res => {
-                console.log(res.data.message)
                 this.setState({successMessage:res.data.message})
                 
             })
@@ -218,7 +217,6 @@ class SignUp extends Component{
                 // this.setState({message:res.data.message})
 
                 this.setState({user_info:res.data})
-                console.log(this.state.user_info)
                 this.setState({successMessage:res.data.message})
 
             })
@@ -240,7 +238,6 @@ class SignUp extends Component{
         newArray.map((item)=>{
             if(item.quantity>0){
                 let menu = {id: item.id, quantity: item.quantity, price:item.discountPrice ,originalPrice: Number(item.price)}
-                console.log(menu)
                 selectedArray.push(menu)
             }
         })
@@ -305,7 +302,7 @@ class SignUp extends Component{
 
                         </div>
                         <div className="col-lg-2 col-sm-12">
-                            <h4>Rs. {Number(sessionStorage.getItem("totalWithTax")).toFixed(2)}</h4>
+                            <h4>Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   
