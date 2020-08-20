@@ -16,13 +16,17 @@ class BagItemList extends React.Component {
             const newTotal = accumulator + valueToBeAdded 
             return  newTotal
             }, 0);
-        const tax = total*0.13
-        const totalWithTax = total*1.13
+        const baseConvenienceFee = ((3/100)*total) + 3
+        const tax =  baseConvenienceFee + ((18/100)*baseConvenienceFee);
+        const totalWithTax = total + tax;
         sessionStorage.setItem("totalWithTax",totalWithTax)
         sessionStorage.setItem("totalWithoutTax",total)
     
         return [total, tax, totalWithTax]
     }
+
+// var convenienceFee = ((3/100) * orderPrice) + 3 + ((18/100) * (((3/100) * orderPrice) + 3));
+// var total payable amount = orderPrice + convenienceFee;
     
     
 

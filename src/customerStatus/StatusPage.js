@@ -123,7 +123,7 @@ class StatusPage extends React.Component{
                                 </div>
                                 <div className="orderDetails ml-2">
                                     <h4 className="orderTitle">Order placed</h4>
-                                    <p className="description">3x parathas</p>
+                                    {/* <p className="description">3x parathas</p> */}
                                 </div>
                             </div>
                         </div>
@@ -134,9 +134,9 @@ class StatusPage extends React.Component{
                                 </div>
                                 <div className="orderDetails ml-2">
                                     <h4 className="orderTitle">Food is being prepared</h4>
-                                    <p className="description">{this.state.data.resturantName} is preparing your food till then.</p>
-                                    <p className="description">Till then <a href="https://google.com"
-                                            target="blank">https://google.com</a></p>
+                                    <p className="description">{this.state.data.restuarantName} is preparing your food till then.</p>
+                                    {/* <p className="description">Till then <a href="https://google.com"
+                                            target="blank">https://google.com</a></p> */}
                                 </div>
                             </div>
                         </div>
@@ -168,12 +168,12 @@ class StatusPage extends React.Component{
                                 </div>
                                 <div className="orderDetails ml-2">
                                     <h4 className="orderTitle">Lets start eating</h4>
-                                    <p className="description">Dont forget to rate</p>
+                                    {/* <p className="description">Dont forget to rate</p>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star" aria-hidden="true"></i>
-                                    <i className="fa fa-star" aria-hidden="true"></i>
+                                    <i className="fa fa-star" aria-hidden="true"></i> */}
                                 </div>
                             </div>
                         </div>
