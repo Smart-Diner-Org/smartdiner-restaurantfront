@@ -9,13 +9,13 @@ class BillItem extends Component {
     render(){
         return(
             
-            <div class='bag-item'>
+            <div class='bag-item mb-10'>
                 
-                <div class='container'>
+                <div class='container '>
                 
                     <div className="row d-flex align-items-center">
                     <div className="col-3 p-0">
-                        <div style={{height:"100%",width:"100%",maxHeight:"100px",maxWidth:"100px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
+                        <div style={{height:"120px",width:"100%",maxWidth:"120px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
                                 {this.props.image?
                                     <>
                                     <a href="#"><img src={this.props.image} alt="Product"/> </a>
@@ -55,10 +55,10 @@ class BillItem extends Component {
 
                                         </div>
                                         <div className="col-4 ">
-                                            <div className="quantity">
-                                <button name='sub' className="d-flex justify-content-center " onClick={this.props.decreasequantity}>-</button>
+                                            <div className="quantity d-flex justify-content-around">
+                                <button name='sub' className="d-flex justify-content-center align-items-center " onClick={this.props.decreasequantity}>-</button>
                                     <label >{this.props.quantity}</label>
-                                <button name='add' className="d-flex justify-content-center" onClick={this.props.increasequantity}>+</button>
+                                <button name='add' className="d-flex justify-content-center align-items-center" onClick={this.props.increasequantity}>+</button>
                                 </div>
                             </div>
                         </div>

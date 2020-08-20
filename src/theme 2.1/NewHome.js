@@ -18,7 +18,6 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 
-// import API_URL from "../constant"
 
 
 
@@ -74,8 +73,15 @@ async componentDidMount() {  //API call to get data from backend
              refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
             });     
-
-            console.log(this.state.refregion)
+            if(sessionStorage.getItem("items")){
+                this.setState({
+                    items : JSON.parse(sessionStorage.getItem("items")),
+                    boundary : Boolean(sessionStorage.getItem("boundary")),
+                    total : sessionStorage.getItem('total'),
+                    showPopup : false
+                })
+            }
+           
            
       })
     }catch(error){
@@ -120,6 +126,8 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
                 noOfSelectedItems++}
             newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
             sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+            sessionStorage.setItem('total',noOfSelectedItems)
+        
             return {
                 quantity: newItemsStateArray,
                 total:noOfSelectedItems
@@ -134,6 +142,7 @@ changequantity(index, value) {   //this is for adding/increasing items to cart
 
         }
         sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+        sessionStorage.setItem('total',noOfSelectedItems)
         return {
             items: newItemsStateArray,
             total:noOfSelectedItems
@@ -225,6 +234,7 @@ checkDistance(){
                 if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
                     this.setState({boundary:true})
+                    sessionStorage.setItem("boundary",true)
                 }else{
                     alert("Sorry for our Incovenience.... You're out of our boundary")
                     this.setState({boundary:false})
@@ -268,20 +278,16 @@ PAhandleChange = address => {
                 longitude: Number(this.state.restaurantBranch[0].long)
             },1))
             let flag;
-            console.log(address)
-
             sessionStorage.setItem('lat',latLng.lat)
             sessionStorage.setItem('long',latLng.lng)
             sessionStorage.setItem('address',address)
 
             for (let i=0; i< (results[0].address_components).length ;i++){
-                console.log(results[0].address_components[i].long_name)
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
                   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
                     if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
 
                         flag=true
-                        console.log('im here')
                         break
                     }
                   }
@@ -292,6 +298,7 @@ PAhandleChange = address => {
             if(distance<=999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})
+                sessionStorage.setItem("boundary",true)
             }else{
                 alert("Sorry for our Incovenience.... You're out of our boundary")
                 this.setState({boundary:false})

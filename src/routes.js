@@ -2,7 +2,7 @@ import React from 'react';
 // import { Redirect } from 'react-router';
 // import { Route, IndexRoute } from 'react-router';
 // import { sessionService } from 'redux-react-session';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, } from 'react-router-dom';
 // import App from './App';
 import Signup from './old_signup'  ;
 // import Login from './login';
@@ -22,7 +22,6 @@ import LoanBalancerTest from './loanBalancerTest'
 export default (  
   <Router>
     <Switch>
-      <div>
 
         {/* <Route exact path="/" component={App} /> */}
         <UnProtectedRoute path="/oldsignup" component={Signup} />
@@ -35,8 +34,6 @@ export default (
         <Route path="/logout" component={Logout} />
         <Route exact path="/" component={NewHome} />
 
-        <Route exact path="/loadbalancerTest" component={LoanBalancerTest} status={200}/>
-    </div>
     </Switch>
   </Router>
 );

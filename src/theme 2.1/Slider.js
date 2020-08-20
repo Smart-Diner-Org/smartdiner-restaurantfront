@@ -12,13 +12,16 @@ class Slider extends Component {
             <Carousel.Item > 
             <div className="single-slider ">
                     <div className="slider-bg ">
-                        <div className="row  no-gutters align-items-center ">
-                            <div className="col-md-7 ">
-                                <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
+                        <div className="row  no-gutters align-items-center d-flex justify-content-center">
+                            <div className="col-lg-12 ">
+                                <div className="slider-product-content  mt-200" style={{ zIndex : "5"}}>
                                     <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
                                     {this.props.restaurantName}</h1>
-                                    <button>Place order</button>
-                                    <button>Call us</button>
+                                    <div className="row">
+                                        <a href="#product">Place order</a>
+                                        <a href="#footer">Call us</a>
+                                    </div>
+                                    
                                 </div> 
                             </div>
                             <div className="col-lg-12 col-md-5">
@@ -34,11 +37,15 @@ class Slider extends Component {
                         <Carousel.Item>
                         <div className="single-slider">
                     <div className="slider-bg">
-                        <div className="row no-gutters align-items-center ">
-                            <div className="col-md-7">
+                        <div className="row no-gutters align-items-center d-flex justify-content-center">
+                            <div className="col-lg-12">
                                 <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
                                 <h1 className="slider-title p-3" data-animation="fadeInUp" data-delay="0.3s">
                                         Winter Sale! is Here</h1>
+                                        <div className="row">
+                                        <a href="#product">Place order</a>
+                                        <a href="#footer">Call us</a>
+                                    </div>
                                 </div> 
                             </div>
                             <div className="col-lg-12 col-md-5">
