@@ -56,7 +56,16 @@ class NewHome extends Component {
     this.gotocart = this.gotocart.bind(this)
     this.contshpng = this.contshpng.bind(this)
     this.editlocation = this.editlocation.bind(this)
+    this.decTotal = this.decTotal.bind(this)
 
+}
+
+decTotal(){
+    let oldTotal = this.state.total;
+    let newTotal = oldTotal-1;
+    sessionStorage.setItem("total",newTotal)
+    this.setState({total:newTotal})
+    
 }
 
 async componentDidMount() {  //API call to get data from backend
@@ -388,7 +397,7 @@ PAhandleChange = address => {
          total={this.state.total}
          quantity={this.state.quantity}
          editlocation = {this.editlocation}
-         
+         decTotal={this.decTotal}
          />}
 
         

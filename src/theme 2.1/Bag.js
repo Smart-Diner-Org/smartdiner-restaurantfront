@@ -28,7 +28,7 @@ render(){
                 <BagItemList 
                             items={this.props.items}
                             changequantity={this.props.changequantity}
-                            
+                            decTotal={this.props.decTotal}
                         />
 
                 <footer>

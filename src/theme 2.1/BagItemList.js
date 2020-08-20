@@ -42,7 +42,10 @@ class BagItemList extends React.Component {
                             price={item.price}
                             discount={item.discount}
                             discountPrice={item.discountPrice}
-                            removeItem={() => this.props.changequantity(index,parseFloat(`-${item.quantity}`))}
+                            removeItem={() =>{
+                                 this.props.changequantity(index,parseFloat(`-${item.quantity}`));
+                                this.props.decTotal();
+                                }}
                             increasequantity={() => this.props.changequantity(index,1)}
                             decreasequantity={() => this.props.changequantity(index, -1)}
                         />}
