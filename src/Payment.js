@@ -18,11 +18,11 @@ import mobwik from  './assets/images/mobiwiki.svg'
 class Payment extends React.Component{
     render(){
         return(
-            <div className="payment-method mt-30">
+            <div className="payment-method ">
                 <div className="row">
                     <ul style={{width:"100%"}}>
                         <li><button className="d-flex align-item-center">UPI Wallets
-                                <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                                <div className="d-flex justify-content-end"  style={{width:"75%"}}>
                                 <img src={BHIM} alt=""></img>
                                 <img src={Gpay} alt=""></img>
                                 <img src={paytm} alt=""></img>
@@ -34,14 +34,14 @@ class Payment extends React.Component{
                                 
                                 </button></li>
                         <li><button className="d-flex align-item-center">Debit card
-                        <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                        <div className="d-flex justify-content-end"  style={{width:"75%"}}>
                         <img src={master} alt=""></img>
                                 <img src={visa} alt=""></img>
                                 <img src={rupay} alt=""></img></div>
                                 </button></li>
                         <li><button className="d-flex align-item-center">Net Banking</button></li>
                         <li><button className="d-flex align-item-center">Other Wallets
-                        <div className="d-flex justify-content-end"  style={{width:"70%"}}>
+                        <div className="d-flex justify-content-end"  style={{width:"75%"}}>
                                 <img src={jio} alt=""></img>
                                 <img src={ola} alt=""></img>
                                 <img src={mobwik} alt=""></img>

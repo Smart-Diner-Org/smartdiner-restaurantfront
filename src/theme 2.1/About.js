@@ -40,7 +40,7 @@ class About extends Component {
                                         <p>{this.props.about}</p>
                                 </div>
 
-                                <div class="timing text-center mt-100">
+                                <div class="timing text-center mt-110 mb-10">
                                     <div class="about-content mt-20">
                                         <h5 class="title mb-10">{this.state.timings[0]}-{this.state.timings[2]}</h5>
                                         <h5 class="title mb-10">{this.state.timings[3]}-{this.state.timings[5]}</h5>

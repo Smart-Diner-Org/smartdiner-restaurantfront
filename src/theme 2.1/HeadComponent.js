@@ -32,7 +32,7 @@ class HeadComponent extends Component {
             <div className="row">
                 <div className="col-lg-12">
                     <nav className="navbar navbar-expand-lg">
-                        <a className="navbar-brand d-inline-flex" href="./">
+                        <a className="navbar-brand d-inline-flex" style={{margin:"0px"}} href="./">
                             {
                                 this.props.logo?
                                 <>
@@ -70,7 +70,7 @@ class HeadComponent extends Component {
                             </ul> 
                         </div>
                         <div className="headlogo" >
-                            {this.props.total==0 && <span className="tooltiptext">Your Cart is Empty</span>}
+                            {/* {this.props.total==0 && <span className="tooltiptext">Your Cart is Empty</span>} */}
                                     <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup} >
                                         <img src={BagImage} className="img-responsive cart" alt="Cart"/>
                                         <span className="badge">{this.props.total}</span>

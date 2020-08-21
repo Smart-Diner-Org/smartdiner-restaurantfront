@@ -10,7 +10,7 @@ class FootComponent extends Component{
             <div class="container">
                 <div class="footer-copyright pt-15 pb-15">
                     <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                     <div class="contact-info pt-25">
                             <h4 class="info-title"  >Contact Info</h4>
                             <ul>
@@ -40,15 +40,15 @@ class FootComponent extends Component{
                                         <div class="info-icon">
                                             <i class="lni-home"></i>
                                         </div>
-                                        <div class="info-content">
-                                            <p>{this.props.address}</p>
+                                        <div class="row info-content">
+                                            <p class="col-lg-5  col-sm-12">{this.props.address}</p>
                                         </div>
                                     </div> 
                                 </li>
                             </ul>
                         </div> 
                     </div>
-                    <div className="col-lg-6 d-flex justify-content-end pt-25 align-items-center" >
+                    <div className="col-lg-4 d-flex pt-25 " >
                         <div className ="d-flex-column">
                                 <h6 style={{color: 'white'}}>SOCIAL MEDIA</h6>
                                 <ul className="social text-right mt-10">

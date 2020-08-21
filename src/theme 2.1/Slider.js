@@ -14,8 +14,8 @@ class Slider extends Component {
                     <div className="slider-bg ">
                         <div className="row  no-gutters align-items-center d-flex justify-content-center">
                             <div className="col-lg-12 ">
-                                <div className="slider-product-content  mt-200" style={{ zIndex : "5"}}>
-                                    <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
+                                <div className="slider-product-content pt-50  mt-200" style={{ zIndex : "5"}}>
+                                    <h1 className="slider-title " data-animation="fadeInUp" data-delay="0.3s">
                                     {this.props.restaurantName}</h1>
                                     <div className="row">
                                         <a href="#product">Place order</a>
@@ -36,11 +36,11 @@ class Slider extends Component {
                         </Carousel.Item>
                         <Carousel.Item>
                         <div className="single-slider">
-                    <div className="slider-bg">
+                    <div className="slider-bg ">
                         <div className="row no-gutters align-items-center d-flex justify-content-center">
-                            <div className="col-lg-12">
-                                <div className="slider-product-content mt-200" style={{ zIndex : "5"}}>
-                                <h1 className="slider-title p-3" data-animation="fadeInUp" data-delay="0.3s">
+                            <div className="col-lg-12 ">
+                                <div className="slider-product-content pt-50 mt-200" style={{ zIndex : "5"}}>
+                                <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
                                         Winter Sale! is Here</h1>
                                         <div className="row">
                                         <a href="#product">Place order</a>

@@ -32,7 +32,7 @@ class LocationSearchInput extends React.Component {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { color:"#000466" , cursor: 'pointer' , fontSize:"0.8em",  }
+                  ? { color:"#000466" , cursor: 'pointer' , fontSize:"0.8em", padding:"10px", fontWeight:'700'}
                   : { backgroundColor: '#ffffff', cursor: 'pointer', fontSize:"0.8em" };
                 return (
                   <div aria-expanded="false"

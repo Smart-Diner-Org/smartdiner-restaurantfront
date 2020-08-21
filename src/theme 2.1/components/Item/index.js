@@ -12,10 +12,10 @@ class Item extends Component {
                                 <div className="product-item-image">
                                 {this.props.image?
                                     <>
-                                    <a href="#"><img src={this.props.image} alt="Product"/> </a>
+                                    <a><img src={this.props.image} alt="Product"/> </a>
                                     </>
                                     :
-                                    <a href="#"><img src={Burger} alt="Product"/> </a>
+                                    <a><img src={Burger} alt="Product"/> </a>
                                 }  
         
                                     {this.props.discount>0?
@@ -29,7 +29,7 @@ class Item extends Component {
                                 }           
                                     </div>
                                 <div className="product-item-content mt-30">
-                                        <h5 className="product-title"><a href="#">{this.props.itemName}</a></h5>
+                                        <h5 className="product-title"><a>{this.props.itemName}</a></h5>
                                         {/* <p>Containments</p> */}
                                         <p>{this.props.description}</p>
                                         {this.props.discount>0?

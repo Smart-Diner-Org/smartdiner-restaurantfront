@@ -373,7 +373,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        { this.state.total !== 0 && this.state.showPopup  &&   //(this.state.boundary===false) &&
+        { this.state.total !== 0 && this.state.showPopup  &&   !sessionStorage.getItem('boundary') &&
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
