@@ -69,6 +69,12 @@ class SignUp extends Component{
         this.editbtn = this.editbtn.bind(this)
     }
 
+    componentDidMount(){
+        const favicon = document.getElementById("favicon");
+        favicon.href = sessionStorage.getItem("logo");
+        document.title = sessionStorage.getItem("title") ;
+    }
+
     handleChange(event) {
         const {name, value} = event.target
         this.setState({

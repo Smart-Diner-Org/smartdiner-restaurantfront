@@ -32,10 +32,19 @@ class StatusPage extends React.Component{
                 data : data,
                   });     
             });
+        
+            const favicon = document.getElementById("favicon");
+            favicon.href = sessionStorage.getItem("logo");
+            document.title = sessionStorage.getItem("title") ;
+        
         } 
         catch(error){
             alert("Failed to fetch information from server")
         }
+
+        const favicon = document.getElementById("favicon");
+        favicon.href = sessionStorage.getItem("logo");
+        document.title = sessionStorage.getItem("title") ;
         
         
         if(this.state.data.stage_id==1 || this.state.data.stage_id==2){

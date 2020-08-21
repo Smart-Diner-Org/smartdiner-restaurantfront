@@ -939,7 +939,7 @@ p {
 
 @media screen and (min-width: 50em){
   .single-slider {
-    background-image: url('../images/building1.jpg') !important;
+    background-image: url('../images/IMG_20200606_143123.jpg') !important;
   }
 }
 
@@ -958,7 +958,7 @@ p {
 
 .single-slider .slider-bg {
   height: 100%;
-  background-image: url('../images/building2.jpg');
+  background-image: url('../images/IMG_20200606_143123.jpg');
   background-color: #000000;
 }
 

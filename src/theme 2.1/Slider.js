@@ -1,7 +1,7 @@
 import React,{ Component } from "react"
 import Carousel from 'react-bootstrap/Carousel' 
-import Image from './assets/images/building1.jpg'
-import Image1 from './assets/images/building2.jpg'
+import Image1 from './assets/images/IMG_20200606_142600.jpg'
+import Image from './assets/images/IMG_20200606_143123.jpg'
 
 class Slider extends Component {
     render(){
@@ -16,7 +16,7 @@ class Slider extends Component {
                             <div className="col-lg-12 ">
                                 <div className="slider-product-content pt-50  mt-200" style={{ zIndex : "5"}}>
                                     <h1 className="slider-title " data-animation="fadeInUp" data-delay="0.3s">
-                                    {this.props.restaurantName}</h1>
+                                    Delicious Quality Chicken Biriyani</h1>
                                     <div className="row">
                                         <a href="#product">Place order</a>
                                         <a href="#footer">Call us</a>
@@ -41,7 +41,7 @@ class Slider extends Component {
                             <div className="col-lg-12 ">
                                 <div className="slider-product-content pt-50 mt-200" style={{ zIndex : "5"}}>
                                 <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
-                                        Winter Sale! is Here</h1>
+                                The protein in chicken helps boost your immune system</h1>
                                         <div className="row">
                                         <a href="#product">Place order</a>
                                         <a href="#footer">Call us</a>

@@ -89,8 +89,11 @@ async componentDidMount() {  //API call to get data from backend
                     showPopup : false
                 })
             }
-           
-           
+            const favicon = document.getElementById("favicon");
+            favicon.href = this.state.restaurant_info.logo;
+            document.title = this.state.restaurant_info.name;
+            sessionStorage.setItem("logo",this.state.restaurant_info.logo)
+            sessionStorage.setItem("title",this.state.restaurant_info.name)
       })
     }catch(error){
         console.log(error)
@@ -411,7 +414,7 @@ PAhandleChange = address => {
 
 
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
-         <Slider restaurantName={this.state.restaurant_info.name}/>
+         <Slider/>
          <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />
          <Product 
          setType={this.setType}
