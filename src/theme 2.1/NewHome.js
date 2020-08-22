@@ -19,7 +19,7 @@ import {
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize("UA-1234567890-1");
+ReactGA.initialize("UA-175972269-1");
 
 
 class NewHome extends Component {
