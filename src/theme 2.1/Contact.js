@@ -41,7 +41,7 @@ class Contact extends Component{
  
     render(){
         return(
-            <section id="contact" class="contact-area pt-75">
+            <section id="contact" class="contact-area pt-100">
         <div class="container">
             <div class="row justify-content-left">
                 <div class="col-lg-6">
