@@ -352,7 +352,8 @@ p {
 }
 
 .header-area {
-  padding: 30px 0;
+  /*padding: 30px 0;*/ /*Sharmila changed*/
+  padding: 20px 0;
   background-color: #fff;
   position: absolute;
   top: 0;
@@ -422,7 +423,7 @@ p {
 }
 
 .header-area {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/ /*Sharmila changed*/
 }
 
 
@@ -938,8 +939,11 @@ p {
 
 
 @media screen and (min-width: 50em){
-  .single-slider {
-    background-image: url('../images/IMG_20200606_143123.jpg') !important;
+  .single-slider-1 {
+    /*background-image: url('../images/IMG_20200606_142600.jpg') !important;*/
+  }
+  .single-slider-2 {
+    /*background-image: url('../images/IMG_20200606_143123.jpg') !important;*/
   }
 }
 
@@ -956,10 +960,19 @@ p {
   }
 }
 
-.single-slider .slider-bg {
+.single-slider-1 .slider-bg {
+  height: 100%;
+  background-image: url('../images/IMG_20200606_142600.jpg');
+  background-color: #000000;
+  background-size: cover;
+  background-position: center; 
+}
+.single-slider-2 .slider-bg {
   height: 100%;
   background-image: url('../images/IMG_20200606_143123.jpg');
   background-color: #000000;
+  background-size: cover;
+  background-position: center; 
 }
 
 .single-slider .slider-product-image img {
@@ -1625,7 +1638,8 @@ p {
 }
 
 .timing {
-  position: absolute;
+  /*position: absolute;*/ /*Sharmila removed*/
+  position: relative;
   bottom: 0;
   border: 1px solid #ddd;
   padding: 50px;

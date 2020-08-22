@@ -10,7 +10,7 @@ class Slider extends Component {
             <div className="container-fluid position-relative carousel-design ">
             <Carousel  >
             <Carousel.Item > 
-            <div className="single-slider ">
+            <div className="single-slider single-slider-1">
                     <div className="slider-bg ">
                         <div className="row  no-gutters align-items-center d-flex justify-content-center">
                             <div className="col-lg-12 ">
@@ -26,7 +26,7 @@ class Slider extends Component {
                             </div>
                             <div className="col-lg-12 col-md-5">
                                 <div className="slider-product-image d-none d-md-block">
-                                    <img src={Image} alt="Slider"/>
+                                    
                                 </div> 
                             </div>
                         </div> 
@@ -35,7 +35,7 @@ class Slider extends Component {
                         
                         </Carousel.Item>
                         <Carousel.Item>
-                        <div className="single-slider">
+                        <div className="single-slider single-slider-2">
                     <div className="slider-bg ">
                         <div className="row no-gutters align-items-center d-flex justify-content-center">
                             <div className="col-lg-12 ">
@@ -50,7 +50,7 @@ class Slider extends Component {
                             </div>
                             <div className="col-lg-12 col-md-5">
                                 <div className="slider-product-image d-none d-md-block">
-                                    <img src={Image1} alt="Slider"/>
+                                    
                                 </div> 
                             </div>
                         </div> 

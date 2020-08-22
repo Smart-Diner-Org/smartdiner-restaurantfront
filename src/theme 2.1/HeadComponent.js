@@ -36,7 +36,7 @@ class HeadComponent extends Component {
                             {
                                 this.props.logo?
                                 <>
-                                <img src={this.props.logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>
+                                <img src={this.props.logo} style={{width:"75px",maxHeight:"75px"}} alt="Logo"/>
                                 </>
                                 :
                                 <img src={Logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>    
