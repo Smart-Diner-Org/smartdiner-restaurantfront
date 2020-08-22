@@ -75,6 +75,7 @@ async componentDidMount() {  //API call to get data from backend
       .then(res => {
         const data = res.data;
         this.getItems(data.restaurant.restaurant_branches)
+        console.log(data)
         this.setState({
              restaurant_info:data.restaurant,
              refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
