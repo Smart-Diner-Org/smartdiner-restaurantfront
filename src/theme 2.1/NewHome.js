@@ -19,8 +19,6 @@ import {
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize("UA-175972269-1");
-
 
 class NewHome extends Component {
   constructor(props){
@@ -71,12 +69,12 @@ decTotal(){
 
 async componentDidMount() {  //API call to get data from backend
     try{
+      ReactGA.initialize("UA-175972269-1");
     //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
         this.getItems(data.restaurant.restaurant_branches)
-        console.log(data)
         this.setState({
              restaurant_info:data.restaurant,
              refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
