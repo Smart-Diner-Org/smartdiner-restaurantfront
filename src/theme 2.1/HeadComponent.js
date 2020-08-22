@@ -31,12 +31,12 @@ class HeadComponent extends Component {
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
-                    <nav className="navbar navbar-expand-lg">
+                    <nav className="navbar navbar-expand-lg row d-flex justify-content-around">
                         <a className="navbar-brand d-inline-flex" style={{margin:"0px"}} href="./">
                             {
                                 this.props.logo?
                                 <>
-                                <img src={this.props.logo} style={{width:"75px",maxHeight:"75px"}} alt="Logo"/>
+                                <img src={this.props.logo} alt="Logo"/>
                                 </>
                                 :
                                 <img src={Logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>    

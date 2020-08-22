@@ -41,7 +41,7 @@ class Slider extends Component {
                             <div className="col-lg-12 ">
                                 <div className="slider-product-content pt-50 mt-200" style={{ zIndex : "5"}}>
                                 <h1 className="slider-title" data-animation="fadeInUp" data-delay="0.3s">
-                                The protein in chicken helps boost your immune system</h1>
+                                Protein Rich Biriyani</h1>
                                         <div className="row">
                                         <a href="#product">Place order</a>
                                         <a href="#footer">Call us</a>
