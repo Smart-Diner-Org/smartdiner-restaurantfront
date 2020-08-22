@@ -17,8 +17,9 @@ import {
     geocodeByAddress,
     getLatLng,
   } from 'react-places-autocomplete';
+import ReactGA from 'react-ga';
 
-
+ReactGA.initialize("UA-1234567890-1");
 
 
 class NewHome extends Component {
