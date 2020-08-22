@@ -33,7 +33,7 @@ class About extends Component {
                 <div class="col-lg-6">
 
                             <div class="col-md-12 col-sm-8">
-                            <div class="about-right mt-45">
+                            <div class="about-right">
                             <div class="row justify-content-center">
                                 <div class="about-content mt-20">
                                     <h5 class="title mb-10">About Us</h5>
@@ -44,7 +44,7 @@ class About extends Component {
                             </div>
 
                             <div class="col-md-12 col-sm-8">
-                            <div class="about-right mt-45">
+                            <div class="about-right">
                             <div class="row justify-content-center">
                                 <div class="timing text-center mt-50 mb-10">
                                     <div class="about-content mt-20">
