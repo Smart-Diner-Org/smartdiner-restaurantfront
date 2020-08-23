@@ -69,7 +69,7 @@ decTotal(){
 
 async componentDidMount() {  //API call to get data from backend
     try{
-      ReactGA.initialize("UA-175972269-1");
+      ReactGA.initialize("UA-175972269-1");//Move this to db and load dynamically
       ReactGA.pageview('/homepage');
     //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)

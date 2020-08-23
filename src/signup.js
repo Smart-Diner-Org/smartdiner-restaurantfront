@@ -7,6 +7,7 @@ import GetOTP from "./GetOTP"
 import axios from "axios"
 import Footer from './Footer'
 import {Link} from 'react-router-dom'
+import ReactGA from 'react-ga';
 
 
 
@@ -70,6 +71,8 @@ class SignUp extends Component{
     }
 
     componentDidMount(){
+        ReactGA.initialize("UA-175972269-1");//Move this to db and load dynamically
+        ReactGA.pageview('/signupPage');
         const favicon = document.getElementById("favicon");
         favicon.href = sessionStorage.getItem("logo");
         document.title = sessionStorage.getItem("title") ;
