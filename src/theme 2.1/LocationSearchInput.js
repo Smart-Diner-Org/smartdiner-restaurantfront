@@ -17,11 +17,12 @@ class LocationSearchInput extends React.Component {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
+            <p className="col-11" style={{"padding-left":"0px","font-size":"14px"}}>Enter your area name. Do not type your full address</p>
             <input autoFocus
               {...getInputProps({
                 className: 'location-search-input',
               })}
-              placeholder= "Enter your location"
+              placeholder= "Ex. Sulur"
 
             />
             <div className="autocomplete-dropdown-container" >

@@ -23,7 +23,7 @@ class GetLocation extends Component{
                 <button className="col-1 p-0" style={{backgroundColor:"transparent",color:"#e22a28" }} onClick={this.props.close}>X</button>
 
                 </div>
-                <button className="crtlocbtn" onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Pick My Location</button>
+                <button className="crtlocbtn hide" onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Pick My Location</button>
                 {/* <button  onClick={this.props.gotocart}>Go to Cart</button>  */}
                 <LocationSearchInput
                 address = {this.props.address}
