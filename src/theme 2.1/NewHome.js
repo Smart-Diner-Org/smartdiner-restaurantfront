@@ -79,6 +79,7 @@ async componentDidMount() {  //API call to get data from backend
              restaurant_info:data.restaurant,
              refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
              refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
+            //  refregion : ["sulur","nelamangala","Sadashiva Nagara"],
              isLoaded: true,
             });     
             if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
@@ -231,15 +232,32 @@ checkDistance(){
                     sessionStorage.setItem('address',this.state.address)
 
                     let flag;
+                    console.log(address)
+                    
+            // for (let i=0; i< (address.address_components).length ;i++){
+            //   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
+            //     if(address.formatted_address.includes(this.state.refregion[ss].toLowerCase())){
+            //         flag=true
+            //         break
+            //     }
+            //   }
+            // }
+                    const addr = this.state.refregion.map(item => item.toLowerCase())
             for (let i=0; i< (address.address_components).length ;i++){
-              for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
-                if(address.formatted_address.includes(this.state.refregion[ss].toLowerCase())){
-                    flag=true
-                    break
-                }
-              }
-               
+                if( addr.includes(address.address_components[i].long_name.toLowerCase()) || addr.includes(address.address_components[i].short_name.toLowerCase())){
+                //   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
+                //     if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
+
+                        flag=true
+                        break
+                    // }
+                //   }
+
             }
+        }
+
+
+
                 if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
                     this.setState({boundary:true})
@@ -289,6 +307,7 @@ PAhandleChange = address => {
             sessionStorage.setItem('lat',latLng.lat)
             sessionStorage.setItem('long',latLng.lng)
             sessionStorage.setItem('address',address)
+            
 
             for (let i=0; i< (results[0].address_components).length ;i++){
                 if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
