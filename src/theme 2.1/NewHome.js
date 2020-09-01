@@ -71,7 +71,6 @@ async componentDidMount() {  //API call to get data from backend
     try{
       ReactGA.initialize("UA-175972269-1");//Move this to db and load dynamically
       ReactGA.pageview('/homepage');
-    //  await axios.get(`./dbapi.json`)  //  https://80b047bae3e5.ngrok.io/before_login/restaurant/get_full_details  ./dbapi.json
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
@@ -82,7 +81,7 @@ async componentDidMount() {  //API call to get data from backend
              refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
             });     
-            if(sessionStorage.getItem("items")){
+            if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
                 this.setState({
                     items : JSON.parse(sessionStorage.getItem("items")),
                     boundary : Boolean(sessionStorage.getItem("boundary")),
@@ -393,7 +392,7 @@ PAhandleChange = address => {
         
         {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
         <div>
-             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 &&
+             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && sessionStorage.getItem("boundary") &&
          <Bag 
          closePopup={this.togglePopup }  
          changequantity={this.changequantity}
@@ -414,7 +413,7 @@ PAhandleChange = address => {
          />
 
 
-         <div style={this.state.togglePopup && !this.state.showPopup && this.state.total !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
+         <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider/>
          <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />
          <Product 
