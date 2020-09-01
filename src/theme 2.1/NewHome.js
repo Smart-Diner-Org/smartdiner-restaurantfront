@@ -368,8 +368,9 @@ PAhandleChange = address => {
   
   editlocation(event){
     this.togglePopup()
-      this.setState({showPopup:true})
-      this.setState({boundary:false})
+    this.setState({showPopup:true})
+    sessionStorage.removeItem("boundary")
+    this.setState({boundary:false})
   }
 
 
