@@ -21,7 +21,7 @@ class FootComponent extends Component{
                                             <i class="lni lni-whatsapp "></i>
                                         </div>
                                         <div class="info-content ml-20">
-                                <p>{this.props.contact_number}</p>
+                                <p><a href={`https://api.whatsapp.com/send?phone=${this.props.contact_number}`} target="blank">{this.props.contact_number}</a></p>
                                         </div>
                                     </div> 
                                 </li>
