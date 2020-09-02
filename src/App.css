@@ -164,7 +164,14 @@ max-width: 120px;
   color: #000466;
   border: 1px solid #000466;
   pointer-events: none;
+  border-top: none;
 }
+
+.payment-method ul:first-child{
+  border-top: 1px solid #000466; 
+  width: 100%;
+}
+
 
 .payment-method button:hover , button:active{
   background-color: #000466;
