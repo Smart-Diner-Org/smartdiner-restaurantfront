@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { geolocated } from "react-geolocated";
+// import { geolocated } from "react-geolocated";
 import Geocode from "react-geocode";
 import LocationSearchInput from "./LocationSearchInput"
 import './map.css'
@@ -8,7 +8,7 @@ Geocode.setApiKey("AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8");
 // Geocode.enableDebug();
 
 
-class GetLocation extends Component{
+export default class GetLocation extends Component{
     
     // lat: 13.093410, lng: 77.399053
 
@@ -40,9 +40,9 @@ class GetLocation extends Component{
     
     }
 }
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: 5000,
-})(GetLocation)
+// export default geolocated({
+//     positionOptions: {
+//         enableHighAccuracy: false,
+//     },
+//     userDecisionTimeout: 5000,
+// })(GetLocation)
