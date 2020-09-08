@@ -16,6 +16,7 @@ class StatusPage extends React.Component{
             flag3 : false,
             flag4 : false,
             progress: "",
+            date:""
         }
         
     }
@@ -30,7 +31,8 @@ class StatusPage extends React.Component{
               const data = res.data;
               this.setState({
                 data : data,
-                  });     
+                  });   
+                  console.log(data);  
             });
         
             const favicon = document.getElementById("favicon");
@@ -78,12 +80,19 @@ class StatusPage extends React.Component{
             })
         }
 
+        let date=new Date(this.state.data.createdDate)
+        console.log(date);
+        let newdate=date.toDateString().split(' ');
+        let dt=`${newdate[0]}, ${newdate[2]} ${newdate[1]}`;
+        this.setState({
+            date:dt
+        })
+
   }
-
-
+  
 
     render(){
-    
+        
         return(
             <div>
             <div className="container customerStatusContainer">
@@ -96,6 +105,7 @@ class StatusPage extends React.Component{
                     <div className="row ">
                         <div className="col-6">
                             {/* <p className="date mt-10">wed,12 july</p> */}
+                            <p className="date mt-10">{this.state.date}</p>
                             <p className="orderId mt-10">Order id: {this.props.match.params.id} </p>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
