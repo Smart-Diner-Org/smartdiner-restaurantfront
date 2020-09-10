@@ -16,7 +16,10 @@ class StatusPage extends React.Component{
             flag3 : false,
             flag4 : false,
             progress: "",
-            date:""
+            date:"",
+            orderCancelled:false,
+            cancellationDate:"",
+            cancellationTime:"",
         }
         
     }
@@ -31,8 +34,7 @@ class StatusPage extends React.Component{
               const data = res.data;
               this.setState({
                 data : data,
-                  });   
-                  console.log(data);  
+                  });     
             });
         
             const favicon = document.getElementById("favicon");
@@ -79,7 +81,16 @@ class StatusPage extends React.Component{
                 progress : "100%"
             })
         }
-
+        if(this.state.data.stage_id==9){
+            this.setState({
+                orderCancelled:true
+            })
+        }
+        else{
+            this.setState({
+                orderCancelled:false
+            })
+        }
         let date=new Date(this.state.data.createdDate)
         console.log(date);
         let newdate=date.toDateString().split(' ');
@@ -88,11 +99,25 @@ class StatusPage extends React.Component{
             date:dt
         })
 
+        let canDate=new Date(this.state.data.cancellationDateTime);
+        let cannewdate=canDate.toDateString().split(' ');
+        let candt=`${cannewdate[0]}, ${cannewdate[2]} ${cannewdate[1]}, ${cannewdate[3]}`;
+        this.setState({
+            cancellationDate:candt
+        })
+        
+        let canTime=canDate.toLocaleTimeString();
+        this.setState({
+            cancellationTime:canTime
+        })
+
+
   }
-  
+
+
 
     render(){
-        
+    
         return(
             <div>
             <div className="container customerStatusContainer">
@@ -123,8 +148,16 @@ class StatusPage extends React.Component{
 
 
                 <div className="deliveryProgressContainer">
+               
                     <div className="row mt-2">
-                        <div className="col-lg-1 col-1 deliveryProgress">
+                    {this.state.orderCancelled && <div className="col-lg-6 col-11">
+                                                <p className="cancelledOrder">Your order has been cancelled</p>
+                                                {this.state.data.cancellationReason!=null && <p className="cancelledOrder">Reason : {this.state.data.cancellationReason}</p>}
+                                                {this.state.data.cancellationDateTime!=null && <p className="cancelledOrder">Cancelled on {this.state.cancellationDate} at {this.state.cancellationTime}</p>}
+                            </div>
+                            }
+                
+                    {!this.state.orderCancelled && <div className="col-lg-1 col-1 deliveryProgress">
                             <div className="progress progress-bar-vertical">
                                 <div className="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="100"
                                     aria-valuemax="0" style={{height: `${this.state.progress}`}}>
@@ -132,8 +165,8 @@ class StatusPage extends React.Component{
                                 </div>
                             </div>
                         </div>
-                   
-                    
+                    }
+                    {!this.state.orderCancelled &&
                     <div className="col-lg-5 col-11 d-flex flex-column justify-content-around">
                         <div className={this.state.flag1 ?"progressDetails ":"progressDetails inactive"}>
                             <div className="row">
@@ -159,7 +192,7 @@ class StatusPage extends React.Component{
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div className={this.state.flag3 ?"progressDetails":"progressDetails inactive"}>
                             <div className="row">
                                 <div className="orderIcon">
@@ -197,7 +230,9 @@ class StatusPage extends React.Component{
                             </div>
                         </div>
                     </div>
+                    }
 
+                    
                     <div className="col-lg-6 col-sm-0 restaurantDetails">
                         <Link to="/">
         <h1 className="mb-5">{this.state.data.restuarantName}</h1>
