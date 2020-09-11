@@ -311,7 +311,7 @@ class SignUp extends Component{
 
                         </div>
                         <div className="col-lg-2 col-sm-12 d-flex align-items-end">
-                            <h4>Rs. {Number(sessionStorage.getItem("totalWithTax")).toFixed(2)}</h4>
+                            <h4>Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   
