@@ -44,7 +44,7 @@ this.props.setOTPValue(value)
                     onChange={this.props.MhandleChange}/>
                         {!this.props.isVerified &&
                                 <div className="row mt-20 d-flex align-item-center" name="OTP">
-                                    <div className="col-lg-7 col-md-7 col-sm-12 d-inline-flex">
+                                    <div className="col-lg-12 col-md-12 col-sm-12 d-inline-flex">
                                         {elementsArray.map((k, i) => (
                                             <input className="otp-box"
                                             ref={(ref) => (refArray[i] = ref)} 
@@ -54,7 +54,7 @@ this.props.setOTPValue(value)
                                         ))}
                                     </div>
                                     
-                                   <div className="col-lg-5 col-md-5 col-sm-12 d-flex justify-content-end align-item-center">
+                                   <div className="col-lg-12 col-md-12 col-sm-12 mt-10 d-flex align-item-center">
                                    {!this.props.requestedOTP &&  <button type="submit" onClick={this.props.requestOTP}>Get OTP</button>}
                                     {this.props.requestedOTP && 
                                     <>
@@ -69,7 +69,7 @@ this.props.setOTPValue(value)
 
                                    </div>
                                   
-                                    <div className="container mt-20 ">
+                                    <div className="container mt-20 mb-10 ">
                                         {this.props.errorMessage ?
                                         <small className="row message ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
                                         :
