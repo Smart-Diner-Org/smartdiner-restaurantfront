@@ -1,11 +1,9 @@
-import React ,{Component} from 'react'
+import React from 'react'
 
 
-class FootComponent extends Component{
-    render(){
+function FootComponent (props){
         return(
             <div>
-
             <section id="footer" class="footer-area mt-50">
             <div class="container">
                 <div class="footer-copyright pt-15 pb-15">
@@ -74,7 +72,7 @@ class FootComponent extends Component{
                     <div className="row">
                     <div class="col-lg-12 mt-30">
                             <div  style={{width: '100%', display: 'flex',justifycontent: 'space-between'}}>
-                                <p style={{width: '70%'}}>All rights reserved. <a href="#" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
+                                <p style={{width: '70%'}}>All rights reserved. <a href="/" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
                                 {/* <ul className="social text-right">
                                     {
                                         this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
@@ -99,7 +97,6 @@ class FootComponent extends Component{
         
          </div>
         )
-    }
 }
    
 
