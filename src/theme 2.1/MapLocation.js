@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-// import axios from "axios";
 
 class MapLocation extends Component{
     render()
