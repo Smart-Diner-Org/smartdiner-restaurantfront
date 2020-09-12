@@ -1,8 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 
-class MapLocation extends Component{
-    render()
-    {
+function MapLocation(props){
         return(
             <section id="location" class="pt-120 pb-10">
             <div className="container" >
@@ -16,8 +14,6 @@ class MapLocation extends Component{
             </div>
             </section>
         )
-    }
-
 }
 
 export default MapLocation;
