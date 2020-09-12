@@ -82,8 +82,6 @@ class SignUp extends Component{
         const {name, value} = event.target
         this.setState({
             [name]: value,
-            // user_info:{...this.state.user_info.user,user:{customer_detail:{[name]: value}}}
-            
         })
     }
 
@@ -109,7 +107,8 @@ class SignUp extends Component{
                 requestedOTP : false,
                 isVerified : false,
                 seconds : 60, 
-
+                successMessage: "",
+                errorMessage: "",
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);

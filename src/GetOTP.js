@@ -43,7 +43,7 @@ this.props.setOTPValue(value)
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
                     onChange={this.props.MhandleChange}/>
                                                         <div className="row mt-20 d-flex align-item-center" name="OTP">
-                                {!this.props.isVerified && this.props.requestedOTP &&
+                                {!this.props.isVerified && this.props.requestedOTP && !(this.props.minutes == 0 && this.props.seconds==0) &&
                                     <div className="col-lg-12 col-md-12 col-sm-12 d-inline-flex">
                                         {elementsArray.map((k, i) => (
                                             <input className="otp-box"
@@ -69,12 +69,13 @@ this.props.setOTPValue(value)
 
                                    </div>
                                   
-                                    <div className="container mt-20 mb-10 ">
+                                   {!this.props.isVerified && 
+                                   <div className="container mt-20 mb-10 ">
                                         {this.props.errorMessage ?
                                         <small className="row message ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
                                         :
                                         <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
-                                    </div>
+                                    </div>}
                                 </div>
                                 
                                 
