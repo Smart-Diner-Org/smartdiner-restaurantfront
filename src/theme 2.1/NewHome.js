@@ -108,7 +108,7 @@ async componentDidMount() {  //API call to get data from backend
         restaurantDetails.push(item)
     })
     this.setState({restaurantBranch:restaurantDetails});
-
+    console.log(data)
     this.state.restaurantBranch.map((item)=>{
         items.push(...item.restaurant_branch_menu)
     })
@@ -233,25 +233,12 @@ checkDistance(){
                     let flag;
                     console.log(address)
                     
-            // for (let i=0; i< (address.address_components).length ;i++){
-            //   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
-            //     if(address.formatted_address.includes(this.state.refregion[ss].toLowerCase())){
-            //         flag=true
-            //         break
-            //     }
-            //   }
-            // }
+    
                     const addr = this.state.refregion.map(item => item.toLowerCase())
             for (let i=0; i< (address.address_components).length ;i++){
                 if( addr.includes(address.address_components[i].long_name.toLowerCase()) || addr.includes(address.address_components[i].short_name.toLowerCase())){
-                //   for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
-                //     if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
-
                         flag=true
                         break
-                    // }
-                //   }
-
             }
         }
 
@@ -445,7 +432,7 @@ PAhandleChange = address => {
          <About
          about = {this.state.restaurant_info.about}
           timings={this.state.restaurantBranch[0].timings} />
-         <MapLocation lat={this.state.restaurantBranch[0].lat} long={this.state.restaurantBranch[0].long} />
+         <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
          <Contact  />
          <ScrollToTop />
          <FootComponent 
