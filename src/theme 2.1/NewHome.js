@@ -79,7 +79,6 @@ async componentDidMount() {  //API call to get data from backend
              restaurant_info:data.restaurant,
              refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
              refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
-            //  refregion : ["sulur","nelamangala","Sadashiva Nagara"],
              isLoaded: true,
             });     
             if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
