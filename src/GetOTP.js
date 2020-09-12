@@ -42,8 +42,8 @@ this.props.setOTPValue(value)
                     autoFocus name="mobile" minLength="10" maxLength="10" 
                     placeholder="Enter Mobile Number" data-error="Mobile is required." required="required"
                     onChange={this.props.MhandleChange}/>
-                        {!this.props.isVerified &&
-                                <div className="row mt-20 d-flex align-item-center" name="OTP">
+                                                        <div className="row mt-20 d-flex align-item-center" name="OTP">
+                                {!this.props.isVerified && this.props.requestedOTP &&
                                     <div className="col-lg-12 col-md-12 col-sm-12 d-inline-flex">
                                         {elementsArray.map((k, i) => (
                                             <input className="otp-box"
@@ -53,17 +53,17 @@ this.props.setOTPValue(value)
                                             />
                                         ))}
                                     </div>
-                                    
+                                    }
                                    <div className="col-lg-12 col-md-12 col-sm-12 mt-10 d-flex align-item-center">
-                                   {!this.props.requestedOTP &&  <button type="submit" onClick={this.props.requestOTP}>Get OTP</button>}
+                                   {!this.props.requestedOTP && !this.props.isVerified && <button type="submit" onClick={this.props.requestOTP}>Get OTP</button>}
                                     {this.props.requestedOTP && 
                                     <>
                                     {this.props.minutes == 0 && this.props.seconds==0 ?
                                     <button  onClick={ this.props.resendOTP }>Resend OTP</button>
                                     :
                                     <>
-                                    <button type="submit" onClick={this.props.OTPverfication }>Verify { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }</button>
-                                    
+                                    {!this.props.isVerified && <button type="submit" onClick={this.props.OTPverfication }>Verify { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }</button>
+                                    }
                                     </>}
                                     </>}
 
@@ -75,7 +75,7 @@ this.props.setOTPValue(value)
                                         :
                                         <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
                                     </div>
-                                </div>}
+                                </div>
                                 
                                 
                 </form>
