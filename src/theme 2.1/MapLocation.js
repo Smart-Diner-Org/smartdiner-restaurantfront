@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 // import axios from "axios";
 
 class MapLocation extends Component{
@@ -11,9 +11,9 @@ class MapLocation extends Component{
             <section id="location" class="pt-120 pb-10">
             <div className="container" >
                 <div className="google-map ">
-                    {/* <Map google={this.props.google} zoom={15} initialCenter={{ lat: this.props.lat, lng: this.props.long}}>
+                    <Map google={this.props.google} zoom={15} initialCenter={{ lat: this.props.lat, lng: this.props.long}}>
                         <Marker position={{ lat: this.props.lat , lng: this.props.long} }/>
-                    </Map> */}
+                    </Map>
                 </div>
             </div>
             </section>
@@ -22,4 +22,6 @@ class MapLocation extends Component{
 
 }
 
-export default (MapLocation);
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8'
+  })(MapLocation);
