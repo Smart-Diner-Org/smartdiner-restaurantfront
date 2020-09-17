@@ -19,7 +19,7 @@ function FootComponent (props){
                                             <i class="lni lni-whatsapp "></i>
                                         </div>
                                         <div class="info-content ml-20">
-                                <p><a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`} target="blank">{this.props.contact_number}</a></p>
+                                <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">{props.contact_number}</a></p>
                                         </div>
                                     </div> 
                                 </li>
@@ -29,7 +29,7 @@ function FootComponent (props){
                                             <i class="lni-envelope"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>{this.props.email}</p>
+                                            <p>{props.email}</p>
                                         </div>
                                     </div> 
                                 </li>
@@ -39,7 +39,7 @@ function FootComponent (props){
                                             <i class="lni-home"></i>
                                         </div>
                                         <div class="row info-content">
-                                            <p class="col-lg-5  col-sm-12">{this.props.address}</p>
+                                            <p class="col-lg-5  col-sm-12">{props.address}</p>
                                         </div>
                                     </div> 
                                 </li>
@@ -51,16 +51,16 @@ function FootComponent (props){
                                 <h6 style={{color: 'white'}}>SOCIAL MEDIA</h6>
                                 <ul className="social text-right mt-10">
                                                 {
-                                                    this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
+                                                    props.links.facebook_link && <li><a href={`${props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
                                                 }
                                                 {
-                                                    this.props.links.instagram_link && <li><a href={`${this.props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
+                                                    props.links.instagram_link && <li><a href={`${props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
                                                 }
                                                 {
-                                                    this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
+                                                    props.links.twitter_link && <li><a href={`${props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
                                                 }
                                                 {
-                                                    this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
+                                                    props.links.youtube_link && <li><a href={`${props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
                                                 }
                                                 
                                             </ul>
@@ -72,22 +72,8 @@ function FootComponent (props){
                     <div className="row">
                     <div class="col-lg-12 mt-30">
                             <div  style={{width: '100%', display: 'flex',justifycontent: 'space-between'}}>
-                                <p style={{width: '70%'}}>All rights reserved. <a href="/" rel="nofollow">&copy; {this.props.restaurantName}</a></p>
-                                {/* <ul className="social text-right">
-                                    {
-                                        this.props.links.facebook_link && <li><a href={`${this.props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
-                                    }
-                                    {
-                                        this.props.links.instagram_link && <li><a href={`${this.props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
-                                    }
-                                    {
-                                        this.props.links.twitter_link && <li><a href={`${this.props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
-                                    }
-                                    {
-                                        this.props.links.youtube_link && <li><a href={`${this.props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
-                                    }
-                                    
-                                 </ul> */}
+                                <p style={{width: '70%'}}>All rights reserved. <a href="/" rel="nofollow">&copy; {props.restaurantName}</a></p>
+                                
                             </div> 
                         </div>
                     </div>
