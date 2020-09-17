@@ -36,10 +36,10 @@ class HeadComponent extends Component {
                             {
                                 this.props.logo?
                                 <>
-                                <img src={this.props.logo} alt="Logo"/>
+                                <img loading="lazy" src={this.props.logo} alt="Logo"/>
                                 </>
                                 :
-                                <img src={Logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>    
+                                <img loading="lazy" src={Logo} style={{width:"50px",maxHeight:"50px"}} alt="Logo"/>    
                             }
                             <h4 className="pl-20 d-flex align-items-center">{this.props.restaurantName}</h4>
                         </a> 
@@ -72,7 +72,7 @@ class HeadComponent extends Component {
                         <div className="headlogo" >
                             {/* {this.props.total==0 && <span className="tooltiptext">Your Cart is Empty</span>} */}
                                     <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup} >
-                                        <img src={BagImage} className="img-responsive cart" alt="Cart"/>
+                                        <img  loading="lazy" src={BagImage} className="img-responsive cart" alt="Cart"/>
                                         <span className="badge">{this.props.total}</span>
                                     </a> 
                          </div>

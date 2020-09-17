@@ -15,8 +15,8 @@ function FootComponent (props){
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i class="lni-phone-handset mr-10"></i>
-                                            <i class="lni lni-whatsapp "></i>
+                                            <i rel="preload" class="lni-phone-handset mr-10"></i>
+                                            <i rel="preload" class="lni lni-whatsapp "></i>
                                         </div>
                                         <div class="info-content ml-20">
                                 <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">{props.contact_number}</a></p>
@@ -36,7 +36,7 @@ function FootComponent (props){
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i class="lni-home"></i>
+                                            <i rel="preload" class="lni-home"></i>
                                         </div>
                                         <div class="row info-content">
                                             <p class="col-lg-5  col-sm-12">{props.address}</p>
@@ -51,16 +51,16 @@ function FootComponent (props){
                                 <h6 style={{color: 'white'}}>SOCIAL MEDIA</h6>
                                 <ul className="social text-right mt-10">
                                                 {
-                                                    props.links.facebook_link && <li><a href={`${props.links.facebook_link}`} target="blank" ><i className="lni-facebook-filled"></i></a></li>
+                                                    props.links.facebook_link && <li><a href={`${props.links.facebook_link}`} target="blank" ><i rel="preload" className="lni-facebook-filled"></i></a></li>
                                                 }
                                                 {
-                                                    props.links.instagram_link && <li><a href={`${props.links.instagram_link }`} target="blank" ><i className="lni-instagram"></i></a></li>
+                                                    props.links.instagram_link && <li><a href={`${props.links.instagram_link }`} target="blank" ><i rel="preload" className="lni-instagram"></i></a></li>
                                                 }
                                                 {
-                                                    props.links.twitter_link && <li><a href={`${props.links.twitter_link }`} target="blank"><i className="lni-twitter-original"></i></a></li>
+                                                    props.links.twitter_link && <li><a href={`${props.links.twitter_link }`} target="blank"><i rel="preload" className="lni-twitter-original"></i></a></li>
                                                 }
                                                 {
-                                                    props.links.youtube_link && <li><a href={`${props.links.youtube_link }`} target="blank"><i class="lni lni-youtube"></i></a></li>
+                                                    props.links.youtube_link && <li><a href={`${props.links.youtube_link }`} target="blank"><i rel="preload" class="lni lni-youtube"></i></a></li>
                                                 }
                                                 
                                             </ul>
