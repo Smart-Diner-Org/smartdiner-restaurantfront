@@ -26,7 +26,7 @@ class About extends Component {
                 <div class="col-lg-6">
                     <div class="about-left mt-45">
                         <div class="about">
-                            <img src={ChefImage} alt=""/>
+                            <img loading="lazy" src={ChefImage} alt=""/>
                         </div>
                     </div> 
                 </div>
@@ -55,9 +55,6 @@ class About extends Component {
                                 </div> 
                                 </div>
                             </div>
-                            
-                        
-                    
                 </div>
             </div> 
         </div> 

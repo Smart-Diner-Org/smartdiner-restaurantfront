@@ -18,10 +18,10 @@ class BillItem extends Component {
                         <div style={{height:"120px",width:"100%",maxWidth:"120px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
                                 {this.props.image?
                                     <>
-                                    <a href="#"><img src={this.props.image} alt="Product"/> </a>
+                                    <a href="#"><img loading="lazy" src={this.props.image} alt="Product"/> </a>
                                     </>
                                     :
-                                    <a href="#"><img src={BurgerImage} alt="Product"/> </a>
+                                    <a href="#"><img loading="lazy" src={BurgerImage} alt="Product"/> </a>
                                 }   
                         </div>
                     </div>
@@ -35,7 +35,6 @@ class BillItem extends Component {
                         <div className="row mt-10 mb-10">
                             <div className="col-5 des">
                             <h4 className="itemname"  >{this.props.itemName}</h4>
-                            {/* <h6 className="containment" >Containments</h6> */}
                             <h6 className="containment" >{this.props.description}</h6>
 
                             </div>

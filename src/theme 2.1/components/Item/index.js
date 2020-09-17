@@ -12,10 +12,10 @@ class Item extends Component {
                                 <div className="product-item-image">
                                 {this.props.image?
                                     <>
-                                    <a><img src={this.props.image} alt="Product"/> </a>
+                                    <a><img loading="lazy" src={this.props.image} alt="Product"/> </a>
                                     </>
                                     :
-                                    <a><img src={Burger} alt="Product"/> </a>
+                                    <a><img loading="lazy" src={Burger} alt="Product"/> </a>
                                 }  
         
                                     {this.props.discount>0?
