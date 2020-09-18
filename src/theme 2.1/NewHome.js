@@ -108,7 +108,7 @@ async componentDidMount() {  //API call to get data from backend
         restaurantDetails.push(item)
     })
     this.setState({restaurantBranch:restaurantDetails});
-    console.log(data)
+    // console.log(data)
     this.state.restaurantBranch.map((item)=>{
         items.push(...item.restaurant_branch_menu)
     })
@@ -242,9 +242,9 @@ checkDistance(){
             }
         }
 
+                const distanceLimit = Number(this.state.restaurantBranch[0].distance)
 
-
-                if(distance<=9999999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+                if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
                     this.setState({boundary:true})
                     sessionStorage.setItem("boundary",true)
@@ -307,8 +307,9 @@ PAhandleChange = address => {
 
             }
         }
+        const distanceLimit = Number(this.state.restaurantBranch[0].distance)
            
-            if(distance<=999999 && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+            if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
                 this.setState({boundary:true})
                 sessionStorage.setItem("boundary",true)
