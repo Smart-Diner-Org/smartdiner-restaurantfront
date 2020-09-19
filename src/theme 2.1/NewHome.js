@@ -241,8 +241,8 @@ checkDistance(){
                         break
             }
         }
-
-                const distanceLimit = Number(this.state.restaurantBranch[0].distance)
+                const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
+                distance = Math.abs(distance/1000 );
 
                 if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                     alert("Welcome you sir... we are happy to serve you")
@@ -307,7 +307,8 @@ PAhandleChange = address => {
 
             }
         }
-        const distanceLimit = Number(this.state.restaurantBranch[0].distance)
+        const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
+        distance = Math.abs(distance/1000 );
            
             if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
                 alert("Welcome you sir... we are happy to serve you")
