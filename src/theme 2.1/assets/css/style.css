@@ -738,6 +738,14 @@ p {
 
 }
 
+.delivery-type input{
+  width: 250px;
+  padding: 10px;
+  height: 50px;
+  font-family: 'MuseoModerno';
+  color: #000466;
+}
+
 .bill-container{
   padding: 10px 10px 10px 10px;
   font-size: 1.125em;

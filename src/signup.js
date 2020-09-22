@@ -303,15 +303,16 @@ class SignUp extends Component{
             <div className="signup ">
                 <div className="container">
                     <div className="header row mt-30">
-                        <div className="col-lg-10 col-sm-12">
+                        <div className="col-lg-9 col-sm-12">
                             <Link to="/">
                                 <label className="mb-20"><i class="lni lni-arrow-left"></i>  Back to A3 Biryani </label>
                             </Link>
                             <h2>Customer Details</h2>
 
                         </div>
-                        <div className="col-lg-2 col-sm-12 d-flex align-items-end">
-                            <h4>Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
+                        <div className="col-lg-3 col-sm-12 d-flex flex-column justify-content-end">
+                            {sessionStorage.getItem("deliveryDate") && <h6 className="row d-flex justify-content-end">Delivery Date: {sessionStorage.getItem("deliveryDate")}</h6> }
+                            <h4 className="row d-flex justify-content-end">Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   
