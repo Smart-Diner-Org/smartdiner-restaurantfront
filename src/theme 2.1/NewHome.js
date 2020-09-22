@@ -409,6 +409,7 @@ PAhandleChange = address => {
          quantity={this.state.quantity}
          editlocation = {this.editlocation}
          decTotal={this.decTotal}
+         restaurant_website_detail = {this.state.restaurant_info.restaurant_website_detail}
          />}
 
         

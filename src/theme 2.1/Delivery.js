@@ -25,37 +25,40 @@ class Delivery extends Component {
 
     
     render(){
+        console.log(this.props.restaurant_website_detail)
         return(
             <div>
                 <hr/>
                 <div className="delivery-type">
-                { !this.state.pre_order &&
-                <>
-                <Link 
-                    to={{
-                        pathname: '/signup',
-                        }} >
-                    <button >Order for Now</button>
-                </Link>
-                <button onClick={()=>{this.setState({pre_order:true})}} className="mt-10">Order for Later</button>
-                </>
-                }
+                    { 
+                        !this.state.pre_order &&
+                        <>
+                        <Link to= '/signup' >
+                            <button >Order for Now</button>
+                        </Link>
+                        </>
+                    }
 
-                { this.state.pre_order &&
-                <>
-                <p>Select delivery date</p>
-                <input className="mt-10" name="date" required="true" type='date' onChange={this.handleChange} />
-                <Link to={this.state.date?"/signup":""}>
-                    <button className="mt-10" >Confirm</button>
-                </Link>
-                </>
-                }
-                
-            </div>
-            <hr/>
+                    { 
+                    this.props.restaurant_website_detail.is_pre_booking_enabled &&
+                    <>
+                    <button onClick={()=>{this.setState({pre_order:true})}} className="mt-10">Order for Later</button>
+                    <p>Select delivery date</p>
+                    <div className="delivery-type-inputs">
+                        <input className="row " name="date" required="true" type='date' onChange={this.handleChange} />
+                        {this.props.restaurant_website_detail.is_pre_booking_enabled && <input className="row mt-10" name="date" required="true" type='time' onChange={this.handleChange} /> }
+                    </div>
+                    
+                    <Link to={this.state.date?"/signup":""}>
+                        <button className="mt-10" >Confirm</button>
+                    </Link>
+                    </>
+                    }
+                    
+                </div>
+                <hr/>
             </div>
             
-
         )
     }
 }
