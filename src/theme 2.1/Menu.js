@@ -17,7 +17,7 @@ class Menu extends Component{
     render(){
         return(
                 <div class="col-lg-3 col-md-4">
-                    <div class="collection-menu text-center mt-30">
+                    <div class="collection-menu text-center mt-20">
                         
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                             aria-orientation="vertical">
