@@ -8,7 +8,9 @@ class Delivery extends Component {
         super(props);
         this.state={
             pre_order : false,
-            date : null,
+            deliveryDate : null,
+            deliveryTime : null,
+            confirm : false,
         }
         this.handleChange = this.handleChange.bind(this)
 
@@ -19,7 +21,14 @@ class Delivery extends Component {
         this.setState({
             [name]: value,
         })
-        sessionStorage.setItem("deliveryDate",value)
+        sessionStorage.setItem([name],value)
+        if(this.props.restaurant_website_detail.is_pre_booking_enabled){
+            if(this.props.restaurant_website_detail.is_pre_booking_time_required){
+                this.setState({confirm:true})
+            }else{
+                this.setState({confirm:true})
+            }
+        }
     }
 
 
@@ -42,16 +51,22 @@ class Delivery extends Component {
                     { 
                     this.props.restaurant_website_detail.is_pre_booking_enabled &&
                     <>
-                    <button onClick={()=>{this.setState({pre_order:true})}} className="mt-10">Order for Later</button>
-                    <p>Select delivery date</p>
-                    <div className="delivery-type-inputs">
-                        <input className="row " name="date" required="true" type='date' onChange={this.handleChange} />
-                        {this.props.restaurant_website_detail.is_pre_booking_enabled && <input className="row mt-10" name="date" required="true" type='time' onChange={this.handleChange} /> }
-                    </div>
-                    
-                    <Link to={this.state.date?"/signup":""}>
-                        <button className="mt-10" >Confirm</button>
-                    </Link>
+                    { !this.state.pre_order && <button onClick={()=>{this.setState({pre_order:true})}} className="mt-10">Order for Later</button>}
+                    {
+                        this.state.pre_order &&
+                        <>
+                            <p>When do you want us to deliver?</p>
+                            <div className="delivery-type-inputs mt-10">
+                                <input className="row " name="deliveryDate" required="true" type='date' onChange={this.handleChange} />
+                                {this.props.restaurant_website_detail.is_pre_booking_time_required && <input className="row mt-10" name="deliveryTime" required="true" type='time' onChange={this.handleChange} /> }
+                            </div>
+                            
+                            <Link to={this.state.confirm? "/signup": ""}>
+                                <button className="mt-10" >Confirm</button>
+                            </Link>
+                        </>
+                    }
+
                     </>
                     }
                     

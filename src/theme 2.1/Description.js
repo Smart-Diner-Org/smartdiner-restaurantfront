@@ -33,9 +33,9 @@ class Description extends React.Component{
                         </ul>
                     </div>
                 </div>
-                <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
+                { this.props.preOrder && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"white"}} >We also provide Pre-Order service</h5>
-                </div> 
+                        </div> }
                 {/* <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",border: "1px solid black", borderRadius:"8px"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
                 </div>  */}
