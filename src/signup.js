@@ -141,7 +141,6 @@ class SignUp extends Component{
                 return true;
             }
             const check = mobileValidation(this.state.mobile,"Please provide valid mobile number")
-            console.log(check)
         if(check){
             this.setState({requestedOTP:true})
             const data = {
