@@ -15,11 +15,23 @@ function FootComponent (props){
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i rel="preload" class="lni-phone-handset mr-10"></i>
+                                        <a href={`tel:+${props.contact_number}`} target="blank"><i rel="preload" class="lni-phone-handset mr-10"></i></a>
+                                          {/* <a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">
+                                            <i rel="preload" class="lni lni-whatsapp "></i></a> */}
+                                        </div>
+                                        <div class="info-content">
+                                         <p><a href={`tel:+${props.contact_number}`} target="blank">{props.contact_number}</a></p>
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <div class="single-info mt-30">
+                                        <div class="info-icon">
+                                            {/*<i rel="preload" class="lni-phone-handset mr-10"></i>*/}
                                             <a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">
                                             <i rel="preload" class="lni lni-whatsapp "></i></a>
                                         </div>
-                                        <div class="info-content ml-20">
+                                        <div class="info-content">
                                          <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">{props.contact_number}</a></p>
                                         </div>
                                     </div> 
