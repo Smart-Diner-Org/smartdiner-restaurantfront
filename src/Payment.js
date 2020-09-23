@@ -52,8 +52,13 @@ class Payment extends React.Component{
                     </ul>
                     <div className="mt-30 d-flex justify-content-end" style={{width:"100%"}}>
                         {sessionStorage.getItem("total") && <button className="proceed" onClick={this.props.check &&  this.props.goPayment} >Proceed</button>}
-                    
-                </div>
+                    </div>
+                    <div className="container mt-20 ">
+                                        {this.props.errorMessage ?
+                                        <small className="row message ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
+                                        :
+                                        <small className="row message ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
+                                    </div>
                 </div>
                 
             </div>

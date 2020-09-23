@@ -56,6 +56,8 @@ class SignUp extends Component{
                 uuid: null,}},
             successMessage: "",
             errorMessage: "",
+            paymentSuccessMessage: "",
+            paymentErrorMessage: "",
             addressTwo : sessionStorage.getItem('address'),
             addressOne: "",
         }
@@ -266,13 +268,18 @@ class SignUp extends Component{
                 window.history.replaceState(null, '', '/');
                 window.open(res.data.paymentUrl,"_self")
                 
-                this.setState({successMessage:res.data.message})
+                this.setState({paymentSuccessMessage:res.data.message})
 
             })
             .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
+                if(error && error.response && error.response.data){
+                    let er = error.response.data.message
+                    console.log(er)
+                    this.setState({paymentErrorMessage: er});
+                }
+                else{
+                    this.setState({paymentErrorMessage: error.message});
+                }
             })
     }
     
@@ -355,8 +362,8 @@ class SignUp extends Component{
                         {/* {this.state.user_info.accessToken && <Payment />} */}
                         <Payment
                         goPayment = {this.goPayment}
-                        successMessage={this.state.successMessage}
-                        errorMessage = {this.state.errorMessage}
+                        successMessage={this.state.paymentSuccessMessage}
+                        errorMessage = {this.state.paymentErrorMessage}
                         check = {this.state.user_info.customer.customer_detail}
                         />
                         </div>
