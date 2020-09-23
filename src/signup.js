@@ -56,6 +56,8 @@ class SignUp extends Component{
                 uuid: null,}},
             successMessage: "",
             errorMessage: "",
+            paymentSuccessMessage: "",
+            paymentErrorMessage: "",
             addressTwo : sessionStorage.getItem('address'),
             addressOne: "",
         }
@@ -82,8 +84,6 @@ class SignUp extends Component{
         const {name, value} = event.target
         this.setState({
             [name]: value,
-            // user_info:{...this.state.user_info.user,user:{customer_detail:{[name]: value}}}
-            
         })
     }
 
@@ -109,7 +109,8 @@ class SignUp extends Component{
                 requestedOTP : false,
                 isVerified : false,
                 seconds : 60, 
-
+                successMessage: "",
+                errorMessage: "",
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -124,48 +125,67 @@ class SignUp extends Component{
 
     async requestOTP(event){
         event.preventDefault()
-        this.setState({requestedOTP:true})
-        const data = {
-            mobile : this.state.mobile,
-            roleId : 4,
-        }
-        clearInterval(myInterval)
-        myInterval =  setInterval(() => {
-            const { seconds, minutes } = this.state
-
-            if (seconds > 0) {
-                this.setState(({ seconds }) => ({
-                    seconds: seconds - 1
-                }))
+        const mobileValidation = (field,alerttext) => {
+                if(field.length < 10) {
+                    alert(alerttext);
+                    return false;
+                }
+                for(let i = 0; i < field.length; i++) {
+                    if(isNaN(parseInt(field[i]))) {
+                        alert(alerttext);
+                        return false;
+                    }
+                }
+                return true;
             }
-            if (seconds === 0) {
-                if (minutes === 0) {
-                    clearInterval(this.myInterval)
-                } else {
-                    this.setState(({ minutes }) => ({
-                        minutes: minutes - 1,
-                        seconds: 59
+            const check = mobileValidation(this.state.mobile,"Please provide valid mobile number")
+            console.log(check)
+        if(check){
+            this.setState({requestedOTP:true})
+            const data = {
+                mobile : this.state.mobile,
+                roleId : 4,
+            }
+            clearInterval(myInterval)
+            myInterval =  setInterval(() => {
+                const { seconds, minutes } = this.state
+
+                if (seconds > 0) {
+                    this.setState(({ seconds }) => ({
+                        seconds: seconds - 1
                     }))
                 }
-            } 
-        }, 1000)
-        await axios.post(`${this.apiLink}auth/check_for_account`,data)
-            .then(res => {
-                this.setState({successMessage:res.data.message})
-                
-            })
-            .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
-            })
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(this.myInterval)
+                    } else {
+                        this.setState(({ minutes }) => ({
+                            minutes: minutes - 1,
+                            seconds: 59
+                        }))
+                    }
+                } 
+            }, 1000)
+            await axios.post(`${this.apiLink}auth/check_for_account`,data)
+                .then(res => {
+                    this.setState({successMessage:res.data.message})
+                    
+                })
+                .catch( (error) => {
+                    if(error && error.response && error.response.data){
+                        let er = error.response.data.message
+                        console.log(er)
+                        this.setState({errorMessage:er});
+                    }
+                })
+        }
+        
     }
 
-    async OTPverfication(event){
-        event.preventDefault()
+    async OTPverfication(otp){
         const data ={
             mobile : this.state.mobile,
-            otp : this.state.OTP
+            otp : otp
         }
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
@@ -175,13 +195,12 @@ class SignUp extends Component{
                 this.setState({isVerified:true})
                 clearInterval(myInterval)
             })
-            .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
-                // this.setState({errorMessage:error.response.data.message})
-    
-        
+            .catch((error) => {
+                if(error && error.response && error.response.data){
+                    let er = error.response.data.message
+                    console.log(er)
+                    this.setState({errorMessage:er});
+                };
             })
         
     }
@@ -197,13 +216,14 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
             })
             .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
+                if(error && error.response && error.response.data){
+                    let er = error.response.data.message
+                    console.log(er)
+                    this.setState({errorMessage:er});
+                }
             })
          this.setState({seconds:60}) 
          this.setState({isVerified:false})
-        //  this.OTPverfication(event) 
     }
 
     async addCustomer(event){
@@ -223,16 +243,16 @@ class SignUp extends Component{
               'x-access-token': `${sessionStorage.getItem('token')}` 
             }})
             .then(res =>{
-                // this.setState({message:res.data.message})
-
                 this.setState({user_info:res.data})
                 this.setState({successMessage:res.data.message})
 
             })
             .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
+                if(error && error.response && error.response.data){
+                    let er = error.response.data.message
+                    console.log(er)
+                    this.setState({errorMessage:er});
+                }
             })
 
 
@@ -243,7 +263,6 @@ class SignUp extends Component{
         event.preventDefault()
         let newArray =  (JSON.parse(sessionStorage.getItem('items')))
         let selectedArray = []
-        // console.log(newArray)
         newArray.map((item)=>{
             if(item.quantity>0){
                 let menu = {id: item.id, quantity: item.quantity, price:item.discountPrice ,originalPrice: Number(item.price)}
@@ -268,13 +287,18 @@ class SignUp extends Component{
                 window.history.replaceState(null, '', '/');
                 window.open(res.data.paymentUrl,"_self")
                 
-                this.setState({successMessage:res.data.message})
+                this.setState({paymentSuccessMessage:res.data.message})
 
             })
             .catch( (error) => {
-                let er = error.response.data.message
-                console.log(er)
-                this.setState({errorMessage:er});
+                if(error && error.response && error.response.data){
+                    let er = error.response.data.message
+                    console.log(er)
+                    this.setState({paymentErrorMessage: er});
+                }
+                else{
+                    this.setState({paymentErrorMessage: error.message});
+                }
             })
     }
     
@@ -359,8 +383,8 @@ class SignUp extends Component{
                         {/* {this.state.user_info.accessToken && <Payment />} */}
                         <Payment
                         goPayment = {this.goPayment}
-                        successMessage={this.state.successMessage}
-                        errorMessage = {this.state.errorMessage}
+                        successMessage={this.state.paymentSuccessMessage}
+                        errorMessage = {this.state.paymentErrorMessage}
                         check = {this.state.user_info.customer.customer_detail}
                         />
                         </div>

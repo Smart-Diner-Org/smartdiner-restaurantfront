@@ -4,7 +4,7 @@ class GetAddress extends React.Component{
     render(){
         return(
             <div>
-            <div className="address mb-20 mt-30">                   
+            <div className="address mb-20 ">                   
                         <div className="row"style={{marginLeft:"90%"}}>
                             {/* <button className="cancel">X</button> */}
                         </div>

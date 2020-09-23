@@ -10,7 +10,7 @@ class NewCustomer extends Component{
 
 render(){
     return(
-        <div className="new-customer mt-30">
+        <div className="new-customer ">
             <form onSubmit={this.props.addCustomer}>
                 <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name" onChange={this.props.handleChange} required="required"/>
                 <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange} required="required"/>
