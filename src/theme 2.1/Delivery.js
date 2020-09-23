@@ -34,7 +34,6 @@ class Delivery extends Component {
 
     
     render(){
-        console.log(this.props.restaurant_website_detail)
         return(
             <div>
                 <hr/>

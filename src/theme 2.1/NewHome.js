@@ -74,6 +74,7 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
+        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
@@ -92,6 +93,8 @@ async componentDidMount() {  //API call to get data from backend
             const favicon = document.getElementById("favicon");
             favicon.href = this.state.restaurant_info.logo;
             document.title = this.state.restaurant_info.name;
+            const description = document.getElementById("description");
+            description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
             sessionStorage.setItem("logo",this.state.restaurant_info.logo)
             sessionStorage.setItem("title",this.state.restaurant_info.name)
       })
@@ -393,6 +396,7 @@ PAhandleChange = address => {
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
         close = {this.close}
+        pickMyLocation = {this.state.restaurant_info.restaurant_website_detail.is_pick_my_location_enabled}
         boundary = {this.state.boundary}
         gotocart = {this.gotocart}
         contshpng = {this.contshpng}
