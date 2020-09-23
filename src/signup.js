@@ -25,7 +25,8 @@ class SignUp extends Component{
             requestedOTP : false,
             isVerified : false,
             name : "",
-            email : "",    //user_info.user.customer_detail.
+            email : "",
+            token : "",
             user_info : {accessToken: null,
                 customer:{
                 createdAt: null,
@@ -111,6 +112,7 @@ class SignUp extends Component{
                 seconds : 60, 
                 successMessage: "",
                 errorMessage: "",
+                token: "",
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -169,7 +171,6 @@ class SignUp extends Component{
             await axios.post(`${this.apiLink}auth/check_for_account`,data)
                 .then(res => {
                     this.setState({successMessage:res.data.message})
-                    
                 })
                 .catch( (error) => {
                     if(error && error.response && error.response.data){
@@ -190,6 +191,7 @@ class SignUp extends Component{
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                this.setState ({token:res.data.accessToken})
                 sessionStorage.setItem('token',res.data.accessToken)
                 this.setState({successMessage:res.data.message})
                 this.setState({isVerified:true})
@@ -303,7 +305,6 @@ class SignUp extends Component{
     }
     
  editbtn(event){
-
     this.setState({user_info : {accessToken: sessionStorage.getItem("token"),
         customer:{
         createdAt: this.state.user_info.createdAt,
@@ -359,7 +360,8 @@ class SignUp extends Component{
                                     seconds = {this.state.seconds}
                                     isVerified = {this.state.isVerified}
                                     />
-                                    {sessionStorage.getItem("token") && (this.state.user_info.customer.customer_detail ? 
+                                    {this.state.token && (this.state.user_info.customer.customer_detail
+                                    ? 
                                     <GetAddress
                                     name = {this.state.user_info.customer.name}
                                     customer_detail = {this.state.user_info.customer.customer_detail}
