@@ -16,10 +16,11 @@ function FootComponent (props){
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
                                             <i rel="preload" class="lni-phone-handset mr-10"></i>
-                                            <i rel="preload" class="lni lni-whatsapp "></i>
+                                            <a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">
+                                            <i rel="preload" class="lni lni-whatsapp "></i></a>
                                         </div>
                                         <div class="info-content ml-20">
-                                <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">{props.contact_number}</a></p>
+                                         <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">{props.contact_number}</a></p>
                                         </div>
                                     </div> 
                                 </li>
