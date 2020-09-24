@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Image1 from "./assets/images/IMG_20200606_142600.jpg";
-import Image2 from "./assets/images/IMG_20200606_143123.jpg";
 
 ;
 class Slider extends Component {
@@ -18,9 +16,10 @@ class Slider extends Component {
       <section id="home" className="slider-area pt-130 ">
         <div className="container-fluid position-relative carousel-design ">
           <Carousel>
-            <Carousel.Item>
+            {!this.state.slider &&            
+             <Carousel.Item>
               <div className="single-slider single-slider-1">
-                <div className="slider-bg" style={{backgroundImage:`url(${this.state.slider[0].url})`}}>
+                <div className="slider-bg" style={{backgroundImage:`url(https://smart-diner-client-images.s3.ap-south-1.amazonaws.com/default_images/default_slider.webp)`}}>
                   <div className="row  no-gutters align-items-center d-flex justify-content-center">
                     <div className="col-lg-12 ">
                         
@@ -32,7 +31,7 @@ class Slider extends Component {
                           data-animation="fadeInUp"
                           data-delay="0.3s"
                         >
-                          {this.state.slider[0].content}
+                          We providing online delivery
                         </h1>
                         <div className="row">
                           <a href="#product">Place order</a>
@@ -43,32 +42,37 @@ class Slider extends Component {
                   </div>
                 </div>
               </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div className="single-slider single-slider-2">
-                <div className="slider-bg" style={{backgroundImage:`url(${this.state.slider[1].url})`}}>
-                  <div className="row no-gutters align-items-center d-flex justify-content-center">
-                    <div className="col-lg-12 ">
-                      <div
-                        className="slider-product-content pt-50 mt-200"
-                      >
-                        <h1
-                          className="slider-title"
-                          data-animation="fadeInUp"
-                          data-delay="0.3s"
+            </Carousel.Item>}
+            {
+             this.state.slider && this.state.slider.map((item)=>{
+                return  <Carousel.Item>
+                <div className="single-slider single-slider-1">
+                  <div className="slider-bg" style={{backgroundImage:`url(${item.url})`}}>
+                    <div className="row  no-gutters align-items-center d-flex justify-content-center">
+                      <div className="col-lg-12 ">
+                          
+                        <div
+                          className="slider-product-content pt-50  mt-200"
                         >
-                          {this.state.slider[1].content}
-                        </h1>
-                        <div className="row">
-                          <a href="#product">Place order</a>
-                          <a href="#footer">Call us</a>
+                          <h1
+                            className="slider-title "
+                            data-animation="fadeInUp"
+                            data-delay="0.3s"
+                          >
+                            {item.content}
+                          </h1>
+                          <div className="row">
+                            <a href="#product">Place order</a>
+                            <a href="#footer">Call us</a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Carousel.Item>
+              </Carousel.Item>
+              })
+            }
           </Carousel>
         </div>
       </section>
