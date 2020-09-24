@@ -51,7 +51,7 @@ class GetOTP extends React.Component{
                                         maxLength={1}
                                         />
                                     ))}
-                                    <h6 className="col-2 d-flex align-items-center mr-20" style={{color:"#000466"}}>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<i class="lni lni-timer mr-10"></i></h6>
+                                    <h6 className="col-2 d-flex align-items-center mr-20" style={{color:"#000466"}}>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{marginLeft:"5px",fontSize:"18px"}}><i class="lni lni-timer"></i></strong></h6>
                                 </div>
                             </div>
                             }

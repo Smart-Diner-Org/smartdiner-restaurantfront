@@ -738,6 +738,13 @@ p {
 
 }
 
+.delivery-type-inputs input{
+  padding: 10px;
+  width: 250px;
+  font-family: 'MuseoModerno';
+  color: #000466;
+}
+
 .bill-container{
   padding: 10px 10px 10px 10px;
   font-size: 1.125em;
@@ -1055,8 +1062,6 @@ p {
 .single-slider .slider-product-content {
   width : 100%;
   height: 100%;
-  /* max-width: 670px;
-  margin-left: 125px; */
   position: absolute;
   pointer-events: none;
   z-index: 1;
@@ -1069,7 +1074,6 @@ p {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content {
-    /* margin-left: 0; */
     padding: 40px 15px 50px;
   }
 }

@@ -7,10 +7,6 @@ class Description extends React.Component{
             location : this.props.delivery_locations.split(",")
         }
     }
-    
-    // componentDidMount(){
-    //     location=this.props.delivery_locations.split(",")
-    // }
 
     render(){
         return(
@@ -37,24 +33,11 @@ class Description extends React.Component{
                         </ul>
                     </div>
                 </div>
-                {/* <div class="row">
-                    
-                    <div class="col-lg-12">
-    
-                        <div class="about-right mt-45">
-                            <div class="row justify-content-center">
-                                <div class="col-md-6 col-sm-8">
-                                    <div class="about-content mt-20">
-                                        <h5 class="title mb-10">About Us</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm od
-                                            tempor.</p>
-                                    </div>
- 
-                                </div>
-                                
-                            </div> 
-                        </div> 
-                    </div>
+                { this.props.preOrder && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
+                    <h5 class="mt-10 mb-10 " style={{color:"white"}} >We also provide Pre-Order service</h5>
+                        </div> }
+                {/* <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",border: "1px solid black", borderRadius:"8px"}}>
+                    <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
                 </div>  */}
             </div> 
         </section>

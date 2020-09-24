@@ -25,7 +25,8 @@ class SignUp extends Component{
             requestedOTP : false,
             isVerified : false,
             name : "",
-            email : "",    //user_info.user.customer_detail.
+            email : "",
+            token : "",
             user_info : {accessToken: null,
                 customer:{
                 createdAt: null,
@@ -111,6 +112,7 @@ class SignUp extends Component{
                 seconds : 60, 
                 successMessage: "",
                 errorMessage: "",
+                token: "",
         })
         sessionStorage.removeItem("token");
         clearInterval(myInterval);
@@ -139,7 +141,6 @@ class SignUp extends Component{
                 return true;
             }
             const check = mobileValidation(this.state.mobile,"Please provide valid mobile number")
-            console.log(check)
         if(check){
             this.setState({requestedOTP:true})
             const data = {
@@ -169,7 +170,6 @@ class SignUp extends Component{
             await axios.post(`${this.apiLink}auth/check_for_account`,data)
                 .then(res => {
                     this.setState({successMessage:res.data.message})
-                    
                 })
                 .catch( (error) => {
                     if(error && error.response && error.response.data){
@@ -190,6 +190,7 @@ class SignUp extends Component{
         await axios.post(`${this.apiLink}auth/verify_otp`,data)
             .then(res => {
                 this.setState ({user_info:res.data})
+                this.setState ({token:res.data.accessToken})
                 sessionStorage.setItem('token',res.data.accessToken)
                 this.setState({successMessage:res.data.message})
                 this.setState({isVerified:true})
@@ -275,6 +276,8 @@ class SignUp extends Component{
             latitude : Number(sessionStorage.getItem("lat")),
             longitude : Number(sessionStorage.getItem("long")),
             menus : selectedArray,
+            date_of_delivery: sessionStorage.getItem("deliveryDate"),
+            time_of_delivery: sessionStorage.getItem("deliveryTime") ,
         }
         await axios.post(`${this.apiLink}after_login/order/place_order`,data ,{
             headers: {
@@ -301,7 +304,6 @@ class SignUp extends Component{
     }
     
  editbtn(event){
-
     this.setState({user_info : {accessToken: sessionStorage.getItem("token"),
         customer:{
         createdAt: this.state.user_info.createdAt,
@@ -327,15 +329,17 @@ class SignUp extends Component{
             <div className="signup ">
                 <div className="container">
                     <div className="header row mt-30">
-                        <div className="col-lg-10 col-sm-12">
+                        <div className="col-lg-9 col-sm-12">
                             <Link to="/">
-                                <label className="mb-20"><i class="lni lni-arrow-left"></i>  Back to A3 Biryani </label>
+                                <label className="mb-20"><i class="lni lni-arrow-left"></i>  Back to {sessionStorage.getItem("title")} </label>
                             </Link>
                             <h2>Customer Details</h2>
 
                         </div>
-                        <div className="col-lg-2 col-sm-12 d-flex align-items-end">
-                            <h4>Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
+                        <div className="mt-10 col-lg-3 col-sm-12 d-flex flex-column justify-content-end">
+                            {sessionStorage.getItem("deliveryDate") && <h6 className="row d-flex justify-content-end">Delivery Date:&nbsp; <strong>{sessionStorage.getItem("deliveryDate")}</strong> </h6> }
+                            {sessionStorage.getItem("deliveryTime") && <h6 className="row d-flex justify-content-end">Delivery Time:&nbsp; <strong>{sessionStorage.getItem("deliveryTime")}</strong> </h6> }
+                            <h4 className="row d-flex justify-content-end">Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   
@@ -355,7 +359,8 @@ class SignUp extends Component{
                                     seconds = {this.state.seconds}
                                     isVerified = {this.state.isVerified}
                                     />
-                                    {sessionStorage.getItem("token") && (this.state.user_info.customer.customer_detail ? 
+                                    {this.state.token && (this.state.user_info.customer.customer_detail
+                                    ? 
                                     <GetAddress
                                     name = {this.state.user_info.customer.name}
                                     customer_detail = {this.state.user_info.customer.customer_detail}

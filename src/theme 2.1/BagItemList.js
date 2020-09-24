@@ -56,7 +56,7 @@ class BagItemList extends React.Component {
                     )
 }
                 <Bill values={this.values()}/>
-                <Delivery values={this.values()}  />
+                <Delivery restaurant_website_detail = {this.props.restaurant_website_detail}  />
             </div>
         )
     }
