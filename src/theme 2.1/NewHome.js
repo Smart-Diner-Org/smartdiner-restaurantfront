@@ -74,12 +74,13 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
+        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
-             restaurant_info:data.restaurant,
-             refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
-             refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
-             isLoaded: true,
+                restaurant_info:data.restaurant,
+                refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes ? (this.state.restaurantBranch[0].delivery_postal_codes).split(",") : null),
+                refregion : (this.state.restaurantBranch[0].delivery_locations ? (this.state.restaurantBranch[0].delivery_locations).split(",") : null),
+                isLoaded: true,
             });     
             if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
                 this.setState({
@@ -369,7 +370,6 @@ PAhandleChange = address => {
 
   render() {
     const { isLoaded } = this.state;
-    // console.log(process.env.REACT_APP_BASE_URL)
     if (!isLoaded) {
       return (
         <div>  
@@ -423,7 +423,7 @@ PAhandleChange = address => {
 
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
          <Slider/>
-         <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />
+         {this.state.restaurantBranch[0].delivery_locations && <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />}
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}

@@ -1,7 +1,5 @@
 import React,{ Component } from "react"
 import Carousel from 'react-bootstrap/Carousel' 
-import Image1 from './assets/images/IMG_20200606_142600.jpg'
-import Image from './assets/images/IMG_20200606_143123.jpg'
 
 class Slider extends Component {
     render(){
