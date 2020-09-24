@@ -78,11 +78,10 @@ async componentDidMount() {  //API call to get data from backend
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
-             refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes ? (this.state.restaurantBranch[0].delivery_postal_codes).split(",") : " "),
-             refregion : (this.state.restaurantBranch[0].delivery_locations ? (this.state.restaurantBranch[0].delivery_locations).split(",") : ""),
+             refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes).split(","),
+             refregion : (this.state.restaurantBranch[0].delivery_locations).split(","),
              isLoaded: true,
-            });    
-            
+            });     
             if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
                 this.setState({
                     items : JSON.parse(sessionStorage.getItem("items")),
@@ -92,7 +91,7 @@ async componentDidMount() {  //API call to get data from backend
                 })
             }
             const favicon = document.getElementById("favicon");
-            favicon.href = data.restaurant.logo;
+            favicon.href = this.state.restaurant_info.logo;
             document.title = this.state.restaurant_info.name;
             const description = document.getElementById("description");
             description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
@@ -373,6 +372,7 @@ PAhandleChange = address => {
 
   render() {
     const { isLoaded } = this.state;
+    // console.log(process.env.REACT_APP_BASE_URL)
     if (!isLoaded) {
       return (
         <div>  
@@ -402,7 +402,8 @@ PAhandleChange = address => {
         contshpng = {this.contshpng}
         />}
         
-       <div>
+        {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
+        <div>
              { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && sessionStorage.getItem("boundary") &&
          <Bag 
          closePopup={this.togglePopup }  

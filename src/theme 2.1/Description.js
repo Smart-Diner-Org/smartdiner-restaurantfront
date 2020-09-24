@@ -4,7 +4,7 @@ class Description extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            location : (this.props.delivery_locations ? this.props.delivery_locations.split(",") : null)
+            location : this.props.delivery_locations.split(",")
         }
     }
 
@@ -21,15 +21,12 @@ class Description extends React.Component{
                     <div class="col-lg-9">
                         <ul className="row d-flex justify-content-around ">
                             {
-                               this.state.location ? 
                                 this.state.location.map((item) => {
                                     return(
 
                                         <ol class="font-weight-bold col-lg-3 col-md-12 col-sm-12"><i class="lni lni-map-marker mr-10 "></i>{item}</ol>  
                                     )
                                 })
-                                :
-                                " "
 
                             } 
                          
