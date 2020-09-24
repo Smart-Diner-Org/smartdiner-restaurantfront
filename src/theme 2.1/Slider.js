@@ -3,17 +3,24 @@ import Carousel from "react-bootstrap/Carousel";
 import Image1 from "./assets/images/IMG_20200606_142600.jpg";
 import Image2 from "./assets/images/IMG_20200606_143123.jpg";
 
+;
 class Slider extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            slider: JSON.parse(this.props.slider_images),
+        }
+    }
 
-   
   render() {
+    console.log(this.state.slider)
     return (
       <section id="home" className="slider-area pt-130 ">
         <div className="container-fluid position-relative carousel-design ">
           <Carousel>
             <Carousel.Item>
               <div className="single-slider single-slider-1">
-                <div className="slider-bg ">
+                <div className="slider-bg" style={{backgroundImage:`url(${this.state.slider[0].url})`}}>
                   <div className="row  no-gutters align-items-center d-flex justify-content-center">
                     <div className="col-lg-12 ">
                         
@@ -25,7 +32,7 @@ class Slider extends Component {
                           data-animation="fadeInUp"
                           data-delay="0.3s"
                         >
-                          Delicious Quality Chicken Biriyani
+                          {this.state.slider[0].content}
                         </h1>
                         <div className="row">
                           <a href="#product">Place order</a>
@@ -39,7 +46,7 @@ class Slider extends Component {
             </Carousel.Item>
             <Carousel.Item>
               <div className="single-slider single-slider-2">
-                <div className="slider-bg ">
+                <div className="slider-bg" style={{backgroundImage:`url(${this.state.slider[1].url})`}}>
                   <div className="row no-gutters align-items-center d-flex justify-content-center">
                     <div className="col-lg-12 ">
                       <div
@@ -50,7 +57,7 @@ class Slider extends Component {
                           data-animation="fadeInUp"
                           data-delay="0.3s"
                         >
-                          Protein Rich Biriyani
+                          {this.state.slider[1].content}
                         </h1>
                         <div className="row">
                           <a href="#product">Place order</a>

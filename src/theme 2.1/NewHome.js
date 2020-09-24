@@ -427,7 +427,7 @@ PAhandleChange = address => {
 
 
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
-         <Slider/>
+         <Slider slider_images={this.state.restaurant_info.restaurant_website_detail.slider_images}/>
          <Description 
           delivery_locations={this.state.restaurantBranch[0].delivery_locations} 
           preOrder = {this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled}/>
