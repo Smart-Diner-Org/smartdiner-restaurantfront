@@ -92,7 +92,7 @@ async componentDidMount() {  //API call to get data from backend
                 })
             }
             const favicon = document.getElementById("favicon");
-            favicon.href = this.state.restaurant_info.logo;
+            favicon.href = data.restaurant.logo;
             document.title = this.state.restaurant_info.name;
             const description = document.getElementById("description");
             description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
