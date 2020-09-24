@@ -7,8 +7,8 @@ class Description extends React.Component{
             location : (this.props.delivery_locations ? this.props.delivery_locations.split(",") : null)
         }
     }
-    
- 
+
+
     render(){
         return(
             <section  class="about-area mt-50 pt-50 ">
@@ -36,7 +36,7 @@ class Description extends React.Component{
                         </ul>
                     </div>
                 </div>
-               
+
             </div> 
         </section>
         )

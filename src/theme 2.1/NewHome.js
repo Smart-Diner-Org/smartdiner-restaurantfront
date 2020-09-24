@@ -93,6 +93,8 @@ async componentDidMount() {  //API call to get data from backend
             const favicon = document.getElementById("favicon");
             favicon.href = this.state.restaurant_info.logo;
             document.title = this.state.restaurant_info.name;
+            const description = document.getElementById("description");
+            description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
             sessionStorage.setItem("logo",this.state.restaurant_info.logo)
             sessionStorage.setItem("title",this.state.restaurant_info.name)
       })
@@ -393,6 +395,7 @@ PAhandleChange = address => {
         PAhandleChange = {this.PAhandleChange}
         handleSelect = {this.handleSelect}
         close = {this.close}
+        pickMyLocation = {this.state.restaurant_info.restaurant_website_detail.is_pick_my_location_enabled}
         boundary = {this.state.boundary}
         gotocart = {this.gotocart}
         contshpng = {this.contshpng}
@@ -409,6 +412,7 @@ PAhandleChange = address => {
          quantity={this.state.quantity}
          editlocation = {this.editlocation}
          decTotal={this.decTotal}
+         restaurant_website_detail = {this.state.restaurant_info.restaurant_website_detail}
          />}
 
         
@@ -422,8 +426,11 @@ PAhandleChange = address => {
 
 
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
-         <Slider/>
+
+         <Slider slider_images={this.state.restaurant_info.restaurant_website_detail.slider_images}/>
          {this.state.restaurantBranch[0].delivery_locations && <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} />}
+
+
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}
