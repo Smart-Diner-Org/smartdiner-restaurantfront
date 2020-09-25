@@ -2,71 +2,71 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Delivery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pre_order: false,
-      deliveryDate: null,
-      deliveryTime: null,
-      confirm: false,
-    };
-    this.dateSelected = this.dateSelected.bind(this);
-    this.timeSelected = this.timeSelected.bind(this);
-    this.canRoute = this.canRoute.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     pre_order: false,
+  //     deliveryDate: null,
+  //     deliveryTime: null,
+  //     confirm: false,
+  //   };
+  //   this.dateSelected = this.dateSelected.bind(this);
+  //   this.timeSelected = this.timeSelected.bind(this);
+  //   this.canRoute = this.canRoute.bind(this);
+  // }
 
-  dateSelected(event) {
-    const  value = event.target.value;
-    this.setState({
-        deliveryDate: value,
-    });
-    sessionStorage.setItem("deliveryDate", value);
-    const today = new Date()
-    const selectedDate = new Date(value)
+  // dateSelected(event) {
+  //   const  value = event.target.value;
+  //   this.setState({
+  //       deliveryDate: value,
+  //   });
+  //   sessionStorage.setItem("deliveryDate", value);
+  //   const today = new Date()
+  //   const selectedDate = new Date(value)
 
 
-    if((today.getTime()) <(selectedDate.getTime())){
-        this.canRoute()
-    }
-    else{
-        alert("Please provide proper date")
-    }
+  //   if((today.getTime()) <(selectedDate.getTime())){
+  //       this.canRoute()
+  //   }
+  //   else{
+  //       alert("Please provide proper date")
+  //   }
    
-  }
+  // }
 
-  timeSelected(event){
-    const  value = event.target.value;
-    this.setState({
-        deliveryTime: value,
-    });
-    sessionStorage.setItem("deliveryTime", value);
-    this.canRoute()
-  }
+  // timeSelected(event){
+  //   const  value = event.target.value;
+  //   this.setState({
+  //       deliveryTime: value,
+  //   });
+  //   sessionStorage.setItem("deliveryTime", value);
+  //   this.canRoute()
+  // }
 
-  canRoute(){
-    if (this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDate) {
-        if (this.props.restaurant_website_detail.is_pre_booking_time_required && this.state.deliveryTime) {
-          this.setState({ confirm: true });
-        } else if(!this.props.restaurant_website_detail.is_pre_booking_time_required) {
-          this.setState({ confirm: true });
-        }
-      }
-  }
+  // canRoute(){
+  //   if (this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDate) {
+  //       if (this.props.restaurant_website_detail.is_pre_booking_time_required && this.state.deliveryTime) {
+  //         this.setState({ confirm: true });
+  //       } else if(!this.props.restaurant_website_detail.is_pre_booking_time_required) {
+  //         this.setState({ confirm: true });
+  //       }
+  //     }
+  // }
 
   render() {
     return (
       <div>
         <hr />
         <div className="delivery-type">
-          {!this.state.pre_order && (
+         
             <>
               <Link to="/signup">
                 <button>Order for Now</button>
               </Link>
             </>
-          )}
+     
 
-          {this.props.restaurant_website_detail.is_pre_booking_enabled && (
+          {/* {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
               {!this.state.pre_order && (
                 <button
@@ -116,7 +116,7 @@ class Delivery extends Component {
                 </>
               )}
             </>
-          )}
+          )} */}
         </div>
         <hr />
       </div>
