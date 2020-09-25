@@ -232,29 +232,38 @@ checkDistance(){
                     sessionStorage.setItem('long',position.coords.longitude)
                     sessionStorage.setItem('address',this.state.address)
 
-                    let flag;
-                    console.log(address)
+                    const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
+                    distance = Math.abs(distance/1000 );
+                    let withInDistance = false;
+                    if(distance<=distanceLimit){
+                        withInDistance = true;
+                    }else{
+                        alert("Sorry for our Incovenience.... You're out of our boundary")
+                        this.setState({boundary:false})
+                    }
                     
-    
-                    const addr = this.state.refregion.map(item => item.toLowerCase())
-            for (let i=0; i< (address.address_components).length ;i++){
-                if( addr.includes(address.address_components[i].long_name.toLowerCase()) || addr.includes(address.address_components[i].short_name.toLowerCase())){
-                        flag=true
-                        break
-            }
-        }
-                const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
-                distance = Math.abs(distance/1000 );
-
-                if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
-                    alert("Welcome you sir... we are happy to serve you")
-                    this.setState({boundary:true})
-                    sessionStorage.setItem("boundary",true)
-                }else{
-                    alert("Sorry for our Incovenience.... You're out of our boundary")
-                    this.setState({boundary:false})
-                }
-                        
+                    if(withInDistance && this.state.refregion){
+                        let flag;
+                        const addr = this.state.refregion.map(item => item.toLowerCase())
+                        for (let i=0; i< (address.address_components).length ;i++){
+                            if( addr.includes(address.address_components[i].long_name.toLowerCase()) || addr.includes(address.address_components[i].short_name.toLowerCase())){
+                                    flag=true
+                                    break
+                            }
+                        }
+                        if(withInDistance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+                            alert("Welcome you sir... we are happy to serve you")
+                            this.setState({boundary:true})
+                            sessionStorage.setItem("boundary",true)
+                        }else{
+                            alert("Sorry for our Incovenience.... You're out of our boundary")
+                            this.setState({boundary:false})
+                        }
+                    }else{
+                        alert("Welcome you sir... we are happy to serve you")
+                        this.setState({boundary:true})
+                        sessionStorage.setItem("boundary",true)
+                    }
                },
                 error => {
                   console.error(error);
@@ -291,35 +300,47 @@ PAhandleChange = address => {
                 latitude: Number(this.state.restaurantBranch[0].lat),
                 longitude: Number(this.state.restaurantBranch[0].long)
             },1))
-            let flag;
+            
             sessionStorage.setItem('lat',latLng.lat)
             sessionStorage.setItem('long',latLng.lng)
             sessionStorage.setItem('address',address)
             
-
-            for (let i=0; i< (results[0].address_components).length ;i++){
-                if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
-                  for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
-                    if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
-
-                        flag=true
-                        break
-                    }
-                  }
-
-            }
-        }
-        const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
-        distance = Math.abs(distance/1000 );
-           
-            if(distance<=distanceLimit && (this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
-                alert("Welcome you sir... we are happy to serve you")
-                this.setState({boundary:true})
-                sessionStorage.setItem("boundary",true)
+            const distanceLimit = Number(this.state.restaurantBranch[0].delivery_distance)
+            distance = Math.abs(distance/1000 );
+            let withInDistance = false;
+            if(distance<=distanceLimit){
+                withInDistance = true;
             }else{
                 alert("Sorry for our Incovenience.... You're out of our boundary")
                 this.setState({boundary:false})
             }
+            
+            if(withInDistance && this.state.refregion){
+                let flag;
+                for (let i=0; i< (results[0].address_components).length ;i++){
+                    if( address.includes(results[0].address_components[i].long_name) || address.includes(results[0].address_components[i].short_name)){
+                        for (var ss = this.state.refregion.length - 1; ss >= 0; ss--) {
+                            if(address.toLowerCase().includes(this.state.refregion[ss].toLowerCase() )){
+                                flag=true
+                                break
+                            }
+                        }
+                    }
+                }
+                if((this.state.refpostcode.includes(Number(this.state.postalcode)) || flag)){
+                    alert("Welcome you sir... we are happy to serve you")
+                    this.setState({boundary:true})
+                    sessionStorage.setItem("boundary",true)
+                }else{
+                    alert("Sorry for our Incovenience.... You're out of our boundary")
+                    this.setState({boundary:false})
+                }
+            }else{
+                alert("Welcome you sir... we are happy to serve you")
+                this.setState({boundary:true})
+                sessionStorage.setItem("boundary",true)
+            }
+            
 
         })})
       .catch(error => console.error('Error', error));
