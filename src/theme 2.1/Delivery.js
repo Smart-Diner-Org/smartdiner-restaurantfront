@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import "flatpickr/dist/themes/material_green.css";
+import Flatpickr from "react-flatpickr";
+
 
 class Delivery extends Component {
   constructor(props) {
@@ -10,43 +13,16 @@ class Delivery extends Component {
       deliveryTime: null,
       confirm: false,
     };
-    this.dateSelected = this.dateSelected.bind(this);
-    this.timeSelected = this.timeSelected.bind(this);
     this.canRoute = this.canRoute.bind(this);
   }
 
-  dateSelected(event) {
-    const  value = event.target.value;
-    this.setState({
-        deliveryDate: value,
-    });
-    sessionStorage.setItem("deliveryDate", value);
-    const today = new Date()
-    const selectedDate = new Date(value)
-
-
-    if((today.getTime()) <(selectedDate.getTime())){
-        this.canRoute()
-    }
-    else{
-        alert("Please provide proper date")
-    }
-   
-  }
-
-  timeSelected(event){
-    const  value = event.target.value;
-    this.setState({
-        deliveryTime: value,
-    });
-    sessionStorage.setItem("deliveryTime", value);
-    this.canRoute()
-  }
 
   canRoute(){
-    if (this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDate) {
-        if (this.props.restaurant_website_detail.is_pre_booking_time_required && this.state.deliveryTime) {
+    alert(Boolean(this.props.restaurant_website_detail.is_pre_booking_time_required ))
+    if (Boolean(this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDate)) {
+        if (Boolean(this.props.restaurant_website_detail.is_pre_booking_time_required && this.state.deliveryTime)) {
           this.setState({ confirm: true });
+          alert("hi")
         } else if(!this.props.restaurant_website_detail.is_pre_booking_time_required) {
           this.setState({ confirm: true });
         }
@@ -54,6 +30,11 @@ class Delivery extends Component {
   }
 
   render() {
+    if(this.state.confirm){
+      return(
+          <Redirect to='/signup'/>
+      )
+  }
     return (
       <div>
         <hr />
@@ -82,37 +63,26 @@ class Delivery extends Component {
                 <>
                   <p>When do you want us to deliver?</p>
                   <div className="delivery-type-inputs mt-10">
-                    <input
-                      className="row "
-                      name="deliveryDate"
-                      required="true"
-                      type="text"
-                      placeholder="Delivery Date"
-                      onFocus={(e) => {
-                        e.target.type = "date";
-                        e.target.click();
-                      }}
-                      onChange={(e)=>this.dateSelected(e)}
+                    <Flatpickr
+                    placeholder = "Delivery Date"
+                    onChange={deliveryDate => {
+                      this.setState({deliveryDate});}}
                     />
                     {this.props.restaurant_website_detail
                       .is_pre_booking_time_required && (
-                      <input
-                        className="row mt-10"
-                        name="deliveryTime"
-                        required="true"
-                        type="text"
-                        placeholder="Delivery Time"
-                        onFocus={(e) => {
-                          e.target.type = "time";
-                        }}
-                        onChange={(e)=>this.timeSelected(e)}
-                      />
+                        <Flatpickr
+                        options={{ enableTime: true,
+                        noCalendar: true,
+                        dateFormat: "H:i"}}
+                        placeholder = "Delivery time"
+                        onChange={deliveryTime => {
+                          this.setState({deliveryTime});}}
+                        />
+                  
                     )}
                   </div>
 
-                  <Link to={this.state.confirm? "/signup" : ""}>
-                    <button className="mt-10">Confirm</button>
-                  </Link>
+                    <button onClick={this.canRoute} className="mt-10">Confirm</button>
                 </>
               )}
             </>
