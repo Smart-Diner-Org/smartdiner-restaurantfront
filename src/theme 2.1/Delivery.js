@@ -56,8 +56,8 @@ class Delivery extends Component {
                         <>
                             <p>When do you want us to deliver?</p>
                             <div className="delivery-type-inputs mt-10">
-                                <input className="row " name="deliveryDate" required="true" type="date" placeholder="Date" onChange={this.handleChange} />
-                                {this.props.restaurant_website_detail.is_pre_booking_time_required && <input className="row mt-10" name="deliveryTime" required="true" type='time' placeholder="Time" onChange={this.handleChange} /> }
+                                <input className="row " name="deliveryDate" required="true" type="text" placeholder="Delivery Date" onFocus={(e) => e.target.type = 'date'} onChange={this.handleChange} />
+                                {this.props.restaurant_website_detail.is_pre_booking_time_required && <input className="row mt-10" name="deliveryTime" required="true" type='text' placeholder="Delivery Time" onFocus={(e) => e.target.type = 'time'}  onChange={this.handleChange} /> }
                             </div>
                             
                             <Link to={this.state.confirm? "/signup": ""}>
