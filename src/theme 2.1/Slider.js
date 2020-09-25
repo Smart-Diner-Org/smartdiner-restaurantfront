@@ -11,7 +11,6 @@ class Slider extends Component {
     }
 
   render() {
-    console.log(this.state.slider)
     return (
       <section id="home" className="slider-area pt-130 ">
         <div className="container-fluid position-relative carousel-design ">

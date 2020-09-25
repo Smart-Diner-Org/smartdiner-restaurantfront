@@ -74,7 +74,6 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
              restaurant_info:data.restaurant,
