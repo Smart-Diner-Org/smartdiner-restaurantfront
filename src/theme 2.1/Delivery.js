@@ -61,7 +61,7 @@ class Delivery extends Component {
          
             <>
               <Link to="/signup">
-                <button>Order for Now</button>
+                <button>Check Out</button>
               </Link>
             </>
      
