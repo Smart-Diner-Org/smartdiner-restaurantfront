@@ -4,32 +4,32 @@ import {Link} from 'react-router-dom'
 
 
 class Delivery extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            pre_order : false,
-            deliveryDate : null,
-            deliveryTime : null,
-            confirm : false,
-        }
-        this.handleChange = this.handleChange.bind(this)
+    // constructor(props) {
+    //     super(props);
+    //     this.state={
+    //         pre_order : false,
+    //         deliveryDate : null,
+    //         deliveryTime : null,
+    //         confirm : false,
+    //     }
+    //     this.handleChange = this.handleChange.bind(this)
 
-    }
+    // }
 
-    handleChange(event) {
-        const {name, value} = event.target
-        this.setState({
-            [name]: value,
-        })
-        sessionStorage.setItem([name],value)
-        if(this.props.restaurant_website_detail.is_pre_booking_enabled){
-            if(this.props.restaurant_website_detail.is_pre_booking_time_required){
-                this.setState({confirm:true})
-            }else{
-                this.setState({confirm:true})
-            }
-        }
-    }
+    // handleChange(event) {
+    //     const {name, value} = event.target
+    //     this.setState({
+    //         [name]: value,
+    //     })
+    //     sessionStorage.setItem([name],value)
+    //     if(this.props.restaurant_website_detail.is_pre_booking_enabled){
+    //         if(this.props.restaurant_website_detail.is_pre_booking_time_required){
+    //             this.setState({confirm:true})
+    //         }else{
+    //             this.setState({confirm:true})
+    //         }
+    //     }
+    // }
 
 
     
@@ -38,16 +38,16 @@ class Delivery extends Component {
             <div>
                 <hr/>
                 <div className="delivery-type">
-                    { 
-                        !this.state.pre_order &&
+                    
+                   
                         <>
                         <Link to= '/signup' >
-                            <button >Order for Now</button>
+                            <button >Check Out</button>
                         </Link>
                         </>
-                    }
+    
 
-                    { 
+                    {/* { 
                     this.props.restaurant_website_detail.is_pre_booking_enabled &&
                     <>
                     { !this.state.pre_order && <button onClick={()=>{this.setState({pre_order:true})}} className="mt-10">Order for Later</button>}
@@ -67,7 +67,7 @@ class Delivery extends Component {
                     }
 
                     </>
-                    }
+                    } */}
                     
                 </div>
                 <hr/>
