@@ -74,7 +74,7 @@ class SignUp extends Component{
     }
 
     componentDidMount(){
-        ReactGA.initialize("UA-175972269-1");//Move this to db and load dynamically
+        ReactGA.initialize(`${sessionStorage.getItem('GA')}`);//Move this to db and load dynamically
         ReactGA.pageview('/signupPage');
         const favicon = document.getElementById("favicon");
         favicon.href = sessionStorage.getItem("logo");

@@ -69,11 +69,11 @@ decTotal(){
 
 async componentDidMount() {  //API call to get data from backend
     try{
-      ReactGA.initialize("UA-175972269-1");//Move this to db and load dynamically
-      ReactGA.pageview('/homepage');
+
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
+        console.log(data)
         this.getItems(data.restaurant.restaurant_branches)
         this.setState({
                 restaurant_info:data.restaurant,
@@ -89,6 +89,13 @@ async componentDidMount() {  //API call to get data from backend
                     showPopup : false
                 })
             }
+            if(data.restaurant.restaurant_website_detail.ga_tracking_id){
+                ReactGA.initialize(`${data.restaurant.restaurant_website_detail.ga_tracking_id}`);
+                sessionStorage.setItem("GA",data.restaurant.restaurant_website_detail.ga_tracking_id)
+                ReactGA.pageview('/homepage');
+            }
+
+
             const favicon = document.getElementById("favicon");
             favicon.href = this.state.restaurant_info.logo;
             document.title = this.state.restaurant_info.name;
@@ -460,7 +467,8 @@ PAhandleChange = address => {
          />
          <About
          about = {this.state.restaurant_info.about}
-          timings={this.state.restaurantBranch[0].timings} />
+          timings={this.state.restaurantBranch[0].timings} 
+          aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/>
          <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
          <Contact  />
          <ScrollToTop />

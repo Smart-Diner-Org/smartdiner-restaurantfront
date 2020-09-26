@@ -1,7 +1,5 @@
 import React,{ Component } from "react"
-import ChefImage from './assets/images/chef.jpg';
-import Food1 from './assets/images/food1.jpg'
-import Food2 from './assets/images/food2.jpg'
+import { defaultAboutImage } from "./constant";
 
 
 class About extends Component {
@@ -24,9 +22,9 @@ class About extends Component {
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="about-left mt-45">
+                    <div class="about-left mt-20">
                         <div class="about">
-                            <img loading="lazy" src={ChefImage} alt=""/>
+                            <img loading="lazy" src={this.props.aboutImage?this.props.aboutImage : defaultAboutImage} alt=""/>
                         </div>
                     </div> 
                 </div>

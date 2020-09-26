@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { defaultSliderImage } from "./constant";
+
 
 class Slider extends Component {
     constructor(props){
@@ -17,7 +19,7 @@ class Slider extends Component {
             {!this.state.slider &&            
              <Carousel.Item>
               <div className="single-slider single-slider-1">
-                <div className="slider-bg" style={{backgroundImage:`url(https://smart-diner-client-images.s3.ap-south-1.amazonaws.com/default_images/default_slider.webp)`}}>
+                <div className="slider-bg" style={{backgroundImage:`url(${defaultSliderImage})`}}>
                   <div className="row  no-gutters align-items-center d-flex justify-content-center">
                     <div className="col-lg-12 ">
                         
