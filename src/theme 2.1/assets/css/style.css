@@ -741,8 +741,11 @@ p {
 .delivery-type-inputs input{
   padding: 10px;
   width: 250px;
-  font-family: 'MuseoModerno';
+  font-family: 'Lato';
+  font-weight: bold;
+  border: none;
   color: #000466;
+  border-bottom: 1px solid #7777;
 }
 
 .bill-container{
