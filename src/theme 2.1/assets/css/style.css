@@ -1331,6 +1331,7 @@ p {
   .product-area {
     padding-top: 50px;
     padding-bottom: 80px;
+    overflow-y: auto
   }
 }
 
@@ -1373,6 +1374,21 @@ p {
   -ms-transition: all 0.4s ease-out 0s;
   -o-transition: all 0.4s ease-out 0s;
   transition: all 0.4s ease-out 0s;
+}
+.menu-dropdown{
+  /* position: fixed;
+  top: 150px;
+  left: 60px; */
+  padding: 10px 5px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+.menu-dropdown option{
+  border-radius: 50px;
 }
 
 .collection-menu .nav a.active {
