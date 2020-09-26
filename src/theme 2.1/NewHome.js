@@ -262,11 +262,8 @@ checkDistance(){
                             alert("Welcome you sir... we are happy to serve you")
                             this.setState({boundary:true})
                             sessionStorage.setItem("boundary",true)
-                        }else{
-                            alert("Sorry for our Incovenience.... You're out of our boundary")
-                            this.setState({boundary:false})
                         }
-                    }else{
+                    }else if(withInDistance){
                         alert("Welcome you sir... we are happy to serve you")
                         this.setState({boundary:true})
                         sessionStorage.setItem("boundary",true)
@@ -342,11 +339,12 @@ PAhandleChange = address => {
                     alert("Sorry for our Incovenience.... You're out of our boundary")
                     this.setState({boundary:false})
                 }
-            }else{
-                alert("Welcome you sir... we are happy to serve you")
-                this.setState({boundary:true})
-                sessionStorage.setItem("boundary",true)
-            }
+
+                }else if(withInDistance){
+                    alert("Welcome you sir... we are happy to serve you")
+                    this.setState({boundary:true})
+                    sessionStorage.setItem("boundary",true)
+                }
             
 
         })})
