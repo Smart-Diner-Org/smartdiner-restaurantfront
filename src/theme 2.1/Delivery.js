@@ -36,7 +36,7 @@ class Delivery extends Component {
     const date = `${year}-${month}-${day}`
     const time = `${hours}:${minutes}`
     sessionStorage.setItem('deliveryDate',date)
-    if(!this.props.restaurant_website_detail.is_pre_booking_time_required){
+    if(this.props.restaurant_website_detail.is_pre_booking_time_required){
         sessionStorage.setItem('deliveryTime',time)
       }
 
