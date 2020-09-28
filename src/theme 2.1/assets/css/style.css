@@ -596,6 +596,9 @@ p {
   
 }
 
+hr{
+  width: 100%;
+}
 
 
 .bag-close{
@@ -615,9 +618,7 @@ p {
 }
 
 .bag-item img{
-
   height: 100%;
- 
   border-radius: 12px;
 }
 
@@ -739,12 +740,13 @@ p {
 }
 
 .delivery-type-inputs input{
+  text-align: center;
   padding: 10px;
   width: 250px;
   font-family: 'Lato';
   font-weight: bold;
   border: none;
-  color: #000466;
+  color: #000466 !important;
   border-bottom: 1px solid #7777;
 }
 
@@ -789,7 +791,6 @@ p {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  text-align: right;
 }
 .total-amount span {
   font-size: 1.2em;
@@ -846,10 +847,6 @@ p {
   .containment{
     font-size: 0.5em;
   }
-  /* .quantity{
-    font-size: 0.5em;
-  } */
-
   .price-display{
     font-size: 0.75em;
   }

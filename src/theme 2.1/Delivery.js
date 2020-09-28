@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import "flatpickr/dist/themes/material_green.css";
+import { Link } from "react-router-dom";
+import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 
 
@@ -37,6 +37,11 @@ class Delivery extends Component {
     const time = `${hours}:${minutes}`
     sessionStorage.setItem('deliveryDate',date)
     if(this.props.restaurant_website_detail.is_pre_booking_time_required){
+      console.log()
+      if((dateTime.getTime()) < (new Date()).getTime()){
+        alert("Please provide correct time for delivery")
+        return false;
+      }
         sessionStorage.setItem('deliveryTime',time)
       }
 
@@ -55,26 +60,18 @@ class Delivery extends Component {
 
             <>
               <Link to="/signup">
-                <button className="mb-10">Order for Now</button>
+                <button className="mb-20">{this.props.restaurant_website_detail.is_pre_booking_enabled?"Order Now":"Check Out"}</button>
               </Link>
             </>
 
-
+            
           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
-              {!this.state.pre_order && (
-                <button 
-                  onClick={() => {
-                    this.setState({ pre_order: true });
-                  }}
-                  className="mt-10"
-                >
-                  Order for Later
-                </button>
-              )}
-              {this.state.pre_order && (
+
+              <hr />
+  
                 <>
-                  <p>When do you want us to deliver?</p>
+                  <p className="mt-20">Choose your date and time</p>
                   <div className="delivery-type-inputs mt-10">
                     <Flatpickr 
                     options={this.props.restaurant_website_detail
@@ -86,9 +83,9 @@ class Delivery extends Component {
                     />
                   </div>
 
-                    <button onClick={this.canRoute} className="mt-10">Confirm</button>
+                    <button onClick={this.canRoute} className="mt-20">Schedule order</button>
                 </>
-              )}
+ 
             </>
           )}
         </div>
