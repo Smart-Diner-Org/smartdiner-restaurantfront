@@ -1,120 +1,108 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "flatpickr/dist/themes/airbnb.css";
+import Flatpickr from "react-flatpickr";
 
 class Delivery extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     pre_order: false,
-  //     deliveryDate: null,
-  //     deliveryTime: null,
-  //     confirm: false,
-  //   };
-  //   this.dateSelected = this.dateSelected.bind(this);
-  //   this.timeSelected = this.timeSelected.bind(this);
-  //   this.canRoute = this.canRoute.bind(this);
-  // }
 
-  // dateSelected(event) {
-  //   const  value = event.target.value;
-  //   this.setState({
-  //       deliveryDate: value,
-  //   });
-  //   sessionStorage.setItem("deliveryDate", value);
-  //   const today = new Date()
-  //   const selectedDate = new Date(value)
+  constructor(props) {
+    super(props);
+    this.state = {
+      pre_order: false,
+      deliveryDateTime: null,
+    };
+    this.canRoute = this.canRoute.bind(this);
+  }
 
+  canRoute() {
+    const dateTime = new Date(this.state.deliveryDateTime);
+    let month = "" + (dateTime.getMonth() + 1);
+    let day = "" + dateTime.getDate();
+    let year = dateTime.getFullYear();
 
-  //   if((today.getTime()) <(selectedDate.getTime())){
-  //       this.canRoute()
-  //   }
-  //   else{
-  //       alert("Please provide proper date")
-  //   }
-   
-  // }
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-  // timeSelected(event){
-  //   const  value = event.target.value;
-  //   this.setState({
-  //       deliveryTime: value,
-  //   });
-  //   sessionStorage.setItem("deliveryTime", value);
-  //   this.canRoute()
-  // }
+    let hours = dateTime.getHours();
+    let minutes = dateTime.getMinutes();
 
-  // canRoute(){
-  //   if (this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDate) {
-  //       if (this.props.restaurant_website_detail.is_pre_booking_time_required && this.state.deliveryTime) {
-  //         this.setState({ confirm: true });
-  //       } else if(!this.props.restaurant_website_detail.is_pre_booking_time_required) {
-  //         this.setState({ confirm: true });
-  //       }
-  //     }
-  // }
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    const date = `${year}-${month}-${day}`;
+    const time = `${hours}:${minutes}`;
+    sessionStorage.setItem("deliveryDate", date);
+    if (this.props.restaurant_website_detail.is_pre_booking_time_required) {
+      const timeDifference = dateTime.getTime() - new Date().getTime();
+      const timeLimit = 7200000;
+      if (timeDifference <= timeLimit) {
+        alert("You can pre-book the orders for at least 2 hours from now.");
+        return false;
+      }
+      sessionStorage.setItem("deliveryTime", time);
+    }
+
+    if (
+      Boolean(
+        this.props.restaurant_website_detail.is_pre_booking_enabled &&
+          this.state.deliveryDateTime
+      )
+    ) {
+      window.location = "/signup";
+    } else {
+      alert("Tell us when you want to enjoy your food...");
+    }
+  }
 
   render() {
     return (
       <div>
         <hr />
         <div className="delivery-type">
-         
-            <>
-              <Link to="/signup">
-                <button>Check Out</button>
-              </Link>
-            </>
-     
+          <>
+            <Link to="/signup">
+              <button className="mb-20">
+                {this.props.restaurant_website_detail.is_pre_booking_enabled
+                  ? "Order Now"
+                  : "Check Out"}
+              </button>
+            </Link>
+          </>
 
           {/* {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
-              {!this.state.pre_order && (
-                <button
-                  onClick={() => {
-                    this.setState({ pre_order: true });
-                  }}
-                  className="mt-10"
-                >
-                  Order for Later
-                </button>
-              )}
-              {this.state.pre_order && (
-                <>
-                  <p>When do you want us to deliver?</p>
-                  <div className="delivery-type-inputs mt-10">
-                    <input
-                      className="row "
-                      name="deliveryDate"
-                      required="true"
-                      type="text"
-                      placeholder="Delivery Date"
-                      onFocus={(e) => {
-                        e.target.type = "date";
-                        e.target.click();
-                      }}
-                      onChange={(e)=>this.dateSelected(e)}
-                    />
-                    {this.props.restaurant_website_detail
-                      .is_pre_booking_time_required && (
-                      <input
-                        className="row mt-10"
-                        name="deliveryTime"
-                        required="true"
-                        type="text"
-                        placeholder="Delivery Time"
-                        onFocus={(e) => {
-                          e.target.type = "time";
-                        }}
-                        onChange={(e)=>this.timeSelected(e)}
-                      />
-                    )}
-                  </div>
+              <hr />
 
-                  <Link to={this.state.confirm? "/signup" : ""}>
-                    <button className="mt-10">Confirm</button>
-                  </Link>
-                </>
-              )}
+              <>
+                <p className="mt-20">Choose your date and time</p>
+                <div className="delivery-type-inputs mt-10">
+                  <Flatpickr
+                    options={
+                      this.props.restaurant_website_detail
+                        .is_pre_booking_time_required
+                        ? { enableTime: true, minDate: "today" }
+                        : { minDate: "today" }
+                    }
+                    placeholder={
+                      this.props.restaurant_website_detail
+                        .is_pre_booking_time_required
+                        ? "YYYY-MM-DD HH:MM"
+                        : "YYYY-MM-DD"
+                    }
+                    onChange={(deliveryDateTime) => {
+                      this.setState({ deliveryDateTime });
+                    }}
+                  />
+                </div>
+
+                <button onClick={this.canRoute} className="mt-20">
+                  Schedule order
+                </button>
+              </>
             </>
           )} */}
         </div>
