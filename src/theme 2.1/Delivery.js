@@ -77,7 +77,7 @@ class Delivery extends Component {
                   <p>When do you want us to deliver?</p>
                   <div className="delivery-type-inputs mt-10">
                     <Flatpickr 
-                    options={!this.props.restaurant_website_detail
+                    options={this.props.restaurant_website_detail
                       .is_pre_booking_time_required?{enableTime: true,minDate: "today"}:{minDate: "today"}}
                     placeholder = {this.props.restaurant_website_detail
                       .is_pre_booking_time_required?"YYYY-MM-DD HH:MM":"YYYY-MM-DD"}
