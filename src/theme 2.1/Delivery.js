@@ -36,7 +36,10 @@ class Delivery extends Component {
     const date = `${year}-${month}-${day}`
     const time = `${hours}:${minutes}`
     sessionStorage.setItem('deliveryDate',date)
-    sessionStorage.setItem('deliveryTime',time)
+    if(!this.props.restaurant_website_detail.is_pre_booking_time_required){
+        sessionStorage.setItem('deliveryTime',time)
+      }
+
     if (Boolean(this.props.restaurant_website_detail.is_pre_booking_enabled && this.state.deliveryDateTime)) {
         window.location = ('/signup');
       }else{
@@ -74,7 +77,7 @@ class Delivery extends Component {
                   <p>When do you want us to deliver?</p>
                   <div className="delivery-type-inputs mt-10">
                     <Flatpickr 
-                    options={this.props.restaurant_website_detail
+                    options={!this.props.restaurant_website_detail
                       .is_pre_booking_time_required?{enableTime: true,minDate: "today"}:{minDate: "today"}}
                     placeholder = {this.props.restaurant_website_detail
                       .is_pre_booking_time_required?"YYYY-MM-DD HH:MM":"YYYY-MM-DD"}
