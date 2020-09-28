@@ -28,6 +28,18 @@ class Menu extends Component {
             role="tablist"
             aria-orientation="vertical"
           >
+          <div className="desktop">
+            {
+               this.props.categoryArray.map((category,index)=>{
+                                     
+                 return(
+                 <a ref={a => this.ele[index] = a} className={index===0?"active":""}  id={`${category.name}`} data-toggle="pill"  onClick={()=>{this.props.setType(category.id)}}
+                                aria-selected="true" >{category.name}</a>
+                                          
+                         )
+                         })
+             }  
+             </div>  
             <select className="menu-dropdown " onChange={(e)=>this.onDropdownSelected(e)} >
               {this.props.categoryArray.map((category, index) => {
                 return (
