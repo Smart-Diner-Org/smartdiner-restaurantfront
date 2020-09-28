@@ -37,9 +37,10 @@ class Delivery extends Component {
     const time = `${hours}:${minutes}`
     sessionStorage.setItem('deliveryDate',date)
     if(this.props.restaurant_website_detail.is_pre_booking_time_required){
-      console.log()
-      if((dateTime.getTime()) < (new Date()).getTime()){
-        alert("Please provide correct time for delivery")
+      const timeDifference = (new Date()).getTime() - dateTime.getTime()
+     const timeLimit = 7200000
+      if(timeDifference >= timeLimit){
+        alert("You can pre-book the orders for at least 2 hours from now.")
         return false;
       }
         sessionStorage.setItem('deliveryTime',time)
