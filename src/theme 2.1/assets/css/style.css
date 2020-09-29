@@ -1386,6 +1386,9 @@ p {
   font-weight: 600;
   color: black;
 }
+.menu-dropdown:focus{
+  outline: none;
+}
 .menu-dropdown option{
   border-radius: 50px;
 }
