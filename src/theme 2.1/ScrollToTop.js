@@ -44,8 +44,7 @@ export default class ScrollToTop extends Component {
         <div className="scroll-to-top">
         {is_visible && (<div onClick={() => this.scrollToTop()}>
 
-           
-        <a href="/" onClick={()=>{return false}} className="scroll-to-top"><i class="lni-chevron-up"></i></a>
+        <a className="scroll-to-top"><i class="lni-chevron-up"></i></a>
            
           </div>)}
       </div>
