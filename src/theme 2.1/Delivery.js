@@ -65,13 +65,13 @@ class Delivery extends Component {
         <hr />
         <div className="delivery-type">
           <>
-            <Link to="/signup">
-              <button className="mb-20">
+            
+              <button className="mb-20" onClick={()=>{sessionStorage.removeItem("deliveryDate");sessionStorage.removeItem("deliveryTime");window.location = "/signup";}}>
                 {this.props.restaurant_website_detail.is_pre_booking_enabled
                   ? "Order Now"
                   : "Check Out"}
               </button>
-            </Link>
+          
           </>
 
            {this.props.restaurant_website_detail.is_pre_booking_enabled && (
