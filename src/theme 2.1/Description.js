@@ -11,9 +11,9 @@ class Description extends React.Component{
 
     render(){
         return(
-            <section  class="about-area mt-50 pt-50 ">
+            <section id="description" class="about-area mt-50 pt-50 ">
             <div class="container">
-                <div class="row">
+               {this.props.delivery_locations &&  <div class="row">
                     <div class="col-lg-3">
                         <div class="section-title">
                             <h5 class="mb-15">Our Delivey Locations</h5>
@@ -35,11 +35,11 @@ class Description extends React.Component{
                         }
                         </ul>
                     </div>
-                </div>
+                </div>}
 
-                {/* { this.props.preOrder && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
+                { this.props.preOrder && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"white"}} >We also provide Pre-Order service</h5>
-                        </div> } */}
+                        </div> }
                 {/* <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",border: "1px solid black", borderRadius:"8px"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
                 </div>  */}
