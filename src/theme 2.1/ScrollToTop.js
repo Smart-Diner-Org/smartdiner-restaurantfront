@@ -6,7 +6,6 @@ export default class ScrollToTop extends Component {
       this.state = {
       is_visible: false
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this)
 
@@ -46,7 +45,7 @@ export default class ScrollToTop extends Component {
         {is_visible && (<div onClick={() => this.scrollToTop()}>
 
            
-        <a className="scroll-to-top"><i class="lni-chevron-up"></i></a>
+        <a href="/" onClick={()=>{return false}} className="scroll-to-top"><i class="lni-chevron-up"></i></a>
            
           </div>)}
       </div>

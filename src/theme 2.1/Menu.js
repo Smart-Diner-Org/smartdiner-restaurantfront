@@ -3,49 +3,80 @@ import React, { Component } from "react";
 class Menu extends Component {
   constructor(props) {
     super(props);
-
     this.ele = [];
+    this.offSet = React.createRef();
+    this.dropDown = [];
+    this.state = {
+    is_visible: false
+  };
+    
     this.onDropdownSelected = this.onDropdownSelected.bind(this)
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+  componentDidMount() {
+    this.dropDown.value && this.props.setType(this.dropDown[0].value)
+    this.ele[0].click();
+    console.log(this.offSet.current.offsetTop)
+    var scrollComponent = this;
+    document.addEventListener("scroll", function(e) {
+      scrollComponent.toggleVisibility();
+    });
   }
 
-  componentDidMount() {
-    //TODO : find which category has minimum 1 item and assing that value to cataegoryToBeShown variable
-    this.props.setType(this.ele[0].value)
+  toggleVisibility() {
+    if (window.pageYOffset > 680) {
+        this.setState({
+          is_visible: true
+        });
+      } else {
+        this.setState({
+          is_visible: false
+        });
+      }
+    
   }
+
+
 
   onDropdownSelected(event){
       this.props.setType(event.target.value);
+      window.scrollTo({
+        top: 690,
+        behavior: "smooth"
+      });
   }
 
 
   render() {
+    const { is_visible } = this.state;
     return (
       <div class="col-lg-3 col-md-4">
         <div class="collection-menu text-center mt-20">
           <div
-            class="nav flex-column nav-pills"
+            class="nav flex-column nav-pills desktop"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
           >
-          <div className="desktop">
+      
             {
                this.props.categoryArray.map((category,index)=>{
                                      
                  return(
-                 <a ref={a => this.ele[index] = a} className={index===0?"active":""}  id={`${category.name}`} data-toggle="pill"  onClick={()=>{this.props.setType(category.id)}}
-                                aria-selected="true" >{category.name}</a>
+                 <a href="/" ref={a => this.ele[index] = a} id={`${category.name}`} data-toggle="pill"  onClick={()=>{this.props.setType(category.id);return false}}
+                                 >{category.name}</a>
                                           
                          )
                          })
              }  
-             </div>  
-            <select className="menu-dropdown " onChange={(e)=>this.onDropdownSelected(e)} >
+         </div>
+         <div ref={this.offSet} className={is_visible?"mobile sticky":"mobile"}>
+            <select className="menu-dropdown" onChange={(e)=>this.onDropdownSelected(e)} >
               {this.props.categoryArray.map((category, index) => {
                 return (
                   <option
                     
-                    ref={(a) => (this.ele[index] = a)}
+                    ref={(option) => (this.dropDown[index] = option)}
                     className={index === 0 ? "active" : ""}
                     value={`${category.id}`}
                     data-toggle="pill"
@@ -55,8 +86,9 @@ class Menu extends Component {
                 );
               })}
             </select>
+            </div>
           </div>
-        </div>
+        
       </div>
     );
   }
