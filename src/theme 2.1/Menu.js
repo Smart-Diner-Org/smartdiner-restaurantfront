@@ -22,7 +22,7 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    if (window.pageYOffset > 680 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight)) {
+    if (window.pageYOffset > 680 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
         this.setState({
           is_visible: true
         });
