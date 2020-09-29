@@ -740,6 +740,7 @@ hr{
 }
 
 .delivery-type-inputs input{
+  background: none;
   text-align: center;
   padding: 10px;
   width: 250px;
@@ -748,6 +749,14 @@ hr{
   border: none;
   color: #000466 !important;
   border-bottom: 1px solid #7777;
+}
+.delivery-type-inputs input:after {
+  color: #b1b1b1;
+  content: attr(placeholder) !important;
+  font-size: 14px
+}
+.delivery-type-inputs input:focus:after {
+  content: '' !important;
 }
 
 .bill-container{
