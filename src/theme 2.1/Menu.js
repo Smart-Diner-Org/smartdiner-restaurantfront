@@ -4,7 +4,6 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.ele = [];
-    this.offSet = React.createRef();
     this.dropDown = [];
     this.state = {
     is_visible: false
@@ -16,7 +15,6 @@ class Menu extends Component {
   componentDidMount() {
     this.dropDown.value && this.props.setType(this.dropDown[0].value)
     this.ele[0].click();
-    console.log(this.offSet.current.offsetTop)
     var scrollComponent = this;
     document.addEventListener("scroll", function(e) {
       scrollComponent.toggleVisibility();
@@ -24,7 +22,7 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    if (window.pageYOffset > 680) {
+    if (window.pageYOffset > 680 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight)) {
         this.setState({
           is_visible: true
         });
@@ -33,7 +31,6 @@ class Menu extends Component {
           is_visible: false
         });
       }
-    
   }
 
 
@@ -70,7 +67,7 @@ class Menu extends Component {
                          })
              }  
          </div>
-         <div ref={this.offSet} className={is_visible?"mobile sticky":"mobile"}>
+         <div id="menu-drop-down" className={is_visible?"mobile sticky":"mobile"}>
             <select className="menu-dropdown" onChange={(e)=>this.onDropdownSelected(e)} >
               {this.props.categoryArray.map((category, index) => {
                 return (
