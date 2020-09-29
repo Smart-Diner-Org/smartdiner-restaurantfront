@@ -73,7 +73,7 @@ class Delivery extends Component {
             </Link>
           </>
 
-          {/* {this.props.restaurant_website_detail.is_pre_booking_enabled && (
+           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
               <hr />
 
@@ -104,7 +104,7 @@ class Delivery extends Component {
                 </button>
               </>
             </>
-          )} */}
+          )} 
         </div>
         <hr />
       </div>
