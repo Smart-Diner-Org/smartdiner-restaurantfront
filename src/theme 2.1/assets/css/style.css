@@ -750,15 +750,17 @@ hr{
   color: #000466 !important;
   border-bottom: 1px solid #7777;
 }
+
 .delivery-type-inputs input:after {
   color: #b1b1b1;
   content: attr(placeholder) !important;
   font-family: 'Lato';
   font-weight: bold;
-}
-.delivery-type-inputs input:focus:after {
+  }
+  
+.delivery-type-inputs input[value]:not([value=""]) + input:after {
   content: '' !important;
-}
+  }
 
 
 .bill-container{
