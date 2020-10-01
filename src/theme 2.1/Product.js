@@ -44,6 +44,7 @@ class Product extends Component{
                                             setSelectedItem = {this.props.setSelectedItem}
                                             increasequantity={() => this.props.changequantity(item, 1)}
                                             decreasequantity={() => this.props.changequantity(item, -1)}
+                                            productId={item.id}
                                         />
                                     })
                                 }

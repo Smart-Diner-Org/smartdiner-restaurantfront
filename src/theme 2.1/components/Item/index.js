@@ -31,7 +31,7 @@ class Item extends Component {
         return(
             
                 
-            <div className="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
+            <div id={ "product_"+this.props.productId } className="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
               
                             <div className="single-product-items">
                                 <div className="product-item-image">
@@ -59,13 +59,18 @@ class Item extends Component {
                                         <>
                                         <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.state.price}</span>
                                         <span style={{color:"#000000"}}>Rs.{(this.state.price-(this.state.price*(this.props.discount/100)))}</span>
+                                        <input type='hidden' id={ "original_price_"+this.props.productId } value={this.state.price}></input>
+                                        <input type='hidden' id={ "discounted_price_"+this.props.productId } value={(this.state.price-(this.state.price*(this.props.discount/100)))}></input>
                                         
                                         </>
                                         :
+                                        <>
                                          <span style={{color:"#000000"}}>Rs.{this.state.price}</span>
+                                         <input type='hidden' id={ "original_price_"+this.props.productId } value={this.state.price}></input>
+                                        </>
                                     }
                                     <div>
-                                    <select onChange={(e)=>{this.priceListChanged(e)}}>
+                                    <select id={ "price_list_"+this.props.productId } onChange={(e)=>{this.priceListChanged(e)}}>
                                                 {this.props.priceList.map((item, index)=>{
                                                     return (
                                                     <option id={`${item.id}`} value={index}>{item.quantity_values.quantity}{item.measure_values.name}- Rs.{item.price}</option>

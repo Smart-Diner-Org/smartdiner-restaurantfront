@@ -40,7 +40,7 @@ class NewHome extends Component {
         refpostcode : "",
         refregion : null,
         selectedItem: "",
-        bagItems: [],
+        bagItems: new Array(),
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -59,6 +59,7 @@ class NewHome extends Component {
     this.editlocation = this.editlocation.bind(this)
     this.decTotal = this.decTotal.bind(this)
     this.setSelectedItem  = this.setSelectedItem.bind(this)
+    this.populateQuantity = this.populateQuantity.bind(this)
 
 }
 
@@ -135,19 +136,79 @@ async componentDidMount() {  //API call to get data from backend
   }
 
 
+populateQuantity(item){
+    var tempObj = new Object();
+    var originalPrice = document.getElementById('original_price_'+item.id).value;
+    var discountPrice = null;
+    if(document.getElementById('discounted_price_'+item.id)){
+        discountPrice = document.getElementById('discounted_price_'+item.id).value;
+    }
+    item['originalPrice'] = originalPrice;
+    item['discountPrice'] = discountPrice;
+    if(!tempObj[item['customKey']])
+        tempObj[item['customKey']] = item;
+    tempObj[item['customKey']]['quantity'] = 1;
+    return tempObj;
+}
 
-changequantity(item, value) {   //this is for adding/increasing items to cart
-    
-    
+changequantity(sourceItem, value) {   //this is for adding/increasing items to cart
+    var self = this;
+    function handleNewItem(argument) {
+        switch(value){
+            case 1:
+                sourceItem.quantity = 1;
+                oldArrayItems.push(self.populateQuantity(item));
+                break;
+            case -1:
+                break;
+        }
+        
+    }
+    var item = {};
+    item = Object.assign({}, sourceItem);
+    if(document.getElementById("price_list_1")){
+        var dropDownEle = document.getElementById("price_list_1");
+        var selectedMenuQuantityMeasurePriceId = dropDownEle.options[dropDownEle.selectedIndex].id;
+    }
+    else{
+        alert("something Wrong. Price list is not populating");
+        return;
+    }
+    item['selectedMenuQuantityMeasurePriceId'] = selectedMenuQuantityMeasurePriceId;
+    var customKey = item.id + '_' + item.selectedMenuQuantityMeasurePriceId;
+    item['customKey'] = customKey;
 
-    // console.log(item)
-    // console.log(this.state.selectedItem)
-
-    // console.log(bagItemsArray)
     let oldArrayItems = this.state.bagItems;
-    oldArrayItems.push({[this.state.selectedItem]:item})
+    if(oldArrayItems.length == 0)
+        handleNewItem();
+    else{
+        var found = false;
+        for (var i=0; i < oldArrayItems.length; i++){
+            var tempObj_2 = oldArrayItems[i];
+            if(tempObj_2[item['customKey']]){
+                if(!tempObj_2[item['customKey']]['quantity'])
+                    tempObj_2[item['customKey']]['quantity'] = 0;
+                
+                switch(value){
+                    case 1:
+                        tempObj_2[item['customKey']]['quantity'] += 1;
+                        break;
+                    case -1:
+                        if(tempObj_2[item['customKey']]['quantity'] > 0)
+                            tempObj_2[item['customKey']]['quantity'] -= 1;
+                        break;
+                }
+                sourceItem.quantity = tempObj_2[item['customKey']]['quantity'];
+                found = true;
+            }
+        }
+        if(!found)
+            handleNewItem();
+    }
+
     this.setState({bagItems:oldArrayItems})
-    console.log(new Set(this.state.bagItems))
+    console.log("bag items ......");
+    console.log(this.state.bagItems)
     
 
 
