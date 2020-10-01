@@ -2,6 +2,31 @@ import React,{Component} from "react"
 import Burger from '../../assets/images/food1.jpg'
 
 class Item extends Component {
+    constructor(props) {
+        super(props);
+   this.state={
+       price: "",
+       selectedItem: {},
+   }
+   
+      this.priceListChanged = this.priceListChanged.bind(this)
+      }
+      componentDidMount(){
+        const price = this.props.priceList[0].price
+        this.props.setSelectedItem(0)
+        this.setState({price:price})
+      }
+
+      priceListChanged(e){
+        const index = e.target.value
+        this.props.setSelectedItem(index);
+        const price = this.props.priceList[index].price
+        this.setState({
+            price:price,
+        })
+
+      }
+
     render(){
         return(
             
@@ -30,17 +55,27 @@ class Item extends Component {
                                     </div>
                                 <div className="product-item-content mt-30">
                                         <h5 className="product-title"><a>{this.props.itemName}</a></h5>
-                                        {/* <p>Containments</p> */}
-                                        <p>{this.props.description}</p>
                                         {this.props.discount>0?
                                         <>
-                                        <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.props.regularPrice}</span>
-                                        <span style={{color:"#000000"}}>Rs.{this.props.discountPrice}</span>
+                                        <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.state.price}</span>
+                                        <span style={{color:"#000000"}}>Rs.{(this.state.price-(this.state.price*(this.props.discount/100)))}</span>
                                         
                                         </>
                                         :
-                                        <span style={{color:"#000000"}}>Rs.{this.props.regularPrice}</span>
+                                         <span style={{color:"#000000"}}>Rs.{this.state.price}</span>
                                     }
+                                    <div>
+                                    <select onChange={(e)=>{this.priceListChanged(e)}}>
+                                                {this.props.priceList.map((item, index)=>{
+                                                    return (
+                                                    <option id={`${item.id}`} value={index}>{item.quantity_values.quantity}{item.measure_values.name}- Rs.{item.price}</option>
+                                                    )
+                                                })}
+                                                
+                                        </select>
+
+                                    </div>
+                                    
                                         
                                     <div className="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px",maxWidth:"112px"}}>
                                         <div className="input-group-prepend" >

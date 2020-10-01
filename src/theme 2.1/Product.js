@@ -38,11 +38,12 @@ class Product extends Component{
                                             quantity={item.quantity}
                                             itemName={item.name}
                                             image={item.image}
-                                            regularPrice={item.price}
+                                            priceList={item.menu_quantity_measure_price_list}
                                             discount={item.discount}
                                             discountPrice={item.discountPrice}
-                                            increasequantity={() => this.props.changequantity(index, 1)}
-                                            decreasequantity={() => this.props.changequantity(index, -1)}
+                                            setSelectedItem = {this.props.setSelectedItem}
+                                            increasequantity={() => this.props.changequantity(item, 1)}
+                                            decreasequantity={() => this.props.changequantity(item, -1)}
                                         />
                                     })
                                 }

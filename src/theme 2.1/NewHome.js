@@ -39,6 +39,8 @@ class NewHome extends Component {
         togglePopup : false,
         refpostcode : "",
         refregion : null,
+        selectedItem: "",
+        bagItems: [],
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -56,6 +58,7 @@ class NewHome extends Component {
     this.contshpng = this.contshpng.bind(this)
     this.editlocation = this.editlocation.bind(this)
     this.decTotal = this.decTotal.bind(this)
+    this.setSelectedItem  = this.setSelectedItem.bind(this)
 
 }
 
@@ -73,14 +76,15 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
-        this.getItems(data.restaurant.restaurant_branches)
+        // console.log(data)
+        this.getItems(data)
         this.setState({
                 restaurant_info:data.restaurant,
                 refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes ? (this.state.restaurantBranch[0].delivery_postal_codes).split(",") : null),
                 refregion : (this.state.restaurantBranch[0].delivery_locations ? (this.state.restaurantBranch[0].delivery_locations).split(",") : null),
                 isLoaded: true,
             });     
+            
             if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
                 this.setState({
                     items : JSON.parse(sessionStorage.getItem("items")),
@@ -95,7 +99,6 @@ async componentDidMount() {  //API call to get data from backend
                 ReactGA.pageview('/homepage');
             }
 
-
             const favicon = document.getElementById("favicon");
             favicon.href = this.state.restaurant_info.logo;
             document.title = this.state.restaurant_info.name;
@@ -103,6 +106,7 @@ async componentDidMount() {  //API call to get data from backend
             description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
             sessionStorage.setItem("logo",this.state.restaurant_info.logo)
             sessionStorage.setItem("title",this.state.restaurant_info.name)
+            // console.log(this.state.items)
       })
     }catch(error){
         console.log(error)
@@ -110,72 +114,87 @@ async componentDidMount() {  //API call to get data from backend
     }
   }
 
-  getItems(data){  //Storing API data into our state
+  getItems(data){  //Storing API data into our state   
     let restaurantDetails = [];
-    let items = [];
-    data.map((item) =>{
+    (data.restaurant.restaurant_branches).map((item) =>{
         restaurantDetails.push(item)
     })
-    this.setState({restaurantBranch:restaurantDetails});
-    // console.log(data)
-    this.state.restaurantBranch.map((item)=>{
-        items.push(...item.restaurant_branch_menu)
-    })
-
+     this.setState({restaurantBranch:restaurantDetails})
+    let items = [];
+    
+    (data.menus).map((item)=>{
+        items.push(item)})
     this.setState({items:items})
 
     this.getCategories(this.state.items);
     this.addDiscountQuantity(this.state.items);
   }
  
+  setSelectedItem(selectedMenuPriceList){
+        this.setState({selectedItem:selectedMenuPriceList})
+  }
 
 
 
-changequantity(index, value) {   //this is for adding/increasing items to cart
+changequantity(item, value) {   //this is for adding/increasing items to cart
     
-    this.setState( prevState => {
-        let noOfSelectedItems = this.state.total
-        let newItemsStateArray =  prevState.items;
+    
+
+    // console.log(item)
+    // console.log(this.state.selectedItem)
+
+    // console.log(bagItemsArray)
+    let oldArrayItems = this.state.bagItems;
+    oldArrayItems.push({[this.state.selectedItem]:item})
+    this.setState({bagItems:oldArrayItems})
+    console.log(new Set(this.state.bagItems))
+    
+
+
+    // this.setState( prevState => {
+    //     let noOfSelectedItems = this.state.total
+    //     let newItemsStateArray =  prevState.items;
         
-        if(newItemsStateArray[index].quantity == 0 && value==-1){
-            return
-        }
+    //     if(newItemsStateArray[index].quantity == 0 && value==-1){
+    //         return
+    //     }
 
-        if (newItemsStateArray[index].quantity === 0 ){
-            if(value==1){
-                noOfSelectedItems++}
-            newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
-            sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-            sessionStorage.setItem('total',noOfSelectedItems)
+    //     if (newItemsStateArray[index].quantity === 0 ){
+    //         if(value==1){
+    //             noOfSelectedItems++}
+    //         newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
+    //         sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+    //         sessionStorage.setItem('total',noOfSelectedItems)
         
-            return {
-                quantity: newItemsStateArray,
-                total:noOfSelectedItems
-            }
+    //         return {
+    //             quantity: newItemsStateArray,
+    //             total:noOfSelectedItems
+    //         }
 
-        }
-        if (newItemsStateArray[index].quantity >= 1 ){
-            newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + value;
-            if(value==-1 && (newItemsStateArray[index].quantity==0)){
-                noOfSelectedItems--
-            }
+    //     }
+    //     if (newItemsStateArray[index].quantity >= 1 ){
+    //         newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + value;
+    //         if(value==-1 && (newItemsStateArray[index].quantity==0)){
+    //             noOfSelectedItems--
+    //         }
 
-        }
-        sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-        sessionStorage.setItem('total',noOfSelectedItems)
-        return {
-            items: newItemsStateArray,
-            total:noOfSelectedItems
+    //     }
+    //     sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
+    //     sessionStorage.setItem('total',noOfSelectedItems)
+    //     return {
+    //         items: newItemsStateArray,
+    //         total:noOfSelectedItems
 
-        }
-    })
+    //     }
+    // })
 }
 
 addDiscountQuantity(itemsArray){  //discountPrice and quantity elements to Items Array 
+    
     this.setState( prevState => {
         let newItemsStateArray =  [];
         itemsArray.map((item,index)=>{
-         newItemsStateArray.push({...item,quantity:0,discountPrice:(item.price-(item.price*(item.discount/100)))})   
+            newItemsStateArray.push({...item,quantity:0})   
         })
         return {
             items: newItemsStateArray
@@ -453,30 +472,32 @@ PAhandleChange = address => {
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
 
          <Slider slider_images={this.state.restaurant_info.restaurant_website_detail.slider_images}/>
-        <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} preOrder={this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled}/>
+   <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} preOrder={this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled}/> 
 
 
          <Product 
          setType={this.setType}
          changequantity={this.changequantity}
          items={this.state.items}
+         setSelectedItem = {this.setSelectedItem}
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
          />
-         <About
+       <About
          about = {this.state.restaurant_info.about}
           timings={this.state.restaurantBranch[0].timings} 
-          aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/>
-         <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
+         aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/> 
+         
+ <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/> 
          <Contact  />
          <ScrollToTop />
-         <FootComponent 
+        <FootComponent 
          links={this.state.restaurant_info.restaurant_detail} 
          restaurantName={this.state.restaurant_info.name} 
          address={this.state.restaurantBranch[0].address} 
          email={this.state.restaurantBranch[0].email}
          contact_number ={this.state.restaurantBranch[0].contact_number}
-         />
+         /> 
          </div>
          </div>
         </div>

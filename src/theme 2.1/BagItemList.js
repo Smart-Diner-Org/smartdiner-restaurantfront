@@ -36,6 +36,8 @@ class BagItemList extends React.Component {
             <div>
                 {
                     this.props.items.map((item, index) => {
+                        console.log('Bag Item list')
+                        console.log(item)
                         if(item.quantity>=1)
                         return  <BillItem
                             key={index}
