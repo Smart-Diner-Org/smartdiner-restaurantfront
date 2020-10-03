@@ -166,8 +166,8 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
     }
     var item = {};
     item = Object.assign({}, sourceItem);
-    if(document.getElementById("price_list_1")){
-        var dropDownEle = document.getElementById("price_list_1");
+    if(document.getElementById("price_list_" + item.id)){
+        var dropDownEle = document.getElementById("price_list_" + item.id);
         var selectedMenuQuantityMeasurePriceId = dropDownEle.options[dropDownEle.selectedIndex].id;
     }
     else{
@@ -196,6 +196,8 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                     case -1:
                         if(tempObj_2[item['customKey']]['quantity'] > 0)
                             tempObj_2[item['customKey']]['quantity'] -= 1;
+                        if(tempObj_2[item['customKey']]['quantity'] <= 0)
+                            oldArrayItems.splice(i, 1);
                         break;
                 }
                 sourceItem.quantity = tempObj_2[item['customKey']]['quantity'];
