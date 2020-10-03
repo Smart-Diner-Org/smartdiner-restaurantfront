@@ -46,6 +46,7 @@ export default class ScrollToTop extends Component {
 
         <a className="scroll-to-top"><i class="lni-chevron-up"></i></a>
            
+       
           </div>)}
       </div>
     );
