@@ -39,12 +39,14 @@ class BillItem extends Component {
 
                             </div>
                             
-                            <div class='col-3 price-display' style={{display:"flex",flexDirection:"column"}}>
+                            <div class='col-3 price-display' style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+                            <h6 id="bag-price-list" value={this.props.selectedMenuQuantityMeasurePriceId} className="containment">{this.props.menuQuantity[0].quantity_values.quantity}{this.props.menuQuantity[0]?.measure_values.name}</h6>
+
                                             {this.props.discount>0?
                                                 <>
 
                                                 <label className="disc-price">Rs.{this.props.price}</label>
-                                                <label   >Rs.{ this.props.discountPrice }</label>
+                                                <label >Rs.{ this.props.discountPrice }</label>
                                                 </>
                                                 :
                                                 <label >Rs.{this.props.price}</label>

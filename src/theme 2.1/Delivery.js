@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 

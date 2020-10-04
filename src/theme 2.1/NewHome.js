@@ -18,6 +18,7 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
+import _default from 'react-bootstrap/esm/CarouselCaption';
 
 
 class NewHome extends Component {
@@ -39,7 +40,6 @@ class NewHome extends Component {
         togglePopup : false,
         refpostcode : "",
         refregion : null,
-        selectedItem: "",
         bagItems: new Array(),
 
     };
@@ -48,7 +48,6 @@ class NewHome extends Component {
     this.togglePopup = this.togglePopup.bind(this)
     this.getItems = this.getItems.bind(this)
     this.getCategories = this.getCategories.bind(this)
-    this.addDiscountQuantity = this.addDiscountQuantity.bind(this)
     this.categoryArray = []
     this.checkDistance =  this.checkDistance.bind(this)
     this.PAhandleChange = this.PAhandleChange.bind(this)
@@ -57,19 +56,11 @@ class NewHome extends Component {
     this.gotocart = this.gotocart.bind(this)
     this.contshpng = this.contshpng.bind(this)
     this.editlocation = this.editlocation.bind(this)
-    this.decTotal = this.decTotal.bind(this)
-    this.setSelectedItem  = this.setSelectedItem.bind(this)
+    this.changequantityinBag = this.changequantityinBag.bind(this)
     this.populateQuantity = this.populateQuantity.bind(this)
 
 }
 
-decTotal(){
-    let oldTotal = this.state.total;
-    let newTotal = oldTotal-1;
-    sessionStorage.setItem("total",newTotal)
-    this.setState({total:newTotal})
-    
-}
 
 async componentDidMount() {  //API call to get data from backend
     try{
@@ -86,14 +77,14 @@ async componentDidMount() {  //API call to get data from backend
                 isLoaded: true,
             });     
             
-            if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
-                this.setState({
-                    items : JSON.parse(sessionStorage.getItem("items")),
-                    boundary : Boolean(sessionStorage.getItem("boundary")),
-                    total : sessionStorage.getItem('total'),
-                    showPopup : false
-                })
-            }
+            // if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
+            //     this.setState({
+            //         items : JSON.parse(sessionStorage.getItem("items")),
+            //         boundary : Boolean(sessionStorage.getItem("boundary")),
+            //         total : sessionStorage.getItem('total'),
+            //         showPopup : false
+            //     })
+            // }
             if(data.restaurant.restaurant_website_detail.ga_tracking_id){
                 ReactGA.initialize(`${data.restaurant.restaurant_website_detail.ga_tracking_id}`);
                 sessionStorage.setItem("GA",data.restaurant.restaurant_website_detail.ga_tracking_id)
@@ -128,13 +119,8 @@ async componentDidMount() {  //API call to get data from backend
     this.setState({items:items})
 
     this.getCategories(this.state.items);
-    this.addDiscountQuantity(this.state.items);
+    // this.addDiscountQuantity(this.state.items);
   }
- 
-  setSelectedItem(selectedMenuPriceList){
-        this.setState({selectedItem:selectedMenuPriceList})
-  }
-
 
 populateQuantity(item){
     var tempObj = new Object();
@@ -161,14 +147,20 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                 break;
             case -1:
                 break;
+            default:
+                alert("something went wrong")
         }
         
     }
     var item = {};
     item = Object.assign({}, sourceItem);
+    var selectedMenuQuantityMeasurePriceId
     if(document.getElementById("price_list_" + item.id)){
         var dropDownEle = document.getElementById("price_list_" + item.id);
-        var selectedMenuQuantityMeasurePriceId = dropDownEle.options[dropDownEle.selectedIndex].id;
+         selectedMenuQuantityMeasurePriceId = dropDownEle.options[dropDownEle.selectedIndex].id;
+    }else if(document.getElementById("bag-price-list")){
+        var bagItem = document.getElementById("bag-price-list");
+         selectedMenuQuantityMeasurePriceId = bagItem.value
     }
     else{
         alert("something Wrong. Price list is not populating");
@@ -199,6 +191,8 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                         if(tempObj_2[item['customKey']]['quantity'] <= 0)
                             oldArrayItems.splice(i, 1);
                         break;
+                    default:
+                        alert("something went wrong")
                 }
                 sourceItem.quantity = tempObj_2[item['customKey']]['quantity'];
                 found = true;
@@ -209,61 +203,42 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
     }
 
     this.setState({bagItems:oldArrayItems})
+    sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
     console.log("bag items ......");
     console.log(this.state.bagItems)
-    
 
+    let total = this.state.bagItems.length
+    this.setState({total:total})
+    sessionStorage.setItem("total",this.state.total)
 
-    // this.setState( prevState => {
-    //     let noOfSelectedItems = this.state.total
-    //     let newItemsStateArray =  prevState.items;
-        
-    //     if(newItemsStateArray[index].quantity == 0 && value==-1){
-    //         return
-    //     }
-
-    //     if (newItemsStateArray[index].quantity === 0 ){
-    //         if(value==1){
-    //             noOfSelectedItems++}
-    //         newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
-    //         sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-    //         sessionStorage.setItem('total',noOfSelectedItems)
-        
-    //         return {
-    //             quantity: newItemsStateArray,
-    //             total:noOfSelectedItems
-    //         }
-
-    //     }
-    //     if (newItemsStateArray[index].quantity >= 1 ){
-    //         newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + value;
-    //         if(value==-1 && (newItemsStateArray[index].quantity==0)){
-    //             noOfSelectedItems--
-    //         }
-
-    //     }
-    //     sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-    //     sessionStorage.setItem('total',noOfSelectedItems)
-    //     return {
-    //         items: newItemsStateArray,
-    //         total:noOfSelectedItems
-
-    //     }
-    // })
 }
-
-addDiscountQuantity(itemsArray){  //discountPrice and quantity elements to Items Array 
-    
-    this.setState( prevState => {
-        let newItemsStateArray =  [];
-        itemsArray.map((item,index)=>{
-            newItemsStateArray.push({...item,quantity:0})   
-        })
-        return {
-            items: newItemsStateArray
+changequantityinBag(customKey,value){
+    let oldArrayItems = this.state.bagItems;
+    oldArrayItems.map(item =>{
+        if(item[customKey].customKey == customKey){
+            switch(value){
+                case "remove":
+                    oldArrayItems.splice(item[customKey]);
+                    break;
+                case 1:
+                    item[customKey]['quantity'] +=1;
+                    break;
+                case -1:
+                    if(item[customKey]['quantity']>0){
+                        item[customKey]['quantity'] -=1
+                    }
+                    if(item[customKey]['quantity']<=0){
+                        oldArrayItems.splice(item[customKey])
+                    }
+                    break;
+                default:
+                    alert("something went wrong")
+            }
         }
-})
+    })
+    this.setState({bagItems:oldArrayItems})
 }
+
 
 setType(type) {  //to display respective items for menu items selected
     this.setState(prevState =>{
@@ -513,12 +488,11 @@ PAhandleChange = address => {
              { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && sessionStorage.getItem("boundary") &&
          <Bag 
          closePopup={this.togglePopup }  
-         changequantity={this.changequantity}
-         items={this.state.items}
+         changequantity={this.changequantityinBag}
+         items={this.state.bagItems}
          total={this.state.total}
          quantity={this.state.quantity}
          editlocation = {this.editlocation}
-         decTotal={this.decTotal}
          restaurant_website_detail = {this.state.restaurant_info.restaurant_website_detail}
          />}
 
@@ -542,7 +516,6 @@ PAhandleChange = address => {
          setType={this.setType}
          changequantity={this.changequantity}
          items={this.state.items}
-         setSelectedItem = {this.setSelectedItem}
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
          />

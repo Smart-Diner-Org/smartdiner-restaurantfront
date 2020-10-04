@@ -41,7 +41,6 @@ class Product extends Component{
                                             priceList={item.menu_quantity_measure_price_list}
                                             discount={item.discount}
                                             discountPrice={item.discountPrice}
-                                            setSelectedItem = {this.props.setSelectedItem}
                                             increasequantity={() => this.props.changequantity(item, 1)}
                                             decreasequantity={() => this.props.changequantity(item, -1)}
                                             productId={item.id}

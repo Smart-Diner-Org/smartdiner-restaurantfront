@@ -13,13 +13,11 @@ class Item extends Component {
       }
       componentDidMount(){
         const price = this.props.priceList[0].price
-        this.props.setSelectedItem(0)
         this.setState({price:price})
       }
 
       priceListChanged(e){
         const index = e.target.value
-        this.props.setSelectedItem(index);
         const price = this.props.priceList[index].price
         this.setState({
             price:price,
@@ -87,7 +85,7 @@ class Item extends Component {
                                             <button className="button-round" style={{borderLeft:"0px"}}
                                                 type="button" onClick={this.props.decreasequantity}>−</button>
                                         </div>
-                                        <input type="text" className="total-quantity" value={this.props.quantity}/>
+                                        <input type="text" className="total-quantity" value={this.props.quantity?this.props.quantity:0}/>
                                             
                                         <div className="input-group-append">
                                             <button className="button-round" style={{borderRight:"0px"}}
