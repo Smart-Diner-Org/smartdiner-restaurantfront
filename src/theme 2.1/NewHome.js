@@ -68,7 +68,7 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        // console.log(data)
+        console.log(data)
         this.getItems(data)
         this.setState({
                 restaurant_info:data.restaurant,
@@ -98,6 +98,7 @@ async componentDidMount() {  //API call to get data from backend
             description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
             sessionStorage.setItem("logo",this.state.restaurant_info.logo)
             sessionStorage.setItem("title",this.state.restaurant_info.name)
+            sessionStorage.setItem("restBranchID",this.state.restaurantBranch[0].id)
             // console.log(this.state.items)
       })
     }catch(error){
@@ -214,29 +215,38 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
 }
 changequantityinBag(customKey,value){
     let oldArrayItems = this.state.bagItems;
+    console.log(oldArrayItems)
+    console.log(customKey)
     oldArrayItems.map(item =>{
-        if(item[customKey].customKey == customKey){
-            switch(value){
-                case "remove":
-                    oldArrayItems.splice(item[customKey]);
-                    break;
-                case 1:
-                    item[customKey]['quantity'] +=1;
-                    break;
-                case -1:
-                    if(item[customKey]['quantity']>0){
-                        item[customKey]['quantity'] -=1
-                    }
-                    if(item[customKey]['quantity']<=0){
-                        oldArrayItems.splice(item[customKey])
-                    }
-                    break;
-                default:
-                    alert("something went wrong")
+        for(let key in item){
+            if(key === customKey){
+                switch(value){
+                    case "remove":
+                        oldArrayItems.splice(customKey,1);
+                        break;
+                    case 1:
+                        item[key].quantity +=1;
+                        break;
+                    case -1:
+                        if(item[key].quantity>0){
+                            item[key]['quantity'] -=1
+                        }
+                        if(item[key].quantity<=0){
+                            oldArrayItems.splice(customKey,1)
+                        }
+                        break;
+                    default:
+                        alert("something went wrong")
+                }
+
             }
         }
     })
     this.setState({bagItems:oldArrayItems})
+    sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
+    let total = this.state.bagItems.length
+    this.setState({total:total})
+    sessionStorage.setItem("total",this.state.total)
 }
 
 
@@ -468,7 +478,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        { this.state.total !== 0 && this.state.showPopup  &&   !sessionStorage.getItem('boundary') &&
+        { this.state.total !== 0 && this.state.showPopup  && 
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -485,7 +495,7 @@ PAhandleChange = address => {
         
         {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
         <div>
-             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && sessionStorage.getItem("boundary") &&
+             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && 
          <Bag 
          closePopup={this.togglePopup }  
          changequantity={this.changequantityinBag}
