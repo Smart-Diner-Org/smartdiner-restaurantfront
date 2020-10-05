@@ -18,6 +18,7 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
+import CheckoutButton from './CheckoutButton'
 
 
 class NewHome extends Component {
@@ -479,6 +480,7 @@ PAhandleChange = address => {
          />
          </div>
          </div>
+         <CheckoutButton />
         </div>
     );
   }
