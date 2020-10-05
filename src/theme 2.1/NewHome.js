@@ -225,13 +225,13 @@ changequantityinBag(customKey,value){
                         oldArrayItems.splice(customKey,1);
                         break;
                     case 1:
-                        item[key].quantity +=1;
+                        item[customKey].quantity +=1;
                         break;
                     case -1:
-                        if(item[key].quantity>0){
-                            item[key]['quantity'] -=1
+                        if(item[customKey].quantity>0){
+                            item[customKey].quantity -=1
                         }
-                        if(item[key].quantity<=0){
+                        if(item[customKey].quantity<=0){
                             oldArrayItems.splice(customKey,1)
                         }
                         break;

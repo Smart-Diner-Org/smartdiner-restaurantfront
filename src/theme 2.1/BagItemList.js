@@ -54,8 +54,8 @@ class BagItemList extends React.Component {
                             removeItem={() =>{
                                  this.props.changequantity(item[key].customKey,"remove");
                                 }}
-                            increasequantity={() => this.props.changequantity(item[key].customKey,1)}
-                            decreasequantity={() => this.props.changequantity(item[key].customKey,-1)}
+                            increasequantity={() => this.props.changequantity(key,1)}
+                            decreasequantity={() => this.props.changequantity(key,-1)}
                         />}}
                     )
 }
