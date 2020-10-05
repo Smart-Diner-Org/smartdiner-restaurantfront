@@ -5,7 +5,7 @@ import About from './About'
 import Contact from './Contact'
 import FootComponent from './FootComponent'
 import Product from './Product';
-import ScrollToTop from './ScrollToTop'
+import WhatsAppIcon from './WhatsAppIcon'
 import Bag from './Bag'
 import axios from 'axios';
 import Description from './Description'
@@ -18,7 +18,6 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
-import _default from 'react-bootstrap/esm/CarouselCaption';
 
 
 class NewHome extends Component {
@@ -541,7 +540,7 @@ PAhandleChange = address => {
          
  <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/> 
          <Contact  />
-         <ScrollToTop />
+         <WhatsAppIcon contact_number ={this.state.restaurantBranch[0].contact_number} />
         <FootComponent 
          links={this.state.restaurant_info.restaurant_detail} 
          restaurantName={this.state.restaurant_info.name} 
