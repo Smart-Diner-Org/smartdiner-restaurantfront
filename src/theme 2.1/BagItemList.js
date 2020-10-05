@@ -51,10 +51,10 @@ class BagItemList extends React.Component {
                             selectedMenuQuantityMeasurePriceId = {item[key].selectedMenuQuantityMeasurePriceId}
                             menuQuantity = {item[key].menu_quantity_measure_price_list.filter(menu => {return menu.id == item[key].selectedMenuQuantityMeasurePriceId})}
                             removeItem={() =>{
-                                 this.props.changequantity(item[key].customKey,"remove");
+                                 this.props.changequantity(key,"remove");
                                 }}
-                            increasequantity={() => this.props.changequantity(key,1)}
-                            decreasequantity={() => this.props.changequantity(key,-1)}
+                            increasequantity={(e) =>{e.preventDefault(); this.props.changequantity(key,1)}}
+                            decreasequantity={(e) =>{e.preventDefault(); this.props.changequantity(key,-1)}}
                         />}}
                     )
 }

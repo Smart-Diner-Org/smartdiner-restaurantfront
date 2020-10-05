@@ -213,15 +213,20 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
     sessionStorage.setItem("total",this.state.total)
 
 }
+
 changequantityinBag(customKey,value){
     let oldArrayItems = this.state.bagItems;
     console.log(oldArrayItems)
     console.log(customKey)
     oldArrayItems.map(item =>{
             if((Object.keys(item)).toString() === customKey){
+                let index = oldArrayItems.indexOf(item)
+                console.log(index)
                 switch(value){
                     case "remove":
-                        oldArrayItems.splice(customKey,1);
+                        if(index >= 0){
+                            oldArrayItems.splice(index, 1);
+                        }
                         break;
                     case 1:
                         item[customKey].quantity +=1;
@@ -231,7 +236,9 @@ changequantityinBag(customKey,value){
                             item[customKey].quantity -=1
                         }
                         if(item[customKey].quantity<=0){
-                            oldArrayItems.splice(customKey,1)
+                            if(index  >= 0){
+                                oldArrayItems.splice(index, 1);
+                            }
                         }
                         break;
                     default:
@@ -239,7 +246,6 @@ changequantityinBag(customKey,value){
                 }
 
             }
-        
     })
     this.setState({bagItems:oldArrayItems})
     sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
