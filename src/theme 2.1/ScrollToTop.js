@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Whatsup from "./assets/images/whatsup.png"
 
 export default class ScrollToTop extends Component {
   constructor(props) {
@@ -42,11 +43,17 @@ export default class ScrollToTop extends Component {
     const { is_visible } = this.state;
     return (
         <div className="scroll-to-top">
+          {/*
         {is_visible && (<div onClick={() => this.scrollToTop()}>
 
         <a className="scroll-to-top"><i class="lni-chevron-up"></i></a>
            
-          </div>)}
+          </div>)} */}
+           { is_visible &&
+            <a href="#" className="whatsup-icon">
+            <img  loading="lazy" src={Whatsup}alt="whasup"/>
+            </a>
+            }
       </div>
     );
   }

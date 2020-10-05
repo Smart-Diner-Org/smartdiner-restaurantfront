@@ -1057,9 +1057,17 @@ hr{
   text-align: center;
   cursor: pointer;
 }
+/*-----*/
+.whatsup-icon{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:99;
+height:50px;
+width:50px;
+}
 
-
-
+/*------*/
 
 
 .single-slider .slider-product-image .slider-discount-tag p {
