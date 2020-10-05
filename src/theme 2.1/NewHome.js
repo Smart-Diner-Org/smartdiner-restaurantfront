@@ -218,8 +218,7 @@ changequantityinBag(customKey,value){
     console.log(oldArrayItems)
     console.log(customKey)
     oldArrayItems.map(item =>{
-        for(let key in item){
-            if(key === customKey){
+            if((Object.keys(item)).toString() === customKey){
                 switch(value){
                     case "remove":
                         oldArrayItems.splice(customKey,1);
@@ -240,7 +239,7 @@ changequantityinBag(customKey,value){
                 }
 
             }
-        }
+        
     })
     this.setState({bagItems:oldArrayItems})
     sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))

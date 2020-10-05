@@ -37,7 +37,6 @@ class BagItemList extends React.Component {
             <div>
                 {
                     this.props.items.map((item, index) => {
-                        
                         for(let key in item){
                         return  <BillItem
                             key={index}
