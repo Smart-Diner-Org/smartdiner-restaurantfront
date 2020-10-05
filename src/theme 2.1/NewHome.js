@@ -541,7 +541,8 @@ PAhandleChange = address => {
          
  <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/> 
          <Contact  />
-         <WhatsAppIcon contact_number ={this.state.restaurantBranch[0].contact_number} />
+         {this.state.total>0? <CheckoutButton total={this.state.total} togglePopup={this.togglePopup}/>:<WhatsAppIcon contact_number ={this.state.restaurantBranch[0].contact_number} />}
+
         <FootComponent 
          links={this.state.restaurant_info.restaurant_detail} 
          restaurantName={this.state.restaurant_info.name} 
@@ -551,7 +552,6 @@ PAhandleChange = address => {
          /> 
          </div>
          </div>
-         <CheckoutButton />
         </div>
     );
   }
