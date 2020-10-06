@@ -58,6 +58,7 @@ class NewHome extends Component {
     this.editlocation = this.editlocation.bind(this)
     this.changequantityinBag = this.changequantityinBag.bind(this)
     this.populateQuantity = this.populateQuantity.bind(this)
+    this.updateBag = this.updateBag.bind(this)
 
 }
 
@@ -202,16 +203,15 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
         if(!found)
             handleNewItem();
     }
+    this.updateBag(oldArrayItems)
+}
 
-    this.setState({bagItems:oldArrayItems})
+updateBag(array){
+    this.setState({bagItems:array})
     sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
-    console.log("bag items ......");
-    console.log(this.state.bagItems)
-
     let total = this.state.bagItems.length
     this.setState({total:total})
     sessionStorage.setItem("total",this.state.total)
-
 }
 
 changequantityinBag(customKey,value){
@@ -247,11 +247,7 @@ changequantityinBag(customKey,value){
 
             }
     })
-    this.setState({bagItems:oldArrayItems})
-    sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
-    let total = this.state.bagItems.length
-    this.setState({total:total})
-    sessionStorage.setItem("total",this.state.total)
+    this.updateBag(oldArrayItems)
 }
 
 
