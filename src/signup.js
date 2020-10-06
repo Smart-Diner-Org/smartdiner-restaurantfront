@@ -264,17 +264,23 @@ class SignUp extends Component{
         event.preventDefault()
         let newArray =  (JSON.parse(sessionStorage.getItem('items')))
         let selectedArray = []
-        newArray.map((item)=>{
-            if(item.quantity>0){
-                let menu = {id: item.id, quantity: item.quantity, price:item.discountPrice ,originalPrice: Number(item.price)}
+        newArray.map((items)=>{
+            for (let item in items){
+                let menu = {
+                    id: items[item].id,
+                    quantity: items[item].quantity,
+                    price: items[item].discountPrice? items[item].discountPrice: items[item].originalPrice,
+                    originalPrice: items[item].originalPrice,
+                    selectedMenuQuantityMeasurePriceId: items[item].selectedMenuQuantityMeasurePriceId
+                    }
                 selectedArray.push(menu)
             }
         })
         const data ={
-            restuarantBranchId : Number(newArray[0].restuarant_branch_id),
-            total_price : Number(sessionStorage.getItem("totalWithoutTax")),
-            latitude : Number(sessionStorage.getItem("lat")),
-            longitude : Number(sessionStorage.getItem("long")),
+            restuarantBranchId :sessionStorage.getItem("restBranchID"),
+            total_price : sessionStorage.getItem("totalWithoutTax"),
+            latitude : sessionStorage.getItem("lat"),
+            longitude : sessionStorage.getItem("long"),
             menus : selectedArray,
             date_of_delivery: sessionStorage.getItem("deliveryDate"),
             time_of_delivery: sessionStorage.getItem("deliveryTime") ,

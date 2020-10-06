@@ -5,7 +5,7 @@ import About from './About'
 import Contact from './Contact'
 import FootComponent from './FootComponent'
 import Product from './Product';
-import ScrollToTop from './ScrollToTop'
+import WhatsAppIcon from './WhatsAppIcon'
 import Bag from './Bag'
 import axios from 'axios';
 import Description from './Description'
@@ -18,6 +18,7 @@ import {
     getLatLng,
   } from 'react-places-autocomplete';
 import ReactGA from 'react-ga';
+import CheckoutButton from './CheckoutButton'
 
 
 class NewHome extends Component {
@@ -39,6 +40,7 @@ class NewHome extends Component {
         togglePopup : false,
         refpostcode : "",
         refregion : null,
+        bagItems: new Array(),
 
     };
     this.changequantity = this.changequantity.bind(this)
@@ -46,7 +48,6 @@ class NewHome extends Component {
     this.togglePopup = this.togglePopup.bind(this)
     this.getItems = this.getItems.bind(this)
     this.getCategories = this.getCategories.bind(this)
-    this.addDiscountQuantity = this.addDiscountQuantity.bind(this)
     this.categoryArray = []
     this.checkDistance =  this.checkDistance.bind(this)
     this.PAhandleChange = this.PAhandleChange.bind(this)
@@ -55,17 +56,12 @@ class NewHome extends Component {
     this.gotocart = this.gotocart.bind(this)
     this.contshpng = this.contshpng.bind(this)
     this.editlocation = this.editlocation.bind(this)
-    this.decTotal = this.decTotal.bind(this)
+    this.changequantityinBag = this.changequantityinBag.bind(this)
+    this.populateQuantity = this.populateQuantity.bind(this)
+    this.updateBag = this.updateBag.bind(this)
 
 }
 
-decTotal(){
-    let oldTotal = this.state.total;
-    let newTotal = oldTotal-1;
-    sessionStorage.setItem("total",newTotal)
-    this.setState({total:newTotal})
-    
-}
 
 async componentDidMount() {  //API call to get data from backend
     try{
@@ -73,28 +69,27 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
-        this.getItems(data.restaurant.restaurant_branches)
+        this.getItems(data)
         this.setState({
                 restaurant_info:data.restaurant,
                 refpostcode : (this.state.restaurantBranch[0].delivery_postal_codes ? (this.state.restaurantBranch[0].delivery_postal_codes).split(",") : null),
                 refregion : (this.state.restaurantBranch[0].delivery_locations ? (this.state.restaurantBranch[0].delivery_locations).split(",") : null),
                 isLoaded: true,
             });     
-            if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
-                this.setState({
-                    items : JSON.parse(sessionStorage.getItem("items")),
-                    boundary : Boolean(sessionStorage.getItem("boundary")),
-                    total : sessionStorage.getItem('total'),
-                    showPopup : false
-                })
-            }
+            
+            // if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
+            //     this.setState({
+            //         items : JSON.parse(sessionStorage.getItem("items")),
+            //         boundary : Boolean(sessionStorage.getItem("boundary")),
+            //         total : sessionStorage.getItem('total'),
+            //         showPopup : false
+            //     })
+            // }
             if(data.restaurant.restaurant_website_detail.ga_tracking_id){
                 ReactGA.initialize(`${data.restaurant.restaurant_website_detail.ga_tracking_id}`);
                 sessionStorage.setItem("GA",data.restaurant.restaurant_website_detail.ga_tracking_id)
                 ReactGA.pageview('/homepage');
             }
-
 
             const favicon = document.getElementById("favicon");
             favicon.href = this.state.restaurant_info.logo;
@@ -103,6 +98,8 @@ async componentDidMount() {  //API call to get data from backend
             description.content = this.state.restaurant_info.restaurant_website_detail.page_description ? this.state.restaurant_info.restaurant_website_detail.page_description : this.state.restaurant_info.name;
             sessionStorage.setItem("logo",this.state.restaurant_info.logo)
             sessionStorage.setItem("title",this.state.restaurant_info.name)
+            sessionStorage.setItem("restBranchID",this.state.restaurantBranch[0].id)
+            // console.log(this.state.items)
       })
     }catch(error){
         console.log(error)
@@ -110,78 +107,151 @@ async componentDidMount() {  //API call to get data from backend
     }
   }
 
-  getItems(data){  //Storing API data into our state
+  getItems(data){  //Storing API data into our state   
     let restaurantDetails = [];
-    let items = [];
-    data.map((item) =>{
+    (data.restaurant.restaurant_branches).map((item) =>{
         restaurantDetails.push(item)
     })
-    this.setState({restaurantBranch:restaurantDetails});
-    // console.log(data)
-    this.state.restaurantBranch.map((item)=>{
-        items.push(...item.restaurant_branch_menu)
-    })
-
+     this.setState({restaurantBranch:restaurantDetails})
+    let items = [];
+    
+    (data.menus).map((item)=>{
+        items.push(item)})
     this.setState({items:items})
 
     this.getCategories(this.state.items);
-    this.addDiscountQuantity(this.state.items);
+    // this.addDiscountQuantity(this.state.items);
   }
- 
 
+populateQuantity(item){
+    var tempObj = new Object();
+    var originalPrice = document.getElementById('original_price_'+item.id).value;
+    var discountPrice = null;
+    if(document.getElementById('discounted_price_'+item.id)){
+        discountPrice = document.getElementById('discounted_price_'+item.id).value;
+    }
+    item['originalPrice'] = originalPrice;
+    item['discountPrice'] = discountPrice;
+    if(!tempObj[item['customKey']])
+        tempObj[item['customKey']] = item;
+    tempObj[item['customKey']]['quantity'] = 1;
+    return tempObj;
+}
 
-
-changequantity(index, value) {   //this is for adding/increasing items to cart
-    
-    this.setState( prevState => {
-        let noOfSelectedItems = this.state.total
-        let newItemsStateArray =  prevState.items;
+changequantity(sourceItem, value) {   //this is for adding/increasing items to cart
+    var self = this;
+    function handleNewItem(argument) {
+        switch(value){
+            case 1:
+                sourceItem.quantity = 1;
+                let index = document.getElementById("price_list_" + item.id).value
+                sourceItem.menu_quantity_measure_price_list[index].quantity = 1
+                oldArrayItems.push(self.populateQuantity(item));
+                break;
+            case -1:
+                break;
+            default:
+                alert("something went wrong")
+        }
         
-        if(newItemsStateArray[index].quantity == 0 && value==-1){
-            return
-        }
+    }
+    var item = {};
+    item = Object.assign({}, sourceItem);
+    var selectedMenuQuantityMeasurePriceId
+    if(document.getElementById("price_list_" + item.id)){
+        var dropDownEle = document.getElementById("price_list_" + item.id);
+         selectedMenuQuantityMeasurePriceId = dropDownEle.options[dropDownEle.selectedIndex].id;
+    }else if(document.getElementById("bag-price-list")){
+        var bagItem = document.getElementById("bag-price-list");
+         selectedMenuQuantityMeasurePriceId = bagItem.value
+    }
+    else{
+        alert("something Wrong. Price list is not populating");
+        return;
+    }
+    item['selectedMenuQuantityMeasurePriceId'] = selectedMenuQuantityMeasurePriceId;
+    var customKey = item.id + '_' + item.selectedMenuQuantityMeasurePriceId;
+    item['customKey'] = customKey;
 
-        if (newItemsStateArray[index].quantity === 0 ){
-            if(value==1){
-                noOfSelectedItems++}
-            newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + 1;
-            sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-            sessionStorage.setItem('total',noOfSelectedItems)
-        
-            return {
-                quantity: newItemsStateArray,
-                total:noOfSelectedItems
+    let oldArrayItems = this.state.bagItems;
+    if(oldArrayItems.length == 0)
+        handleNewItem();
+    else{
+        var found = false;
+        for (var i=0; i < oldArrayItems.length; i++){
+            var tempObj_2 = oldArrayItems[i];
+            if(tempObj_2[item['customKey']]){
+                if(!tempObj_2[item['customKey']]['quantity'])
+                    tempObj_2[item['customKey']]['quantity'] = 0;
+                
+                switch(value){
+                    case 1:
+                        tempObj_2[item['customKey']]['quantity'] += 1;
+                        break;
+                    case -1:
+                        if(tempObj_2[item['customKey']]['quantity'] > 0)
+                            tempObj_2[item['customKey']]['quantity'] -= 1;
+                        if(tempObj_2[item['customKey']]['quantity'] <= 0)
+                            oldArrayItems.splice(i, 1);
+                        break;
+                    default:
+                        alert("something went wrong")
+                }
+                sourceItem.quantity = tempObj_2[item['customKey']]['quantity'];
+                let index = document.getElementById("price_list_" + item.id).value
+                sourceItem.menu_quantity_measure_price_list[index].quantity = tempObj_2[item['customKey']]['quantity']
+                found = true;
+              
             }
-
         }
-        if (newItemsStateArray[index].quantity >= 1 ){
-            newItemsStateArray[index].quantity = newItemsStateArray[index].quantity + value;
-            if(value==-1 && (newItemsStateArray[index].quantity==0)){
-                noOfSelectedItems--
+        if(!found)
+            handleNewItem();
+    }
+    this.updateBag(oldArrayItems)
+}
+
+updateBag(array){
+    this.setState({bagItems:array})
+    sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
+    let total = this.state.bagItems.length
+    this.setState({total:total})
+    sessionStorage.setItem("total",this.state.total)
+}
+
+changequantityinBag(customKey,value){
+    let oldArrayItems = this.state.bagItems;
+    oldArrayItems.map(item =>{
+            if((Object.keys(item)).toString() === customKey){
+                let index = oldArrayItems.indexOf(item)
+         
+                switch(value){
+                    case "remove":
+                        if(index >= 0){
+                            oldArrayItems.splice(index, 1);
+                        }
+                        break;
+                    case 1:
+                        item[customKey].quantity +=1;
+                        break;
+                    case -1:
+                        if(item[customKey].quantity>0){
+                            item[customKey].quantity -=1
+                        }
+                        if(item[customKey].quantity<=0){
+                            if(index  >= 0){
+                                oldArrayItems.splice(index, 1);
+                            }
+                        }
+                        break;
+                    default:
+                        alert("something went wrong")
+                }
+
             }
-
-        }
-        sessionStorage.setItem('items',JSON.stringify( newItemsStateArray))
-        sessionStorage.setItem('total',noOfSelectedItems)
-        return {
-            items: newItemsStateArray,
-            total:noOfSelectedItems
-
-        }
     })
+    this.updateBag(oldArrayItems)
 }
 
-addDiscountQuantity(itemsArray){  //discountPrice and quantity elements to Items Array 
-    this.setState( prevState => {
-        let newItemsStateArray =  [];
-        itemsArray.map((item,index)=>{
-         newItemsStateArray.push({...item,quantity:0,discountPrice:(item.price-(item.price*(item.discount/100)))})   
-        })
-        return {
-            items: newItemsStateArray
-        }
-})
-}
 
 setType(type) {  //to display respective items for menu items selected
     this.setState(prevState =>{
@@ -411,7 +481,7 @@ PAhandleChange = address => {
     return (
         <div >
 
-        { this.state.total !== 0 && this.state.showPopup  &&   !sessionStorage.getItem('boundary') &&
+        { this.state.total !== 0 && this.state.showPopup  && 
         <GetLocation 
         address = {this.state.address}
         getCoords={this.getCoords} 
@@ -428,15 +498,14 @@ PAhandleChange = address => {
         
         {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
         <div>
-             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && sessionStorage.getItem("boundary") &&
+             { this.state.togglePopup && !this.state.showPopup && this.state.total !== 0 && 
          <Bag 
          closePopup={this.togglePopup }  
-         changequantity={this.changequantity}
-         items={this.state.items}
+         changequantity={this.changequantityinBag}
+         items={this.state.bagItems}
          total={this.state.total}
          quantity={this.state.quantity}
          editlocation = {this.editlocation}
-         decTotal={this.decTotal}
          restaurant_website_detail = {this.state.restaurant_info.restaurant_website_detail}
          />}
 
@@ -453,7 +522,7 @@ PAhandleChange = address => {
          <div style={this.state.togglePopup && !this.state.showPopup && this.state.total && sessionStorage.getItem("boundary") !== 0?{pointerEvents: 'none',filter: 'blur(10px)',position:"fixed"}:{}}>
 
          <Slider slider_images={this.state.restaurant_info.restaurant_website_detail.slider_images}/>
-        <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} preOrder={this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled}/>
+   <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} preOrder={this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled}/> 
 
 
          <Product 
@@ -463,20 +532,22 @@ PAhandleChange = address => {
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
          />
-         <About
+       <About
          about = {this.state.restaurant_info.about}
           timings={this.state.restaurantBranch[0].timings} 
-          aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/>
-         <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/>
+         aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/> 
+         
+ <MapLocation  restaurantName={this.state.restaurant_info.name} address={this.state.restaurantBranch[0].address}/> 
          <Contact  />
-         <ScrollToTop />
-         <FootComponent 
+         {this.state.total>0? <CheckoutButton total={this.state.total} togglePopup={this.togglePopup}/>:<WhatsAppIcon contact_number ={this.state.restaurantBranch[0].contact_number} />}
+
+        <FootComponent 
          links={this.state.restaurant_info.restaurant_detail} 
          restaurantName={this.state.restaurant_info.name} 
          address={this.state.restaurantBranch[0].address} 
          email={this.state.restaurantBranch[0].email}
          contact_number ={this.state.restaurantBranch[0].contact_number}
-         />
+         /> 
          </div>
          </div>
         </div>

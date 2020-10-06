@@ -9,13 +9,14 @@ class BagItemList extends React.Component {
 
     values() {
         const total = this.props.items.reduce(function (accumulator, currentValue) {
-            const valueToBeAdded = currentValue.discount>0 ? 
-            (currentValue.discountPrice*currentValue.quantity)
+            for (let key in  currentValue){
+            const valueToBeAdded = currentValue[key].discount>0 ? 
+            (currentValue[key].discountPrice*currentValue[key].quantity)
             :
-            (currentValue.price*currentValue.quantity);
+            (currentValue[key].originalPrice*currentValue[key].quantity);
             const newTotal = accumulator + valueToBeAdded 
             return  newTotal
-            }, 0);
+            }}, 0);
         const baseConvenienceFee = ((3/100)*total) + 3
         const tax =  baseConvenienceFee + ((18/100)*baseConvenienceFee);
         const totalWithTax = total + tax;
@@ -36,23 +37,25 @@ class BagItemList extends React.Component {
             <div>
                 {
                     this.props.items.map((item, index) => {
-                        if(item.quantity>=1)
+                        for(let key in item){
                         return  <BillItem
                             key={index}
-                            description={item.description}
-                            quantity={item.quantity}
-                            itemName={item.name}
-                            image={item.image}
-                            price={item.price}
-                            discount={item.discount}
-                            discountPrice={item.discountPrice}
+                            description={item[key].short_description}
+                            quantity={item[key].quantity}
+                            itemName={item[key].name}
+                            image={item[key].image}
+                            price={item[key].originalPrice}
+                            discount={item[key].discount}
+                            productId={item[key].id}
+                            discountPrice={item[key].discountPrice}
+                            selectedMenuQuantityMeasurePriceId = {item[key].selectedMenuQuantityMeasurePriceId}
+                            menuQuantity = {item[key].menu_quantity_measure_price_list.filter(menu => {return menu.id == item[key].selectedMenuQuantityMeasurePriceId})}
                             removeItem={() =>{
-                                 this.props.changequantity(index,parseFloat(`-${item.quantity}`));
-                                this.props.decTotal();
+                                 this.props.changequantity(key,"remove");
                                 }}
-                            increasequantity={() => this.props.changequantity(index,1)}
-                            decreasequantity={() => this.props.changequantity(index, -1)}
-                        />}
+                            increasequantity={(e) =>{e.preventDefault(); this.props.changequantity(key,1)}}
+                            decreasequantity={(e) =>{e.preventDefault(); this.props.changequantity(key,-1)}}
+                        />}}
                     )
 }
                 <Bill values={this.values()}/>

@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 
@@ -42,6 +41,7 @@ class Delivery extends Component {
       const timeLimit = 7200000;
       if (timeDifference <= timeLimit) {
         alert("You can pre-book the orders for at least 2 hours from now.");
+        document.getElementById("datepicker").value = null;
         return false;
       }
       sessionStorage.setItem("deliveryTime", time);
@@ -81,7 +81,7 @@ class Delivery extends Component {
               <>
                 <p className="mt-20">Choose your date and time</p>
                 <div className="delivery-type-inputs mt-10">
-                  <Flatpickr
+                  <Flatpickr id="datepicker"
                     options={
                       this.props.restaurant_website_detail
                         .is_pre_booking_time_required

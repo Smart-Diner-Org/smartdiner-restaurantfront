@@ -28,7 +28,6 @@ render(){
                 <BagItemList 
                             items={this.props.items}
                             changequantity={this.props.changequantity}
-                            decTotal={this.props.decTotal}
                             restaurant_website_detail = {this.props.restaurant_website_detail}
                         />
 
