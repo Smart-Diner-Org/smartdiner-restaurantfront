@@ -18,15 +18,13 @@ class Item extends Component {
         
         const index = e.target.value
         const price = this.props.priceList[index].price
-        const quantity = this.props.priceList[index].quantity
         this.setState({
             price:price,
-            quantity:quantity
         })
+        this.updateQuantity(index)
       }
 
-      updateQuantity(){
-          let index = document.getElementById("price_list_"+this.props.productId).value
+      updateQuantity(index){
           const quantity = this.props.priceList[index].quantity 
           this.setState({
             quantity:quantity
@@ -91,13 +89,13 @@ class Item extends Component {
                                     <div className="input-group mb-3 mt-10" style={{ width:"fit-content",border:"1px solid black", borderRadius:"23px",maxWidth:"112px"}}>
                                         <div className="input-group-prepend" >
                                             <button className="button-round" style={{borderLeft:"0px"}}
-                                                type="button" onClick={()=>{this.props.decreasequantity();this.updateQuantity()}}>−</button>
+                                                type="button" onClick={()=>{this.props.decreasequantity();this.updateQuantity(document.getElementById("price_list_"+this.props.productId).value)}}>−</button>
                                         </div>
                                         <input type="text" className="total-quantity" value={this.state.quantity?this.state.quantity:0}/>
                                             
                                         <div className="input-group-append">
                                             <button className="button-round" style={{borderRight:"0px"}}
-                                                type="button" onClick={()=>{this.props.increasequantity();this.updateQuantity()}}>+</button>
+                                                type="button" onClick={()=>{this.props.increasequantity();this.updateQuantity(document.getElementById("price_list_"+this.props.productId).value)}}>+</button>
                                         </div>
                                     </div>
                                     {/* <ul className="rating">
