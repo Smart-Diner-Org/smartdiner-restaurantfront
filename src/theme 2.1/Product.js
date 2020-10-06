@@ -2,10 +2,6 @@ import React,{ Component } from 'react'
 import Item from './components/Item'
 import Menu from './Menu'
 
-
-
-
-
 class Product extends Component{
 
 

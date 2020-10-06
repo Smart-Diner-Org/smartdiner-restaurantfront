@@ -69,7 +69,6 @@ async componentDidMount() {  //API call to get data from backend
         await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/restaurant/get_full_details`)
       .then(res => {
         const data = res.data;
-        console.log(data)
         this.getItems(data)
         this.setState({
                 restaurant_info:data.restaurant,
@@ -145,6 +144,8 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
         switch(value){
             case 1:
                 sourceItem.quantity = 1;
+                let index = document.getElementById("price_list_" + item.id).value
+                sourceItem.menu_quantity_measure_price_list[index].quantity = 1
                 oldArrayItems.push(self.populateQuantity(item));
                 break;
             case -1:
@@ -197,7 +198,10 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                         alert("something went wrong")
                 }
                 sourceItem.quantity = tempObj_2[item['customKey']]['quantity'];
+                let index = document.getElementById("price_list_" + item.id).value
+                sourceItem.menu_quantity_measure_price_list[index].quantity = tempObj_2[item['customKey']]['quantity']
                 found = true;
+              
             }
         }
         if(!found)
@@ -216,12 +220,10 @@ updateBag(array){
 
 changequantityinBag(customKey,value){
     let oldArrayItems = this.state.bagItems;
-    console.log(oldArrayItems)
-    console.log(customKey)
     oldArrayItems.map(item =>{
             if((Object.keys(item)).toString() === customKey){
                 let index = oldArrayItems.indexOf(item)
-                console.log(index)
+         
                 switch(value){
                     case "remove":
                         if(index >= 0){
