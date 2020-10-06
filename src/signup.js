@@ -170,6 +170,11 @@ class SignUp extends Component{
             await axios.post(`${this.apiLink}auth/check_for_account`,data)
                 .then(res => {
                     this.setState({successMessage:res.data.message})
+                    ReactGA.event({
+                        category: "OTP",
+                        action: "Received OTP",
+                        label: data.mobile
+                      })
                 })
                 .catch( (error) => {
                     if(error && error.response && error.response.data){
@@ -195,6 +200,11 @@ class SignUp extends Component{
                 this.setState({successMessage:res.data.message})
                 this.setState({isVerified:true})
                 clearInterval(myInterval)
+                ReactGA.event({
+                    category: "OTP",
+                    action: "Verified OTP",
+                    label: data.mobile
+                  })
             })
             .catch((error) => {
                 if(error && error.response && error.response.data){
@@ -215,6 +225,11 @@ class SignUp extends Component{
         await axios.post(`${this.apiLink}auth/resend_otp`,data)
             .then(res => {
                 this.setState({successMessage:res.data.message})
+                ReactGA.event({
+                    category: "OTP",
+                    action: "Request for re-send OTP",
+                    label: data.mobile
+                  })
             })
             .catch( (error) => {
                 if(error && error.response && error.response.data){
@@ -246,6 +261,11 @@ class SignUp extends Component{
             .then(res =>{
                 this.setState({user_info:res.data})
                 this.setState({successMessage:res.data.message})
+                ReactGA.event({
+                    category: "Customer",
+                    action: "Added Customer Details",
+                    label: this.state.mobile
+                  })
 
             })
             .catch( (error) => {
@@ -291,6 +311,12 @@ class SignUp extends Component{
             }})
             .then(res =>{
                 sessionStorage.clear()
+                ReactGA.event({
+                    category: "Customer",
+                    action: "Placed Order",
+                    label: this.state.mobile,
+                    transport: 'beacon'
+                  })
                 window.history.replaceState(null, '', '/');
                 window.open(res.data.paymentUrl,"_self")
                 
@@ -325,6 +351,12 @@ class SignUp extends Component{
         role_id: null,
         updatedAt: this.state.user_info.updatedAt,
         uuid: null,}}})
+
+        ReactGA.event({
+            category: "Customer",
+            action: "Clicked edit to Change his/her information",
+            label: this.state.mobile,
+          })
  }
 
     render(){

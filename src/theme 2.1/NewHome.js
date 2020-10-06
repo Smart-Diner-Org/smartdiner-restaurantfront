@@ -147,6 +147,12 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                 let index = document.getElementById("price_list_" + item.id).value
                 sourceItem.menu_quantity_measure_price_list[index].quantity = 1
                 oldArrayItems.push(self.populateQuantity(item));
+                ReactGA.event({
+                    category: "Menu",
+                    action: "add",
+                    label: `${sourceItem.name}`,
+                    value: 1,
+                  });
                 break;
             case -1:
                 break;
@@ -187,11 +193,28 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                 switch(value){
                     case 1:
                         tempObj_2[item['customKey']]['quantity'] += 1;
+                        ReactGA.event({
+                            category: "Menu",
+                            action: "Product quantity increased",
+                            label: `${sourceItem.name}`,
+                            value: tempObj_2[item['customKey']]['quantity'],
+                          });
                         break;
                     case -1:
                         if(tempObj_2[item['customKey']]['quantity'] > 0)
                             tempObj_2[item['customKey']]['quantity'] -= 1;
+                            ReactGA.event({
+                                category: "Menu",
+                                action: "Product quantity decreased",
+                                label: `${sourceItem.name}`,
+                                value: tempObj_2[item['customKey']]['quantity'],
+                              });
                         if(tempObj_2[item['customKey']]['quantity'] <= 0)
+                        ReactGA.event({
+                            category: "Menu",
+                            action: "Product removed",
+                            label: `${sourceItem.name}`,
+                          });
                             oldArrayItems.splice(i, 1);
                         break;
                     default:
@@ -228,18 +251,40 @@ changequantityinBag(customKey,value){
                     case "remove":
                         if(index >= 0){
                             oldArrayItems.splice(index, 1);
+                            ReactGA.event({
+                                category: "Cart",
+                                action: "Product Removed",
+                                label: item[customKey].name,
+                              });
                         }
                         break;
                     case 1:
                         item[customKey].quantity +=1;
+                        ReactGA.event({
+                            category: "Cart",
+                            action: "Product quantity Increases",
+                            label: item[customKey].name,
+                            value: item[customKey].quantity
+                          });
                         break;
                     case -1:
                         if(item[customKey].quantity>0){
+                            ReactGA.event({
+                                category: "Cart",
+                                action: "Product quantity decreased",
+                                label: item[customKey].name,
+                                value: item[customKey].quantity
+                              })
                             item[customKey].quantity -=1
                         }
                         if(item[customKey].quantity<=0){
                             if(index  >= 0){
                                 oldArrayItems.splice(index, 1);
+                                ReactGA.event({
+                                    category: "Cart",
+                                    action: "Product removed",
+                                    label: item[customKey].name,
+                                  })
                             }
                         }
                         break;
@@ -259,6 +304,11 @@ setType(type) {  //to display respective items for menu items selected
             selectedType:type
         }
     })
+    ReactGA.event({
+        category: "Menu",
+        action: "Category",
+        label: "Clicked to different menu category option",
+      })
 }
   
 togglePopup() {  //to open and close the cart(bag) component
@@ -338,6 +388,22 @@ checkDistance(){
                         this.setState({boundary:true})
                         sessionStorage.setItem("boundary",true)
                     }
+                    if(this.state.boundary){
+                        ReactGA.event({
+                            category: "Location access",
+                            action: "Clicked Pick-my-Location",
+                            label: "Inside service boundary",
+                            value:1
+                          })
+                    }else{
+                        ReactGA.event({
+                            category: "Location access",
+                            action: "Clicked Pick-my-Location",
+                            label: "Outside service boundary",
+                            value:1
+                          })
+                    }
+                   
                },
                 error => {
                   console.error(error);
@@ -415,7 +481,22 @@ PAhandleChange = address => {
                     this.setState({boundary:true})
                     sessionStorage.setItem("boundary",true)
                 }
-            
+
+                if(this.state.boundary){
+                    ReactGA.event({
+                        category: "Location access",
+                        action: "Searched for address",
+                        label: "Inside service boundary",
+                        value:1
+                      })
+                }else{
+                    ReactGA.event({
+                        category: "Location access",
+                        action: "Searched for address",
+                        label: "Outside service boundary",
+                        value:1
+                      })
+                    }
 
         })})
       .catch(error => console.error('Error', error));
