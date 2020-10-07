@@ -526,11 +526,18 @@ PAhandleChange = address => {
   gotocart(event){
         this.setState({showPopup:false})
         this.togglePopup()
+        ReactGA.event({
+            category: "Location access",
+            action: "Clicked Go to cart button",
+          })
   }
 
   contshpng(event){
         this.setState({showPopup:false})
-     
+        ReactGA.event({
+            category: "Location access",
+            action: "Clicked continue shopping button",
+          })
   }
   
   editlocation(event){
