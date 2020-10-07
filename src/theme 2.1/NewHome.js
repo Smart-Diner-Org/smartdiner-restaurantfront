@@ -486,14 +486,14 @@ PAhandleChange = address => {
                     ReactGA.event({
                         category: "Location access",
                         action: "Searched for address and Inside service boundary",
-                        label: this.state.address,
+                        label: address,
                         value:1
                       })
                 }else{
                     ReactGA.event({
                         category: "Location access",
                         action: "Searched for address and Outside service boundary",
-                        label: this.state.adress,
+                        label: address,
                         value:1
                       })
                     }
