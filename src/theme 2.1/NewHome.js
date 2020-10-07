@@ -391,15 +391,15 @@ checkDistance(){
                     if(this.state.boundary){
                         ReactGA.event({
                             category: "Location access",
-                            action: "Clicked Pick-my-Location",
-                            label: "Inside service boundary",
+                            action: "Clicked Pick-my-Location and Inside service boundary",
+                            label: this.state.address,
                             value:1
                           })
                     }else{
                         ReactGA.event({
                             category: "Location access",
-                            action: "Clicked Pick-my-Location",
-                            label: "Outside service boundary",
+                            action: "Clicked Pick-my-Location and Outside service boundary",
+                            label: this.state.address,
                             value:1
                           })
                     }
@@ -485,15 +485,15 @@ PAhandleChange = address => {
                 if(this.state.boundary){
                     ReactGA.event({
                         category: "Location access",
-                        action: "Searched for address",
-                        label: "Inside service boundary",
+                        action: "Searched for address and Inside service boundary",
+                        label: this.state.boundary,
                         value:1
                       })
                 }else{
                     ReactGA.event({
                         category: "Location access",
-                        action: "Searched for address",
-                        label: "Outside service boundary",
+                        action: "Searched for address and Outside service boundary",
+                        label: this.state.boundary,
                         value:1
                       })
                     }
