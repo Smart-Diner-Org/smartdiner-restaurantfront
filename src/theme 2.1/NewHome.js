@@ -529,6 +529,7 @@ PAhandleChange = address => {
         ReactGA.event({
             category: "Location access",
             action: "Clicked Go to cart button",
+            label: "User directly when to cart after adding 1 item"
           })
   }
 
@@ -537,6 +538,7 @@ PAhandleChange = address => {
         ReactGA.event({
             category: "Location access",
             action: "Clicked continue shopping button",
+            label: "User continued to view more menu items"
           })
   }
   
