@@ -6,8 +6,7 @@ class Item extends Component {
         super(props);
    this.state={
        price: this.props.priceList[0].price,
-       selectedItem: {},
-       quantity:""
+       quantity: this.props.priceList[0].quantity ,
    }
    
       this.priceListChanged = this.priceListChanged.bind(this)
@@ -33,8 +32,6 @@ class Item extends Component {
 
     render(){
         return(
-            
-                
             <div id={ "product_"+this.props.productId } className="col-md-4 " style={{ marginBlockEnd : '2rem',marginBlockStart : '1.5rem'}}>
               
                             <div className="single-product-items">

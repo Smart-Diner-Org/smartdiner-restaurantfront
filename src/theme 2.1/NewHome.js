@@ -77,14 +77,15 @@ async componentDidMount() {  //API call to get data from backend
                 isLoaded: true,
             });     
             
-            // if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
-            //     this.setState({
-            //         items : JSON.parse(sessionStorage.getItem("items")),
-            //         boundary : Boolean(sessionStorage.getItem("boundary")),
-            //         total : sessionStorage.getItem('total'),
-            //         showPopup : false
-            //     })
-            // }
+            if(sessionStorage.getItem("items") && sessionStorage.getItem("boundary")){
+                this.setState({
+                    bagItems : JSON.parse(sessionStorage.getItem("items")),
+                    items : JSON.parse(sessionStorage.getItem("menu-items")),
+                    boundary : Boolean(sessionStorage.getItem("boundary")),
+                    total : sessionStorage.getItem('total'),
+                    showPopup : false
+                })
+            }
             if(data.restaurant.restaurant_website_detail.ga_tracking_id){
                 ReactGA.initialize(`${data.restaurant.restaurant_website_detail.ga_tracking_id}`);
                 sessionStorage.setItem("GA",data.restaurant.restaurant_website_detail.ga_tracking_id)
@@ -120,7 +121,6 @@ async componentDidMount() {  //API call to get data from backend
     this.setState({items:items})
 
     this.getCategories(this.state.items);
-    // this.addDiscountQuantity(this.state.items);
   }
 
 populateQuantity(item){
@@ -231,14 +231,15 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
             handleNewItem();
     }
     this.updateBag(oldArrayItems)
+    sessionStorage.setItem("menu-items",JSON.stringify(this.state.items))
 }
 
 updateBag(array){
     this.setState({bagItems:array})
-    sessionStorage.setItem("items",JSON.stringify(this.state.bagItems))
-    let total = this.state.bagItems.length
+    sessionStorage.setItem("items",JSON.stringify(array))
+    let total = array.length
     this.setState({total:total})
-    sessionStorage.setItem("total",this.state.total)
+    sessionStorage.setItem("total",total )
 }
 
 changequantityinBag(customKey,value){
@@ -295,6 +296,7 @@ changequantityinBag(customKey,value){
             }
     })
     this.updateBag(oldArrayItems)
+   
 }
 
 
