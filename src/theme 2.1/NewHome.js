@@ -393,15 +393,15 @@ checkDistance(){
                     if(this.state.boundary){
                         ReactGA.event({
                             category: "Location access",
-                            action: "Clicked Pick-my-Location",
-                            label: "Inside service boundary",
+                            action: "Clicked Pick-my-Location and Inside service boundary",
+                            label: this.state.address,
                             value:1
                           })
                     }else{
                         ReactGA.event({
                             category: "Location access",
-                            action: "Clicked Pick-my-Location",
-                            label: "Outside service boundary",
+                            action: "Clicked Pick-my-Location and Outside service boundary",
+                            label: this.state.address,
                             value:1
                           })
                     }
@@ -487,15 +487,15 @@ PAhandleChange = address => {
                 if(this.state.boundary){
                     ReactGA.event({
                         category: "Location access",
-                        action: "Searched for address",
-                        label: "Inside service boundary",
+                        action: "Searched for address and Inside service boundary",
+                        label: address,
                         value:1
                       })
                 }else{
                     ReactGA.event({
                         category: "Location access",
-                        action: "Searched for address",
-                        label: "Outside service boundary",
+                        action: "Searched for address and Outside service boundary",
+                        label: address,
                         value:1
                       })
                     }
@@ -528,11 +528,20 @@ PAhandleChange = address => {
   gotocart(event){
         this.setState({showPopup:false})
         this.togglePopup()
+        ReactGA.event({
+            category: "Location access",
+            action: "Clicked Go to cart button",
+            label: "User directly when to cart after adding 1 item"
+          })
   }
 
   contshpng(event){
         this.setState({showPopup:false})
-     
+        ReactGA.event({
+            category: "Location access",
+            action: "Clicked continue shopping button",
+            label: "User continued to view more menu items"
+          })
   }
   
   editlocation(event){
