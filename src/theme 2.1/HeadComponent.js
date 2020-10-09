@@ -1,6 +1,7 @@
 import React ,{ Component } from "react"
 import BagImage from "./assets/images/bag.png"
 import Logo from "./assets/images/logo.png"
+import ReactGA from 'react-ga';
 
 
 
@@ -70,11 +71,20 @@ class HeadComponent extends Component {
                             </ul> 
                         </div>
                         <div className="headlogo" >
-                            {/* {this.props.total==0 && <span className="tooltiptext">Your Cart is Empty</span>} */}
-                                    <a data-scroll-nav="0" href="#" onClick={this.props.togglePopup} >
-                                        <img  loading="lazy" src={BagImage} className="img-responsive cart" alt="Cart"/>
-                                        <span className="badge">{this.props.total}</span>
-                                    </a> 
+                        
+                            <img  loading="lazy" src={BagImage}
+                             className="img-responsive cart" alt="Cart"
+                             onClick={()=>{
+                                this.props.togglePopup();
+                                ReactGA.event({
+                                    category: "Cart",
+                                    action: "Cart in header clicked to open",
+                                    value: 1,
+                                  });
+                                }}
+                             />
+                            <span className="badge">{this.props.total}</span>
+                                    
                          </div>
                     </nav> 
                 </div>

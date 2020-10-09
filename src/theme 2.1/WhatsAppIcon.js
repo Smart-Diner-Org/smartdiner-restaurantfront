@@ -50,11 +50,14 @@ export default class ScrollToTop extends Component {
            
           </div>)} */}
            { is_visible &&
-            <a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`} onClick={()=>{ReactGA.event({
+            <a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`}
+             onClick={()=>{
+               ReactGA.event({
               category: "WhatsApp",
               action: "icon clicked",
               value: 1,
-            });}} target="blank" className="whatsup-icon">
+            });}} 
+            target="blank" className="whatsup-icon">
             <img  loading="lazy" src={Whatsup} alt="whatsapp"/>
             </a>
             }
