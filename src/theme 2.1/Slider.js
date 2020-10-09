@@ -31,7 +31,7 @@ class Slider extends Component {
                           data-animation="fadeInUp"
                           data-delay="0.3s"
                         >
-                          We providing online delivery
+                          We provide online delivery
                         </h1>
                         <div className="row">
                           <a href="#product">Place order</a>
