@@ -201,7 +201,7 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                           });
                         break;
                     case -1:
-                        if(tempObj_2[item['customKey']]['quantity'] > 0)
+                        if(tempObj_2[item['customKey']]['quantity'] > 0){
                             tempObj_2[item['customKey']]['quantity'] -= 1;
                             ReactGA.event({
                                 category: "Menu",
@@ -209,13 +209,15 @@ changequantity(sourceItem, value) {   //this is for adding/increasing items to c
                                 label: `${sourceItem.name}`,
                                 value: tempObj_2[item['customKey']]['quantity'],
                               });
-                        if(tempObj_2[item['customKey']]['quantity'] <= 0)
-                        ReactGA.event({
-                            category: "Menu",
-                            action: "Product removed",
-                            label: `${sourceItem.name}`,
-                          });
+                        }
+                        if(tempObj_2[item['customKey']]['quantity'] <= 0){
+                            ReactGA.event({
+                                category: "Menu",
+                                action: "Product removed",
+                                label: `${sourceItem.name}`,
+                            });
                             oldArrayItems.splice(i, 1);
+                        }
                         break;
                     default:
                         alert("something went wrong")
