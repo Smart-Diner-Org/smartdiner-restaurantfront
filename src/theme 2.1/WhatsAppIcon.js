@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Whatsup from "./assets/images/whatsup.png"
+import ReactGA from 'react-ga';
 
 export default class ScrollToTop extends Component {
   constructor(props) {
@@ -49,7 +50,11 @@ export default class ScrollToTop extends Component {
            
           </div>)} */}
            { is_visible &&
-            <a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`} target="blank" className="whatsup-icon">
+            <a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`} onClick={()=>{ReactGA.event({
+              category: "WhatsApp",
+              action: "icon clicked",
+              value: 1,
+            });}} target="blank" className="whatsup-icon">
             <img  loading="lazy" src={Whatsup} alt="whatsapp"/>
             </a>
             }
