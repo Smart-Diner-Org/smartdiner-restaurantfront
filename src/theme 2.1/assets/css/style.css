@@ -1463,6 +1463,7 @@ width: 100%;
     display:inline-block;
   }
 }
+
 /*------*/
 
 .collection-menu .nav a.active {
@@ -1692,7 +1693,13 @@ width: 100%;
     padding-bottom: 80px;
   }
 }
-
+/*---*/
+@media only screen and (max-width: 768px) {
+  .title-mobile{
+    padding-top: 50px;
+  }
+}
+/*---*/
 .about-left {
   bottom: 0;
   margin: 0 20px 0;
