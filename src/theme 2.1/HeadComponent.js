@@ -78,7 +78,7 @@ class HeadComponent extends Component {
                                 this.props.togglePopup();
                                 ReactGA.event({
                                     category: "Cart",
-                                    action: "Cart in header clicked to open",
+                                    action: "Cart in header clicked to open bag",
                                     value: 1,
                                   });
                                 }}
