@@ -42,7 +42,7 @@ function FootComponent (props){
                                             <i class="lni-envelope"></i>
                                         </div>
                                         <div class="info-content">
-                                            <p>{props.email}</p>
+                                            <p><a href={`mailto:${props.email}`} target="blank">{props.email}</a></p>
                                         </div>
                                     </div> 
                                 </li>
