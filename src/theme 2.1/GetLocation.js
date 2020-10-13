@@ -29,7 +29,7 @@ export default class GetLocation extends Component{
                 PAhandleChange = {this.props.PAhandleChange}
                 handleSelect = {this.props.handleSelect}/>
 
-                {this.props.pickMyLocation && <button className="crtlocbtn " onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Pick My Location</button> }
+                {this.props.pickMyLocation && <button className="crtlocbtn mb-0" onClick={this.props.checkDistance}><i class="lni lni-map-marker mr-20"></i>Pick My Location</button> }
                
                 {this.props.boundary &&
                 <div className="d-flex align-items-center continue-labels mt-20">
