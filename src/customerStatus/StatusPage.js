@@ -32,7 +32,6 @@ class StatusPage extends React.Component{
             await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
-              console.log(data)
               this.setState({
                 data : data,
                   });     
