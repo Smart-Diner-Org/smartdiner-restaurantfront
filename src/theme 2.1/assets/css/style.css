@@ -1699,6 +1699,12 @@ width: 100%;
     padding-top: 50px;
   }
 }
+@media only screen and (max-width: 768px) {
+  .about-img-mobile{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
 /*---*/
 .about-left {
   bottom: 0;

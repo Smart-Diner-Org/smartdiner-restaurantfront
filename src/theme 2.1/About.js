@@ -21,7 +21,7 @@ class About extends Component {
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 about-img-mobile">
                     <div class="about-left mt-20">
                         <div class="about">
                             <img loading="lazy" src={this.props.aboutImage?this.props.aboutImage : defaultAboutImage} alt=""/>
