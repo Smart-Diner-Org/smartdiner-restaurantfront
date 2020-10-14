@@ -32,23 +32,19 @@ class StatusPage extends React.Component{
             await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
+              console.log(data)
               this.setState({
                 data : data,
                   });     
             });
-        
-            const favicon = document.getElementById("favicon");
-            favicon.href = sessionStorage.getItem("logo");
-            document.title = sessionStorage.getItem("title") ;
-        
         } 
         catch(error){
             alert("Failed to fetch information from server")
         }
 
         const favicon = document.getElementById("favicon");
-        favicon.href = sessionStorage.getItem("logo");
-        document.title = sessionStorage.getItem("title") ;
+        favicon.href = this.state.data.logo;
+        document.title = this.state.data.restuarantName ;
         
         
         if(this.state.data.stage_id==1 || this.state.data.stage_id==2){
@@ -151,11 +147,11 @@ class StatusPage extends React.Component{
                
                     <div className="row mt-2">
                     {this.state.orderCancelled && <div className="col-lg-6 col-11">
-                                                <p className="cancelledOrder">Your order has been cancelled</p>
-                                                {this.state.data.cancellationReason!=null && <p className="cancelledOrder">Reason : {this.state.data.cancellationReason}</p>}
-                                                {this.state.data.cancellationDateTime!=null && <p className="cancelledOrder">Cancelled on {this.state.cancellationDate} at {this.state.cancellationTime}</p>}
-                            </div>
-                            }
+                        <p className="cancelledOrder">Your order has been cancelled</p>
+                        {this.state.data.cancellationReason!=null && <p className="cancelledOrder">Reason : {this.state.data.cancellationReason}</p>}
+                        {this.state.data.cancellationDateTime!=null && <p className="cancelledOrder">Cancelled on {this.state.cancellationDate} at {this.state.cancellationTime}</p>}
+                        </div>
+                    }
                 
                     {!this.state.orderCancelled && <div className="col-lg-1 col-1 deliveryProgress">
                             <div className="progress progress-bar-vertical">
