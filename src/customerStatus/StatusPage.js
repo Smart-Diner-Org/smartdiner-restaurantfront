@@ -3,13 +3,16 @@ import "./index.css"
 import ChefImg from './chef.jpg'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import Alert from 'react-bootstrap/Alert'
 
+const orderNotFound = "Order not found" 
+const invalidOrder = "Invalid Order"
+const wrongOrderMessage = "It does not seem to be the right order. Please check"
 
 class StatusPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            
             data : {},
             flag1 : false,
             flag2 : false,
@@ -20,6 +23,7 @@ class StatusPage extends React.Component{
             orderCancelled:false,
             cancellationDate:"",
             cancellationTime:"",
+            wrongOrder: null,
         }
         
     }
@@ -32,23 +36,20 @@ class StatusPage extends React.Component{
             await axios.get(`${process.env.REACT_APP_BASE_URL}/before_login/order/${id}/status`)
             .then(res => {
               const data = res.data;
-              this.setState({
-                data : data,
-                  });     
+              console.log(data)
+              this.setState({data : data})
+              if(data.message === orderNotFound || (data.message === invalidOrder)){
+                this.setState({wrongOrder : wrongOrderMessage})
+              }
             });
-        
-            const favicon = document.getElementById("favicon");
-            favicon.href = sessionStorage.getItem("logo");
-            document.title = sessionStorage.getItem("title") ;
-        
         } 
         catch(error){
             alert("Failed to fetch information from server")
         }
 
         const favicon = document.getElementById("favicon");
-        favicon.href = sessionStorage.getItem("logo");
-        document.title = sessionStorage.getItem("title") ;
+        favicon.href = this.state.data.logo;
+        document.title = this.state.data.restuarantName ;
         
         
         if(this.state.data.stage_id==1 || this.state.data.stage_id==2){
@@ -129,15 +130,19 @@ class StatusPage extends React.Component{
                     </div>
                     <div className="row ">
                         <div className="col-6">
-                            {/* <p className="date mt-10">wed,12 july</p> */}
-                            <p className="date mt-10">{this.state.date}</p>
+                            <p className="date mt-10">{!this.state.wrongOrder && this.state.date}</p>
                             <p className="orderId mt-10">Order id: {this.props.match.params.id} </p>
+                            {/* <p className="date mt-10">{this.state.wrongOrder && this.state.wrongOrder}</p> */}
+                            {this.state.wrongOrder && 
+                            <Alert className="mt-10" variant="danger">
+                            {this.state.wrongOrder}
+                          </Alert>}
                         </div>
-                        <div className="col-6 d-flex justify-content-end">
+                        {!this.state.wrongOrder && <div className="col-6 d-flex justify-content-end">
                             <div className="priceBg">
                                 <h1 className="price">Rs. {this.state.data.totalAmount}</h1>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                     {/* <div className="row">
                         <div className="col-12 mt-10">
@@ -151,11 +156,11 @@ class StatusPage extends React.Component{
                
                     <div className="row mt-2">
                     {this.state.orderCancelled && <div className="col-lg-6 col-11">
-                                                <p className="cancelledOrder">Your order has been cancelled</p>
-                                                {this.state.data.cancellationReason!=null && <p className="cancelledOrder">Reason : {this.state.data.cancellationReason}</p>}
-                                                {this.state.data.cancellationDateTime!=null && <p className="cancelledOrder">Cancelled on {this.state.cancellationDate} at {this.state.cancellationTime}</p>}
-                            </div>
-                            }
+                        <p className="cancelledOrder">Your order has been cancelled</p>
+                        {this.state.data.cancellationReason!=null && <p className="cancelledOrder">Reason : {this.state.data.cancellationReason}</p>}
+                        {this.state.data.cancellationDateTime!=null && <p className="cancelledOrder">Cancelled on {this.state.cancellationDate} at {this.state.cancellationTime}</p>}
+                        </div>
+                    }
                 
                     {!this.state.orderCancelled && <div className="col-lg-1 col-1 deliveryProgress">
                             <div className="progress progress-bar-vertical">
