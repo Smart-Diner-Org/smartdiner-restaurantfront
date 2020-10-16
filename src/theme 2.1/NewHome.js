@@ -475,7 +475,7 @@ class NewHome extends Component {
     );
     let encodeURL = encodeURI(url);
     await axios
-      .get(encodeURL)
+      .get(encodeURL,{headers: {"Access-Control-Allow-Origin": "*"}})
       .then((res) => {
         // console.log(res);
         this.setState({
