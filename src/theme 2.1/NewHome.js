@@ -408,7 +408,6 @@ class NewHome extends Component {
                     this.state.restaurantBranch[0].delivery_distance
                   );
                   distance = Math.abs(distance / 1000);
-                  console.log(distance,"in KM in pick-my-location")
                   let withInDistance = false;
                   if (distance <= distanceLimit) {
                     withInDistance = true;
@@ -537,7 +536,6 @@ class NewHome extends Component {
                   this.state.restaurantBranch[0].delivery_distance
                 );
                 distance = Math.abs(distance / 1000);
-                console.log(distance,"in KM in auto-complete-places")
                 let withInDistance = false;
                 if (distance <= distanceLimit) {
                   withInDistance = true;
