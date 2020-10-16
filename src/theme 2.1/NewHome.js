@@ -16,6 +16,8 @@ import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
 import CheckoutButton from "./CheckoutButton";
 
+const google = window.google;
+
 class NewHome extends Component {
   constructor(props) {
     super(props);
@@ -368,99 +370,118 @@ class NewHome extends Component {
           `${position.coords.latitude},${position.coords.longitude}`,
         ];
 
-        this.calculateDistance(origin, destination).then(() => {
-          distance = this.state.distance;
+        const service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: origin,
+            destinations: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            avoidHighways: false,
+            avoidTolls: false,
+          },
+          async (response, status) => {
+            if (status !== "OK") {
+              alert("Error was: " + status);
+            } else {
+              distance = response.rows[0].elements[0].distance.value;
+                console.log(distance,"in meters")
+              let address;
+              Geocode.fromLatLng(
+                position.coords.latitude,
+                position.coords.longitude
+              ).then(
+                (response) => {
+                  address = response.results[0];
+                  this.setState({
+                    postalcode:
+                      address.address_components[
+                        address.address_components.length - 1
+                      ].long_name,
+                  });
+                  this.setState({ address: address.formatted_address });
 
-          let address;
-          Geocode.fromLatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          ).then(
-            (response) => {
-              address = response.results[0];
-              this.setState({
-                postalcode:
-                  address.address_components[
-                    address.address_components.length - 1
-                  ].long_name,
-              });
-              this.setState({ address: address.formatted_address });
+                  sessionStorage.setItem("lat", position.coords.latitude);
+                  sessionStorage.setItem("long", position.coords.longitude);
+                  sessionStorage.setItem("address", this.state.address);
 
-              sessionStorage.setItem("lat", position.coords.latitude);
-              sessionStorage.setItem("long", position.coords.longitude);
-              sessionStorage.setItem("address", this.state.address);
-
-              const distanceLimit = Number(
-                this.state.restaurantBranch[0].delivery_distance
-              );
-              distance = Math.abs(distance / 1000);
-              let withInDistance = false;
-              if (distance <= distanceLimit) {
-                withInDistance = true;
-              } else {
-                alert(
-                  "Sorry for our Incovenience.... You're out of our boundary"
-                );
-                this.setState({ boundary: false });
-              }
-
-              if (withInDistance && this.state.refregion) {
-                let flag;
-                const addr = this.state.refregion.map((item) =>
-                  item.toLowerCase()
-                );
-                for (let i = 0; i < address.address_components.length; i++) {
-                  if (
-                    addr.includes(
-                      address.address_components[i].long_name.toLowerCase()
-                    ) ||
-                    addr.includes(
-                      address.address_components[i].short_name.toLowerCase()
-                    )
-                  ) {
-                    flag = true;
-                    break;
+                  const distanceLimit = Number(
+                    this.state.restaurantBranch[0].delivery_distance
+                  );
+                  distance = Math.abs(distance / 1000);
+                  let withInDistance = false;
+                  if (distance <= distanceLimit) {
+                    withInDistance = true;
+                  } else {
+                    alert(
+                      "Sorry for our Incovenience.... You're out of our boundary"
+                    );
+                    this.setState({ boundary: false });
                   }
+
+                  if (withInDistance && this.state.refregion) {
+                    let flag;
+                    const addr = this.state.refregion.map((item) =>
+                      item.toLowerCase()
+                    );
+                    for (
+                      let i = 0;
+                      i < address.address_components.length;
+                      i++
+                    ) {
+                      if (
+                        addr.includes(
+                          address.address_components[i].long_name.toLowerCase()
+                        ) ||
+                        addr.includes(
+                          address.address_components[i].short_name.toLowerCase()
+                        )
+                      ) {
+                        flag = true;
+                        break;
+                      }
+                    }
+                    if (
+                      withInDistance <= distanceLimit &&
+                      (this.state.refpostcode.includes(
+                        Number(this.state.postalcode)
+                      ) ||
+                        flag)
+                    ) {
+                      alert("Welcome you sir... we are happy to serve you");
+                      this.setState({ boundary: true });
+                      sessionStorage.setItem("boundary", true);
+                    }
+                  } else if (withInDistance) {
+                    alert("Welcome you sir... we are happy to serve you");
+                    this.setState({ boundary: true });
+                    sessionStorage.setItem("boundary", true);
+                  }
+                  if (this.state.boundary) {
+                    ReactGA.event({
+                      category: "Location access",
+                      action:
+                        "Clicked Pick-my-Location and Inside service boundary",
+                      label: this.state.address,
+                      value: 1,
+                    });
+                  } else {
+                    ReactGA.event({
+                      category: "Location access",
+                      action:
+                        "Clicked Pick-my-Location and Outside service boundary",
+                      label: this.state.address,
+                      value: 1,
+                    });
+                  }
+                },
+                (error) => {
+                  console.error(error);
                 }
-                if (
-                  withInDistance <= distanceLimit &&
-                  (this.state.refpostcode.includes(
-                    Number(this.state.postalcode)
-                  ) ||
-                    flag)
-                ) {
-                  alert("Welcome you sir... we are happy to serve you");
-                  this.setState({ boundary: true });
-                  sessionStorage.setItem("boundary", true);
-                }
-              } else if (withInDistance) {
-                alert("Welcome you sir... we are happy to serve you");
-                this.setState({ boundary: true });
-                sessionStorage.setItem("boundary", true);
-              }
-              if (this.state.boundary) {
-                ReactGA.event({
-                  category: "Location access",
-                  action:
-                    "Clicked Pick-my-Location and Inside service boundary",
-                  label: this.state.address,
-                  value: 1,
-                });
-              } else {
-                ReactGA.event({
-                  category: "Location access",
-                  action:
-                    "Clicked Pick-my-Location and Outside service boundary",
-                  label: this.state.address,
-                  value: 1,
-                });
-              }
-            },
-            (error) => {
-              console.error(error);
+              );
             }
-          );
-        });
+          }
+        );
       },
 
       () => {
@@ -468,24 +489,6 @@ class NewHome extends Component {
       }
     );
   }
-
-  calculateDistance = async (origin, destination) => {
-    let url = new URL(
-      `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8`
-    );
-    let encodeURL = encodeURI(url);
-    await axios
-      .get(encodeURL,{headers: {"Access-Control-Allow-Origin": "https://testingfrontend.smartdiner.co"}})
-      .then((res) => {
-        // console.log(res);
-        this.setState({
-          distance: res.data.rows[0].elements[0].distance.value,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   // particular for LocationSeacrhinput
 
@@ -511,91 +514,109 @@ class NewHome extends Component {
             )}`,
           ];
           let destination = [`${latLng.lat},${latLng.lng}`];
+          const service = new google.maps.DistanceMatrixService();
+          service.getDistanceMatrix(
+            {
+              origins: origin,
+              destinations: destination,
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.METRIC,
+              avoidHighways: false,
+              avoidTolls: false,
+            },
+            async (response, status) => {
+              if (status !== "OK") {
+                alert("Error was: " + status);
+              } else {
+                distance = response.rows[0].elements[0].distance.value;
+                sessionStorage.setItem("lat", latLng.lat);
+                sessionStorage.setItem("long", latLng.lng);
+                sessionStorage.setItem("address", address);
 
-          this.calculateDistance(origin, destination).then(() => {
-            distance = this.state.distance;
+                const distanceLimit = Number(
+                  this.state.restaurantBranch[0].delivery_distance
+                );
+                distance = Math.abs(distance / 1000);
+                let withInDistance = false;
+                if (distance <= distanceLimit) {
+                  withInDistance = true;
+                } else {
+                  alert(
+                    "Sorry for our Incovenience.... You're out of our boundary"
+                  );
+                  this.setState({ boundary: false });
+                }
 
-            sessionStorage.setItem("lat", latLng.lat);
-            sessionStorage.setItem("long", latLng.lng);
-            sessionStorage.setItem("address", address);
-
-            const distanceLimit = Number(
-              this.state.restaurantBranch[0].delivery_distance
-            );
-            distance = Math.abs(distance / 1000);
-            console.log(distance)
-            let withInDistance = false;
-            if (distance <= distanceLimit) {
-              withInDistance = true;
-            } else {
-              alert(
-                "Sorry for our Incovenience.... You're out of our boundary"
-              );
-              this.setState({ boundary: false });
-            }
-
-            if (withInDistance && this.state.refregion) {
-              let flag;
-              for (let i = 0; i < results[0].address_components.length; i++) {
-                if (
-                  address.includes(
-                    results[0].address_components[i].long_name
-                  ) ||
-                  address.includes(results[0].address_components[i].short_name)
-                ) {
+                if (withInDistance && this.state.refregion) {
+                  let flag;
                   for (
-                    var ss = this.state.refregion.length - 1;
-                    ss >= 0;
-                    ss--
+                    let i = 0;
+                    i < results[0].address_components.length;
+                    i++
                   ) {
                     if (
-                      address
-                        .toLowerCase()
-                        .includes(this.state.refregion[ss].toLowerCase())
+                      address.includes(
+                        results[0].address_components[i].long_name
+                      ) ||
+                      address.includes(
+                        results[0].address_components[i].short_name
+                      )
                     ) {
-                      flag = true;
-                      break;
+                      for (
+                        var ss = this.state.refregion.length - 1;
+                        ss >= 0;
+                        ss--
+                      ) {
+                        if (
+                          address
+                            .toLowerCase()
+                            .includes(this.state.refregion[ss].toLowerCase())
+                        ) {
+                          flag = true;
+                          break;
+                        }
+                      }
                     }
                   }
+                  if (
+                    this.state.refpostcode.includes(
+                      Number(this.state.postalcode)
+                    ) ||
+                    flag
+                  ) {
+                    alert("Welcome you sir... we are happy to serve you");
+                    this.setState({ boundary: true });
+                    sessionStorage.setItem("boundary", true);
+                  } else {
+                    alert(
+                      "Sorry for our Incovenience.... You're out of our boundary"
+                    );
+                    this.setState({ boundary: false });
+                  }
+                } else if (withInDistance) {
+                  alert("Welcome you sir... we are happy to serve you");
+                  this.setState({ boundary: true });
+                  sessionStorage.setItem("boundary", true);
+                }
+
+                if (this.state.boundary) {
+                  ReactGA.event({
+                    category: "Location access",
+                    action: "Searched for address and Inside service boundary",
+                    label: address,
+                    value: 1,
+                  });
+                } else {
+                  ReactGA.event({
+                    category: "Location access",
+                    action: "Searched for address and Outside service boundary",
+                    label: address,
+                    value: 1,
+                  });
                 }
               }
-              if (
-                this.state.refpostcode.includes(
-                  Number(this.state.postalcode)
-                ) ||
-                flag
-              ) {
-                alert("Welcome you sir... we are happy to serve you");
-                this.setState({ boundary: true });
-                sessionStorage.setItem("boundary", true);
-              } else {
-                alert(
-                  "Sorry for our Incovenience.... You're out of our boundary"
-                );
-                this.setState({ boundary: false });
-              }
-            } else if (withInDistance) {
-              alert("Welcome you sir... we are happy to serve you");
-              this.setState({ boundary: true });
-              sessionStorage.setItem("boundary", true);
             }
-
-            if (this.state.boundary) {
-              ReactGA.event({
-                category: "Location access",
-                action: "Searched for address and Inside service boundary",
-                label: address,
-                value: 1,
-              });
-            } else {
-              ReactGA.event({
-                category: "Location access",
-                action: "Searched for address and Outside service boundary",
-                label: address,
-                value: 1,
-              });
-            }
-          });
+          );
         });
       })
       .catch((error) => console.error("Error", error));
