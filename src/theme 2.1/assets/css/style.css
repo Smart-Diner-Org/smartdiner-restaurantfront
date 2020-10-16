@@ -1681,6 +1681,20 @@ width: 100%;
   overflow: visible;
 }
 
+.menu-price-list-dropdown{
+  padding: 3px 15px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  color: #777;
+  font-weight: 600;
+}
+.menu-price-list-dropdown:focus{
+  outline: none;
+}
+
 
 
 /*===========================
