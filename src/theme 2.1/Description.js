@@ -37,14 +37,14 @@ class Description extends React.Component{
                     </div>
                 </div>}
 
-                { this.props.preOrder && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
+                { this.props.preOrder && !this.props.preOrderImage && <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",backgroundColor:"black"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"white"}} >We also provide Pre-Order service</h5>
                         </div> }
                 {/* <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",border: "1px solid black", borderRadius:"8px"}}>
                     <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
                 </div>  */}
 
-
+                {this.props.preOrder && this.props.preOrderImage && <div className="mt-20" style={{width:"100%"}}><img lodding="lazy" src={this.props.preOrderImage} alt="preOrderImae"/></div>}
 
             </div> 
         </section>
