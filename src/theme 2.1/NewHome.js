@@ -475,7 +475,7 @@ class NewHome extends Component {
     );
     let encodeURL = encodeURI(url);
     await axios
-      .get(encodeURL,{headers: {"Access-Control-Allow-Origin": "*"}})
+      .get(encodeURL,{headers: {"Access-Control-Allow-Origin": "https://testingfrontend.smartdiner.co"}})
       .then((res) => {
         // console.log(res);
         this.setState({
