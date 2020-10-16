@@ -394,7 +394,6 @@ class NewHome extends Component {
                 this.state.restaurantBranch[0].delivery_distance
               );
               distance = Math.abs(distance / 1000);
-              console.log(distance);
               let withInDistance = false;
               if (distance <= distanceLimit) {
                 withInDistance = true;
@@ -471,11 +470,10 @@ class NewHome extends Component {
   }
 
   calculateDistance = async (origin, destination) => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     let url = new URL(
       `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=AIzaSyDORUh0mGaVxDgP2ZojKCqVmpXnVOZfAS8`
     );
-    let encodeURL = encodeURI(proxyurl + url);
+    let encodeURL = encodeURI(url);
     await axios
       .get(encodeURL)
       .then((res) => {
@@ -514,7 +512,6 @@ class NewHome extends Component {
           ];
           let destination = [`${latLng.lat},${latLng.lng}`];
 
-          // alert(distance)
           this.calculateDistance(origin, destination).then(() => {
             distance = this.state.distance;
 
@@ -526,6 +523,7 @@ class NewHome extends Component {
               this.state.restaurantBranch[0].delivery_distance
             );
             distance = Math.abs(distance / 1000);
+            console.log(distance)
             let withInDistance = false;
             if (distance <= distanceLimit) {
               withInDistance = true;
