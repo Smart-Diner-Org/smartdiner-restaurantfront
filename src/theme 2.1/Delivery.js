@@ -1,11 +1,9 @@
-
 import React, { Component } from "react";
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 
 class Delivery extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,9 +37,13 @@ class Delivery extends Component {
     sessionStorage.setItem("deliveryDate", date);
     if (this.props.restaurant_website_detail.is_pre_booking_time_required) {
       const timeDifference = dateTime.getTime() - new Date().getTime();
-      const timeLimit = 7200000;
+      const timeLimit = this.props.restaurant_website_detail.pre_book_prior_time*60*60*1000;
+      console.log("timeDifference",timeDifference)
+      console.log("timeLimit",timeLimit)
       if (timeDifference <= timeLimit) {
-        alert("You can pre-book the orders for at least 2 hours from now.");
+        alert(
+          `You can pre-book the orders for at least ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
+        );
         document.getElementById("datepicker").value = null;
         return false;
       }
@@ -57,8 +59,8 @@ class Delivery extends Component {
       ReactGA.event({
         category: "Cart",
         action: "Order Later",
-        label: '/signup',
-        transport: 'beacon'
+        label: "/signup",
+        transport: "beacon",
       });
       window.location = "/signup";
     } else {
@@ -72,29 +74,38 @@ class Delivery extends Component {
         <hr />
         <div className="delivery-type">
           <>
-            
-              <button className="mb-20" onClick={()=>{sessionStorage.removeItem("deliveryDate");sessionStorage.removeItem("deliveryTime")
-              ReactGA.event({
-                                category: "Cart",
-                                action: "Order now",
-                                label: '/signup',
-                                transport: 'beacon'
-                              });window.location = "/signup";}}>
+            {this.props.restaurant_website_detail
+              .is_run_time_booking_enabled && (
+              <button
+                className="mb-20"
+                onClick={() => {
+                  sessionStorage.removeItem("deliveryDate");
+                  sessionStorage.removeItem("deliveryTime");
+                  ReactGA.event({
+                    category: "Cart",
+                    action: "Order now",
+                    label: "/signup",
+                    transport: "beacon",
+                  });
+                  window.location = "/signup";
+                }}
+              >
                 {this.props.restaurant_website_detail.is_pre_booking_enabled
                   ? "Order Now"
                   : "Check Out"}
               </button>
-          
+            )}
           </>
 
-           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
+          {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
               <hr />
 
               <>
                 <p className="mt-20">Choose your date and time</p>
                 <div className="delivery-type-inputs mt-10">
-                  <Flatpickr id="datepicker"
+                  <Flatpickr
+                    id="datepicker"
                     options={
                       this.props.restaurant_website_detail
                         .is_pre_booking_time_required
@@ -118,11 +129,11 @@ class Delivery extends Component {
                 </button>
               </>
             </>
-          )} 
+          )}
         </div>
         <hr />
       </div>
     );
   }
 }
- export default Delivery
+export default Delivery;
