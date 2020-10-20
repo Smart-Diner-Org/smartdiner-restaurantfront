@@ -44,7 +44,7 @@ class Description extends React.Component{
                     <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
                 </div>  */}
 
-                {this.props.preOrder && this.props.preOrderImage && <div className="mt-20" style={{width:"100%"}}><img lodding="lazy" src={this.props.preOrderImage} alt="preOrderImae"/></div>}
+                {this.props.preOrder && this.props.preOrderImage && <div className="mt-20" style={{width:"100%"}}><img loading="lazy" src={this.props.preOrderImage} alt="preOrderImage"/></div>}
 
             </div> 
         </section>

@@ -1699,6 +1699,13 @@ width: 100%;
     padding-top: 50px;
   }
 }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .title-mobile{
+    padding-top: 50px;
+  }
+
+}
 @media only screen and (max-width: 768px) {
   .about-img-mobile{
     margin-left: 15px;

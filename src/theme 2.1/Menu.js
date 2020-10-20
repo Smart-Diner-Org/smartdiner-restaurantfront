@@ -22,7 +22,7 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    if (window.pageYOffset > 900 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
+    if (window.pageYOffset > 1100 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
         this.setState({
           is_visible: true
         });
@@ -38,7 +38,7 @@ class Menu extends Component {
   onDropdownSelected(event){
       this.props.setType(event.target.value);
       window.scrollTo({
-        top: 900,
+        top: 1100,
         behavior: "smooth"
       });
   }
