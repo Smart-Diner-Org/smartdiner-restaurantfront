@@ -625,6 +625,7 @@ PAhandleChange = address => {
          items={this.state.items}
          selectedType={this.state.selectedType}
          categoryArray={this.state.categoryArray}
+         preOrderImage={this.state.restaurant_info.restaurant_website_detail.pre_order_info_image}
          />
        <About
          about = {this.state.restaurant_info.about}
