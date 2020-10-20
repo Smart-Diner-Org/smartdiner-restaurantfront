@@ -71,7 +71,8 @@ class Delivery extends Component {
   render() {
     return (
       <div>
-        <hr />
+       {this.props.restaurant_website_detail
+              .is_run_time_booking_enabled && <hr />}
         <div className="delivery-type">
           <>
             {this.props.restaurant_website_detail
