@@ -22,7 +22,7 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    const offsetValue=this.props.preOrderImage ? 1220 : 900
+    const offsetValue=this.props.preOrderImage ? 1128 : 900
     
     if (window.pageYOffset > offsetValue && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
         this.setState({
@@ -38,7 +38,7 @@ class Menu extends Component {
 
 
   onDropdownSelected(event){
-    const offsetValue=this.props.preOrderImage ? 1220 : 900
+    const offsetValue=this.props.preOrderImage ? 1128 : 900
       this.props.setType(event.target.value);
       window.scrollTo({
        // top: 1100,
