@@ -2765,7 +2765,7 @@ pointer-events: none;
 
 @media (max-width: 767px) {
   .shop-reviews .nav .nav-item {
-    -ms-flex-prefer#E22A28-size: 0;
+    -ms-flex-prefer: 0;
     flex-basis: 0;
     -ms-flex-positive: 1;
     flex-grow: 1;
@@ -2776,7 +2776,7 @@ pointer-events: none;
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .shop-reviews .nav .nav-item {
-    -ms-flex-prefer#E22A28-size: auto;
+    -ms-flex-prefer: auto;
     flex-basis: auto;
     -ms-flex-positive: 0;
     flex-grow: 0;
