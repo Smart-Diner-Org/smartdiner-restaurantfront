@@ -80,7 +80,7 @@ class Contact extends Component{
                                     <p class="form-message"></p>
                                     <div class="col-lg-12">
                                         <div class="single-form form-group">
-                                            <button class="main-btn"  type="submit">CONTACT NOW</button>
+                                            <button class="main-btn contact-now-button"  type="submit">CONTACT NOW</button>
                                         </div>
                                     </div>
                                 </div> 
