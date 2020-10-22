@@ -70,7 +70,7 @@ class Item extends Component {
               <h5 className="product-title ">
                 <a>{this.props.itemName}</a>
               </h5>
-              <label
+              {this.props.description && <label
                 onPointerEnter={(e) => {
                   this.setState({
                     target: e.target,
@@ -86,7 +86,7 @@ class Item extends Component {
                 className="info-icon ml-auto d-flex align-items-center"
               >
                 i
-              </label>
+              </label>}
               <Overlay
               show={this.state.showToolTip}
               placement="bottom-end"
@@ -95,7 +95,7 @@ class Item extends Component {
               <Popover id="popover-contained">
                 <Popover.Content>{this.props.description}</Popover.Content>
               </Popover>
-            </Overlay>
+              </Overlay> 
             </div>
             
             <p>{this.props.short_description}</p>
