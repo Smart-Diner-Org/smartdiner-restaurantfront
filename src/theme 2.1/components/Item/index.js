@@ -71,10 +71,10 @@ class Item extends Component {
                                         </>
                                     }
                                     <div>
-                                    <select id={ "price_list_"+this.props.productId } onChange={(e)=>{this.priceListChanged(e)}}>
+                                    <select id={ "price_list_"+this.props.productId } className="menu-price-list-dropdown mt-10 " onChange={(e)=>{this.priceListChanged(e)}}>
                                                 {this.props.priceList.map((item, index)=>{
                                                     return (
-                                                    <option id={`${item.id}`} value={index}>{item.quantity_values.quantity}{item.measure_values.name}- Rs.{item.price}</option>
+                                                    <option id={`${item.id}`} value={index}>{item.quantity_values.quantity}{" "}{item.measure_values.name} - Rs.{item.price}</option>
                                                     )
                                                 })}
                                                 
