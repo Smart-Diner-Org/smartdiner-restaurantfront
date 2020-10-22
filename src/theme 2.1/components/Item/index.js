@@ -55,7 +55,9 @@ class Item extends Component {
                                 }           
                                     </div>
                                 <div className="product-item-content mt-30">
+                                {/* eslint-disable-next-line */}
                                         <h5 className="product-title"><a>{this.props.itemName}</a></h5>
+                                        <p>{this.props.short_description}</p>
                                         {this.props.discount>0?
                                         <>
                                         <span style={{color:"#c4c4c4",textDecoration:"line-through"}}>Rs.{this.state.price}</span>

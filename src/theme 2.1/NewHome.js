@@ -67,6 +67,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
+          console.log(data)
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,

@@ -30,7 +30,7 @@ class Product extends Component{
                                         if(item.category.id==this.props.selectedType)
                                         return <Item
                                             key={index}
-                                            description={item.description}
+                                            short_description={item.short_description}
                                             quantity={item.quantity}
                                             itemName={item.name}
                                             image={item.image}
