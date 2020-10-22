@@ -89,7 +89,7 @@ class Item extends Component {
               </label>
               <Overlay
               show={this.state.showToolTip}
-              placement="bottom"
+              placement="bottom-end"
               target={this.state.target}
             >
               <Popover id="popover-contained">
