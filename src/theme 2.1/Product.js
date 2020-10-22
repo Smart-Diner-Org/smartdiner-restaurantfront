@@ -31,6 +31,7 @@ class Product extends Component{
                                         return <Item
                                             key={index}
                                             short_description={item.short_description}
+                                            description={item.description}
                                             quantity={item.quantity}
                                             itemName={item.name}
                                             image={item.image}

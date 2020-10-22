@@ -1526,6 +1526,22 @@ width: 100%;
   color: #000000;
 }
 
+.single-product-items .product-item-content .info-icon{
+  color:white;
+  background-color: black;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  margin: 0;
+  max-height: 22px;
+  max-width: 22px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
 .single-product-items .product-item-content .rating li {
   color: #fc924b;
   font-size: 12px;
