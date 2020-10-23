@@ -27,7 +27,6 @@ class GetOTP extends React.Component{
         }
         value = `${refArray[0].value}${refArray[1].value}${refArray[2].value}${refArray[3].value}`;
         this.props.setOTPValue(value)
-        console.log(value.length)
         if(value.length == 4 ){
             this.props.OTPverfication(value)
         }

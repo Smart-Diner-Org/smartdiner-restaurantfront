@@ -38,6 +38,8 @@ body {
   font-weight: normal;
   font-style: normal;
   color: #777;
+  --primary-color: #000000;
+  --secondary-color: #000000;
 }
 
 * {
@@ -352,21 +354,19 @@ p {
 }
 
 .header-area {
-  /*padding: 30px 0;*/ /*Sharmila changed*/
   padding: 20px 0;
   background-color: #fff;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
   z-index: 9;
 }
 
 
 .header-area h4{
   font-family: "Messenger";
-  color: #ee4036;
+  color: var(--primary-color);
 }
 
 
@@ -420,10 +420,6 @@ p {
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-}
-
-.header-area {
-  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/ /*Sharmila changed*/
 }
 
 
@@ -493,7 +489,7 @@ p {
 
 .header-area .navbar .navbar-nav .nav-item.active a,
 .header-area .navbar .navbar-nav .nav-item:hover a {
-  color: #000000;
+  color: var(--secondary-color);
 }
 
 
@@ -941,30 +937,23 @@ hr{
   margin: 10px;
   padding: 10px 20px;
   pointer-events: all;
-  background-color: black;
+  background-color: var(--secondary-color);
   color: white;
   font-weight: bold;
-  border: 2px solid black;
+  border: 2px solid var(--secondary-color);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 
 .slider-product-content a:hover{
   background-color: white;
-  color: black;
+  color: var(--secondary-color);
   border: 2px solid white;
   box-shadow: none;
 }
 
 
-@media screen and (min-width: 50em){
-  .single-slider-1 {
-    /*background-image: url('../images/IMG_20200606_142600.jpg') !important;*/
-  }
-  .single-slider-2 {
-    /*background-image: url('../images/IMG_20200606_143123.jpg') !important;*/
-  }
-}
+
 
 @media only screen and (min-width: 1400px) {
   .single-slider {
@@ -982,7 +971,12 @@ hr{
 .navbar-brand img{
     width: 75px;
     height: 75px;
-  }
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
 
 @media only screen  and (max-width: 330px) {
   .navbar-brand img{
@@ -1467,8 +1461,8 @@ width: 100%;
 /*------*/
 
 .collection-menu .nav a.active {
-  background-color: #000000;
-  border-color: #000000;
+  background-color: var(--secondary-color);
+  border-color:var(--secondary-color);
   color: #fff;
 }
 
@@ -2286,6 +2280,10 @@ width: 100%;
   color: white;
 }
 
+.contact-box .contact-now-button{
+  background-color: var(--secondary-color);
+}
+
 .single-info {
   position: relative;
 }
@@ -2372,7 +2370,7 @@ p.form-message.error {
 ===========================*/
 .footer-area {
   position: relative;
-  background-color: #000000;
+  background-color: var(--secondary-color);
   border-top: none;
 }
 

@@ -112,6 +112,14 @@ class NewHome extends Component {
             ? this.state.restaurant_info.restaurant_website_detail
                 .page_description
             : this.state.restaurant_info.name;
+          document.body.style.setProperty(
+            "--primary-color",
+            `${this.state.restaurant_info.restaurant_website_detail.primary_colour_code}`
+          );
+          document.body.style.setProperty(
+            "--secondary-color",
+            `${this.state.restaurant_info.restaurant_website_detail.secondary_colour_code}`
+          );
           sessionStorage.setItem("logo", this.state.restaurant_info.logo);
           sessionStorage.setItem("title", this.state.restaurant_info.name);
           sessionStorage.setItem(
