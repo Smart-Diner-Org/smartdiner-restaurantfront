@@ -52,7 +52,7 @@ function FootComponent (props){
                                             <i rel="preload" class="lni-home"></i>
                                         </div>
                                         <div class="row info-content">
-                                            <p class="col-lg-5  col-sm-12">{props.address}</p>
+                                            <p class="col-lg-5  col-sm-12" style={{color:"#ffffff"}}>{props.address}</p>
                                         </div>
                                     </div> 
                                 </li>

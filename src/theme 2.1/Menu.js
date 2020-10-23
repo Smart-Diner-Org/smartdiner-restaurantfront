@@ -22,7 +22,9 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    if (window.pageYOffset > 900 && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
+    const offsetValue=this.props.preOrderImage ? 1118 : 900
+    
+    if (window.pageYOffset > offsetValue && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
         this.setState({
           is_visible: true
         });
@@ -36,9 +38,10 @@ class Menu extends Component {
 
 
   onDropdownSelected(event){
+    const offsetValue=this.props.preOrderImage ? 1120 : 900
       this.props.setType(event.target.value);
       window.scrollTo({
-        top: 900,
+          top: offsetValue,
         behavior: "smooth"
       });
   }

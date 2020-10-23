@@ -744,32 +744,22 @@ class NewHome extends Component {
                     .slider_images
                 }
               />
-              <Description
-                delivery_locations={
-                  this.state.restaurantBranch[0].delivery_locations
-                }
-                preOrder={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .is_pre_booking_enabled
-                }
-              />
+               <Description delivery_locations={this.state.restaurantBranch[0].delivery_locations} preOrder={this.state.restaurant_info.restaurant_website_detail.is_pre_booking_enabled} preOrderImage={this.state.restaurant_info.restaurant_website_detail.pre_order_info_image}/> 
 
-              <Product
+
+               <Product 
                 setType={this.setType}
                 changequantity={this.changequantity}
                 items={this.state.items}
                 selectedType={this.state.selectedType}
                 categoryArray={this.state.categoryArray}
-              />
-              <About
-                about={this.state.restaurant_info.about}
-                timings={this.state.restaurantBranch[0].timings}
-                aboutImage={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .about_image
-                }
-              />
-
+                preOrderImage={this.state.restaurant_info.restaurant_website_detail.pre_order_info_image}
+               />
+               <About
+                  about = {this.state.restaurant_info.about}
+                  timings={this.state.restaurantBranch[0].timings} 
+                  aboutImage={this.state.restaurant_info.restaurant_website_detail.about_image}/> 
+         
               <MapLocation
                 restaurantName={this.state.restaurant_info.name}
                 address={this.state.restaurantBranch[0].address}
@@ -786,13 +776,13 @@ class NewHome extends Component {
                 />
               )}
 
-              <FootComponent
-                links={this.state.restaurant_info.restaurant_detail}
-                restaurantName={this.state.restaurant_info.name}
-                address={this.state.restaurantBranch[0].address}
-                email={this.state.restaurantBranch[0].email}
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
+          <FootComponent 
+            links={this.state.restaurant_info.restaurant_detail} 
+             restaurantName={this.state.restaurant_info.name} 
+            address={this.state.restaurantBranch[0].address} 
+            email={this.state.restaurantBranch[0].email}
+            contact_number ={this.state.restaurantBranch[0].contact_number}
+          /> 
             </div>
           </div>
         </div>
