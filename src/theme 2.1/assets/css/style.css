@@ -2283,6 +2283,9 @@ width: 100%;
 .contact-box .contact-now-button{
   background-color: var(--secondary-color);
 }
+.contact-box .contact-now-button:hover{
+  background-color: white;
+}
 
 .single-info {
   position: relative;
