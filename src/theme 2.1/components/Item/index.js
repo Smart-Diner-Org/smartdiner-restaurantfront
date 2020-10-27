@@ -7,10 +7,11 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      price: this.props.priceList[0].price,
-      quantity: this.props.priceList[0].quantity,
+      price: (this.props.priceList&&this.props.priceList.length>0) ? this.props.priceList[0].price : null,
+      quantity: (this.props.priceList&&this.props.priceList.length>0) ? this.props.priceList[0].quantity : null,
       showToolTip: false,
       target: null,
+      canEnableAddToCart: (this.props.priceList&&this.props.priceList.length>0) ? true : false
     };
 
     this.priceListChanged = this.priceListChanged.bind(this);
@@ -99,6 +100,8 @@ class Item extends Component {
             </div>
             
             <p>{this.props.short_description}</p>
+            {this.state.canEnableAddToCart ? (
+              <>
             {this.props.discount > 0 ? (
               <>
                 <span
@@ -204,6 +207,8 @@ class Item extends Component {
                 </button>
               </div>
             </div>
+            </>
+            ):(<><p style={{fontSize: "12px",lineHeight: "18px;"}}>contact us when you place an order for this item as it requires customization.</p></>)}
             {/* <ul className="rating">
                                         <li><i className="lni-star-filled"></i></li>
                                         <li><i className="lni-star-filled"></i></li>
