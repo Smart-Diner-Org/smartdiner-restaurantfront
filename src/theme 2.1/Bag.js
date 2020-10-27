@@ -33,9 +33,7 @@ render(){
 
                 <footer>
                     <div className='foot-content'>
-                        <span className="span-left">Powered by <a href="">Smart Diner</a></span>
-                        {/* <span className="span-right"><a href='#'>Terms and Conditions</a>
-                        <a href='#'>Contact Us</a></span> */}
+                        Powered by <a href="https://smartdiner.co/" target="blank">Smart Diner</a>
                     </div>
                 </footer>
                 
