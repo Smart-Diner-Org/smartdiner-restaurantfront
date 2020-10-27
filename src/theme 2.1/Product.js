@@ -3,16 +3,6 @@ import Item from './components/Item'
 import Menu from './Menu'
 
 class Product extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            showMessage: false,
-        };
-    }
-
-    setDesclaimer = (value)=>{
-        this.setState({showMessage:value})
-    }
 
     render(){
         return(
@@ -33,7 +23,6 @@ class Product extends Component{
                             <div className="tab-content" id="v-pills-tabContent">
                             <div className="tab-pane fade show active" id={this.props.selectedType} role="tabpanel" aria-labelledby={`${this.props.selectedType}-tab`}>
                             <div className="product-items mt-30">
-                            {this.state.showMessage && <p>Call/WhatsApp us to order Customized Cakes.</p>}
                                 <div className="row product-items-active">
                                 
                 
@@ -54,6 +43,7 @@ class Product extends Component{
                                             decreasequantity={() => this.props.changequantity(item, -1)}
                                             productId={item.id}
                                             setDesclaimer={this.setDesclaimer}
+                                            contact_number = {this.props.contact_number}
                                         />
                                     })
                                 }

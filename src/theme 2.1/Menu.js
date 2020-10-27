@@ -22,9 +22,8 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
-    const offsetValue=this.props.preOrderImage ? 1118 : 900
     
-    if (window.pageYOffset > offsetValue && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
+    if (window.pageYOffset > document.getElementById('product').offsetTop && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
         this.setState({
           is_visible: true
         });

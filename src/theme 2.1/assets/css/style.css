@@ -1363,7 +1363,7 @@ hr {
   z-index: 99;
 }
 .sticky {
-  top: 100px;
+  top: 90px;
   width: 100vw;
   right: 0;
   position: fixed;
@@ -2540,7 +2540,28 @@ p.form-message.error {
 .page-banner .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
   color: #fff;
 }
-
+.call-for-order img{
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+@media (max-width: 50rem) {
+  .call-for-order img {
+  width: 100px;
+  height: 100px;
+  }
+  .custom-images{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
 /*===========================
  14.PRODUCT SINGLE PAGE css 
 ===========================*/
@@ -2695,8 +2716,11 @@ p.form-message.error {
   pointer-events: none;
 }
 .custom-menu-call-button {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   font-size: 20px;
+  text-align: center ;
   border: 1px solid black;
   padding: 5px 10px;
   border-radius: 4px;
@@ -2708,6 +2732,7 @@ p.form-message.error {
   background-color: var(--secondary-color);
   color: white;
 }
+
 
 .product-description .product-add .product-add-count .nice-number input {
   width: 150px !important;

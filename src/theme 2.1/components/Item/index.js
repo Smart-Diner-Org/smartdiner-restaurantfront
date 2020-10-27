@@ -24,11 +24,6 @@ class Item extends Component {
     this.priceListChanged = this.priceListChanged.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
   }
-  componentDidMount(){
-    if(this.state.canEnableAddToCart === false){this.props.setDesclaimer(true)}
-    else{this.props.setDesclaimer(false)}
-  }
- 
 
   priceListChanged(e) {
     const index = e.target.value;
@@ -48,7 +43,6 @@ class Item extends Component {
 
   render() {
     return (
-
       <div
         id={"product_" + this.props.productId}
         className="col-md-4 "
@@ -114,14 +108,13 @@ class Item extends Component {
                 </Popover>
               </Overlay>
             </div>
-      
+
             <p className="description">{this.props.short_description}</p>
             {this.state.canEnableAddToCart ? (
               <>
                 {this.props.discount > 0 ? (
                   <>
-                 
-                    <span 
+                    <span
                       style={{
                         color: "#c4c4c4",
                         textDecoration: "line-through",
@@ -139,7 +132,7 @@ class Item extends Component {
                       id={"original_price_" + this.props.productId}
                       value={this.state.price}
                     ></input>
-                    <input 
+                    <input
                       type="hidden"
                       id={"discounted_price_" + this.props.productId}
                       value={
@@ -147,104 +140,103 @@ class Item extends Component {
                         this.state.price * (this.props.discount / 100)
                       }
                     ></input>
-                
                   </>
                 ) : (
                   <>
-                    <span  style={{ color: "#000000" }}>
+                    <span style={{ color: "#000000" }}>
                       Rs.{this.state.price}
                     </span>
-                    <input 
+                    <input
                       type="hidden"
                       id={"original_price_" + this.props.productId}
                       value={this.state.price}
                     ></input>
                   </>
                 )}
-             
-                <div className="d-flex flex-column justify-content-end">
-                  
-                    <div>
-                      <select
-                        id={"price_list_" + this.props.productId}
-                        className="menu-price-list-dropdown mt-10 "
-                        onChange={(e) => {
-                          this.priceListChanged(e);
-                        }}
-                      >
-                        {this.props.priceList.map((item, index) => {
-                          return (
-                            <option id={`${item.id}`} value={index}>
-                              {item.quantity_values.quantity}{" "}
-                              {item.measure_values.name} - Rs.{item.price}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
 
-                    <div
-                      className="input-group mb-3 mt-10"
-                      style={{
-                        width: "fit-content",
-                        border: "1px solid black",
-                        borderRadius: "23px",
-                        maxWidth: "112px",
+                <div className="d-flex flex-column justify-content-end">
+                  <div>
+                    <select
+                      id={"price_list_" + this.props.productId}
+                      className="menu-price-list-dropdown mt-10 "
+                      onChange={(e) => {
+                        this.priceListChanged(e);
                       }}
                     >
-                      <div className="input-group-prepend">
-                        <button
-                          className="button-round"
-                          style={{ borderLeft: "0px" }}
-                          type="button"
-                          onClick={() => {
-                            this.props.decreasequantity();
-                            this.updateQuantity(
-                              document.getElementById(
-                                "price_list_" + this.props.productId
-                              ).value
-                            );
-                          }}
-                        >
-                          −
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        className="total-quantity"
-                        value={this.state.quantity ? this.state.quantity : 0}
-                      />
+                      {this.props.priceList.map((item, index) => {
+                        return (
+                          <option id={`${item.id}`} value={index}>
+                            {item.quantity_values.quantity}{" "}
+                            {item.measure_values.name} - Rs.{item.price}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
 
-                      <div className="input-group-append">
-                        <button
-                          className="button-round"
-                          style={{ borderRight: "0px" }}
-                          type="button"
-                          onClick={() => {
-                            this.props.increasequantity();
-                            this.updateQuantity(
-                              document.getElementById(
-                                "price_list_" + this.props.productId
-                              ).value
-                            );
-                          }}
-                        >
-                          +
-                        </button>
-                      </div>
+                  <div
+                    className="input-group mb-3 mt-10"
+                    style={{
+                      width: "fit-content",
+                      border: "1px solid black",
+                      borderRadius: "23px",
+                      maxWidth: "112px",
+                    }}
+                  >
+                    <div className="input-group-prepend">
+                      <button
+                        className="button-round"
+                        style={{ borderLeft: "0px" }}
+                        type="button"
+                        onClick={() => {
+                          this.props.decreasequantity();
+                          this.updateQuantity(
+                            document.getElementById(
+                              "price_list_" + this.props.productId
+                            ).value
+                          );
+                        }}
+                      >
+                        −
+                      </button>
                     </div>
-                  
+                    <input
+                      type="text"
+                      className="total-quantity"
+                      value={this.state.quantity ? this.state.quantity : 0}
+                    />
+
+                    <div className="input-group-append">
+                      <button
+                        className="button-round"
+                        style={{ borderRight: "0px" }}
+                        type="button"
+                        onClick={() => {
+                          this.props.increasequantity();
+                          this.updateQuantity(
+                            document.getElementById(
+                              "price_list_" + this.props.productId
+                            ).value
+                          );
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </>
-            
             ) : (
               <>
-                <button className="custom-menu-call-button">
-                  <i class="lni-phone-handset"></i>
-                </button>
+                <a
+                  href={`tel:+${this.props.contact_number}`}
+                  className="custom-menu-call-button" target="blank"
+                >
+                 <i class="lni-phone-handset"></i>
+                </a>
               </>
             )}
-           
+
             {/* <ul className="rating">
                   <li><i className="lni-star-filled"></i></li>
                   <li><i className="lni-star-filled"></i></li>

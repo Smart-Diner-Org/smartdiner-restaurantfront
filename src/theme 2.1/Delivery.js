@@ -38,8 +38,6 @@ class Delivery extends Component {
     if (this.props.restaurant_website_detail.is_pre_booking_time_required) {
       const timeDifference = dateTime.getTime() - new Date().getTime();
       const timeLimit = this.props.restaurant_website_detail.pre_book_prior_time*60*60*1000;
-      console.log("timeDifference",timeDifference)
-      console.log("timeLimit",timeLimit)
       if (timeDifference <= timeLimit) {
         alert(
           `You can pre-book the orders for at least ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
