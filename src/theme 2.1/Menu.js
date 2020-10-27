@@ -37,10 +37,9 @@ class Menu extends Component {
 
 
   onDropdownSelected(event){
-    const offsetValue=this.props.preOrderImage ? 1120 : 900
       this.props.setType(event.target.value);
       window.scrollTo({
-          top: offsetValue,
+          top: document.getElementById('product').offsetTop + 1,
         behavior: "smooth"
       });
   }
