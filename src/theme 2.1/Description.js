@@ -1,5 +1,4 @@
 import React from "react";
-import { defaultAboutImage } from "./constant";
 
 class Description extends React.Component {
   constructor(props) {
@@ -49,9 +48,6 @@ class Description extends React.Component {
               </h5>
             </div>
           )}
-          {/* <div class="d-flex mt-20 justify-content-center align-items-center" style={{width:"100%",border: "1px solid black", borderRadius:"8px"}}>
-                    <h5 class="mt-10 mb-10 " style={{color:"black"}} >We also provide Pre-Order service</h5>
-                </div>  */}
 
           {this.props.preOrder && this.props.preOrderImage && (
             <div className="mt-20" style={{ width: "100%" }}>
@@ -78,7 +74,7 @@ class Description extends React.Component {
                     )}
                   </div>
                 </div>
-                <div className="col-lg-4 col-sm-12 mt-10">
+                <div className="col-lg-4 col-sm-12 mt-10 text-justify ">
                   {this.props.customisation_info_content[0].content}
                 </div>
               </div>

@@ -229,7 +229,7 @@ class Item extends Component {
             ) : (
               <>
                 <a
-                  href={`tel:+${this.props.contact_number}`}
+                  href={`tel:+91${this.props.contact_number}`}
                   className="custom-menu-call-button" target="blank"
                 >
                  <i class="lni-phone-handset"></i>
