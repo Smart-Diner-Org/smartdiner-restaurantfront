@@ -991,7 +991,6 @@ hr {
   }
 }
 
-
 .whatsup-icon {
   position: fixed;
   bottom: 20px;
@@ -1315,7 +1314,6 @@ hr {
   }
 }
 
-
 .collection-menu .nav a {
   border: 1px solid #ddd;
   border-radius: 50px;
@@ -1364,7 +1362,7 @@ hr {
   z-index: 999;
 }
 
-.desktop-sticky{
+.desktop-sticky {
   position: fixed;
   top: 110px;
   width: 20%;
@@ -2540,7 +2538,7 @@ p.form-message.error {
 .page-banner .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
   color: #fff;
 }
-.call-for-order img{
+.call-for-order img {
   width: 150px;
   height: 150px;
   margin: 10px;
@@ -2552,10 +2550,10 @@ p.form-message.error {
 }
 @media (max-width: 50rem) {
   .call-for-order img {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
   }
-  .custom-images{
+  .custom-images {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -2720,7 +2718,7 @@ p.form-message.error {
   justify-content: center;
   margin-top: 10px;
   font-size: 20px;
-  text-align: center ;
+  text-align: center;
   border: 1px solid black;
   padding: 5px 10px;
   border-radius: 4px;
@@ -2732,7 +2730,6 @@ p.form-message.error {
   background-color: var(--secondary-color);
   color: white;
 }
-
 
 .product-description .product-add .product-add-count .nice-number input {
   width: 150px !important;
