@@ -60,7 +60,7 @@ class Menu extends Component {
   onDropdownSelected(id) {
     this.props.setType(id);
     window.scrollTo({
-      top: document.getElementById("product").offsetTop + 1,
+      top: document.getElementById("product").offsetTop + 60,
       behavior: "smooth",
     });
   }
