@@ -991,20 +991,7 @@ hr {
   }
 }
 
-.scroll-to-top {
-  color: white;
-  background-color: #000;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 18px;
-  width: 40px;
-  line-height: 40px;
-  z-index: 99;
-  text-align: center;
-  cursor: pointer;
-}
-/*-----*/
+
 .whatsup-icon {
   position: fixed;
   bottom: 20px;
@@ -1012,6 +999,11 @@ hr {
   z-index: 99;
   height: 50px;
   width: 50px;
+}
+@media only screen and (max-width: 768px) {
+  .whatsup-icon-mobile {
+    display: none;
+  }
 }
 
 /*------*/
