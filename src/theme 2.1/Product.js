@@ -1,6 +1,7 @@
 import React,{ Component } from 'react'
 import Item from './components/Item'
 import Menu from './Menu'
+import FlipMove from 'react-flip-move';
 
 class Product extends Component{
 
@@ -23,9 +24,10 @@ class Product extends Component{
                             <div className="tab-content" id="v-pills-tabContent">
                             <div className="tab-pane fade show active" id={this.props.selectedType} role="tabpanel" aria-labelledby={`${this.props.selectedType}-tab`}>
                             <div className="product-items mt-30">
-                                <div className="row product-items-active">
+                            <>
+                                <FlipMove duration={500} className="row product-items-active">
                                 
-                
+                               
                                 {
                                         this.props.items.map((item, index) => {
                                         if(item.category.id==this.props.selectedType)
@@ -48,7 +50,8 @@ class Product extends Component{
                                     })
                                 }
          
-                                </div>
+                                </FlipMove>
+                                </>
                                 </div>
                             </div>
                             </div>
