@@ -780,41 +780,18 @@ hr {
   font-family: "MuseoModerno";
 }
 
-.foot-content {
+.foot-content{
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
 }
 
-.span-left {
-  width: 50%;
-  font-size: 1em;
-  color: #b1b1b1;
-  font-family: "Lato";
-}
-.span-left a {
-  margin-left: 10px;
+.foot-content a{
   font-size: 1em;
   font-family: "MuseoModerno";
   color: #000466;
   text-decoration: underline;
   -webkit-text-decoration-color: #ffc009; /* safari still uses vendor prefix */
   text-decoration-color: #ffc009;
-}
-
-.span-right {
-  font-size: 0.875em;
-  text-decoration: solid;
-  color: #b1b1b1;
-  padding: 5px 5px 5px 5px;
-}
-
-.span-right a {
-  text-decoration: solid;
-  font-size: 10px;
-  color: black;
-  padding: 5px 5px 5px 5px;
 }
 
 @media screen and (max-width: 50em) {
