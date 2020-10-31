@@ -1065,7 +1065,8 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
-    font-size: 24px;
+    font-size: 25px;
+    padding: 0 50px;
   }
   .single-slider .slider-product-content .row {
     margin-top: 70%;
