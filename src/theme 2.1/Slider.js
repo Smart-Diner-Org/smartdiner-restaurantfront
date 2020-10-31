@@ -14,7 +14,7 @@ class Slider extends Component {
     return (
       <section id="home" className="slider-area pt-130 ">
         <div className="container-fluid position-relative carousel-design ">
-          <Carousel interval={10000000}>
+          <Carousel>
             {!this.state.slider && (
               <Carousel.Item>
                 <div className="single-slider single-slider-1">
