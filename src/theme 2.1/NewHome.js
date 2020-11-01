@@ -763,10 +763,10 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .pre_order_info_image
                 }
-                customisation_info_content={
-                  JSON.parse(this.state.restaurant_info.restaurant_website_detail
-                    .customisation_info_content)
-                }
+                customisation_info_content={JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail
+                    .customisation_info_content
+                )}
                 has_customisation_info={
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
@@ -799,17 +799,16 @@ class NewHome extends Component {
                 address={this.state.restaurantBranch[0].address}
               />
               <Contact />
-              {this.state.total > 0 ? (
+              {this.state.total > 0 && (
                 <CheckoutButton
                   total={this.state.total}
                   togglePopup={this.togglePopup}
                 />
-              ) : (
-                <WhatsAppIcon
-                  contact_number={this.state.restaurantBranch[0].contact_number}
-                />
               )}
-
+              <WhatsAppIcon
+                contact_number={this.state.restaurantBranch[0].contact_number}
+                total={this.state.total}
+              />
               <FootComponent
                 links={this.state.restaurant_info.restaurant_detail}
                 restaurantName={this.state.restaurant_info.name}

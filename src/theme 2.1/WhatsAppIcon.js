@@ -31,25 +31,10 @@ export default class ScrollToTop extends Component {
 
   }
 
-  // scrollToTop() {
-  //   window.scrollTo({
-  //       top: 0,
-  //       behavior: "smooth"
-  //     });
-  // }
-
   render() {
     const { is_visible } = this.state;
     return (
-        <div className="scroll-to-top">
-          {/*
-        {is_visible && (<div onClick={() => this.scrollToTop()}>
-
-        <a className="scroll-to-top"><i class="lni-chevron-up"></i></a>
-          
-       
-        
-          </div>)} */}
+        <div className={this.props.total>0 && "whatsup-icon-mobile"}>
            { is_visible &&
             <a href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`} target="blank" className="whatsup-icon">
             <img  loading="lazy" src={Whatsup} alt="whatsapp"/>

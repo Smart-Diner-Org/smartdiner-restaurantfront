@@ -43,6 +43,7 @@ class Delivery extends Component {
           `You can pre-book the orders for at least ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
         );
         document.getElementById("datepicker").value = null;
+        this.setState({deliveryDateTime:null})
         return false;
       }
       sessionStorage.setItem("deliveryTime", time);

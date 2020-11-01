@@ -6,47 +6,50 @@ class Menu extends Component {
     this.ele = [];
     this.dropDown = [];
     this.state = {
-    is_visible: false
-  };
-    
-    this.onDropdownSelected = this.onDropdownSelected.bind(this)
+      is_visible: false,
+    };
+
+    this.onDropdownSelected = this.onDropdownSelected.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
   }
   componentDidMount() {
-    this.dropDown.value && this.props.setType(this.dropDown[0].value)
-    this.ele[0].click();
+    this.dropDown.value && this.props.setType(this.dropDown[0].value);
+    this.props.setType(this.ele[0].id);
+    this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
-    document.addEventListener("scroll", function(e) {
+    document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
     });
   }
 
   toggleVisibility() {
-    
-    if (window.pageYOffset > document.getElementById('product').offsetTop && window.pageYOffset < (document.getElementById('product').offsetTop + document.getElementById('product').offsetHeight - 250 )) {
-        this.setState({
-          is_visible: true
-        });
-      } else {
-        this.setState({
-          is_visible: false
-        });
-      }
-  }
-
-
-
-  onDropdownSelected(event){
-      this.props.setType(event.target.value);
-      window.scrollTo({
-          top: document.getElementById('product').offsetTop + 1,
-        behavior: "smooth"
+    if (
+      window.pageYOffset > document.getElementById("product").offsetTop &&
+      window.pageYOffset <
+        document.getElementById("product").offsetTop +
+          document.getElementById("product").offsetHeight -
+          250
+    ) {
+      this.setState({
+        is_visible: true,
       });
+    } else {
+      this.setState({
+        is_visible: false,
+      });
+    }
   }
 
+  onDropdownSelected(id) {
+    this.props.setType(id);
+    window.scrollTo({
+      top: document.getElementById("product").offsetTop + 60,
+      behavior: "smooth",
+    });
+  }
 
   render() {
-    const { is_visible } = this.state;
+    const { is_visible} = this.state;
     return (
       <div class="col-lg-3 col-md-4">
         <div class="collection-menu text-center mt-20">
@@ -56,24 +59,34 @@ class Menu extends Component {
             role="tablist"
             aria-orientation="vertical"
           >
-      
-            {
-               this.props.categoryArray.map((category,index)=>{
-                                     
-                 return(
-                 <a href="/" ref={a => this.ele[index] = a} id={`${category.name}`} data-toggle="pill"  onClick={()=>{this.props.setType(category.id);return false}}
-                                 >{category.name}</a>
-                                          
-                         )
-                         })
-             }  
-         </div>
-         <div id="menu-drop-down" className={is_visible?"mobile sticky":"mobile"}>
-            <select className="menu-dropdown" onChange={(e)=>this.onDropdownSelected(e)} >
+            {this.props.categoryArray.map((category, index) => {
+              return (
+                <a
+                  href="/"
+                  ref={(a) => (this.ele[index] = a)}
+                  id={`${category.id}`}
+                  data-toggle="pill"
+                  onClick={() => {
+                    this.onDropdownSelected(category.id);
+                    return false;
+                  }}
+                >
+                  {category.name}
+                </a>
+              );
+            })}
+          </div>
+          <div
+            id="menu-drop-down"
+            className={is_visible ? "mobile sticky" : "mobile"}
+          >
+            <select
+              className="menu-dropdown"
+              onChange={(e) => this.onDropdownSelected(e.target.value)}
+            >
               {this.props.categoryArray.map((category, index) => {
                 return (
                   <option
-                    
                     ref={(option) => (this.dropDown[index] = option)}
                     className={index === 0 ? "active" : ""}
                     value={`${category.id}`}
@@ -84,9 +97,8 @@ class Menu extends Component {
                 );
               })}
             </select>
-            </div>
           </div>
-        
+        </div>
       </div>
     );
   }
