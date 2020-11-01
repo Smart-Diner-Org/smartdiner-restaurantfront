@@ -780,12 +780,12 @@ hr {
   font-family: "MuseoModerno";
 }
 
-.foot-content{
+.foot-content {
   width: 100%;
   padding: 10px;
 }
 
-.foot-content a{
+.foot-content a {
   font-size: 1em;
   font-family: "MuseoModerno";
   color: #000466;
@@ -1263,7 +1263,6 @@ hr {
   .product-area {
     padding-top: 50px;
     padding-bottom: 80px;
-    overflow-y: auto;
   }
 }
 

@@ -7,7 +7,6 @@ class Menu extends Component {
     this.dropDown = [];
     this.state = {
       is_visible: false,
-      sticky_sideMenu: false,
     };
 
     this.onDropdownSelected = this.onDropdownSelected.bind(this);
@@ -16,7 +15,7 @@ class Menu extends Component {
   componentDidMount() {
     this.dropDown.value && this.props.setType(this.dropDown[0].value);
     this.props.setType(this.ele[0].id);
-    this.ele[0].className = this.ele[0].className+"active"
+    this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
     document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
@@ -39,22 +38,6 @@ class Menu extends Component {
         is_visible: false,
       });
     }
-
-    if (
-      window.pageYOffset > (document.getElementById("product").offsetTop + 20) &&
-      window.pageYOffset <
-        document.getElementById("product").offsetTop +
-          document.getElementById("product").offsetHeight -
-          300
-    ) {
-      this.setState({
-        sticky_sideMenu: true,
-      });
-    } else {
-      this.setState({
-        sticky_sideMenu: false,
-      });
-    }
   }
 
   onDropdownSelected(id) {
@@ -66,16 +49,12 @@ class Menu extends Component {
   }
 
   render() {
-    const { is_visible, sticky_sideMenu } = this.state;
+    const { is_visible} = this.state;
     return (
       <div class="col-lg-3 col-md-4">
         <div class="collection-menu text-center mt-20">
           <div
-            class={
-              sticky_sideMenu
-                ? "nav flex-column nav-pills desktop desktop-sticky"
-                : " nav flex-column nav-pills desktop"
-            }
+            class="nav flex-column nav-pills desktop"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
