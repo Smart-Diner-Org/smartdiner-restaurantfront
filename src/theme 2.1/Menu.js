@@ -7,6 +7,7 @@ class Menu extends Component {
     this.dropDown = [];
     this.state = {
       is_visible: false,
+      sticky_sideMenu: false,
     };
 
     this.onDropdownSelected = this.onDropdownSelected.bind(this);
@@ -17,12 +18,14 @@ class Menu extends Component {
     this.props.setType(this.ele[0].id);
     this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
+    
     document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
     });
   }
 
   toggleVisibility() {
+  
     if (
       window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
@@ -32,10 +35,29 @@ class Menu extends Component {
     ) {
       this.setState({
         is_visible: true,
+         function() {
+        }
       });
+      
     } else {
       this.setState({
         is_visible: false,
+      });
+    }
+    if (
+      window.pageYOffset >
+        document.getElementById("product").offsetTop + this.ele[2].offsetTop &&
+      window.pageYOffset <
+        document.getElementById("product").offsetTop +
+          document.getElementById("product").offsetHeight -
+          this.ele[this.ele.length - 1].offsetTop + this.ele[this.ele.length - 1].offsetHeight - 60
+    ) {
+      this.setState({
+        sticky_sideMenu: true,
+      });
+    } else {
+      this.setState({
+        sticky_sideMenu: false,
       });
     }
   }
@@ -49,14 +71,19 @@ class Menu extends Component {
   }
 
   render() {
-    const { is_visible} = this.state;
+    const { is_visible, sticky_sideMenu } = this.state;
     return (
       <div class="col-lg-3 col-md-4">
-        <div class="collection-menu text-center mt-20">
+        <div  class="collection-menu text-center mt-20">
           <div
-            class="nav flex-column nav-pills desktop"
-            id="v-pills-tab"
+            ref={(a) => (this.menuOptions = a)}
+            class={
+              sticky_sideMenu
+                ? "nav flex-column nav-pills desktop desktop-sticky"
+                : " nav flex-column nav-pills desktop desktop-rel"
+            }
             role="tablist"
+            id="menu-options"
             aria-orientation="vertical"
           >
             {this.props.categoryArray.map((category, index) => {
