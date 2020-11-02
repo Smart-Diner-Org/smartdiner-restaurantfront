@@ -46,11 +46,11 @@ class Menu extends Component {
     }
     if (
       window.pageYOffset >
-        document.getElementById("product").offsetTop + this.ele[2].offsetTop &&
+        document.getElementById("product").offsetTop + this.ele[1].offsetTop &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
-          this.ele[this.ele.length - 1].offsetTop + this.ele[this.ele.length - 1].offsetHeight - 60
+          this.ele[this.ele.length - 1].offsetTop + this.ele[this.ele.length - 1].offsetHeight - 120
     ) {
       this.setState({
         sticky_sideMenu: true,
