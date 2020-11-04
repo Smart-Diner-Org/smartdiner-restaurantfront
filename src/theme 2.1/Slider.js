@@ -66,9 +66,9 @@ class Slider extends Component {
                         className="slider-bg"
                         style={{ backgroundImage: `url(${item.url})` }}
                       >
-                        <div className="row  no-gutters align-items-center d-flex justify-content-center">
-                          <div className="col-lg-12 ">
-                            <div className="slider-product-content pt-50  mt-200">
+                        <div style={{ height: `100%` }} className="row  no-gutters align-items-center d-flex justify-content-center">
+              
+                            <div className="slider-product-content">
                               <h1
                                 className="slider-title "
                                 data-animation="fadeInUp"
@@ -77,7 +77,7 @@ class Slider extends Component {
                                 {item.content ? item.content : " "}
                               </h1>
                               {item.buttons && (
-                                <div className="row">
+                                <div className="row call-to-action-button">
                                   {item.buttons[0].button_link_type ===
                                     "menu" && (
                                     <a href="#product">
@@ -93,7 +93,7 @@ class Slider extends Component {
                                 </div>
                               )}
                             </div>
-                          </div>
+                       
                         </div>
                       </div>
                     </div>

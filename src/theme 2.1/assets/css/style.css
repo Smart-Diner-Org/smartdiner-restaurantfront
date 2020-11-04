@@ -878,7 +878,7 @@ hr {
   color: white;
   font-weight: bold;
   border: 2px solid var(--secondary-color);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
 
 .slider-product-content a:hover {
@@ -926,17 +926,27 @@ hr {
   background-size: cover;
   background-position: center;
 }
-.single-slider-2 .slider-bg {
-  height: 100%;
-  background-image: url("../images/IMG_20200606_143123.jpg");
-  background-color: #000000;
-  background-size: cover;
-  background-position: center;
+
+@media only screen and (max-width: 768px) {
+  .single-slider-1 .slider-bg {
+    /* height: auto; */
+    width: 100%;
+  }
+  .call-to-action-button {
+    position: absolute;
+    bottom: 20px;
+   
+}
+.call-to-action-button a{
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+}
 }
 
-.single-slider .slider-product-image img {
-  width: 100%;
-}
+
 
 .single-slider .slider-product-image .slider-discount-tag {
   width: 125px;
