@@ -8,7 +8,6 @@ class Slider extends Component {
     this.state = {
       slider: JSON.parse(this.props.slider_images),
     };
-    console.log(this.state.slider);
   }
 
   render() {
