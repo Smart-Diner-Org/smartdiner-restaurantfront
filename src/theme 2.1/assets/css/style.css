@@ -939,9 +939,16 @@ hr {
   padding: 0 50px;
 }
 
+.slider-product-content h1 {
+  font-family: "Messenger";
+}
+
 @media only screen and (max-width: 768px) {
   .single-slider-1 {
     padding: 0;
+  }
+  .single-slider-1 .slider-bg img {
+    object-fit: fill;
   }
   .single-slider-1 .slider-bg {
     width: 100%;
