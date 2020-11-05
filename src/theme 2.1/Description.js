@@ -11,7 +11,6 @@ class Description extends React.Component {
         ? this.props.delivery_locations.split(",")
         : null,
     };
-    console.log(this.props.cards);
   }
 
   render() {
@@ -77,7 +76,7 @@ class Description extends React.Component {
                     max: 3000,
                     min: 1024
                   },
-                  items: 3,
+                  items: 2,
                   partialVisibilityGutter: 40
                 },
                 mobile: {
@@ -99,15 +98,21 @@ class Description extends React.Component {
               }}
             >
               {this.props.cards.map((card) => (
-                <div className="mr-50">
+                <div className="mr-30 ml-30" onClick={() => {
+                  if (card.card_link_type === "menu_category") {
+                    document
+                      .getElementById(card.card_link_value)
+                      .click();
+                  }
+                }}
+                style={
+                  card.card_link_type === "menu_category"
+                    ? { cursor: "pointer" }
+                    : {}
+                }>
                 <img loading="lazy" src={card.url} alt="preOrderImage" />
                 </div>
               ))}
-              {/* {this.props.cards.map((card) => (
-                <div className="mr-50">
-                <img loading="lazy" src={card.url} alt="preOrderImage" />
-                </div>
-              ))} */}
             </Carousel>
           )}
 
