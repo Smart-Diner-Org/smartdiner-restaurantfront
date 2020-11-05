@@ -18,14 +18,13 @@ class Menu extends Component {
     this.props.setType(this.ele[0].id);
     this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
-    
+
     document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
     });
   }
 
   toggleVisibility() {
-  
     if (
       window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
@@ -35,22 +34,21 @@ class Menu extends Component {
     ) {
       this.setState({
         is_visible: true,
-         function() {
-        }
+        function() {},
       });
-      
     } else {
       this.setState({
         is_visible: false,
       });
     }
     if (
-      window.pageYOffset >
-        document.getElementById("product").offsetTop + this.ele[0].offsetTop &&
+      window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
-          this.ele[this.ele.length - 1].offsetTop + this.ele[this.ele.length - 1].offsetHeight - 120
+          this.ele[this.ele.length - 1].offsetTop +
+          this.ele[this.ele.length - 1].offsetHeight -
+          120
     ) {
       this.setState({
         sticky_sideMenu: true,
@@ -74,7 +72,7 @@ class Menu extends Component {
     const { is_visible, sticky_sideMenu } = this.state;
     return (
       <div class="col-lg-3 col-md-4">
-        <div  class="collection-menu text-center mt-20">
+        <div class="collection-menu text-center mt-20">
           <div
             ref={(a) => (this.menuOptions = a)}
             class={
