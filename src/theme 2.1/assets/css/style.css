@@ -921,9 +921,6 @@ hr {
 
 .single-slider-1 .slider-bg {
   height: 100%;
-  background-color: #000000;
-  background-size: cover;
-  background-position: center;
 }
 .single-slider-1 .slider-bg img {
   height: 100%;
@@ -937,18 +934,12 @@ hr {
 .single-slider-1 {
   padding: 0 50px;
 }
-/* 
-.slider-product-content h1 {
-  font-family: "Messenger";
-} */
 
 @media only screen and (max-width: 768px) {
   .single-slider-1 {
-    padding: 0;
+    padding: 0px 15px;
   }
-  .single-slider-1 .slider-bg {
-    width: 100%;
-  }
+  
   .call-to-action-button {
     position: absolute;
     bottom: 20px;
