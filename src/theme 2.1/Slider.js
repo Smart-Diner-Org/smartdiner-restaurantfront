@@ -72,9 +72,6 @@ class Slider extends Component {
                     >
                       <div
                         className="slider-bg"
-                        style={{
-                          // backgroundImage: `url(${item.url})`,
-                        }}
                       >
                         
                     

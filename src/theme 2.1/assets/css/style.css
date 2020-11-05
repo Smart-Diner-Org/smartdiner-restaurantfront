@@ -1030,6 +1030,7 @@ hr {
   justify-content: center;
 }
 
+
 @media (max-width: 767px) {
   .single-slider .slider-product-content {
     padding: 20px 15px 50px;
@@ -1059,7 +1060,7 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
-    font-size: 25px;
+    font-size: 22px;
     padding: 0 50px;
   }
   .single-slider .slider-product-content .row {
