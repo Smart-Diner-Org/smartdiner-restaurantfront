@@ -921,15 +921,23 @@ hr {
 
 .single-slider-1 .slider-bg {
   height: 100%;
-  background-image: url("../images/IMG_20200606_142600.jpg");
   background-color: #000000;
   background-size: cover;
   background-position: center;
 }
+.single-slider-1 .slider-bg img{
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
 
 @media only screen and (max-width: 768px) {
   .single-slider-1 .slider-bg {
-    /* height: auto; */
+    /* height: 40%; */
     width: 100%;
   }
   .call-to-action-button {
@@ -938,11 +946,18 @@ hr {
    
 }
 .call-to-action-button a{
+  font-size: 14px;
   border-radius: 14px;
+  padding: 8px 15px;
   -webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   -ms-border-radius: 14px;
   -o-border-radius: 14px;
+}
+.single-slider {
+  position: relative;
+  height: 40vh;
+  width: 100%;
 }
 }
 
@@ -1017,7 +1032,8 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content {
-    padding: 40px 15px 50px;
+    padding: 20px 15px 50px;
+    justify-content: unset;
   }
 }
 
@@ -1069,23 +1085,6 @@ hr {
   }
 }
 
-/*@media only screen and (min-width: 550px) and (max-width: 767px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 48%;
-  }
-}*/
-
-/*@media only screen and (min-width: 630px) and (max-width: 767px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 40%;
-  }
-}*/
-
-/*@media only screen and (min-width: 700px) and (max-width: 767px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 40%;
-  }
-}*/
 @media only screen and (min-width: 768px) and (max-width: 900px) {
   .single-slider .slider-product-content .row {
     margin-top: 30%;
@@ -1707,10 +1706,17 @@ hr {
      6.about css 
 ===========================*/
 
+.description-content{
+  margin-top:50px;
+}
+
 @media (max-width: 767px) {
   .about-area {
     padding-top: 75px;
     padding-bottom: 80px;
+  }
+  .description-content{
+    margin-top:0px;
   }
 }
 /*---*/

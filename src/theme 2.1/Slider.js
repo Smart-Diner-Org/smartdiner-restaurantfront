@@ -8,6 +8,7 @@ class Slider extends Component {
     this.state = {
       slider: JSON.parse(this.props.slider_images),
     };
+    console.log(this.state.slider);
   }
 
   render() {
@@ -50,9 +51,16 @@ class Slider extends Component {
                     <div
                       className="single-slider single-slider-1"
                       onClick={() => {
+                        console.log(
+                          document.getElementById(
+                            `menuCategory_${item.slider_link_value}`
+                          )
+                        );
                         if (item.slider_link_type === "menu_category") {
                           document
-                            .getElementById(item.slider_link_value)
+                            .getElementById(
+                              `menuCategory_${item.slider_link_value}`
+                            )
                             .click();
                         }
                       }}
@@ -64,36 +72,42 @@ class Slider extends Component {
                     >
                       <div
                         className="slider-bg"
-                        style={{ backgroundImage: `url(${item.url})` }}
+                        style={{
+                          // backgroundImage: `url(${item.url})`,
+                        }}
                       >
-                        <div style={{ height: `100%` }} className="row  no-gutters align-items-center d-flex justify-content-center">
-              
-                            <div className="slider-product-content">
-                              <h1
-                                className="slider-title "
-                                data-animation="fadeInUp"
-                                data-delay="0.3s"
-                              >
-                                {item.content ? item.content : " "}
-                              </h1>
-                              {item.buttons && (
-                                <div className="row call-to-action-button">
-                                  {item.buttons[0].button_link_type ===
-                                    "menu" && (
-                                    <a href="#product">
-                                      {item.buttons[0].content}
-                                    </a>
-                                  )}
-                                  {item.buttons[1].button_link_type ===
-                                    "contact_info" && (
-                                    <a href="#footer">
-                                      {item.buttons[1].content}
-                                    </a>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                       
+                        
+                    
+                        <div
+                          style={{ height: `100%` }}
+                          className="row"
+                        >
+                          <img src={item.url} alt="slider" />
+                          <div className="slider-product-content">
+                            <h1
+                              className="slider-title "
+                              data-animation="fadeInUp"
+                              data-delay="0.3s"
+                            >
+                              {item.content ? item.content : " "}
+                            </h1>
+                            {item.buttons && (
+                              <div className="row call-to-action-button">
+                                {item.buttons[0].button_link_type ===
+                                  "menu" && (
+                                  <a href="#product">
+                                    {item.buttons[0].content}
+                                  </a>
+                                )}
+                                {item.buttons[1].button_link_type ===
+                                  "contact_info" && (
+                                  <a href="#footer">
+                                    {item.buttons[1].content}
+                                  </a>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
