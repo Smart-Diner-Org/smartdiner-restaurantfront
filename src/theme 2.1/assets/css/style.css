@@ -925,43 +925,46 @@ hr {
   background-size: cover;
   background-position: center;
 }
-.single-slider-1 .slider-bg img{
+.single-slider-1 .slider-bg img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
 }
+.single-slider-1 {
+  padding: 0 50px;
+}
 
 @media only screen and (max-width: 768px) {
+  .single-slider-1 {
+    padding: 0;
+  }
   .single-slider-1 .slider-bg {
-    /* height: 40%; */
     width: 100%;
   }
   .call-to-action-button {
     position: absolute;
     bottom: 20px;
-   
+  }
+  .call-to-action-button a {
+    font-size: 14px;
+    border-radius: 14px;
+    padding: 8px 15px;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    -ms-border-radius: 14px;
+    -o-border-radius: 14px;
+  }
+  .single-slider {
+    position: relative;
+    height: 40vh;
+    width: 100%;
+  }
 }
-.call-to-action-button a{
-  font-size: 14px;
-  border-radius: 14px;
-  padding: 8px 15px;
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  -ms-border-radius: 14px;
-  -o-border-radius: 14px;
-}
-.single-slider {
-  position: relative;
-  height: 40vh;
-  width: 100%;
-}
-}
-
-
 
 .single-slider .slider-product-image .slider-discount-tag {
   width: 125px;
@@ -1030,7 +1033,6 @@ hr {
   justify-content: center;
 }
 
-
 @media (max-width: 767px) {
   .single-slider .slider-product-content {
     padding: 20px 15px 50px;
@@ -1091,10 +1093,6 @@ hr {
     margin-top: 30%;
   }
 }
-
-
-
-
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
@@ -1398,14 +1396,14 @@ hr {
 }
 .desktop-sticky {
   position: fixed;
-  top:auto;
+  top: auto;
   bottom: 10px;
   width: 19%;
-} 
+}
 .desktop-rel {
   position: relative;
   width: 100%;
-  top:0;
+  top: 0;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1707,8 +1705,8 @@ hr {
      6.about css 
 ===========================*/
 
-.description-content{
-  margin-top:50px;
+.description-content {
+  margin-top: 50px;
 }
 
 @media (max-width: 767px) {
@@ -1716,8 +1714,8 @@ hr {
     padding-top: 75px;
     padding-bottom: 80px;
   }
-  .description-content{
-    margin-top:0px;
+  .description-content {
+    margin-top: 0px;
   }
 }
 /*---*/

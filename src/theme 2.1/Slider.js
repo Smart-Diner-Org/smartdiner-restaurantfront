@@ -49,13 +49,8 @@ class Slider extends Component {
                 return (
                   <Carousel.Item>
                     <div
-                      className="single-slider single-slider-1"
+                      className="single-slider single-slider-1 "
                       onClick={() => {
-                        console.log(
-                          document.getElementById(
-                            `menuCategory_${item.slider_link_value}`
-                          )
-                        );
                         if (item.slider_link_type === "menu_category") {
                           document
                             .getElementById(
@@ -70,15 +65,8 @@ class Slider extends Component {
                           : {}
                       }
                     >
-                      <div
-                        className="slider-bg"
-                      >
-                        
-                    
-                        <div
-                          style={{ height: `100%` }}
-                          className="row"
-                        >
+                      <div className="slider-bg">
+                        <div style={{ height: `100%` }} className="row">
                           <img src={item.url} alt="slider" />
                           <div className="slider-product-content">
                             <h1
