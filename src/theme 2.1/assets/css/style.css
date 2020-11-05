@@ -937,10 +937,10 @@ hr {
 .single-slider-1 {
   padding: 0 50px;
 }
-
+/* 
 .slider-product-content h1 {
   font-family: "Messenger";
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .single-slider-1 {
