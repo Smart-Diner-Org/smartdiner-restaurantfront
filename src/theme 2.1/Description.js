@@ -1,4 +1,7 @@
 import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 
 class Description extends React.Component {
   constructor(props) {
@@ -8,6 +11,7 @@ class Description extends React.Component {
         ? this.props.delivery_locations.split(",")
         : null,
     };
+    console.log(this.props.cards);
   }
 
   render() {
@@ -48,8 +52,66 @@ class Description extends React.Component {
               </h5>
             </div>
           )}
+          {this.props.cards && (
+            <Carousel
+              additionalTransfrom={0}
+              arrows={false}
+              showDots={true}
+              autoPlay
+              autoPlaySpeed={3000}
+              centerMode={false}
+              className=""
+              containerClass="container"
+              dotListClass=""
+              draggable
+              focusOnSelect={false}
+              infinite
+              itemClass=""
+              keyBoardControl
+              minimumTouchDrag={80}
+              renderButtonGroupOutside={false}
+              renderDotsOutside={false}
+              responsive={{
+                desktop: {
+                  breakpoint: {
+                    max: 3000,
+                    min: 1024
+                  },
+                  items: 3,
+                  partialVisibilityGutter: 40
+                },
+                mobile: {
+                  breakpoint: {
+                    max: 464,
+                    min: 0
+                  },
+                  items: 1,
+                  partialVisibilityGutter: 30
+                },
+                tablet: {
+                  breakpoint: {
+                    max: 1024,
+                    min: 464
+                  },
+                  items: 2,
+                  partialVisibilityGutter: 30
+                }
+              }}
+            >
+              {this.props.cards.map((card) => (
+                <div className="mr-50">
+                <img loading="lazy" src={card.url} alt="preOrderImage" />
+                </div>
+              ))}
+              {/* {this.props.cards.map((card) => (
+                <div className="mr-50">
+                <img loading="lazy" src={card.url} alt="preOrderImage" />
+                </div>
+              ))} */}
+            </Carousel>
+          )}
 
-          {this.props.preOrder && this.props.preOrderImage && (
+          {/* {this.props.preOrder && this.props.preOrderImage && (
             <div className="mt-20" style={{ width: "100%" }}>
               <img
                 loading="lazy"
@@ -57,7 +119,7 @@ class Description extends React.Component {
                 alt="preOrderImage"
               />
             </div>
-          )}
+          )} */}
 
           {this.props.has_customisation_info && (
             <div className="call-for-order mt-70">

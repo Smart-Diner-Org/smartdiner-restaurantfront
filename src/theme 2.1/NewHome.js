@@ -67,6 +67,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
+          
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -771,6 +772,10 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
                 }
+                cards  = {JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail
+                    .cards
+                )}
               />
 
               <Product
