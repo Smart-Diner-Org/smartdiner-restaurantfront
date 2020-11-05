@@ -928,7 +928,6 @@ hr {
 .single-slider-1 .slider-bg img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -946,9 +945,6 @@ hr {
 @media only screen and (max-width: 768px) {
   .single-slider-1 {
     padding: 0;
-  }
-  .single-slider-1 .slider-bg img {
-    object-fit: fill;
   }
   .single-slider-1 .slider-bg {
     width: 100%;
