@@ -42,8 +42,7 @@ class Menu extends Component {
       });
     }
     if (
-      window.pageYOffset >
-        document.getElementById("product").offsetTop + this.ele[0].offsetTop &&
+      window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
