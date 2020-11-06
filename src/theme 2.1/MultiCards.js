@@ -35,7 +35,7 @@ export default function MultiCards(props) {
                 max: 464,
                 min: 0,
               },
-              items: 1.5,
+              items: 1.3,
               partialVisibilityGutter: 30,
             },
             tablet: {
@@ -54,7 +54,7 @@ export default function MultiCards(props) {
           {props.cards.map((card) => (
             
               <img loading="lazy" src={card.url} alt="preOrderImage" />
-          
+         
           ))}
         </Carousel>
       )}

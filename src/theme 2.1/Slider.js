@@ -65,7 +65,7 @@ class Slider extends Component {
                       }
                     >
                       <div className="slider-bg">
-                        <div style={{ height: `100%` }} className="row">
+                        <div className="row">
                           <img src={item.url} alt="slider" />
                           <div className="slider-product-content">
                             <h1
