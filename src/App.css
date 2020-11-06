@@ -43,6 +43,17 @@ font-family: "Lato";
   font-family: "MuseoModerno";
 }
 
+.order-details{
+  align-items: flex-end;
+}
+@media (max-width: 767px) {
+  .order-details{
+    align-items: flex-start;
+  }
+}
+.order-details h6{
+  color: #000466;
+}
 
 
 .customer-details-form{

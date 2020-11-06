@@ -696,8 +696,7 @@ hr {
 }
 
 .delivery-type {
-  margin-top: 3em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -838,6 +837,53 @@ hr {
   border-radius: 20px;
 }
 
+.multi-cards {
+  padding: 0 80px;
+  padding-top: 50px;
+}
+@media only screen and (max-width: 768px) {
+  .multi-cards {
+    padding: 0 20px;
+    margin-bottom: -80px;
+  }
+}
+.react-multiple-carousel__arrow {
+  z-index: 7;
+  background: transparent;
+}
+
+.react-multiple-carousel__arrow::before {
+  color: var(--secondary-color);
+}
+
+.react-multi-carousel-item{
+  margin-right: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.react-multiple-carousel__arrow:hover {
+  color: white !important;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: 0;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 0;
+}
+
+.react-multi-carousel-list {
+  height: 300px;
+}
+
+.multi-cards img {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+}
+
 @media only screen and (min-width: 1400px) {
   .slider-active .slick-dots {
     left: 30px;
@@ -939,7 +985,7 @@ hr {
   .single-slider-1 {
     padding: 0px 15px;
   }
-  
+
   .call-to-action-button {
     position: absolute;
     bottom: 20px;

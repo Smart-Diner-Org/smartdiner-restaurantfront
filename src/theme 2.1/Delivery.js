@@ -108,7 +108,7 @@ class Delivery extends Component {
               <hr />
 
               <>
-                <p className="mt-20 text-justify" style={{maxWidth:"50%"}}>
+                <p className="mt-20 text-justify" style={{maxWidth:"350px"}}>
                   {this.props.restaurant_website_detail.is_delivery_available
                     ? `Select your delivery date and time.\n Please book your order(s) ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance.`
                     : `Let us know when your order needs to be ready and the time of pick up.`}
