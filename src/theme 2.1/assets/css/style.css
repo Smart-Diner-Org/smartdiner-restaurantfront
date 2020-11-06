@@ -997,8 +997,8 @@ hr {
     width: 100%;
   }
   .single-slider-1 .slider-bg img {
-    height: 100%;
-    width: auto;
+    /*height: 100%;
+    width: auto;*/
   }
   
 }
