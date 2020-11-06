@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-
 class Description extends React.Component {
   constructor(props) {
     super(props);
@@ -54,10 +53,9 @@ class Description extends React.Component {
           {this.props.cards && (
             <Carousel
               additionalTransfrom={0}
-              arrows={false}
+              arrows={true}
               showDots={true}
-              autoPlay
-              autoPlaySpeed={3000}
+              autoPlay={false}
               centerMode={false}
               className=""
               containerClass="container"
@@ -70,47 +68,50 @@ class Description extends React.Component {
               minimumTouchDrag={80}
               renderButtonGroupOutside={false}
               renderDotsOutside={false}
+              slidesToSlide={1}
+              swipeable
               responsive={{
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1024
+                    min: 1024,
                   },
                   items: 2,
-                  partialVisibilityGutter: 40
+                  partialVisibilityGutter: 40,
                 },
                 mobile: {
                   breakpoint: {
                     max: 464,
-                    min: 0
+                    min: 0,
                   },
                   items: 1,
-                  partialVisibilityGutter: 30
+                  partialVisibilityGutter: 30,
                 },
                 tablet: {
                   breakpoint: {
                     max: 1024,
-                    min: 464
+                    min: 464,
                   },
                   items: 2,
-                  partialVisibilityGutter: 30
-                }
+                  partialVisibilityGutter: 30,
+                },
               }}
             >
               {this.props.cards.map((card) => (
-                <div className="mr-30 ml-30" onClick={() => {
-                  if (card.card_link_type === "menu_category") {
-                    document
-                      .getElementById(card.card_link_value)
-                      .click();
+                <div
+                  className="mr-30 ml-30"
+                  onClick={() => {
+                    if (card.card_link_type === "menu_category") {
+                      document.getElementById(card.card_link_value).click();
+                    }
+                  }}
+                  style={
+                    card.card_link_type === "menu_category"
+                      ? { cursor: "pointer" }
+                      : {}
                   }
-                }}
-                style={
-                  card.card_link_type === "menu_category"
-                    ? { cursor: "pointer" }
-                    : {}
-                }>
-                <img loading="lazy" src={card.url} alt="preOrderImage" />
+                >
+                  <img loading="lazy" src={card.url} alt="preOrderImage" />
                 </div>
               ))}
             </Carousel>

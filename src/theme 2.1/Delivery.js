@@ -44,7 +44,7 @@ class Delivery extends Component {
         1000;
       if (timeDifference <= timeLimit) {
         alert(
-          `You can pre-book the orders for at least ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
+          `We take orders placed in advance of ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
         );
         document.getElementById("datepicker").value = null;
         this.setState({ deliveryDateTime: null });
@@ -111,7 +111,7 @@ class Delivery extends Component {
                 <p className="mt-20 text-justify" style={{maxWidth:"50%"}}>
                   {this.props.restaurant_website_detail.is_delivery_available
                     ? `Select your delivery date and time.\n Please book your order(s) ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance.`
-                    : `Let us know when your order needs to be ready and the time of pick up .\n We take orders placed in advance of ${this.props.restaurant_website_detail.pre_book_prior_time} hours.`}
+                    : `Let us know when your order needs to be ready and the time of pick up.`}
                 </p>
                 <div className="delivery-type-inputs mt-10">
                   <Flatpickr
