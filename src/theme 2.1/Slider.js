@@ -64,8 +64,8 @@ class Slider extends Component {
                           : {}
                       }
                     >
-                      <div className="slider-bg">
-                        <div className="row">
+                      <div className="slider-bg row">
+                        <>
                           <img src={item.url} alt="slider" />
                           <div className="slider-product-content">
                             <h1
@@ -92,7 +92,7 @@ class Slider extends Component {
                               </div>
                             )}
                           </div>
-                        </div>
+                        </>
                       </div>
                     </div>
                   </Carousel.Item>

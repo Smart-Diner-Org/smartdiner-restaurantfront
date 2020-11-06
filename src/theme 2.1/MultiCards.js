@@ -35,7 +35,7 @@ export default function MultiCards(props) {
                 max: 464,
                 min: 0,
               },
-              items: 1.3,
+              items: props.cards.length > 1 ? 1.3 : 1,
               partialVisibilityGutter: 30,
             },
             tablet: {
@@ -52,9 +52,7 @@ export default function MultiCards(props) {
           swipeable
         >
           {props.cards.map((card) => (
-            
-              <img loading="lazy" src={card.url} alt="preOrderImage" />
-         
+            <img loading="lazy" src={card.url} alt="preOrderImage" />
           ))}
         </Carousel>
       )}

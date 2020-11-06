@@ -963,10 +963,10 @@ hr {
 }
 
 .single-slider-1 .slider-bg {
-  height: 80%;
+  height: 100%;
 }
 .single-slider-1 .slider-bg img {
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 .single-slider-1 {
@@ -998,10 +998,9 @@ hr {
   }
   .single-slider-1 .slider-bg img {
     height: 100%;
+    width: auto;
   }
-  .single-slider-1 .slider-bg {
-    height: 100%;
-  }
+  
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
