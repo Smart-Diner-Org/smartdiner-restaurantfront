@@ -44,7 +44,7 @@ class Delivery extends Component {
         1000;
       if (timeDifference <= timeLimit) {
         alert(
-          `We take orders placed in advance of ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
+          `we take orders placed ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance of the delivery time.`
         );
         document.getElementById("datepicker").value = null;
         this.setState({ deliveryDateTime: null });
