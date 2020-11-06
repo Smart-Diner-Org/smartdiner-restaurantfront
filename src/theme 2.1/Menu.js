@@ -15,7 +15,7 @@ class Menu extends Component {
   }
   componentDidMount() {
     this.dropDown.value && this.props.setType(this.dropDown[0].value);
-    this.props.setType(this.ele[0].id);
+    this.props.setType(this.ele[0].dataset.value);
     this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
 
@@ -89,7 +89,8 @@ class Menu extends Component {
                 <a
                   href="/"
                   ref={(a) => (this.ele[index] = a)}
-                  id={`${category.id}`}
+                  id={`menuCategory_${category.id}`}
+                  data-value={category.id}
                   data-toggle="pill"
                   onClick={() => {
                     this.onDropdownSelected(category.id);
