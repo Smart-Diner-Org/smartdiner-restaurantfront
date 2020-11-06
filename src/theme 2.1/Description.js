@@ -15,10 +15,10 @@ class Description extends React.Component {
       <section id="description" class="about-area description-content pt-50 ">
         <div class="container">
           {this.props.delivery_locations && (
-            <div class="row">
+            <div class="row mt-30">
               <div class="col-lg-3">
                 <div class="section-title">
-                  <h5 class="mb-15">Our Delivey Locations</h5>
+                  <h5 class="mb-15 ">Our Delivey Locations</h5>
                 </div>
               </div>
               <div class="col-lg-9">
