@@ -13,8 +13,6 @@ class GetAddress extends React.Component{
                                 <h4 >{this.props.name}</h4><br/>
                                 <label >{this.props.customer_detail.address_one}</label><br/>
                                 <label >{this.props.customer_detail.address_two}</label><br/>
-                                <label >{this.props.customer_detail.city.name}</label><br/>
-                                <label >{this.props.customer_detail.state.name}</label>
                             </div>
                             
                         </div>
