@@ -56,6 +56,7 @@ class Slider extends Component {
                               `menuCategory_${item.slider_link_value}`
                             )
                             .click();
+                            document.getElementById(`menu-dropdown`) && (document.getElementById(`menu-dropdown`).value = item.slider_link_value);
                         }
                       }}
                       style={

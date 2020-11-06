@@ -108,6 +108,7 @@ class Menu extends Component {
           >
             <select
               className="menu-dropdown"
+              id="menu-dropdown"
               onChange={(e) => this.onDropdownSelected(e.target.value)}
             >
               {this.props.categoryArray.map((category, index) => {

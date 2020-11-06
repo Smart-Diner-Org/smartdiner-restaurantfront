@@ -52,7 +52,26 @@ export default function MultiCards(props) {
           swipeable
         >
           {props.cards.map((card) => (
-            <img loading="lazy" src={card.url} alt="preOrderImage" />
+            <img
+              onClick={() => {
+                if (card.card_link_type === "menu_category") {
+                  document
+                    .getElementById(`menuCategory_${card.card_link_value}`)
+                    .click();
+                  document.getElementById(`menu-dropdown`) &&
+                    (document.getElementById(`menu-dropdown`).value =
+                      card.card_link_value);
+                }
+              }}
+              style={
+                card.card_link_type === "menu_category"
+                  ? { cursor: "pointer" }
+                  : {}
+              }
+              loading="lazy"
+              src={card.url}
+              alt="preOrderImage"
+            />
           ))}
         </Carousel>
       )}
