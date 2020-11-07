@@ -1434,9 +1434,16 @@ hr {
 .desktop-sticky {
   position: fixed;
   top: auto;
-  bottom: 10px;
-  width: 19%;
+  width: 19.2%;
 }
+.desktop-sticky-top{
+  top:100px;
+  
+}
+.desktop-sticky-bottom{
+  bottom: 10px;
+}
+
 .desktop-rel {
   position: relative;
   width: 100%;
