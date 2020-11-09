@@ -214,14 +214,8 @@ class SignUp extends Component {
       .catch((error) => {
         if (error && error.response && error.response.data) {
           let er = error.response.data.message;
-          switch (error.response.status) {
-            case 500:
-              this.setState({ requestedOTP: false });
-              break;
-            default:
-              console.log(er);
-              this.setState({ errorMessage: er });
-          }
+          console.log(er);
+          this.setState({ errorMessage: er });
         }
       });
   }
@@ -244,14 +238,13 @@ class SignUp extends Component {
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
-          let er = error.response.data.message;
-          switch (error.response.status) {
-            case 500:
-              this.setState({ requestedOTP: false });
-              break;
-            default:
-              console.log(er);
-              this.setState({ errorMessage: er });
+          if (error && error.response && error.response.data) {
+            let er = error.response.data.message;
+
+            console.log(er);
+            er === "otp_expired"
+              ? this.setState({ requestedOTP: false })
+              : this.setState({ errorMessage: er });
           }
         }
       });
