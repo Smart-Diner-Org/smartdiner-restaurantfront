@@ -242,7 +242,19 @@ class SignUp extends Component {
           label: data.mobile,
         });
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error && error.response && error.response.data) {
+          let er = error.response.data.message;
+          switch (error.response.status) {
+            case 500:
+              this.setState({ requestedOTP: false });
+              break;
+            default:
+              console.log(er);
+              this.setState({ errorMessage: er });
+          }
+        }
+      });
     this.setState({ seconds: 60 });
     this.setState({ isVerified: false });
   }
@@ -276,17 +288,9 @@ class SignUp extends Component {
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
-          if (error && error.response && error.response.data) {
-            let er = error.response.data.message;
-            switch (error.response.status) {
-              case 500:
-                this.setState({ requestedOTP: false });
-                break;
-              default:
-                console.log(er);
-                this.setState({ errorMessage: er });
-            }
-          }
+          let er = error.response.data.message;
+          console.log(er);
+          this.setState({ errorMessage: er });
         }
       });
   }
