@@ -12,13 +12,13 @@ class Description extends React.Component {
 
   render() {
     return (
-      <section id="description" class="about-area mt-50 pt-50 ">
+      <section id="description" class="about-area description-content pt-50 ">
         <div class="container">
           {this.props.delivery_locations && (
-            <div class="row">
+            <div class="row mt-30">
               <div class="col-lg-3">
                 <div class="section-title">
-                  <h5 class="mb-15">Our Delivey Locations</h5>
+                  <h5 class="mb-15 ">Our Delivey Locations</h5>
                 </div>
               </div>
               <div class="col-lg-9">
@@ -48,8 +48,9 @@ class Description extends React.Component {
               </h5>
             </div>
           )}
+          
 
-          {this.props.preOrder && this.props.preOrderImage && (
+          {/* {this.props.preOrder && this.props.preOrderImage && (
             <div className="mt-20" style={{ width: "100%" }}>
               <img
                 loading="lazy"
@@ -57,7 +58,7 @@ class Description extends React.Component {
                 alt="preOrderImage"
               />
             </div>
-          )}
+          )} */}
 
           {this.props.has_customisation_info && (
             <div className="call-for-order mt-70">

@@ -37,13 +37,17 @@ class Delivery extends Component {
     sessionStorage.setItem("deliveryDate", date);
     if (this.props.restaurant_website_detail.is_pre_booking_time_required) {
       const timeDifference = dateTime.getTime() - new Date().getTime();
-      const timeLimit = this.props.restaurant_website_detail.pre_book_prior_time*60*60*1000;
+      const timeLimit =
+        this.props.restaurant_website_detail.pre_book_prior_time *
+        60 *
+        60 *
+        1000;
       if (timeDifference <= timeLimit) {
         alert(
-          `You can pre-book the orders for at least ${this.props.restaurant_website_detail.pre_book_prior_time} hours from now.`
+          `we take orders placed ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance of the delivery time.`
         );
         document.getElementById("datepicker").value = null;
-        this.setState({deliveryDateTime:null})
+        this.setState({ deliveryDateTime: null });
         return false;
       }
       sessionStorage.setItem("deliveryTime", time);
@@ -68,10 +72,12 @@ class Delivery extends Component {
   }
 
   render() {
+    console.log(this.props.restaurant_website_detail);
     return (
       <div>
-       {this.props.restaurant_website_detail
-              .is_run_time_booking_enabled && <hr />}
+        {this.props.restaurant_website_detail.is_run_time_booking_enabled && (
+          <hr />
+        )}
         <div className="delivery-type">
           <>
             {this.props.restaurant_website_detail
@@ -102,7 +108,11 @@ class Delivery extends Component {
               <hr />
 
               <>
-                <p className="mt-20">Choose your date and time</p>
+                <p className="mt-20 text-justify" style={{maxWidth:"350px"}}>
+                  {this.props.restaurant_website_detail.is_delivery_available
+                    ? `Select your delivery date and time.`
+                    : `Let us know when your order needs to be ready and the time of pick up.`}
+                </p>
                 <div className="delivery-type-inputs mt-10">
                   <Flatpickr
                     id="datepicker"
@@ -123,7 +133,6 @@ class Delivery extends Component {
                     }}
                   />
                 </div>
-
                 <button onClick={this.canRoute} className="mt-20">
                   Schedule order
                 </button>

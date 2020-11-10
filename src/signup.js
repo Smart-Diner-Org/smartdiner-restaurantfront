@@ -374,10 +374,10 @@ class SignUp extends Component{
                             <h2>Customer Details</h2>
 
                         </div>
-                        <div className="mt-10 col-lg-3 col-sm-12 d-flex flex-column justify-content-end">
-                            {sessionStorage.getItem("deliveryDate") && <h6 className="row d-flex justify-content-end">Delivery Date:&nbsp; <strong>{sessionStorage.getItem("deliveryDate")}</strong> </h6> }
-                            {sessionStorage.getItem("deliveryTime") && <h6 className="row d-flex justify-content-end">Delivery Time:&nbsp; <strong>{sessionStorage.getItem("deliveryTime")}</strong> </h6> }
-                            <h4 className="row d-flex justify-content-end">Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
+                        <div className="mt-10 col-lg-3 col-sm-12 d-flex flex-column justify-content-end order-details">
+                            {sessionStorage.getItem("deliveryDate") && <h6>Delivery Date:&nbsp; <strong>{sessionStorage.getItem("deliveryDate")}</strong> </h6> }
+                            {sessionStorage.getItem("deliveryTime") && <h6 >Delivery Time:&nbsp; <strong>{sessionStorage.getItem("deliveryTime")}</strong> </h6> }
+                            <h4 >Rs. {Number(sessionStorage.getItem("totalWithoutTax")).toFixed(2)}</h4>
                         </div>
                     </div>
                   

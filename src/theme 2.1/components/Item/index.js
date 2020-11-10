@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Burger from "../../assets/images/food1.jpg";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
+import ReactGA from "react-ga";
 
 class Item extends Component {
   constructor(props) {
@@ -230,9 +231,18 @@ class Item extends Component {
               <>
                 <a
                   href={`tel:+91${this.props.contact_number}`}
-                  className="custom-menu-call-button" target="blank"
+                  className="custom-menu-call-button"
+                  target="blank"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: "menu-product-item",
+                      action: "clicked call button",
+                      label: this.props.itemName,
+                      transport: "beacon",
+                    });
+                  }}
                 >
-                 <i class="lni-phone-handset"></i>
+                  <i class="lni-phone-handset"></i>
                 </a>
               </>
             )}

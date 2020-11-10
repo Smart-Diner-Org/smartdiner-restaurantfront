@@ -14,7 +14,7 @@ class BillItem extends Component {
                 <div class='container '>
                 
                     <div className="row d-flex align-items-center">
-                    <div className="col-3 p-0">
+                    <div className="col-2 p-0">
                         <div style={{height:"120px",width:"100%",maxWidth:"120px" ,display:"flex",alignItems:"centre",borderRadius: "8px"}}>
                                 {this.props.image?
                                     <>
@@ -25,7 +25,7 @@ class BillItem extends Component {
                                 }   
                         </div>
                     </div>
-                    <div className="col-9" >
+                    <div className="col-10" >
                         <div className="row">
                             <label className="col-auto mr-auto" style={{color:"#e22a28"}}><i class="lni lni-dinner" ></i></label>
                             <div className="col-auto">

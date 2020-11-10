@@ -15,6 +15,7 @@ import GetLocation from "./GetLocation";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
 import CheckoutButton from "./CheckoutButton";
+import MultiCards from "./MultiCards";
 
 const google = window.google;
 
@@ -67,6 +68,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
+          
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -751,6 +753,10 @@ class NewHome extends Component {
                     .slider_images
                 }
               />
+              <MultiCards  cards  = {JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail
+                    .cards
+                )}/>
               <Description
                 delivery_locations={
                   this.state.restaurantBranch[0].delivery_locations
@@ -771,6 +777,7 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
                 }
+               
               />
 
               <Product

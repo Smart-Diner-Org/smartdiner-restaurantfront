@@ -15,9 +15,10 @@ class Menu extends Component {
   }
   componentDidMount() {
     this.dropDown.value && this.props.setType(this.dropDown[0].value);
-    this.props.setType(this.ele[0].id);
-    this.ele[0].className = this.ele[0].className+"active"
+    this.props.setType(this.ele[0].dataset.value);
+    this.ele[0].className = this.ele[0].className + "active";
     var scrollComponent = this;
+
     document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
     });
@@ -33,19 +34,21 @@ class Menu extends Component {
     ) {
       this.setState({
         is_visible: true,
+        function() {},
       });
     } else {
       this.setState({
         is_visible: false,
       });
     }
-
     if (
-      window.pageYOffset > (document.getElementById("product").offsetTop + 20) &&
+      window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
-          300
+          this.ele[this.ele.length - 1].offsetTop +
+          this.ele[this.ele.length - 1].offsetHeight -
+          120
     ) {
       this.setState({
         sticky_sideMenu: true,
@@ -71,13 +74,14 @@ class Menu extends Component {
       <div class="col-lg-3 col-md-4">
         <div class="collection-menu text-center mt-20">
           <div
+            ref={(a) => (this.menuOptions = a)}
             class={
               sticky_sideMenu
                 ? "nav flex-column nav-pills desktop desktop-sticky"
-                : " nav flex-column nav-pills desktop"
+                : " nav flex-column nav-pills desktop desktop-rel"
             }
-            id="v-pills-tab"
             role="tablist"
+            id="menu-options"
             aria-orientation="vertical"
           >
             {this.props.categoryArray.map((category, index) => {
@@ -85,7 +89,8 @@ class Menu extends Component {
                 <a
                   href="/"
                   ref={(a) => (this.ele[index] = a)}
-                  id={`${category.id}`}
+                  id={`menuCategory_${category.id}`}
+                  data-value={category.id}
                   data-toggle="pill"
                   onClick={() => {
                     this.onDropdownSelected(category.id);
@@ -103,6 +108,7 @@ class Menu extends Component {
           >
             <select
               className="menu-dropdown"
+              id="menu-dropdown"
               onChange={(e) => this.onDropdownSelected(e.target.value)}
             >
               {this.props.categoryArray.map((category, index) => {

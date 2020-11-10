@@ -696,8 +696,7 @@ hr {
 }
 
 .delivery-type {
-  margin-top: 3em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -780,12 +779,12 @@ hr {
   font-family: "MuseoModerno";
 }
 
-.foot-content{
+.foot-content {
   width: 100%;
   padding: 10px;
 }
 
-.foot-content a{
+.foot-content a {
   font-size: 1em;
   font-family: "MuseoModerno";
   color: #000466;
@@ -834,8 +833,52 @@ hr {
   bottom: 10px;
 }
 
-.carousel-design div {
-  border-radius: 20px;
+.multi-cards {
+  padding: 0 80px;
+  padding-top: 50px;
+  margin-bottom: -80px;
+}
+@media only screen and (max-width: 768px) {
+  .multi-cards {
+    padding: 0 20px;
+    margin-bottom: -80px;
+  }
+}
+.react-multiple-carousel__arrow {
+  z-index: 7;
+  background: transparent;
+}
+
+.react-multiple-carousel__arrow::before {
+  color: var(--secondary-color);
+}
+
+.react-multi-carousel-item{
+  margin-right: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.react-multiple-carousel__arrow:hover {
+  color: white !important;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: 0;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 0;
+}
+
+.react-multi-carousel-list {
+  height: 300px;
+}
+
+.multi-cards img {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
 }
 
 @media only screen and (min-width: 1400px) {
@@ -878,7 +921,7 @@ hr {
   color: white;
   font-weight: bold;
   border: 2px solid var(--secondary-color);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
 
 .slider-product-content a:hover {
@@ -921,21 +964,43 @@ hr {
 
 .single-slider-1 .slider-bg {
   height: 100%;
-  background-image: url("../images/IMG_20200606_142600.jpg");
-  background-color: #000000;
-  background-size: cover;
-  background-position: center;
 }
-.single-slider-2 .slider-bg {
-  height: 100%;
-  background-image: url("../images/IMG_20200606_143123.jpg");
-  background-color: #000000;
-  background-size: cover;
-  background-position: center;
+.single-slider-1 .slider-bg img {
+  /*height: auto;
+  width: 100%;*/
+}
+.single-slider-1 {
+  padding: 0 50px;
 }
 
-.single-slider .slider-product-image img {
-  width: 100%;
+@media only screen and (max-width: 768px) {
+  .single-slider-1 {
+    padding: 0px 15px;
+  }
+
+  .call-to-action-button {
+    position: absolute;
+    bottom: 20px;
+  }
+  .call-to-action-button a {
+    font-size: 14px;
+    border-radius: 14px;
+    padding: 8px 15px;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    -ms-border-radius: 14px;
+    -o-border-radius: 14px;
+  }
+  .single-slider {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+  }
+  .single-slider-1 .slider-bg img {
+    /*height: 100%;
+    width: auto;*/
+  }
+  
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1007,7 +1072,8 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content {
-    padding: 40px 15px 50px;
+    padding: 20px 15px 50px;
+    justify-content: unset;
   }
 }
 
@@ -1033,13 +1099,41 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
-    font-size: 36px;
+    font-size: 22px;
+    padding: 0 50px;
+  }
+  .single-slider .slider-product-content .row {
+    margin-top: 60%;
+  }
+}
+
+@media (max-width: 332px) {
+  .single-slider .slider-product-content .row {
+    margin-top: 35%;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .single-slider .slider-product-content .slider-title {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (min-width: 460px) and (max-width: 767px) {
+  .single-slider .slider-product-content .row {
+    margin-top: 40%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+  .single-slider .slider-product-content .row {
+    margin-top: 30%;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
-    font-size: 52px;
+    font-size: 35px;
   }
 }
 
@@ -1263,7 +1357,6 @@ hr {
   .product-area {
     padding-top: 50px;
     padding-bottom: 80px;
-    overflow-y: auto;
   }
 }
 
@@ -1338,11 +1431,16 @@ hr {
   box-shadow: 0px 40px 40px 0px rgba(156, 156, 156, 0.25);
   z-index: 999;
 }
-
 .desktop-sticky {
   position: fixed;
-  top: 110px;
-  width: 20%;
+  top: auto;
+  bottom: 10px;
+  width: 19%;
+}
+.desktop-rel {
+  position: relative;
+  width: 100%;
+  top: 0;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1644,10 +1742,17 @@ hr {
      6.about css 
 ===========================*/
 
+.description-content {
+  margin-top: 50px;
+}
+
 @media (max-width: 767px) {
   .about-area {
     padding-top: 75px;
     padding-bottom: 80px;
+  }
+  .description-content {
+    margin-top: 0px;
   }
 }
 /*---*/
