@@ -1459,10 +1459,11 @@ hr {
   background-color: #000466;
   color: #f7f7ff;
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 4px 10px #000466;
+  border:none;
   font-family: "MuseoModerno";
 }
 .count {
