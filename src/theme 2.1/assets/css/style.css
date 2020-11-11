@@ -1457,12 +1457,11 @@ hr {
   height: 50px;
   display: none;
   background-color: #000466;
-  color: #f7f7ff;
+  color: #ffffff;
   position: fixed;
   bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: 2px 4px 10px #000466;
   border:none;
   font-family: "MuseoModerno";
 }
