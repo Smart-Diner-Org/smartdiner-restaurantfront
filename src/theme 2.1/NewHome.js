@@ -752,6 +752,7 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .slider_images
                 }
+                contact_number={this.state.restaurantBranch[0].contact_number}
               />
               <MultiCards  cards  = {JSON.parse(
                   this.state.restaurant_info.restaurant_website_detail
