@@ -810,7 +810,7 @@ class NewHome extends Component {
               {this.state.total > 0 && (
                 <CheckoutButton
                   total={this.state.total}
-                  togglePopup={this.togglePopup}
+                  checkOutToBag={()=>{this.setState({ showPopup: false });this.togglePopup()}}
                 />
               )}
               <WhatsAppIcon
