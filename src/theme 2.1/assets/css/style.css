@@ -1041,6 +1041,10 @@ hr {
   height: 50px;
   width: 50px;
 }
+.whatsup-icon img{
+ filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+ -webkit-filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+}
 @media only screen and (max-width: 768px) {
   .whatsup-icon-mobile {
     display: none;
