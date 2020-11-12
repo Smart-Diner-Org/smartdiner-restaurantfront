@@ -41,8 +41,6 @@ class Menu extends Component {
         is_visible: false,
       });
     }
-
-    console.log(window.pageYOffset);
     if (
       window.pageYOffset > document.getElementById("product").offsetTop + 30 &&
       window.pageYOffset <
