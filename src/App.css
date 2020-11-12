@@ -72,13 +72,8 @@ font-family: "Lato";
   font-size: 18px;
   margin: 5px; 
   font-family: "Lato";
-  -moz-appearance: textfield;
 }
-.mobile-verification .otp-box::-webkit-outer-spin-button,
-.mobile-verification .otp-box::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+
 
 
 .signup a{
