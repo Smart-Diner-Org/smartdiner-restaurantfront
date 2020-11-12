@@ -83,7 +83,6 @@ class Delivery extends Component {
             {this.props.restaurant_website_detail
               .is_run_time_booking_enabled && (
               <button
-                className="mb-20"
                 onClick={() => {
                   sessionStorage.removeItem("deliveryDate");
                   sessionStorage.removeItem("deliveryTime");
@@ -108,7 +107,7 @@ class Delivery extends Component {
               <hr />
 
               <>
-                <p className="mt-20 text-justify" style={{maxWidth:"350px"}}>
+                <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
                   {this.props.restaurant_website_detail.is_delivery_available
                     ? `Select your delivery date and time.`
                     : `Let us know when your order needs to be ready and the time of pick up.`}
