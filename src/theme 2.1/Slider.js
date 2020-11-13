@@ -56,6 +56,13 @@ class Slider extends Component {
                     <div
                       className="single-slider single-slider-1 "
                       onClick={() => {
+                        if (item.slider_link_type) {
+                          ReactGA.event({
+                            category: "Slider Banner",
+                            action: "Clicked image ",
+                            label: `Jumped to ${item.slider_link_type} to ${item.slider_link_value}`,
+                          });
+                        }
                         if (item.slider_link_type === "menu_category") {
                           ReactGA.event({
                             category: "Slider Banner",
