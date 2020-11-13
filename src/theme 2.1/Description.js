@@ -5,7 +5,7 @@ class Description extends React.Component {
     super(props);
     this.state = {
       location: this.props.delivery_locations
-        ? this.props.delivery_locations.split(",")
+        ? ["Gandhipuram", "Sulur", "Kalangal", "Siddhapudur"]
         : null,
     };
   }
@@ -48,7 +48,6 @@ class Description extends React.Component {
               </h5>
             </div>
           )}
-          
 
           {/* {this.props.preOrder && this.props.preOrderImage && (
             <div className="mt-20" style={{ width: "100%" }}>
