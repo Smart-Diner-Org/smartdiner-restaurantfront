@@ -68,7 +68,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
-          
+
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -80,6 +80,12 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
+          if (data.restaurant.get_location_info.get_location_place_id === "2") {
+            this.setState({
+              boundary: true,
+              showPopup: false,
+            });
+          }
 
           if (
             sessionStorage.getItem("items") &&
@@ -689,24 +695,27 @@ class NewHome extends Component {
     } else {
       return (
         <div>
-          {this.state.total !== 0 && this.state.showPopup && (
-            <GetLocation
-              address={this.state.address}
-              getCoords={this.getCoords}
-              handleChange={this.handleChange}
-              checkDistance={this.checkDistance}
-              PAhandleChange={this.PAhandleChange}
-              handleSelect={this.handleSelect}
-              close={this.close}
-              pickMyLocation={
-                this.state.restaurant_info.restaurant_website_detail
-                  .is_pick_my_location_enabled
-              }
-              boundary={this.state.boundary}
-              gotocart={this.gotocart}
-              contshpng={this.contshpng}
-            />
-          )}
+          {this.state.restaurant_info.get_location_info
+            .get_location_place_id === "1" &&
+            this.state.total !== 0 &&
+            this.state.showPopup && (
+              <GetLocation
+                address={this.state.address}
+                getCoords={this.getCoords}
+                handleChange={this.handleChange}
+                checkDistance={this.checkDistance}
+                PAhandleChange={this.PAhandleChange}
+                handleSelect={this.handleSelect}
+                close={this.close}
+                pickMyLocation={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .is_pick_my_location_enabled
+                }
+                boundary={this.state.boundary}
+                gotocart={this.gotocart}
+                contshpng={this.contshpng}
+              />
+            )}
 
           {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
           <div>
@@ -754,10 +763,11 @@ class NewHome extends Component {
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
               />
-              <MultiCards  cards  = {JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail
-                    .cards
-                )}/>
+              <MultiCards
+                cards={JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail.cards
+                )}
+              />
               <Description
                 delivery_locations={
                   this.state.restaurantBranch[0].delivery_locations_to_display
@@ -778,7 +788,6 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
                 }
-               
               />
 
               <Product
