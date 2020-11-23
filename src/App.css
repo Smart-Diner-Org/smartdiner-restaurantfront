@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
 
-.signup input{
+.signup input,select{
   border: 1px solid #000466;
   border-radius: 5px;
   display: flex;
@@ -87,12 +87,13 @@ font-family: "Lato";
   font-family: "Lato";
 }
 
-.new-customer input{
+.new-customer input,select{
   color: #000466;
   width: 100%;
   padding: 5px;
   font-family: "Lato";
 }
+
 
 
 .address{
@@ -111,7 +112,6 @@ font-family: "Lato";
 
 .address:hover{
   box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-  cursor: hand;
    cursor: pointer;
 }
 
@@ -130,7 +130,9 @@ font-family: "Lato";
   flex-direction: row; 
   justify-content: flex-end;
 }
-
+.address label{
+  font-size: 16px;
+}
 .address .cancel{
   font-family: "Lato";
   border: none;
