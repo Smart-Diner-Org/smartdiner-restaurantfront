@@ -15,7 +15,17 @@ render(){
                 <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name" onChange={this.props.handleChange} required="required"/>
                 <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange} required="required"/>
                 <input className=" mt-10" type="text" name="addressOne" placeholder="Adress Line 1" onChange={this.props.handleChange} required="required"/>
-                <label style={{fontSize:"18px"}} className="mt-10">{this.props.addressTwo}</label>
+                {localStorage.getItem("LocationplaceID") === "1" && <label style={{fontSize:"18px"}} className="mt-10">{this.props.addressTwo}</label>}
+                {localStorage.getItem("LocationplaceID") === "2" && (
+                <select className="menu-dropdown">
+                  {localStorage
+                    .getItem("DeliveryLocations")
+                    .split(",")
+                    .map((location, index) => {
+                      return <option>{location}</option>;
+                    })}
+                </select>
+              )}
                 {<small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> || <small className="error-message" style={{color:"green"}}>{this.props.errorMessage}</small> }
 
                 {/* <input className=" mt-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>

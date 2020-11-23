@@ -80,7 +80,19 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
-          if (data.restaurant.get_location_info.get_location_place_id === "2") {
+          localStorage.setItem(
+            "LocationplaceID",
+            data.restaurant.get_location_info.get_location_place_id
+          );
+          localStorage.setItem(
+            "LocationTypeID",
+            data.restaurant.get_location_info.get_location_type_id
+          );
+          localStorage.setItem(
+            "DeliveryLocations",
+            data.restaurant.restaurant_branches[0].delivery_locations
+          );
+          if (data.restaurant.get_location_info.get_location_type_id === "2") {
             this.setState({
               boundary: true,
               showPopup: false,
@@ -695,8 +707,8 @@ class NewHome extends Component {
     } else {
       return (
         <div>
-          {this.state.restaurant_info.get_location_info
-            .get_location_place_id === "1" &&
+          {this.state.restaurant_info.get_location_info.get_location_type_id ===
+            "1" &&
             this.state.total !== 0 &&
             this.state.showPopup && (
               <GetLocation
