@@ -38,7 +38,7 @@ class NewHome extends Component {
       togglePopup: false,
       refpostcode: "",
       refregion: null,
-      bagItems: new Array(),
+      bagItems: [],
       distance: null,
     };
     this.changequantity = this.changequantity.bind(this);
