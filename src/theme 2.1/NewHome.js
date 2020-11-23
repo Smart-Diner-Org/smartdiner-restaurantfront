@@ -760,7 +760,7 @@ class NewHome extends Component {
                 )}/>
               <Description
                 delivery_locations={
-                  this.state.restaurantBranch[0].delivery_locations
+                  this.state.restaurantBranch[0].delivery_locations_to_display
                 }
                 preOrder={
                   this.state.restaurant_info.restaurant_website_detail
