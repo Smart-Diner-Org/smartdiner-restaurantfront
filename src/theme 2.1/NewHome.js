@@ -457,12 +457,12 @@ class NewHome extends Component {
                       ) ||
                         flag)
                     ) {
-                      alert("Welcome you sir... we are happy to serve you");
+                      alert("Welcome you sir/madam... we are happy to serve you");
                       this.setState({ boundary: true });
                       sessionStorage.setItem("boundary", true);
                     }
                   } else if (withInDistance) {
-                    alert("Welcome you sir... we are happy to serve you");
+                    alert("Welcome you sir/madam... we are happy to serve you");
                     this.setState({ boundary: true });
                     sessionStorage.setItem("boundary", true);
                   }
