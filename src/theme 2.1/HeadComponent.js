@@ -104,14 +104,13 @@ class HeadComponent extends Component {
                     href="#"
                     onClick={this.props.togglePopup}
                   >
-                    <label>Cart</label>
                     <img
                       loading="lazy"
                       src={BagImage}
                       className="img-responsive cart"
                       alt="Cart"
                     />
-
+                    <label>Cart</label>
                     <span className="badge">{this.props.total}</span>
                   </a>
                 </div>
