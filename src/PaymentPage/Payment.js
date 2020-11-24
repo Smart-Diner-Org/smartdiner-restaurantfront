@@ -1,0 +1,106 @@
+import React from "react";
+import BHIM from "./assets/images/bhim.svg";
+import Gpay from "./assets/images/google-pay.svg";
+import paytm from "./assets/images/paytm.svg";
+import phonepe from "./assets/images/phonepe.svg";
+import master from "./assets/images/025-mastercard.svg";
+import visa from "./assets/images/visa.svg";
+import rupay from "./assets/images/rupay.svg";
+import jio from "./assets/images/jiomoney.svg";
+import ola from "./assets/images/olamoney.svg";
+import freeRe from "./assets/images/freecharge.svg";
+import mobwik from "./assets/images/mobiwiki.svg";
+import Orders from "./Orders";
+
+const paymentIcons = [
+  BHIM,
+  Gpay,
+  paytm,
+  phonepe,
+  master,
+  visa,
+  rupay,
+  jio,
+  ola,
+  freeRe,
+  mobwik,
+];
+class Payment extends React.Component {
+  render() {
+    return (
+      <div className="payment-method ">
+        <div className="row">
+          <div className="col-4 order-details">
+            {sessionStorage.getItem("deliveryDate") && (
+              <>
+                <h6>Delivery Date</h6>
+                <label>{sessionStorage.getItem("deliveryDate")}</label>
+              </>
+            )}
+            {sessionStorage.getItem("deliveryTime") && (
+              <>
+                <h6>Delivery Time</h6>
+                <label>{sessionStorage.getItem("deliveryTime")}</label>
+              </>
+            )}
+          </div>
+          <div className="col-8 orders">
+            <h6 className="row d-flex justify-content-center">
+              Items in the cart
+            </h6>
+            <ul>
+              {sessionStorage.getItem("items") &&
+                JSON.parse(sessionStorage.getItem("items")).map(
+                  (item, index) => {
+                    for (let key in item) {
+                      return (
+                        <Orders
+                          key={index}
+                          quantity={item[key].quantity}
+                          itemName={item[key].name}
+                          discountPrice={
+                            item[key].discountPrice
+                              ? item[key].discountPrice
+                              : item[key].originalPrice
+                          }
+                          menuQuantity={item[
+                            key
+                          ].menu_quantity_measure_price_list.filter((menu) => {
+                            return (
+                              menu.id ==
+                              item[key].selectedMenuQuantityMeasurePriceId
+                            );
+                          })}
+                        />
+                      );
+                    }
+                  }
+                )}
+            </ul>
+          </div>
+        </div>
+        <div className="d-flex justify-content-around mt-40">
+          <button className="proceed disabled">Pay Cash</button>
+          <button className="proceed">Pay Online</button>
+          <button
+            className="proceed"
+            style={{
+              color: "#000466",
+              backgroundColor: "white",
+              borderRadius: "8px",
+            }}
+          >
+            Total: Rs{sessionStorage.getItem("totalWithoutTax")}
+          </button>
+        </div>
+        <div className="d-flex flex-wrap justify-content-around mt-40">
+          {paymentIcons.map((icon) => {
+            return <img src={icon} alt="payment-icon" />;
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Payment;

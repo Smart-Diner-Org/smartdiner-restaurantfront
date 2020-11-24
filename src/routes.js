@@ -12,7 +12,7 @@ import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
 // import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
-import SignUp from './signup'
+import SignUp from './PaymentPage/signup'
 import StatusPage from './customerStatus/StatusPage'
 import LoanBalancerTest from './loanBalancerTest'
 

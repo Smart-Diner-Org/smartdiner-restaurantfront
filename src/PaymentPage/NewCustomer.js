@@ -28,7 +28,7 @@ render(){
                     <button type="submit" className="new-address">Add address</button>
                 </div> 
             </form>      
-            <div className="mt-30">
+            <div className="mt-20">
                 <label>*Give Location access for delivery</label>
             </div>  
         </div>
