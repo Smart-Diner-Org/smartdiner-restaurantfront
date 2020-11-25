@@ -1,0 +1,84 @@
+.otpPage-container{
+   text-align: center;
+}
+
+.logo{
+    margin-top: 30px;
+    margin: 0 auto;
+}
+.otpPage-container h3{
+    margin-top:30px;
+    color: #000466;
+    text-align: center;
+    font-family: "MuseoModerno";
+}
+.otpPage-container p{
+    color: #000466;
+}
+.otpPage-container .login-button{
+    background-color: #000466;
+    color:#ffffff;
+    width:700px;
+   /* width: 100%;
+    max-width:700px;*/
+    height:60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 30px;
+    border:none;
+    font-family: "MuseoModerno";
+
+}
+.contact-button button{
+    background-color: #ffffff;
+    color:#000466;
+    width:700px;
+    height:60px;
+    border-color:#000466;
+    font-family: "Loto";
+}
+.contact-button a{
+    color:#000466;
+    text-decoration: none;
+}
+.otp-box{
+    border-bottom-color:#000466;
+    border-left: #ffffff;
+    border-right: #ffffff;
+    border-top:#ffffff;
+    color:#000466;
+    text-align: center;
+    margin:15px;
+    width:120px;   
+}
+
+ 
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .otpPage-container .login-button{
+        width:350px;
+        height:60px;
+    }
+    .contact-button button{
+        width:350px;
+        height:60px;
+    }
+    .otp-box{
+        width: 40px;
+    }
+}
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+    .otpPage-container .login-button{
+        width:350px;
+        height:60px;
+    }
+    .contact-button button{
+        width:350px;
+        height:60px;
+    }
+    .otp-box{
+        width: 40px;
+    }
+}

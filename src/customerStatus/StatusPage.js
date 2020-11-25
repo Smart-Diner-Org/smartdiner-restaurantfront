@@ -4,15 +4,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { defaultAboutImage } from "../theme 2.1/constant";
+import OTPpage from "./OTPpage"
+import ReactGA from "react-ga";
 
 const orderNotFound = "Order not found";
 const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
   "It does not seem to be the right order. Please check";
+  let myInterval;
 
 class StatusPage extends React.Component {
   constructor(props) {
     super(props);
+    //this.apiLink = `${process.env.REACT_APP_BASE_URL}/`;
     this.state = {
       data: {},
       flag1: false,
@@ -25,9 +29,86 @@ class StatusPage extends React.Component {
       cancellationDate: "",
       cancellationTime: "",
       wrongOrder: null,
-    };
-  }
 
+      OTP:"",
+      minutes: 0,
+      seconds: 60,
+      mobile:"",
+      successMessage: "",
+      errorMessage: "",
+      mobileverification:false,
+      isVerified : false,
+
+    };
+    this.OTPverfication = this.OTPverfication.bind(this)
+    this.resendOTP = this.resendOTP.bind(this)
+  }
+  setOTPValue = (value) => {
+    this.setState({ OTP: value });
+  };
+  
+  async OTPverfication(otp,mobile) {
+    const data = {
+      //mobile: this.state.data.customerContactNumber,
+      mobile:mobile,
+      otp: otp,
+    };
+    await axios
+      .post(`https://testingapi.smartdiner.co/auth/verify_otp`, data)
+      
+      .then((res) => {
+        console.log(res.data)
+        this.setState({ user_info: res.data });
+        this.setState({ token: res.data.accessToken });
+        sessionStorage.setItem("token", res.data.accessToken);
+        this.setState({ successMessage: res.data.message });
+        this.setState({ isVerified: true });
+        clearInterval(myInterval);
+        ReactGA.event({
+          category: "OTP",
+          action: "Verified OTP",
+          label: data.mobile,
+        });
+      })
+      .catch((error) => {
+        if (error && error.response && error.response.data) {
+          let er = error.response.data.message;
+          console.log(er);
+          this.setState({ errorMessage: er });
+        }
+      });
+  }
+  
+  async resendOTP(event){
+    event.preventDefault()
+    const data ={
+        mobile : this.state.data.customerContactNumber
+    }
+    sessionStorage.removeItem("token")
+    await axios.post(`https://testingapi.smartdiner.co/auth/resend_otp`,data)
+        .then(res => {
+            this.setState({successMessage:res.data.message})
+            ReactGA.event({
+                category: "OTP",
+                action: "Request for re-send OTP",
+                label: data.mobile
+              })
+        })
+        .catch( (error) => {
+            if(error && error.response && error.response.data){
+                let er = error.response.data.message
+                console.log(er)
+                this.setState({errorMessage:er});
+            }
+        })
+     this.setState({seconds:60}) 
+     this.setState({isVerified:false})
+}
+
+/*
+ async OTPverfication(otp){
+   console.log("verified",otp)
+ } */
   async componentDidMount() {
     try {
       let id = this.props.match.params;
@@ -40,6 +121,7 @@ class StatusPage extends React.Component {
           const data = res.data;
           console.log(data);
           this.setState({ data: data });
+          this.setState({mobileverification:data.mobileVerification})
           if (data.message === orderNotFound || data.message === invalidOrder) {
             this.setState({ wrongOrder: wrongOrderMessage });
           }
@@ -107,11 +189,35 @@ class StatusPage extends React.Component {
     this.setState({
       cancellationTime: canTime,
     });
+
+    //-----
+    clearInterval(myInterval);
+      myInterval = setInterval(() => {
+        const { seconds, minutes } = this.state;
+
+        if (seconds > 0) {
+          this.setState(({ seconds }) => ({
+            seconds: seconds - 1,
+          }));
+        }
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(this.myInterval);
+          } else {
+            this.setState(({ minutes }) => ({
+              minutes: minutes - 1,
+              seconds: 59,
+            }));
+          }
+        }
+      }, 1000);
+
   }
 
   render() {
     return (
       <div>
+        {this.state.data.mobileVerification &&
         <div className="container customerStatusContainer">
           <div className="header">
             <div className="row">
@@ -354,7 +460,22 @@ class StatusPage extends React.Component {
             </div>
           </div>
         </div>
-
+          
+          }
+          {!this.state.data.mobileVerification && 
+          <OTPpage 
+          logo={this.state.data.logo} 
+          restuarantName={this.state.data.restuarantName} 
+          customerContactNumber={this.state.data.customerContactNumber}
+          setOTPValue={this.setOTPValue}
+          OTPverfication={this.OTPverfication}
+          minutes={this.state.minutes}
+          seconds={this.state.seconds}
+          restaurantContactNumber={this.state.data.restaurantContactNumber}
+          successMessage={this.state.successMessage}
+          errorMessage = {this.state.errorMessage}
+          resendOTP={this.resendOTP}
+          />}
         <div className="status-footer">
           <p>
             Powered by{" "}
