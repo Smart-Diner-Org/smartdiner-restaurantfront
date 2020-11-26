@@ -36,9 +36,9 @@ class StatusPage extends React.Component {
       mobile:"",
       successMessage: "",
       errorMessage: "",
-      mobileverification:false,
+      mobileVerification:false,
       isVerified : false,
-
+      
     };
     this.OTPverfication = this.OTPverfication.bind(this)
     this.resendOTP = this.resendOTP.bind(this)
@@ -63,12 +63,15 @@ class StatusPage extends React.Component {
         sessionStorage.setItem("token", res.data.accessToken);
         this.setState({ successMessage: res.data.message });
         this.setState({ isVerified: true });
+        this.setState({mobileVerification:true})
+        console.log(res.data.message)
         clearInterval(myInterval);
         ReactGA.event({
           category: "OTP",
           action: "Verified OTP",
           label: data.mobile,
         });
+        
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
@@ -105,10 +108,7 @@ class StatusPage extends React.Component {
      this.setState({isVerified:false})
 }
 
-/*
- async OTPverfication(otp){
-   console.log("verified",otp)
- } */
+
   async componentDidMount() {
     try {
       let id = this.props.match.params;
@@ -121,7 +121,7 @@ class StatusPage extends React.Component {
           const data = res.data;
           console.log(data);
           this.setState({ data: data });
-          this.setState({mobileverification:data.mobileVerification})
+          this.setState({mobileVerification:data.mobileVerification})
           if (data.message === orderNotFound || data.message === invalidOrder) {
             this.setState({ wrongOrder: wrongOrderMessage });
           }
@@ -217,7 +217,7 @@ class StatusPage extends React.Component {
   render() {
     return (
       <div>
-        {this.state.data.mobileVerification &&
+        {this.state.mobileVerification &&
         <div className="container customerStatusContainer">
           <div className="header">
             <div className="row">
@@ -462,7 +462,7 @@ class StatusPage extends React.Component {
         </div>
           
           }
-          {!this.state.data.mobileVerification && 
+          {!this.state.mobileVerification && 
           <OTPpage 
           logo={this.state.data.logo} 
           restuarantName={this.state.data.restuarantName} 
