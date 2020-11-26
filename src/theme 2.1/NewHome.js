@@ -68,7 +68,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
-          
+
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -393,7 +393,12 @@ class NewHome extends Component {
           async (response, status) => {
             if (status !== "OK") {
               alert("Error was: " + status);
-            } else {
+            } else if (
+              Boolean(
+                response.rows[0].elements[0].distance &&
+                  response.rows[0].elements[0].distance.value
+              ) === true
+            ) {
               distance = response.rows[0].elements[0].distance.value;
               let address;
               Geocode.fromLatLng(
@@ -423,7 +428,7 @@ class NewHome extends Component {
                     withInDistance = true;
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
@@ -488,6 +493,10 @@ class NewHome extends Component {
                   console.error(error);
                 }
               );
+            } else {
+              alert(
+                "Sorry! We cannot deliver there. Please try with other locations."
+              );
             }
           }
         );
@@ -536,7 +545,12 @@ class NewHome extends Component {
             async (response, status) => {
               if (status !== "OK") {
                 alert("Error was: " + status);
-              } else {
+              } else if (
+                Boolean(
+                  response.rows[0].elements[0].distance &&
+                    response.rows[0].elements[0].distance.value
+                ) === true
+              ) {
                 distance = response.rows[0].elements[0].distance.value;
                 sessionStorage.setItem("lat", latLng.lat);
                 sessionStorage.setItem("long", latLng.lng);
@@ -551,7 +565,7 @@ class NewHome extends Component {
                   withInDistance = true;
                 } else {
                   alert(
-                    "Sorry for our Incovenience.... You're out of our boundary"
+                    "Sorry for our Incovenience.... You're out of our service boundary"
                   );
                   this.setState({ boundary: false });
                 }
@@ -598,7 +612,7 @@ class NewHome extends Component {
                     sessionStorage.setItem("boundary", true);
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
@@ -623,6 +637,10 @@ class NewHome extends Component {
                     value: 1,
                   });
                 }
+              } else {
+                alert(
+                  "Sorry! We cannot deliver there. Please try with other locations."
+                );
               }
             }
           );
@@ -754,10 +772,11 @@ class NewHome extends Component {
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
               />
-              <MultiCards  cards  = {JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail
-                    .cards
-                )}/>
+              <MultiCards
+                cards={JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail.cards
+                )}
+              />
               <Description
                 delivery_locations={
                   this.state.restaurantBranch[0].delivery_locations
@@ -778,7 +797,6 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
                 }
-               
               />
 
               <Product
