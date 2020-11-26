@@ -319,6 +319,7 @@ class SignUp extends Component {
       })
       .then((res) => {
         sessionStorage.clear();
+        localStorage.clear();
         ReactGA.event({
           category: "Customer",
           action: "Placed Order",
@@ -376,7 +377,7 @@ class SignUp extends Component {
         <div className="signup ">
           <div className="container">
             <div className="row">
-              <div className="col-lg-5 col-md-6 col-sm-12 signup-left">
+              <div className="col-lg-5 col-md-5 col-sm-12 signup-left">
                 <div className="signup-header">
                   <Link to="/">
                     <label className="mb-20">
@@ -422,12 +423,15 @@ class SignUp extends Component {
                     ))}
                 </div>
               </div>
-              <div className="col-lg-7 col-md-6 col-sm-12">
+              <div className="col-lg-7 col-md-7 col-sm-12">
                 <Payment
                   goPayment={this.goPayment}
                   successMessage={this.state.paymentSuccessMessage}
                   errorMessage={this.state.paymentErrorMessage}
-                  check={this.state.user_info.customer.customer_detail}
+                  check={
+                    this.state.user_info.customer.customer_detail &&
+                    this.state.requestedOTP
+                  }
                 />
               </div>
             </div>

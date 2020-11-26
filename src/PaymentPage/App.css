@@ -20,10 +20,6 @@
   font-size: 2em;
   font-family: "MuseoModerno";
 }
-.signup-left {
-  height: 100vh;
-  border-right: 3px solid #000466;
-}
 
 .mobile-verification button {
   padding: 10px 20px;
@@ -45,8 +41,10 @@
 }
 
 .order-details {
-  align-items: flex-end;
-  line-height: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 .order-details h6 {
   color: #000466;
@@ -135,7 +133,6 @@
 .payment-method {
   padding-top: 80px;
   width: 100%;
-  /* position: fixed; */
 }
 
 .new-address {

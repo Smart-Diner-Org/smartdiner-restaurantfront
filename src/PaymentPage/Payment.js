@@ -30,7 +30,7 @@ class Payment extends React.Component {
     return (
       <div className="payment-method ">
         <div className="row">
-          <div className="col-4 order-details">
+          <div className="col-lg-4 order-details">
             {sessionStorage.getItem("deliveryDate") && (
               <>
                 <h6>Delivery Date</h6>
@@ -44,7 +44,7 @@ class Payment extends React.Component {
               </>
             )}
           </div>
-          <div className="col-8 orders">
+          <div className="col-lg-8 orders">
             <h6 className="row d-flex justify-content-center">
               Items in the cart
             </h6>
@@ -85,8 +85,11 @@ class Payment extends React.Component {
               (paymentType) => {
                 return (
                   <button
-                    className="proceed disabled"
+                    className={
+                      this.props.check ? "proceed" : "proceed disabled"
+                    }
                     value={paymentType.payment_type.id}
+                    onClick={this.props.check && this.props.goPayment}
                   >
                     {paymentType.payment_type.name}
                   </button>
