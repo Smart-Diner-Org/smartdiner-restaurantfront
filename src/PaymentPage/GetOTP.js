@@ -45,6 +45,7 @@ class GetOTP extends React.Component{
                                 <div className="col-10 d-flex">
                                     {elementsArray.map((k, i) => (
                                         <input className="otp-box "
+                                        key={i}
                                         ref={(ref) => (refArray[i] = ref)} 
                                         onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
                                         maxLength={1}
