@@ -43,6 +43,11 @@ class Delivery extends Component {
         60 *
         1000;
       if (timeDifference <= timeLimit) {
+        ReactGA.event({
+          category: "Cart",
+          action: "Clicked shcedule order button",
+          label: `chose delivery timings less than time limit: ${this.props.restaurant_website_detail.pre_book_prior_time}`,
+        });
         alert(
           `we take orders placed ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance of the delivery time.`
         );
@@ -83,7 +88,6 @@ class Delivery extends Component {
             {this.props.restaurant_website_detail
               .is_run_time_booking_enabled && (
               <button
-                className="mb-20"
                 onClick={() => {
                   sessionStorage.removeItem("deliveryDate");
                   sessionStorage.removeItem("deliveryTime");
@@ -108,7 +112,7 @@ class Delivery extends Component {
               <hr />
 
               <>
-                <p className="mt-20 text-justify" style={{maxWidth:"350px"}}>
+                <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
                   {this.props.restaurant_website_detail.is_delivery_available
                     ? `Select your delivery date and time.`
                     : `Let us know when your order needs to be ready and the time of pick up.`}
@@ -129,6 +133,11 @@ class Delivery extends Component {
                         : "YYYY-MM-DD"
                     }
                     onChange={(deliveryDateTime) => {
+                      ReactGA.event({
+                        category: "Cart",
+                        action: "Clicked date picker in cart",
+                        label: "tried to change date",
+                      });
                       this.setState({ deliveryDateTime });
                     }}
                   />
