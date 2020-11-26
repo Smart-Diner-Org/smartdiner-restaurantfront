@@ -1,41 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap");
 
-.signup input,select{
+.signup input,
+select {
   border: 1px solid #000466;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   font-family: "Lato";
- 
 }
 
-.signup .header{
+.signup .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.signup h2{
+.signup h2 {
   color: #000466;
   text-decoration: underline;
-  text-decoration-color: #FFC009;
+  text-decoration-color: #ffc009;
   font-size: 2em;
   font-family: "MuseoModerno";
 }
 
-.mobile-verification button{
-padding: 10px 20px;
-color: white;
-background-color: #000466;
-border: none;
-border-radius: 8px;
-font-size: 0.9em;
-width:100%;
-font-family: "Lato";
-
+.mobile-verification button {
+  padding: 10px 20px;
+  color: white;
+  background-color: #000466;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9em;
+  width: 100%;
+  font-family: "Lato";
 }
 
-.signup h4{
+.signup h4 {
   font-size: 1.5em;
   color: #000466;
   background-color: white;
@@ -43,20 +42,19 @@ font-family: "Lato";
   font-family: "MuseoModerno";
 }
 
-.order-details{
+.order-details {
   align-items: flex-end;
 }
 @media (max-width: 767px) {
-  .order-details{
+  .order-details {
     align-items: flex-start;
   }
 }
-.order-details h6{
+.order-details h6 {
   color: #000466;
 }
 
-
-.customer-details-form{
+.customer-details-form {
   position: relative;
   top: 50px;
   width: 80%;
@@ -64,41 +62,44 @@ font-family: "Lato";
   min-width: 250px;
 }
 
-.mobile-verification .otp-box{
+.mobile-verification .otp-box {
   width: 40px;
   min-width: 40px;
   height: 40px;
   text-align: center;
   font-size: 18px;
-  margin: 5px; 
+  margin: 5px;
   font-family: "Lato";
+  -moz-appearance: textfield;
+}
+.mobile-verification .otp-box::-webkit-outer-spin-button,
+.mobile-verification .otp-box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-
-
-.signup a{
+.signup a {
   font-size: 12px;
   font-family: "Lato";
   color: #000466;
 }
-.signup label{
+.signup label {
   font-size: 12px;
   color: #000466;
   font-family: "Lato";
 }
 
-.new-customer input,select{
+.new-customer input,
+select {
   color: #000466;
   width: 100%;
   padding: 5px;
   font-family: "Lato";
 }
 
-
-
-.address{
+.address {
   font-family: "Lato";
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   padding: 20px;
   color: #000466;
   line-height: 0.8em;
@@ -110,43 +111,44 @@ font-family: "Lato";
   -o-transition: box-shadow 0.4s ease-out;
 }
 
-.address:hover{
-  box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-   cursor: pointer;
+.address:hover {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
-
-
-
-
-.address .edit{
+.address .edit {
   font-family: "Lato";
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
   padding: 10px 20px;
   border-radius: 5px;
-   display: flex;
-  flex-direction: row; 
+  display: flex;
+  flex-direction: row;
   justify-content: flex-end;
 }
-.address label{
+.address label {
   font-size: 16px;
 }
-.address .cancel{
+.address .cancel {
   font-family: "Lato";
   border: none;
-  color: #E22A28;
+  color: #e22a28;
   background-color: white !important;
   font-size: 1em;
 }
 
-.payment-method{
+.payment-method {
   width: 100%;
-  /* position: fixed; */
 }
 
-.payment-method button{
+@media screen and (max-width: 65em) {
+  .payment-method {
+    margin-top: 20px;
+  }
+}
+
+.payment-method button {
   font-family: "Lato";
   display: block;
   width: 100%;
@@ -160,32 +162,28 @@ font-family: "Lato";
   border-top: none;
 }
 
-.payment-method ul:first-child{
-  border-top: 1px solid #000466; 
+.payment-method ul:first-child {
+  border-top: 1px solid #000466;
   width: 100%;
 }
 
-
-.payment-method button:hover , button:active{
+.payment-method button:hover,
+button:active {
   background-color: #000466;
   color: white;
 }
 
-
-.new-address{
+.new-address {
   font-family: "Lato";
   color: white;
   background-color: #000466;
-  font-size: 18px;
   border: 1px solid #000466;
   border-radius: 10px;
   padding: 10px 20px;
   font-size: 1em;
 }
 
-
-
-.payment-method .proceed{
+.payment-method .proceed {
   width: auto;
   padding: 5px 20px;
   border-radius: 8px;
@@ -195,41 +193,37 @@ font-family: "Lato";
   border: 1px solid #000466;
   font-size: 1.3em;
   pointer-events: all;
-  
 }
 
-.payment-method img{
-  margin : 0px 5px;
+.payment-method img {
+  margin: 0px 5px;
   height: 25px;
   width: 30px;
 }
 
-@media screen and (max-width:65em){
-  
-  .signup{
+@media screen and (max-width: 65em) {
+  .signup {
     padding: 30px;
     position: relative;
   }
-  .payment-method .proceed{
+  .payment-method .proceed {
     margin-bottom: 60px;
   }
 
-
-  .payment-method img{
+  .payment-method img {
     height: 18px;
   }
 
-  .payment-method button{
+  .payment-method button {
     font-size: 10px;
   }
 
-  .customer-details-form{
+  .customer-details-form {
     width: 100%;
     min-width: 250px;
   }
 
-  .signup{
+  .signup {
     position: relative;
   }
-  
 }

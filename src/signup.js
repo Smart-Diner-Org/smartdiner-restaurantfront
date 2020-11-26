@@ -249,10 +249,6 @@ class SignUp extends Component {
 
   async addCustomer(event) {
     event.preventDefault();
-    if(this.state.addressTwo === null){
-        alert("Please choose a Address Line 2")
-        return false;
-    }
     const data = {
       name: this.state.name,
       email: this.state.email,
@@ -430,7 +426,7 @@ class SignUp extends Component {
                     seconds={this.state.seconds}
                     isVerified={this.state.isVerified}
                   />
-             
+
                   {this.state.token &&
                     (this.state.user_info.customer.customer_detail ? (
                       <GetAddress

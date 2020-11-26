@@ -411,7 +411,12 @@ class NewHome extends Component {
           async (response, status) => {
             if (status !== "OK") {
               alert("Error was: " + status);
-            } else {
+            } else if (
+              Boolean(
+                response.rows[0].elements[0].distance &&
+                  response.rows[0].elements[0].distance.value
+              ) === true
+            ) {
               distance = response.rows[0].elements[0].distance.value;
               let address;
               Geocode.fromLatLng(
@@ -441,7 +446,7 @@ class NewHome extends Component {
                     withInDistance = true;
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
@@ -506,6 +511,10 @@ class NewHome extends Component {
                   console.error(error);
                 }
               );
+            } else {
+              alert(
+                "Sorry! We cannot deliver there. Please try with other locations."
+              );
             }
           }
         );
@@ -554,7 +563,12 @@ class NewHome extends Component {
             async (response, status) => {
               if (status !== "OK") {
                 alert("Error was: " + status);
-              } else {
+              } else if (
+                Boolean(
+                  response.rows[0].elements[0].distance &&
+                    response.rows[0].elements[0].distance.value
+                ) === true
+              ) {
                 distance = response.rows[0].elements[0].distance.value;
                 sessionStorage.setItem("lat", latLng.lat);
                 sessionStorage.setItem("long", latLng.lng);
@@ -569,7 +583,7 @@ class NewHome extends Component {
                   withInDistance = true;
                 } else {
                   alert(
-                    "Sorry for our Incovenience.... You're out of our boundary"
+                    "Sorry for our Incovenience.... You're out of our service boundary"
                   );
                   this.setState({ boundary: false });
                 }
@@ -616,7 +630,7 @@ class NewHome extends Component {
                     sessionStorage.setItem("boundary", true);
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
@@ -641,6 +655,10 @@ class NewHome extends Component {
                     value: 1,
                   });
                 }
+              } else {
+                alert(
+                  "Sorry! We cannot deliver there. Please try with other locations."
+                );
               }
             }
           );
@@ -828,10 +846,10 @@ class NewHome extends Component {
                 address={this.state.restaurantBranch[0].address}
               />
               <Contact />
-              {this.state.total > 0 && (
+              {this.state.total > 0 && this.state.boundary && (
                 <CheckoutButton
                   total={this.state.total}
-                  togglePopup={this.togglePopup}
+                  checkOutToBag={()=>{this.setState({ showPopup: false });this.togglePopup()}}
                 />
               )}
               <WhatsAppIcon

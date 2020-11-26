@@ -1468,12 +1468,12 @@ hr {
   height: 50px;
   display: none;
   background-color: #000466;
-  color: #f7f7ff;
+  color: #ffffff;
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: 2px 10px rgba(0, 0, 0, 0.2);
+  border:none;
   font-family: "MuseoModerno";
 }
 .count {
@@ -2810,6 +2810,7 @@ p.form-message.error {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 20px;
   text-align: center;
   border: 1px solid black;

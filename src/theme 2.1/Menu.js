@@ -42,7 +42,7 @@ class Menu extends Component {
       });
     }
     if (
-      window.pageYOffset > document.getElementById("product").offsetTop + 30 &&
+      window.pageYOffset > document.getElementById("product").offsetTop + 120 &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -

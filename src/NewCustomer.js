@@ -36,7 +36,11 @@ class NewCustomer extends Component {
             </label>
           )}
           {localStorage.getItem("LocationplaceID") === "2" && (
-            <select className="mt-10" required onChange={this.props.selectAddress}>
+            <select
+              className="mt-10"
+              required
+              onChange={this.props.selectAddress}
+            >
               <option value="" disabled selected hidden>
                 Select Address Line 2
               </option>
@@ -44,25 +48,21 @@ class NewCustomer extends Component {
                 .getItem("DeliveryLocations")
                 .split(",")
                 .map((location, index) => {
-                  return <option key={index} value={location}>{location}</option>;
+                  return (
+                    <option key={index} value={location}>
+                      {location}
+                    </option>
+                  );
                 })}
             </select>
           )}
-          {(
+
+          {this.props.errorMessage && (
             <small className="error-message" style={{ color: "#e22a28" }}>
-              {this.props.errorMessage}
-            </small>
-          ) || (
-            <small className="error-message" style={{ color: "green" }}>
               {this.props.errorMessage}
             </small>
           )}
 
-          {/* <input className=" mt-10" type="text" name="addressLine2" placeholder="Adress Line 2"/>
-                <div className="row-12 mt-30" style={{display:"flex",flexDirection:"row"}} >
-                    <input className="col-5 mr-5" type="text" name="city" placeholder="City"/>
-                    <input className="col-5 " type="text" name="state" placeholder="State"/>
-                </div> */}
           <div className="mt-30">
             {/* <a href="#" style={{marginRight:"35%"}}>Get Location</a> */}
             <button type="submit" className="new-address">
