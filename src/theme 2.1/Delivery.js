@@ -88,7 +88,6 @@ class Delivery extends Component {
             {this.props.restaurant_website_detail
               .is_run_time_booking_enabled && (
               <button
-                className="mb-20"
                 onClick={() => {
                   sessionStorage.removeItem("deliveryDate");
                   sessionStorage.removeItem("deliveryTime");
