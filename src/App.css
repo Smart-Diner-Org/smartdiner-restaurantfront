@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   font-family: "Lato";
- 
 }
 
 .signup .header{
@@ -101,7 +100,7 @@ font-family: "Lato";
 
 .address{
   font-family: "Lato";
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
   padding: 20px;
   color: #000466;
   line-height: 0.8em;
@@ -114,8 +113,7 @@ font-family: "Lato";
 }
 
 .address:hover{
-  box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-  cursor: hand;
+  box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
    cursor: pointer;
 }
 
@@ -145,7 +143,12 @@ font-family: "Lato";
 
 .payment-method{
   width: 100%;
-  /* position: fixed; */
+}
+
+@media screen and (max-width: 65em) {
+  .payment-method{
+    margin-top: 20px;
+  }
 }
 
 .payment-method button{
@@ -178,7 +181,6 @@ font-family: "Lato";
   font-family: "Lato";
   color: white;
   background-color: #000466;
-  font-size: 18px;
   border: 1px solid #000466;
   border-radius: 10px;
   padding: 10px 20px;
