@@ -80,18 +80,31 @@ class Payment extends React.Component {
           </div>
         </div>
         <div className="d-flex justify-content-around mt-40">
-          <button className="proceed disabled">Pay Cash</button>
-          <button className="proceed">Pay Online</button>
-          <button
-            className="proceed"
-            style={{
-              color: "#000466",
-              backgroundColor: "white",
-              borderRadius: "8px",
-            }}
-          >
-            Total: Rs{sessionStorage.getItem("totalWithoutTax")}
-          </button>
+          {localStorage.getItem("PaymentType") &&
+            JSON.parse(localStorage.getItem("PaymentType")).map(
+              (paymentType) => {
+                return (
+                  <button
+                    className="proceed disabled"
+                    value={paymentType.payment_type.id}
+                  >
+                    {paymentType.payment_type.name}
+                  </button>
+                );
+              }
+            )}
+          {sessionStorage.getItem("totalWithoutTax") && (
+            <button
+              className="proceed"
+              style={{
+                color: "#000466",
+                backgroundColor: "white",
+                borderRadius: "8px",
+              }}
+            >
+              Total: Rs{sessionStorage.getItem("totalWithoutTax")}
+            </button>
+          )}
         </div>
         <div className="d-flex flex-wrap justify-content-around mt-40">
           {paymentIcons.map((icon) => {

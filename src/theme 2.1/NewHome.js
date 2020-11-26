@@ -80,6 +80,7 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
+          localStorage.setItem("PaymentType",JSON.stringify(data.restaurant.payment_types))
 
           if (
             sessionStorage.getItem("items") &&

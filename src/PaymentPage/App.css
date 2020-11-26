@@ -150,21 +150,21 @@
 
 .payment-method .proceed {
   width: auto;
-  padding: 5px 20px;
+  padding: 0.25em 1em;
   font-family: "MuseoModerno";
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
-  font-size: 1.3em;
+  font-size: 1.1em;
+  margin: 5px;
 }
-.payment-method .disabled{
+.payment-method .disabled {
   pointer-events: none;
   background-color: #eeeeee;
   color: #b1b1b1;
   border: none;
   cursor: not-allowed;
 }
-
 
 .payment-method img {
   margin: 10px 5px;
