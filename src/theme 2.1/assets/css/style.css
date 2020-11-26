@@ -1041,6 +1041,10 @@ hr {
   height: 50px;
   width: 50px;
 }
+.whatsup-icon img{
+ filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+ -webkit-filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+}
 @media only screen and (max-width: 768px) {
   .whatsup-icon-mobile {
     display: none;
@@ -1434,9 +1438,16 @@ hr {
 .desktop-sticky {
   position: fixed;
   top: auto;
-  bottom: 10px;
-  width: 19%;
+  width: 19.2%;
 }
+.desktop-sticky-top{
+  top:100px;
+  
+}
+.desktop-sticky-bottom{
+  bottom: 10px;
+}
+
 .desktop-rel {
   position: relative;
   width: 100%;
@@ -1457,12 +1468,12 @@ hr {
   height: 50px;
   display: none;
   background-color: #000466;
-  color: #f7f7ff;
+  color: #ffffff;
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: 2px 10px rgba(0, 0, 0, 0.2);
+  border:none;
   font-family: "MuseoModerno";
 }
 .count {
@@ -2799,6 +2810,7 @@ p.form-message.error {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 20px;
   text-align: center;
   border: 1px solid black;

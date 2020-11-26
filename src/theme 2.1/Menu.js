@@ -7,7 +7,7 @@ class Menu extends Component {
     this.dropDown = [];
     this.state = {
       is_visible: false,
-      sticky_sideMenu: false,
+      sticky_sideMenu: "nav flex-column nav-pills desktop",
     };
 
     this.onDropdownSelected = this.onDropdownSelected.bind(this);
@@ -41,21 +41,25 @@ class Menu extends Component {
         is_visible: false,
       });
     }
+
     if (
-      window.pageYOffset > document.getElementById("product").offsetTop &&
+      window.pageYOffset > document.getElementById("product").offsetTop + 120 &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
           this.ele[this.ele.length - 1].offsetTop +
           this.ele[this.ele.length - 1].offsetHeight -
-          120
+          280
     ) {
       this.setState({
-        sticky_sideMenu: true,
+        sticky_sideMenu:
+          this.props.categoryArray.length < 7
+            ? "nav flex-column nav-pills desktop desktop-sticky desktop-sticky-top"
+            : "nav flex-column nav-pills desktop desktop-sticky desktop-sticky-bottom",
       });
     } else {
       this.setState({
-        sticky_sideMenu: false,
+        sticky_sideMenu: "nav flex-column nav-pills desktop desktop-rel",
       });
     }
   }
@@ -72,14 +76,10 @@ class Menu extends Component {
     const { is_visible, sticky_sideMenu } = this.state;
     return (
       <div class="col-lg-3 col-md-4">
-        <div class="collection-menu text-center mt-20">
+        <div id="collection-menu" class="collection-menu text-center mt-20">
           <div
             ref={(a) => (this.menuOptions = a)}
-            class={
-              sticky_sideMenu
-                ? "nav flex-column nav-pills desktop desktop-sticky"
-                : " nav flex-column nav-pills desktop desktop-rel"
-            }
+            class={sticky_sideMenu}
             role="tablist"
             id="menu-options"
             aria-orientation="vertical"
