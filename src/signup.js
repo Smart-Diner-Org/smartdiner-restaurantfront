@@ -323,6 +323,58 @@ class SignUp extends Component {
         },
       })
       .then((res) => {
+        this.setState({ user_info: res.data });
+        this.setState({ successMessage: res.data.message });
+        ReactGA.event({
+          category: "Customer",
+          action: "Added Customer Details",
+          label: this.state.mobile,
+        });
+      })
+      .catch((error) => {
+        if (error && error.response && error.response.data) {
+          let er = error.response.data.message;
+          console.log(er);
+          this.setState({ errorMessage: er });
+        }
+      });
+  }
+
+  async goPayment(event) {
+    event.preventDefault();
+    let newArray = JSON.parse(sessionStorage.getItem("items"));
+    let selectedArray = [];
+    newArray.map((items) => {
+      for (let item in items) {
+        let menu = {
+          id: items[item].id,
+          quantity: items[item].quantity,
+          price: items[item].discountPrice
+            ? items[item].discountPrice
+            : items[item].originalPrice,
+          originalPrice: items[item].originalPrice,
+          selectedMenuQuantityMeasurePriceId:
+            items[item].selectedMenuQuantityMeasurePriceId,
+        };
+        selectedArray.push(menu);
+      }
+    });
+    const data = {
+      restuarantBranchId: sessionStorage.getItem("restBranchID"),
+      total_price: sessionStorage.getItem("totalWithoutTax"),
+      latitude: sessionStorage.getItem("lat"),
+      longitude: sessionStorage.getItem("long"),
+      menus: selectedArray,
+      date_of_delivery: sessionStorage.getItem("deliveryDate"),
+      time_of_delivery: sessionStorage.getItem("deliveryTime"),
+    };
+    await axios
+      .post(`${this.apiLink}after_login/order/place_order`, data, {
+        headers: {
+          "x-access-token": `${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
         sessionStorage.clear();
         ReactGA.event({
           category: "Customer",
@@ -332,7 +384,6 @@ class SignUp extends Component {
         });
         window.history.replaceState(null, "", "/");
         window.open(res.data.paymentUrl, "_self");
-
         this.setState({ paymentSuccessMessage: res.data.message });
       })
       .catch((error) => {
@@ -450,13 +501,15 @@ class SignUp extends Component {
                 </div>
               </div>
               <div className="col-lg-6 col-md-12 col-sm-12 mt-40">
-                {/* {this.state.user_info.accessToken && <Payment />} */}
-                <Payment
-                  goPayment={this.goPayment}
-                  successMessage={this.state.paymentSuccessMessage}
-                  errorMessage={this.state.paymentErrorMessage}
-                  check={this.state.user_info.customer.customer_detail}
-                />
+                {this.state.user_info.customer.customer_detail &&
+                  this.state.requestedOTP && (
+                    <Payment
+                      goPayment={this.goPayment}
+                      successMessage={this.state.paymentSuccessMessage}
+                      errorMessage={this.state.paymentErrorMessage}
+                      check={this.state.user_info.customer.customer_detail}
+                    />
+                  )}
               </div>
             </div>
           </div>

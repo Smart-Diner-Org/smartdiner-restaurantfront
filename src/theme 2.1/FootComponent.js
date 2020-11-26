@@ -39,7 +39,7 @@ function FootComponent (props){
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i class="lni-envelope"></i>
+                                        <a href={`mailto:${props.email}`} target="blank"><i class="lni-envelope"></i></a>
                                         </div>
                                         <div class="info-content">
                                             <p><a href={`mailto:${props.email}`} target="blank">{props.email}</a></p>

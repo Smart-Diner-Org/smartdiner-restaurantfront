@@ -752,6 +752,7 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .slider_images
                 }
+                contact_number={this.state.restaurantBranch[0].contact_number}
               />
               <MultiCards  cards  = {JSON.parse(
                   this.state.restaurant_info.restaurant_website_detail
@@ -806,10 +807,10 @@ class NewHome extends Component {
                 address={this.state.restaurantBranch[0].address}
               />
               <Contact />
-              {this.state.total > 0 && (
+              {this.state.total > 0 && this.state.boundary && (
                 <CheckoutButton
                   total={this.state.total}
-                  togglePopup={this.togglePopup}
+                  checkOutToBag={()=>{this.setState({ showPopup: false });this.togglePopup()}}
                 />
               )}
               <WhatsAppIcon

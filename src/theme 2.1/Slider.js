@@ -4,7 +4,7 @@ import { defaultSliderImage } from "./constant";
 
 class Slider extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       slider: JSON.parse(this.props.slider_images),
     };
@@ -34,7 +34,7 @@ class Slider extends Component {
                           </h1>
                           <div className="row">
                             <a href="#product">Place order</a>
-                            <a href="#footer">Call us</a>
+                            <a href={`tel:+91${this.props.contact_number}`} target="blank">Call us</a>
                           </div>
                         </div>
                       </div>
@@ -86,7 +86,7 @@ class Slider extends Component {
                                 )}
                                 {item.buttons[1].button_link_type ===
                                   "contact_info" && (
-                                  <a href="#footer">
+                                  <a href={`tel:+91${this.props.contact_number}`} target="blank">
                                     {item.buttons[1].content}
                                   </a>
                                 )}
