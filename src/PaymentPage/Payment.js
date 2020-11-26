@@ -89,7 +89,7 @@ class Payment extends React.Component {
                       this.props.check ? "proceed" : "proceed disabled"
                     }
                     value={paymentType.payment_type.id}
-                    onClick={this.props.check && this.props.goPayment}
+                    onClick={()=>this.props.check && this.props.goPayment(paymentType.payment_type.id)}
                   >
                     {paymentType.payment_type.name}
                   </button>

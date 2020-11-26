@@ -283,8 +283,7 @@ class SignUp extends Component {
       });
   }
 
-  async goPayment(event) {
-    event.preventDefault();
+  async goPayment(paymentType) {
     let newArray = JSON.parse(sessionStorage.getItem("items"));
     let selectedArray = [];
     newArray.map((items) => {
@@ -310,6 +309,7 @@ class SignUp extends Component {
       menus: selectedArray,
       date_of_delivery: sessionStorage.getItem("deliveryDate"),
       time_of_delivery: sessionStorage.getItem("deliveryTime"),
+      paymentType: paymentType,
     };
     await axios
       .post(`${this.apiLink}after_login/order/place_order`, data, {
@@ -327,7 +327,8 @@ class SignUp extends Component {
           transport: "beacon",
         });
         window.history.replaceState(null, "", "/");
-        window.open(res.data.paymentUrl, "_self");
+        res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
+        res.data.redirectUrl && window.open(res.data.redirectUrl, "_self")
 
         this.setState({ paymentSuccessMessage: res.data.message });
       })
