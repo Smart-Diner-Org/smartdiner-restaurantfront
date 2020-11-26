@@ -114,6 +114,17 @@ class Payment extends React.Component {
             return <img src={icon} alt="payment-icon" />;
           })}
         </div>
+        <div className="container mt-20 ">
+          {this.props.errorMessage ? (
+            <small className="row message ml-1" style={{ color: "#e22a28" }}>
+              {this.props.errorMessage}
+            </small>
+          ) : (
+            <small className="row message ml-1" style={{ color: "green" }}>
+              {this.props.successMessage}
+            </small>
+          )}
+        </div>
       </div>
     );
   }
