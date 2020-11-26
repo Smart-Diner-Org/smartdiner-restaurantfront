@@ -807,10 +807,10 @@ class NewHome extends Component {
                 address={this.state.restaurantBranch[0].address}
               />
               <Contact />
-              {this.state.total > 0 && (
+              {this.state.total > 0 && this.state.boundary && (
                 <CheckoutButton
                   total={this.state.total}
-                  togglePopup={this.togglePopup}
+                  checkOutToBag={()=>{this.setState({ showPopup: false });this.togglePopup()}}
                 />
               )}
               <WhatsAppIcon
