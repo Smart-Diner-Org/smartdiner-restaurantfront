@@ -333,7 +333,7 @@ class SignUp extends Component {
         });
         window.history.replaceState(null, "", "/");
         res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
-        res.data.redirectUrl && window.location.replace(res.data.redirectUrl, "_self");
+        res.data.redirectUrl && window.location.replace(res.data.redirectUrl);
 
         this.setState({ paymentSuccessMessage: res.data.message });
       })
