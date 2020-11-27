@@ -238,9 +238,14 @@ class SignUp extends Component {
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
-          let er = error.response.data.message;
-          console.log(er);
-          this.setState({ errorMessage: er });
+          if (error && error.response && error.response.data) {
+            let er = error.response.data.message;
+
+            console.log(er);
+            er === "otp_expired"
+              ? this.setState({ requestedOTP: false })
+              : this.setState({ errorMessage: er });
+          }
         }
       });
     this.setState({ seconds: 60 });
@@ -328,7 +333,7 @@ class SignUp extends Component {
         });
         window.history.replaceState(null, "", "/");
         res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
-        res.data.redirectUrl && window.open(res.data.redirectUrl, "_self")
+        res.data.redirectUrl && window.open(res.data.redirectUrl, "_self");
 
         this.setState({ paymentSuccessMessage: res.data.message });
       })
@@ -336,9 +341,7 @@ class SignUp extends Component {
         if (error && error.response && error.response.data) {
           let er = error.response.data.message;
           console.log(er);
-          this.setState({ paymentErrorMessage: er });
-        } else {
-          this.setState({ paymentErrorMessage: error.message });
+          this.setState({ errorMessage: er });
         }
       });
   }
