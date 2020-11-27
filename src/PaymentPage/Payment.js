@@ -106,6 +106,7 @@ class Payment extends React.Component {
                 color: "#000466",
                 backgroundColor: "white",
                 borderRadius: "8px",
+                cursor:"default"
               }}
             >
               Total: Rs{sessionStorage.getItem("totalWithoutTax")}
