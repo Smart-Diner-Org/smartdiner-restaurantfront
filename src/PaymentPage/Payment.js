@@ -28,7 +28,7 @@ const paymentIcons = [
 class Payment extends React.Component {
   render() {
     return (
-      <div className="payment-method ">
+      <div className="payment-method mb-80">
         <div className="row">
           <div className="col-lg-4 order-details">
             {sessionStorage.getItem("deliveryDate") && (
@@ -89,7 +89,10 @@ class Payment extends React.Component {
                       this.props.check ? "proceed" : "proceed disabled"
                     }
                     value={paymentType.payment_type.id}
-                    onClick={()=>this.props.check && this.props.goPayment(paymentType.payment_type.id)}
+                    onClick={() =>
+                      this.props.check &&
+                      this.props.goPayment(paymentType.payment_type.id)
+                    }
                   >
                     {paymentType.payment_type.name}
                   </button>
