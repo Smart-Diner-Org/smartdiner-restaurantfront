@@ -333,7 +333,7 @@ class SignUp extends Component {
         });
         window.history.replaceState(null, "", "/");
         res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
-        res.data.redirectUrl && window.open(res.data.redirectUrl, "_self");
+        res.data.redirectUrl && window.location.replace(res.data.redirectUrl, "_self");
 
         this.setState({ paymentSuccessMessage: res.data.message });
       })
@@ -341,7 +341,7 @@ class SignUp extends Component {
         if (error && error.response && error.response.data) {
           let er = error.response.data.message;
           console.log(er);
-          this.setState({ errorMessage: er });
+          this.setState({ paymentErrorMessage : er });
         }
       });
   }
