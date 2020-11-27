@@ -378,7 +378,7 @@ class SignUp extends Component {
   render() {
     return (
       <>
-        <div className="signup ">
+        <div className="signup">
           <div className="container">
             <div className="row">
               <div className="col-lg-5 col-md-5 col-sm-12 signup-left">

@@ -16,10 +16,10 @@
   margin-left: 50px;
 }
 
-@media screen and (max-width: 65em) {
-  /* .smart-diner-footer {
+@media screen and (max-width: 768px) {
+  .smart-diner-footer {
     position: relative;
-  } */
+  }
   .smart-diner-footer label {
     font-size: 0.75em;
   }

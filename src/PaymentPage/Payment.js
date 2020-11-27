@@ -28,7 +28,7 @@ const paymentIcons = [
 class Payment extends React.Component {
   render() {
     return (
-      <div className="payment-method mb-80">
+      <div className="payment-method">
         <div className="row">
           <div className="col-lg-4 order-details">
             {sessionStorage.getItem("deliveryDate") && (
@@ -106,7 +106,7 @@ class Payment extends React.Component {
                 color: "#000466",
                 backgroundColor: "white",
                 borderRadius: "8px",
-                cursor:"default"
+                cursor: "default",
               }}
             >
               Total: Rs{sessionStorage.getItem("totalWithoutTax")}
