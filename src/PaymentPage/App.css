@@ -12,6 +12,14 @@
   padding-top: 60px;
 }
 
+@media screen and (max-width:768px){
+  .signup .signup-header {
+    padding-top: 10px;
+  }
+} 
+
+
+
 .signup h2 {
   color: #000466;
   text-decoration: underline;
@@ -30,6 +38,12 @@
   margin-left: -15px;
   min-width: 60vw;
 }
+@media screen and (max-width:768px){
+  .signup .navheader {
+    min-width: 100vw;
+    margin: 0px;
+  }
+} 
 
 ::-webkit-scrollbar { 
   display: none; 

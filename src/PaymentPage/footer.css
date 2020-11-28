@@ -18,7 +18,8 @@
 
 @media screen and (max-width: 768px) {
   .smart-diner-footer {
-    position: relative;
+    position: absolute;
+    bottom: 0px;
   }
   .smart-diner-footer label {
     font-size: 0.75em;

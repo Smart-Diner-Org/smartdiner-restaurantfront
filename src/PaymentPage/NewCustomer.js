@@ -23,8 +23,7 @@ render(){
                     <input className="col-5 mr-5" type="text" name="city" placeholder="City"/>
                     <input className="col-5 " type="text" name="state" placeholder="State"/>
                 </div> */}
-                <div className="mt-30" >
-                    {/* <a href="#" style={{marginRight:"35%"}}>Get Location</a> */}
+                <div className="mt-20" >
                     <button type="submit" className="new-address">Add address</button>
                 </div> 
             </form>      

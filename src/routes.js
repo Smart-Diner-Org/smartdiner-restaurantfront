@@ -27,12 +27,12 @@ export default (
         <UnProtectedRoute path="/oldsignup" component={Signup} />
     
         <UnProtectedRoute path="/signup" component={SignUp} />
-        <UnProtectedRoute path="/order/:id/status" component={StatusPage} />
+        <Route path="/order/:id/status" component={StatusPage} />
         {/* <UnProtectedRoute path="/status" component={StatusPage} /> */}
 
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
-        <Route exact path="/" component={NewHome} />
+        <Route path="/" component={NewHome} />
 
     </Switch>
   </Router>
