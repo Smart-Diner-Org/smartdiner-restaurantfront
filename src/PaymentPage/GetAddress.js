@@ -4,7 +4,7 @@ class GetAddress extends React.Component {
   render() {
     return (
       <>
-        <div className="address mb-20 ">
+        <div className="address mb-10 ">
           <div className="col">
             <h4>{this.props.name}</h4>
             <br />

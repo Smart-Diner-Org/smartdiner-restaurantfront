@@ -66,6 +66,7 @@ class SignUp extends Component {
       isMobile: false,
       COD: false,
       redirectUrl: "",
+      showPaymentMobile: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.MhandleChange = this.MhandleChange.bind(this);
@@ -342,7 +343,7 @@ class SignUp extends Component {
         this.setState({ paymentSuccessMessage: res.data.message });
         window.history.replaceState(null, "", "/");
         res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
-        console.log(res.data.redirectUrl)
+        console.log(res.data.redirectUrl);
         if (res.data.redirectUrl)
           this.setState({
             COD: true,
@@ -388,7 +389,6 @@ class SignUp extends Component {
   }
 
   render() {
-    console.log(this.state.redirectUrl)
     if (this.state.COD) return <Redirect to={this.state.redirectUrl} />;
     else
       return (
@@ -396,62 +396,89 @@ class SignUp extends Component {
           <div className="signup">
             {this.state.isMobile ? (
               <>
-                <NavHeader />
+                <NavHeader
+                  check={
+                    this.state.showPaymentMobile
+                  }
+                />
                 <div className="container">
-                  <div className="signup-header">
-                    <Link to="/">
-                      <label className="mb-20">
-                        <i class="lni lni-arrow-left"></i> Back to{" "}
-                        {sessionStorage.getItem("title")}{" "}
-                      </label>
-                    </Link>
-                    <h2>Customer Details</h2>
-                  </div>
-                  <div className="customer-details-form col-12">
-                    <GetOTP
-                      requestedOTP={this.state.requestedOTP}
-                      MhandleChange={this.MhandleChange}
-                      requestOTP={this.requestOTP}
-                      OTPverfication={this.OTPverfication}
-                      resendOTP={this.resendOTP}
-                      setOTPValue={this.setOTPValue}
-                      successMessage={this.state.successMessage}
-                      errorMessage={this.state.errorMessage}
-                      minutes={this.state.minutes}
-                      seconds={this.state.seconds}
-                      isVerified={this.state.isVerified}
+                  {this.state.showPaymentMobile === false ? (
+                    <>
+                      <div className="signup-header">
+                        <Link to="/">
+                          <label className="mb-20">
+                            <i class="lni lni-arrow-left"></i> Back to{" "}
+                            {sessionStorage.getItem("title")}{" "}
+                          </label>
+                        </Link>
+                        <h2>Customer Details</h2>
+                      </div>
+                      <div className="customer-details-form col-12">
+                        <GetOTP
+                          requestedOTP={this.state.requestedOTP}
+                          MhandleChange={this.MhandleChange}
+                          requestOTP={this.requestOTP}
+                          OTPverfication={this.OTPverfication}
+                          resendOTP={this.resendOTP}
+                          setOTPValue={this.setOTPValue}
+                          successMessage={this.state.successMessage}
+                          errorMessage={this.state.errorMessage}
+                          minutes={this.state.minutes}
+                          seconds={this.state.seconds}
+                          isVerified={this.state.isVerified}
+                        />
+                        {this.state.token &&
+                          (this.state.user_info.customer.customer_detail ? (
+                            <>
+                              <GetAddress
+                                name={this.state.user_info.customer.name}
+                                customer_detail={
+                                  this.state.user_info.customer.customer_detail
+                                }
+                                successMessage={this.state.successMessage}
+                                errorMessage={this.state.errorMessage}
+                                editbtn={this.editbtn}
+                                isMobile={this.state.mobile}
+                              />
+                              <div className="row">
+                                <button
+                                  className={
+                                    this.state.user_info.customer
+                                      .customer_detail &&
+                                    this.state.requestedOTP
+                                      ? "continue-to-pay ml-auto"
+                                      : "continue-to-pay ml-auto disabled"
+                                  }
+                                  onClick={() =>
+                                    this.setState({ showPaymentMobile: true })
+                                  }
+                                >
+                                  Continue
+                                </button>
+                              </div>
+                            </>
+                          ) : (
+                            <NewCustomer
+                              addressTwo={this.state.addressTwo}
+                              addCustomer={this.addCustomer}
+                              handleChange={this.handleChange}
+                              successMessage={this.state.successMessage}
+                              errorMessage={this.state.errorMessage}
+                            />
+                          ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Payment
+                      goPayment={this.goPayment}
+                      successMessage={this.state.paymentSuccessMessage}
+                      errorMessage={this.state.paymentErrorMessage}
+                      check={
+                        this.state.user_info.customer.customer_detail &&
+                        this.state.requestedOTP
+                      }
                     />
-                    <GetAddress
-                          name={this.state.user_info.customer.name}
-                          customer_detail={
-                            this.state.user_info.customer.customer_detail
-                          }
-                          successMessage={this.state.successMessage}
-                          errorMessage={this.state.errorMessage}
-                          editbtn={this.editbtn}
-                        />
-                    {this.state.token &&
-                      (this.state.user_info.customer.customer_detail ? (
-                        <GetAddress
-                          name={this.state.user_info.customer.name}
-                          customer_detail={
-                            this.state.user_info.customer.customer_detail
-                          }
-                          successMessage={this.state.successMessage}
-                          errorMessage={this.state.errorMessage}
-                          editbtn={this.editbtn}
-                          isMobile={this.state.mobile}
-                        />
-                      ) : (
-                        <NewCustomer
-                          addressTwo={this.state.addressTwo}
-                          addCustomer={this.addCustomer}
-                          handleChange={this.handleChange}
-                          successMessage={this.state.successMessage}
-                          errorMessage={this.state.errorMessage}
-                        />
-                      ))}
-                  </div>
+                  )}
                 </div>
               </>
             ) : (

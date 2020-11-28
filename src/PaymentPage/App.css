@@ -124,6 +124,7 @@
   min-width: 250px;
 }
 
+
 .mobile-verification .otp-box {
   width: 40px;
   min-width: 40px;
@@ -207,7 +208,7 @@
   font-size: 1.1em;
 }
 
-.payment-method .proceed {
+.payment-method .proceed,.customer-details-form .continue-to-pay {
   width: auto;
   padding: 0.25em 1em;
   font-family: "MuseoModerno";
@@ -217,7 +218,7 @@
   font-size: 1.1em;
   margin: 5px;
 }
-.payment-method .disabled {
+.payment-method .disabled, .customer-details-form .disabled {
   pointer-events: none;
   background-color: #eeeeee;
   color: #b1b1b1;

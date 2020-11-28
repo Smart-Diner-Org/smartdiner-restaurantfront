@@ -19,6 +19,7 @@
 @media screen and (max-width: 768px) {
   .smart-diner-footer {
     position: absolute;
+    padding: 15px 0px;
     bottom: 0px;
   }
   .smart-diner-footer label {
