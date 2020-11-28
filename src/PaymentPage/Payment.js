@@ -30,21 +30,29 @@ class Payment extends React.Component {
     return (
       <div className="payment-method">
         <div className="row">
-          <div className="col-lg-4 order-details">
-            {sessionStorage.getItem("deliveryDate") && (
-              <>
-                <h6>Delivery Date</h6>
-                <label>{sessionStorage.getItem("deliveryDate")}</label>
-              </>
-            )}
-            {sessionStorage.getItem("deliveryTime") && (
-              <>
-                <h6>Delivery Time</h6>
-                <label>{sessionStorage.getItem("deliveryTime")}</label>
-              </>
-            )}
-          </div>
-          <div className="col-lg-8 orders">
+          {sessionStorage.getItem("deliveryDate") && (
+            <div className="col-lg-4 order-details">
+              {sessionStorage.getItem("deliveryDate") && (
+                <>
+                  <h6>Delivery Date</h6>
+                  <label>{sessionStorage.getItem("deliveryDate")}</label>
+                </>
+              )}
+              {sessionStorage.getItem("deliveryTime") && (
+                <>
+                  <h6>Delivery Time</h6>
+                  <label>{sessionStorage.getItem("deliveryTime")}</label>
+                </>
+              )}
+            </div>
+          )}
+          <div
+            className={
+              sessionStorage.getItem("deliveryDate")
+                ? "col-lg-8 orders"
+                : "col-lg-12 orders"
+            }
+          >
             <h6 className="row d-flex justify-content-center">
               Items in the cart
             </h6>

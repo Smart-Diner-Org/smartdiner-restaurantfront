@@ -8,6 +8,7 @@ import axios from "axios";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import ReactGA from "react-ga";
+import NavHeader from "./NavHeader";
 
 let myInterval;
 sessionStorage.removeItem("token");
@@ -341,7 +342,7 @@ class SignUp extends Component {
         if (error && error.response && error.response.data) {
           let er = error.response.data.message;
           console.log(er);
-          this.setState({ paymentErrorMessage : er });
+          this.setState({ paymentErrorMessage: er });
         }
       });
   }
@@ -427,7 +428,16 @@ class SignUp extends Component {
                     ))}
                 </div>
               </div>
-              <div className="col-lg-7 col-md-7 col-sm-12">
+              <div
+                className="col-lg-7 col-md-7 col-sm-12"
+                style={{ borderLeft: "2px solid #000466", height: "100vh" }}
+              >
+                <NavHeader
+                  check={
+                    this.state.user_info.customer.customer_detail &&
+                    this.state.requestedOTP
+                  }
+                />
                 <Payment
                   goPayment={this.goPayment}
                   successMessage={this.state.paymentSuccessMessage}

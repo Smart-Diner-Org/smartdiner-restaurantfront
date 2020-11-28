@@ -21,6 +21,48 @@
   font-family: "MuseoModerno";
 }
 
+.signup .navheader {
+  padding: 1.2em 1em;
+  background-color: white;
+  box-shadow: 0 8px 6px -6px rgba(156, 156, 156, 0.25);
+  display: flex;
+  justify-content: space-around;
+  margin-left: -15px;
+  min-width: 60vw;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
+}
+
+.signup .navheader label {
+  font-size: 1em;
+  color: #000466;
+  margin: 0.4rem;
+  opacity: 0.6;
+}
+
+.signup .end-active label:nth-child(4),
+.signup .end-active label:nth-child(5) {
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+.signup .mid-active label:nth-child(2),
+.signup .mid-active label:nth-child(3) {
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+  .signup .navheader label {
+    font-size: 0.6em;
+  }
+}
+
+.signup .signup-left {
+  padding: 20px 20px;
+}
 .mobile-verification button {
   padding: 10px 20px;
   color: white;
@@ -112,10 +154,9 @@
   -o-transition: box-shadow 0.4s ease-out;
 }
 
-
-.address:hover{
-  box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
-   cursor: pointer;
+.address:hover {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .address .edit {
@@ -138,9 +179,8 @@
   font-size: 1em;
 }
 
-
 .payment-method {
-  padding-top: 80px;
+  padding-top: 30px;
   width: 100%;
 }
 
@@ -180,7 +220,6 @@
 
 @media screen and (max-width: 65em) {
   .signup {
-    padding: 30px;
     position: relative;
   }
   .payment-method .proceed {
