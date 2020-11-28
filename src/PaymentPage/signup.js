@@ -444,22 +444,14 @@ class SignUp extends Component {
                                 editbtn={this.editbtn}
                                 isMobile={this.state.mobile}
                               />
-                              <div className="row">
-                                <button
-                                  className={
-                                    this.state.user_info.customer
-                                      .customer_detail &&
-                                    this.state.requestedOTP
-                                      ? "continue-to-pay ml-auto"
-                                      : "continue-to-pay ml-auto disabled"
-                                  }
-                                  onClick={() =>
-                                    this.setState({ showPaymentMobile: true })
-                                  }
-                                >
-                                  Continue
-                                </button>
-                              </div>
+                              <button
+                                className="continue-to-pay"
+                                onClick={() =>
+                                  this.setState({ showPaymentMobile: true })
+                                }
+                              >
+                                Checkout
+                              </button>
                             </>
                           ) : (
                             <NewCustomer

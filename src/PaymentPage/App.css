@@ -171,16 +171,19 @@
   cursor: pointer;
 }
 
-.address .edit {
+.address .edit ,
+.customer-details-form .continue-to-pay{
   font-family: "Lato";
   color: white;
   background-color: #000466;
   border: 1px solid #000466;
   padding: 10px 20px;
   border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+}
+.customer-details-form .continue-to-pay{
+  font-family: "MuseoModerno";
+  width: 100%;
+  margin-top: 10px;
 }
 
 .address .cancel {
@@ -206,8 +209,7 @@
   font-size: 1.1em;
 }
 
-.payment-method .proceed,
-.customer-details-form .continue-to-pay {
+.payment-method .proceed {
   width: auto;
   padding: 0.25em 1em;
   font-family: "MuseoModerno";
@@ -217,8 +219,7 @@
   font-size: 1.1em;
   margin: 5px;
 }
-.payment-method .disabled,
-.customer-details-form .disabled {
+.payment-method .disabled{
   pointer-events: none;
   background-color: #eeeeee;
   color: #b1b1b1;
