@@ -344,10 +344,10 @@ class SignUp extends Component {
         window.history.replaceState(null, "", "/");
         res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
         console.log(res.data.redirectUrl);
-        if (res.data.redirectUrl)
+        if (res.data.redirectPage === "orderStatus")
           this.setState({
             COD: true,
-            redirectUrl: new URL(res.data.redirectUrl).pathname,
+            redirectUrl: res.data.orderId,
           });
       })
       .catch((error) => {
@@ -389,18 +389,15 @@ class SignUp extends Component {
   }
 
   render() {
-    if (this.state.COD) return <Redirect to={this.state.redirectUrl} />;
+    if (this.state.COD)
+      return <Redirect to={`/order/${this.state.redirectUrl}/status`} />;
     else
       return (
         <>
           <div className="signup">
             {this.state.isMobile ? (
               <>
-                <NavHeader
-                  check={
-                    this.state.showPaymentMobile
-                  }
-                />
+                <NavHeader check={this.state.showPaymentMobile} />
                 <div className="container">
                   {this.state.showPaymentMobile === false ? (
                     <>
