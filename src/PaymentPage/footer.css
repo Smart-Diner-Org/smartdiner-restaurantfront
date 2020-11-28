@@ -16,11 +16,10 @@
   margin-left: 50px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 65rem) {
   .smart-diner-footer {
-    position: absolute;
+    position: relative;
     padding: 15px 0px;
-    bottom: 0px;
   }
   .smart-diner-footer label {
     font-size: 0.75em;

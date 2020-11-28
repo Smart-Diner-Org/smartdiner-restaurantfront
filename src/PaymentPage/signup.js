@@ -397,8 +397,14 @@ class SignUp extends Component {
           <div className="signup">
             {this.state.isMobile ? (
               <>
-                <NavHeader check={this.state.showPaymentMobile} />
-                <div className="container">
+                <NavHeader
+                  check={this.state.showPaymentMobile}
+                  showCustomerDetails={() =>
+                    this.setState({ showPaymentMobile: false })
+                  }
+                  showPayment={() => this.setState({ showPaymentMobile: true })}
+                />
+                <div className="container" style={{ height: "80vh" }}>
                   {this.state.showPaymentMobile === false ? (
                     <>
                       <div className="signup-header">

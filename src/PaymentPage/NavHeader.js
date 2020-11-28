@@ -7,9 +7,9 @@ function NavHeader(props) {
     >
       <label>1. Shopping Cart</label>
       <label>{">"}</label>
-      <label>2. Customer Details</label>
+      <label onClick={props.showCustomerDetails}>2. Customer Details</label>
       <label>{">"}</label>
-      <label>3. Checkout</label>
+      <label onClick={props.showPayment}>3. Checkout</label>
     </div>
   );
 }
