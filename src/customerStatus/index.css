@@ -36,6 +36,7 @@
 .address {
   padding: 30px;
   box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  word-wrap: break-word;
 }
 
 .address h6{
@@ -101,6 +102,7 @@
   color: white;
   background-color: black;
   position: relative !important;
+  word-wrap: break-word;
 }
 .location h6{
   color: white;

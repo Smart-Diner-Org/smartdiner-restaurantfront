@@ -238,9 +238,14 @@ class SignUp extends Component {
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
-          let er = error.response.data.message;
-          console.log(er);
-          this.setState({ errorMessage: er });
+          if (error && error.response && error.response.data) {
+            let er = error.response.data.message;
+
+            console.log(er);
+            er === "otp_expired"
+              ? this.setState({ requestedOTP: false })
+              : this.setState({ errorMessage: er });
+          }
         }
       });
     this.setState({ seconds: 60 });
@@ -318,25 +323,19 @@ class SignUp extends Component {
         },
       })
       .then((res) => {
-        sessionStorage.clear();
+        this.setState({ user_info: res.data });
+        this.setState({ successMessage: res.data.message });
         ReactGA.event({
           category: "Customer",
-          action: "Placed Order",
+          action: "Added Customer Details",
           label: this.state.mobile,
-          transport: "beacon",
         });
-        window.history.replaceState(null, "", "/");
-        window.open(res.data.paymentUrl, "_self");
-
-        this.setState({ paymentSuccessMessage: res.data.message });
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
           let er = error.response.data.message;
           console.log(er);
-          this.setState({ paymentErrorMessage: er });
-        } else {
-          this.setState({ paymentErrorMessage: error.message });
+          this.setState({ errorMessage: er });
         }
       });
   }
@@ -451,13 +450,15 @@ class SignUp extends Component {
                 </div>
               </div>
               <div className="col-lg-6 col-md-12 col-sm-12 mt-40">
-                {/* {this.state.user_info.accessToken && <Payment />} */}
-                <Payment
-                  goPayment={this.goPayment}
-                  successMessage={this.state.paymentSuccessMessage}
-                  errorMessage={this.state.paymentErrorMessage}
-                  check={this.state.user_info.customer.customer_detail}
-                />
+                {this.state.user_info.customer.customer_detail &&
+                  this.state.requestedOTP && (
+                    <Payment
+                      goPayment={this.goPayment}
+                      successMessage={this.state.paymentSuccessMessage}
+                      errorMessage={this.state.paymentErrorMessage}
+                      check={this.state.user_info.customer.customer_detail}
+                    />
+                  )}
               </div>
             </div>
           </div>
