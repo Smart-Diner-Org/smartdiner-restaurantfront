@@ -80,7 +80,10 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
-          localStorage.setItem("PaymentType",JSON.stringify(data.restaurant.payment_types))
+          localStorage.setItem(
+            "PaymentType",
+            JSON.stringify(data.restaurant.payment_types)
+          );
 
           if (
             sessionStorage.getItem("items") &&
@@ -93,6 +96,9 @@ class NewHome extends Component {
               total: sessionStorage.getItem("total"),
               showPopup: false,
             });
+          }
+          if (sessionStorage.getItem("openCart")) {
+            this.setState({ togglePopup: true });
           }
           if (data.restaurant.restaurant_website_detail.ga_tracking_id) {
             ReactGA.initialize(
@@ -829,7 +835,10 @@ class NewHome extends Component {
               {this.state.total > 0 && this.state.boundary && (
                 <CheckoutButton
                   total={this.state.total}
-                  checkOutToBag={()=>{this.setState({ showPopup: false });this.togglePopup()}}
+                  checkOutToBag={() => {
+                    this.setState({ showPopup: false });
+                    this.togglePopup();
+                  }}
                 />
               )}
               <WhatsAppIcon

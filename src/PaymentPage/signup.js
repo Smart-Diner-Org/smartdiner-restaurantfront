@@ -82,6 +82,7 @@ class SignUp extends Component {
   componentDidMount() {
     ReactGA.initialize(`${sessionStorage.getItem("GA")}`); //Move this to db and load dynamically
     ReactGA.pageview("/signupPage");
+    sessionStorage.removeItem("openCart")
     const favicon = document.getElementById("favicon");
     favicon.href = sessionStorage.getItem("logo");
     document.title = sessionStorage.getItem("title");

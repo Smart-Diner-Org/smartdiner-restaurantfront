@@ -5,7 +5,14 @@ function NavHeader(props) {
     <div
       className={props.check ? "navheader end-active" : "navheader  mid-active"}
     >
-      <label>1. Shopping Cart</label>
+      <label
+        onClick={() => {
+          sessionStorage.setItem("openCart", true);
+          window.open("/", "_self");
+        }}
+      >
+        1. Shopping Cart
+      </label>
       <label>{">"}</label>
       <label onClick={props.showCustomerDetails}>2. Customer Details</label>
       <label>{">"}</label>
