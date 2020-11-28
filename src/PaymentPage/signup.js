@@ -65,6 +65,7 @@ class SignUp extends Component {
       addressOne: "",
       isMobile: false,
       COD: false,
+      redirectUrl: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.MhandleChange = this.MhandleChange.bind(this);
@@ -337,11 +338,16 @@ class SignUp extends Component {
           label: this.state.mobile,
           transport: "beacon",
         });
-        window.history.replaceState(null, "", "/");
-        res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
-        if (res.data.redirectUrl) this.setState({ COD: true });
 
         this.setState({ paymentSuccessMessage: res.data.message });
+        window.history.replaceState(null, "", "/");
+        res.data.paymentUrl && window.open(res.data.paymentUrl, "_self");
+        console.log(res.data.redirectUrl)
+        if (res.data.redirectUrl)
+          this.setState({
+            COD: true,
+            redirectUrl: new URL(res.data.redirectUrl).pathname,
+          });
       })
       .catch((error) => {
         if (error && error.response && error.response.data) {
@@ -382,14 +388,15 @@ class SignUp extends Component {
   }
 
   render() {
-    if (this.state.COD) return <Redirect to="http://localhost:3000/order/505/status" />;
+    console.log(this.state.redirectUrl)
+    if (this.state.COD) return <Redirect to={this.state.redirectUrl} />;
     else
       return (
         <>
           <div className="signup">
             {this.state.isMobile ? (
               <>
-                <NavHeader isMobile={this.state.isMobile} />
+                <NavHeader />
                 <div className="container">
                   <div className="signup-header">
                     <Link to="/">
@@ -414,6 +421,15 @@ class SignUp extends Component {
                       seconds={this.state.seconds}
                       isVerified={this.state.isVerified}
                     />
+                    <GetAddress
+                          name={this.state.user_info.customer.name}
+                          customer_detail={
+                            this.state.user_info.customer.customer_detail
+                          }
+                          successMessage={this.state.successMessage}
+                          errorMessage={this.state.errorMessage}
+                          editbtn={this.editbtn}
+                        />
                     {this.state.token &&
                       (this.state.user_info.customer.customer_detail ? (
                         <GetAddress
