@@ -440,6 +440,7 @@ class SignUp extends Component {
                           successMessage={this.state.successMessage}
                           errorMessage={this.state.errorMessage}
                           editbtn={this.editbtn}
+                          isMobile={this.state.mobile}
                         />
                       ) : (
                         <NewCustomer

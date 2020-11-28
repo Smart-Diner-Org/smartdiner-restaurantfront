@@ -3,7 +3,7 @@ import React from "react";
 class GetAddress extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <div className="address mb-20 ">
           <div className="col">
             <h4>{this.props.name}</h4>
@@ -19,7 +19,7 @@ class GetAddress extends React.Component {
             </button>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
