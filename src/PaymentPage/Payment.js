@@ -25,6 +25,7 @@ const paymentIcons = [
   freeRe,
   mobwik,
 ];
+const paymentNames =  {"1" : "Pay Cash","2":"Pay Online"}
 class Payment extends React.Component {
   render() {
     return (
@@ -102,7 +103,7 @@ class Payment extends React.Component {
                       this.props.goPayment(paymentType.payment_type.id)
                     }
                   >
-                    {paymentType.payment_type.name}
+                    {paymentNames[paymentType.payment_type.id]}
                   </button>
                 );
               }
