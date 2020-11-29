@@ -430,6 +430,7 @@ class SignUp extends Component {
                           minutes={this.state.minutes}
                           seconds={this.state.seconds}
                           isVerified={this.state.isVerified}
+                          mobile={this.state.mobile}
                         />
                         {this.state.token &&
                           (this.state.user_info.customer.customer_detail ? (

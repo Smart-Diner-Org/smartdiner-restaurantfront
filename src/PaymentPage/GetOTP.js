@@ -44,6 +44,7 @@ class GetOTP extends React.Component {
             placeholder="Enter Mobile Number"
             data-error="Mobile is required."
             required="required"
+            value={this.props.mobile}
             onChange={this.props.MhandleChange}
           />
           <div className="row mt-20 d-flex align-items-center" name="OTP">
