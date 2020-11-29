@@ -97,6 +97,7 @@ class NewHome extends Component {
               boundary: true,
               showPopup: false,
             });
+            sessionStorage.setItem("boundary",true)
           }
 
           if (

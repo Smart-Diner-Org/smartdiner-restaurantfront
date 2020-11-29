@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap");
 
 .signup input,
-select {
+.new-customer select {
   border: 1px solid #000466;
   border-radius: 5px;
   display: flex;
@@ -90,7 +90,7 @@ select {
 }
 
 .new-customer input,
-select {
+.new-customer select {
   color: #000466;
   width: 100%;
   padding: 5px;
