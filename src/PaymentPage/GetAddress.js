@@ -15,7 +15,7 @@ class GetAddress extends React.Component {
           </div>
           <div className="row ">
             <button className="edit ml-auto" onClick={this.props.editbtn}>
-              Edit address
+              Edit delivery address
             </button>
           </div>
         </div>
