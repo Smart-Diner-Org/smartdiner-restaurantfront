@@ -110,7 +110,7 @@ class HeadComponent extends Component {
                       className="img-responsive cart"
                       alt="Cart"
                     />
-                    <label>Cart</label>
+                    <label style={{color:"#000466"}}>Cart</label>
                     <span className="badge">{this.props.total}</span>
                   </a>
                 </div>
