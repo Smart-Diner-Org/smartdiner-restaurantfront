@@ -200,6 +200,12 @@
   padding-top: 30px;
   width: 100%;
 }
+@media screen and (max-width: 991px) {
+  .payment-method {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
 
 .new-address {
   font-family: "Lato";
