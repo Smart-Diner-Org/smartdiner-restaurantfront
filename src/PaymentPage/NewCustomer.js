@@ -13,7 +13,7 @@ render(){
         <div className="new-customer ">
             <form onSubmit={this.props.addCustomer}>
                 <input autoFocus className="mt-10" type="text" name="name" placeholder="Enter your Name" onChange={this.props.handleChange} required="required"/>
-                <input className=" mt-10" type="text" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange} required="required"/>
+                <input className=" mt-10" type="email" name="email" placeholder="Enter your mailID" onChange={this.props.handleChange} required="required"/>
                 <input className=" mt-10" type="text" name="addressOne" placeholder="Adress Line 1" onChange={this.props.handleChange} required="required"/>
                 <label style={{fontSize:"18px"}} className="mt-10">{this.props.addressTwo}</label>
                 {<small className="error-message" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> || <small className="error-message" style={{color:"green"}}>{this.props.errorMessage}</small> }
@@ -23,12 +23,11 @@ render(){
                     <input className="col-5 mr-5" type="text" name="city" placeholder="City"/>
                     <input className="col-5 " type="text" name="state" placeholder="State"/>
                 </div> */}
-                <div className="mt-30" >
-                    {/* <a href="#" style={{marginRight:"35%"}}>Get Location</a> */}
+                <div className="mt-20" >
                     <button type="submit" className="new-address">Add address</button>
                 </div> 
             </form>      
-            <div className="mt-30">
+            <div className="mt-20">
                 <label>*Give Location access for delivery</label>
             </div>  
         </div>

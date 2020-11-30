@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap");
+
+.signup input {
+  border: 1px solid #000466;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  font-family: "Lato";
+}
+
+@media screen and (max-width: 768px) {
+  .signup .signup-header {
+    padding-top: 10px;
+  }
+}
+
+.signup h2 {
+  color: #000466;
+  text-decoration: underline;
+  text-decoration-color: #ffc009;
+  text-underline-offset: 5px;
+  font-size: 2em;
+  font-family: "MuseoModerno";
+}
+
+.signup .navheader {
+  padding: 1.2em 1em;
+  background-color: white;
+  box-shadow: 0 8px 6px -6px rgba(156, 156, 156, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.signup .navheader label {
+  font-size: 1em;
+  color: #000466;
+  margin: 10px 20px;
+  opacity: 0.6;
+}
+@media screen and (max-width: 768px) {
+  .signup .navheader {
+    min-width: 100vw;
+    justify-content: space-around;
+    margin: 0px;
+  }
+  .signup .navheader label {
+    font-size: 1em;
+    color: #000466;
+    margin: 0.4rem;
+    opacity: 0.6;
+  }
+}
+
+.signup .end-active label:nth-child(4),
+.signup .end-active label:nth-child(5) {
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+.signup .mid-active label:nth-child(2),
+.signup .mid-active label:nth-child(3) {
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+  .signup .navheader label {
+    font-size: 0.6em;
+  }
+}
+
+.signup .signup-left {
+  padding: 20px 20px;
+}
+.mobile-verification button {
+  padding: 10px 20px;
+  color: white;
+  background-color: #000466;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9em;
+  width: 100%;
+  font-family: "Lato";
+}
+
+.signup h4 {
+  font-size: 1.5em;
+  color: #000466;
+  background-color: white;
+  padding: 10px 0px;
+  font-family: "MuseoModerno";
+}
+
+.order-details {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.order-details h6 {
+  color: #000466;
+  font-family: "MuseoModerno";
+  margin: 10px;
+}
+.order-details label {
+  font-family: "Lato";
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #000466;
+  margin: 10px;
+  line-height: 1;
+}
+
+.customer-details-form {
+  position: relative;
+  top: 50px;
+  width: 80%;
+  font-family: "Lato";
+  min-width: 250px;
+}
+
+.mobile-verification .otp-box {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  margin: 5px;
+  font-family: "Lato";
+  -moz-appearance: textfield;
+}
+.mobile-verification .otp-box::-webkit-outer-spin-button,
+.mobile-verification .otp-box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.signup a {
+  font-size: 12px;
+  font-family: "Lato";
+  color: #000466;
+}
+
+.new-customer input {
+  color: #000466;
+  width: 100%;
+  padding: 5px;
+  font-family: "Lato";
+}
+
+.address {
+  font-family: "Lato";
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: #000466;
+  line-height: 1;
+  border: none;
+  transition: box-shadow 0.4s ease-out;
+  -webkit-transition: box-shadow 0.4s ease-out;
+  -moz-transition: box-shadow 0.4s ease-out;
+  -ms-transition: box-shadow 0.4s ease-out;
+  -o-transition: box-shadow 0.4s ease-out;
+}
+
+.address:hover {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.address .edit ,
+.customer-details-form .continue-to-pay{
+  font-family: "Lato";
+  color: white;
+  background-color: #000466;
+  border: 1px solid #000466;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.customer-details-form .continue-to-pay{
+  font-family: "MuseoModerno";
+  width: 100%;
+  margin-top: 10px;
+}
+
+.address .cancel {
+  font-family: "Lato";
+  border: none;
+  color: #e22a28;
+  background-color: white !important;
+  font-size: 1em;
+}
+
+.payment-method {
+  padding-top: 30px;
+  width: 100%;
+}
+
+.new-address {
+  font-family: "Lato";
+  color: white;
+  background-color: #000466;
+  border: 1px solid #000466;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+}
+
+.payment-method .proceed {
+  width: auto;
+  padding: 0.25em 1em;
+  font-family: "MuseoModerno";
+  color: white;
+  background-color: #000466;
+  border: 1px solid #000466;
+  font-size: 1.1em;
+  margin: 5px;
+}
+.payment-method .disabled{
+  pointer-events: none;
+  background-color: #eeeeee;
+  color: #b1b1b1;
+  border: none;
+  cursor: not-allowed;
+}
+
+.payment-method img {
+  margin: 10px 5px;
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 65em) {
+  .signup {
+    position: relative;
+  }
+  .payment-method .proceed {
+    margin-bottom: 60px;
+  }
+
+  .payment-method img {
+    height: 18px;
+  }
+  .customer-details-form {
+    width: 100%;
+    min-width: 250px;
+  }
+
+  .signup {
+    position: relative;
+  }
+}
+
+.signup .orders h6 {
+  color: #000466;
+  font-family: "MuseoModerno";
+  margin-bottom: 30px;
+}
+
+.signup .orders li {
+  color: #000466;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5px;
+  border-bottom: 1.5px solid #000466;
+  border-top: 1.5px solid #000466;
+}

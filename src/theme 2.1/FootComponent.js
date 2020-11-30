@@ -20,7 +20,7 @@ function FootComponent (props){
                                             <i rel="preload" class="lni lni-whatsapp "></i></a> */}
                                         </div>
                                         <div class="info-content">
-                                         <p><a href={`tel:+91${props.contact_number}`} target="blank">+91{props.contact_number}</a></p>
+                                         <p><a href={`tel:+91${props.contact_number}`} target="blank">+91 {props.contact_number}</a></p>
                                         </div>
                                     </div> 
                                 </li>
@@ -32,14 +32,14 @@ function FootComponent (props){
                                             <i rel="preload" class="lni lni-whatsapp "></i></a>
                                         </div>
                                         <div class="info-content">
-                                         <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">+91{props.contact_number}</a></p>
+                                         <p><a href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`} target="blank">+91 {props.contact_number}</a></p>
                                         </div>
                                     </div> 
                                 </li>
                                 <li>
                                     <div class="single-info mt-30">
                                         <div class="info-icon">
-                                            <i class="lni-envelope"></i>
+                                        <a href={`mailto:${props.email}`} target="blank"><i class="lni-envelope"></i></a>
                                         </div>
                                         <div class="info-content">
                                             <p><a href={`mailto:${props.email}`} target="blank">{props.email}</a></p>
