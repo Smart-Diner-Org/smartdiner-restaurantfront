@@ -389,6 +389,10 @@ class SignUp extends Component {
     });
   }
 
+  selectAddress = (e) => {
+    this.setState({ addressTwo: e.target.value });
+  };
+
   render() {
     if (this.state.COD)
       return <Redirect to={`/order/${this.state.redirectUrl}/status`} />;
@@ -461,6 +465,7 @@ class SignUp extends Component {
                               handleChange={this.handleChange}
                               successMessage={this.state.successMessage}
                               errorMessage={this.state.errorMessage}
+                              selectAddress={this.selectAddress}
                             />
                           ))}
                       </div>
@@ -530,6 +535,7 @@ class SignUp extends Component {
                               handleChange={this.handleChange}
                               successMessage={this.state.successMessage}
                               errorMessage={this.state.errorMessage}
+                              selectAddress={this.selectAddress}
                             />
                           ))}
                       </div>

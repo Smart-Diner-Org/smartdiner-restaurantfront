@@ -474,7 +474,8 @@ p {
   }
 }
 
-.header-area .navbar .navbar-nav .nav-item a {
+.header-area .navbar .navbar-nav .nav-item a,
+.headlogo label {
   font-size: 16px;
   font-weight: 600;
   color: #777;
@@ -486,8 +487,21 @@ p {
 }
 
 .header-area .navbar .navbar-nav .nav-item.active a,
-.header-area .navbar .navbar-nav .nav-item:hover a {
+.header-area .navbar .navbar-nav .nav-item:hover a,
+.headlogo label:hover {
   color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.headlogo label {
+  margin-top: 7px;
+  margin-left: 3px;
+}
+
+@media (max-width: 991px) {
+  .headlogo label {
+    display: none;
+  }
 }
 
 .headlogo {
@@ -853,7 +867,7 @@ hr {
   color: var(--secondary-color);
 }
 
-.react-multi-carousel-item{
+.react-multi-carousel-item {
   margin-right: 30px;
   display: flex;
   justify-content: flex-start;
@@ -1000,7 +1014,6 @@ hr {
     /*height: 100%;
     width: auto;*/
   }
-  
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1041,9 +1054,9 @@ hr {
   height: 50px;
   width: 50px;
 }
-.whatsup-icon img{
- filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
- -webkit-filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+.whatsup-icon img {
+  filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.5));
+  -webkit-filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.5));
 }
 @media only screen and (max-width: 768px) {
   .whatsup-icon-mobile {
@@ -1440,11 +1453,10 @@ hr {
   top: auto;
   width: 19.2%;
 }
-.desktop-sticky-top{
-  top:100px;
-  
+.desktop-sticky-top {
+  top: 100px;
 }
-.desktop-sticky-bottom{
+.desktop-sticky-bottom {
   bottom: 10px;
 }
 

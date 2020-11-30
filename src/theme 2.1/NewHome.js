@@ -38,7 +38,7 @@ class NewHome extends Component {
       togglePopup: false,
       refpostcode: "",
       refregion: null,
-      bagItems: new Array(),
+      bagItems: [],
       distance: null,
     };
     this.changequantity = this.changequantity.bind(this);
@@ -80,6 +80,25 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
+          localStorage.setItem(
+            "LocationplaceID",
+            data.restaurant.get_location_info.get_location_place_id
+          );
+          localStorage.setItem(
+            "LocationTypeID",
+            data.restaurant.get_location_info.get_location_type_id
+          );
+          localStorage.setItem(
+            "DeliveryLocations",
+            data.restaurant.restaurant_branches[0].delivery_locations
+          );
+          if (data.restaurant.get_location_info.get_location_type_id === "2") {
+            this.setState({
+              boundary: true,
+              showPopup: false,
+            });
+            sessionStorage.setItem("boundary", true);
+          }
           localStorage.setItem(
             "PaymentType",
             JSON.stringify(data.restaurant.payment_types)
@@ -469,12 +488,12 @@ class NewHome extends Component {
                       ) ||
                         flag)
                     ) {
-                      alert("Welcome you sir... we are happy to serve you");
+                      alert("Thank you! We are happy to serve you...");
                       this.setState({ boundary: true });
                       sessionStorage.setItem("boundary", true);
                     }
                   } else if (withInDistance) {
-                    alert("Welcome you sir... we are happy to serve you");
+                    alert("Thank you! We are happy to serve you...");
                     this.setState({ boundary: true });
                     sessionStorage.setItem("boundary", true);
                   }
@@ -614,7 +633,7 @@ class NewHome extends Component {
                     ) ||
                     flag
                   ) {
-                    alert("Welcome you sir... we are happy to serve you");
+                    alert("Thank you! We are happy to serve you...");
                     this.setState({ boundary: true });
                     sessionStorage.setItem("boundary", true);
                   } else {
@@ -624,7 +643,7 @@ class NewHome extends Component {
                     this.setState({ boundary: false });
                   }
                 } else if (withInDistance) {
-                  alert("Welcome you sir... we are happy to serve you");
+                  alert("Thank you! We are happy to serve you...");
                   this.setState({ boundary: true });
                   sessionStorage.setItem("boundary", true);
                 }
@@ -714,24 +733,27 @@ class NewHome extends Component {
     } else {
       return (
         <div>
-          {this.state.total !== 0 && this.state.showPopup && (
-            <GetLocation
-              address={this.state.address}
-              getCoords={this.getCoords}
-              handleChange={this.handleChange}
-              checkDistance={this.checkDistance}
-              PAhandleChange={this.PAhandleChange}
-              handleSelect={this.handleSelect}
-              close={this.close}
-              pickMyLocation={
-                this.state.restaurant_info.restaurant_website_detail
-                  .is_pick_my_location_enabled
-              }
-              boundary={this.state.boundary}
-              gotocart={this.gotocart}
-              contshpng={this.contshpng}
-            />
-          )}
+          {this.state.restaurant_info.get_location_info.get_location_type_id ===
+            "1" &&
+            this.state.total !== 0 &&
+            this.state.showPopup && (
+              <GetLocation
+                address={this.state.address}
+                getCoords={this.getCoords}
+                handleChange={this.handleChange}
+                checkDistance={this.checkDistance}
+                PAhandleChange={this.PAhandleChange}
+                handleSelect={this.handleSelect}
+                close={this.close}
+                pickMyLocation={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .is_pick_my_location_enabled
+                }
+                boundary={this.state.boundary}
+                gotocart={this.gotocart}
+                contshpng={this.contshpng}
+              />
+            )}
 
           {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
           <div>
@@ -786,7 +808,7 @@ class NewHome extends Component {
               />
               <Description
                 delivery_locations={
-                  this.state.restaurantBranch[0].delivery_locations
+                  this.state.restaurantBranch[0].delivery_locations_to_display
                 }
                 preOrder={
                   this.state.restaurant_info.restaurant_website_detail
