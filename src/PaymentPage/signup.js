@@ -411,7 +411,7 @@ class SignUp extends Component {
                 />
                 <div className="container" style={{ height: "80vh" }}>
                   {this.state.showPaymentMobile === false ? (
-                    <>
+                    <div style={{ height: "100%", overflowY: "auto" }}>
                       <div className="signup-header">
                         <Link to="/">
                           <label className="mb-20">
@@ -436,7 +436,7 @@ class SignUp extends Component {
                           isVerified={this.state.isVerified}
                           mobile={this.state.mobile}
                         />
-                        {this.state.token &&
+                        {!this.state.token &&
                           (this.state.user_info.customer.customer_detail ? (
                             <>
                               <GetAddress
@@ -450,7 +450,7 @@ class SignUp extends Component {
                                 isMobile={this.state.mobile}
                               />
                               <button
-                                className="continue-to-pay"
+                                className="continue-to-pay mb-20"
                                 onClick={() =>
                                   this.setState({ showPaymentMobile: true })
                                 }
@@ -469,7 +469,7 @@ class SignUp extends Component {
                             />
                           ))}
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <Payment
                       goPayment={this.goPayment}
