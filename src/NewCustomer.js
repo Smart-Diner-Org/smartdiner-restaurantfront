@@ -42,7 +42,7 @@ class NewCustomer extends Component {
               onChange={this.props.selectAddress}
             >
               <option value="" disabled selected hidden>
-                Select Address Line 2
+                Select Area/Locality
               </option>
               {localStorage
                 .getItem("DeliveryLocations")
