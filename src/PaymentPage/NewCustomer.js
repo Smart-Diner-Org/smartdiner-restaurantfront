@@ -66,7 +66,7 @@ class NewCustomer extends Component {
           <div className="mt-30">
             {/* <a href="#" style={{marginRight:"35%"}}>Get Location</a> */}
             <button type="submit" className="new-address">
-              Add address
+              Add delivery address
             </button>
           </div>
         </form>
