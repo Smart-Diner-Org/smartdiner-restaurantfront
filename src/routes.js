@@ -12,7 +12,7 @@ import ProtectedRoute from './helper_components/protectedRoute';
 import UnProtectedRoute from './helper_components/unProtectedRoute';
 // import userProfile from './helpers/userProfile';
 import NewHome from './theme 2.1/NewHome'
-import SignUp from './signup'
+import SignUp from './PaymentPage/signup'
 import StatusPage from './customerStatus/StatusPage'
 import LoanBalancerTest from './loanBalancerTest'
 
@@ -27,12 +27,12 @@ export default (
         <UnProtectedRoute path="/oldsignup" component={Signup} />
     
         <UnProtectedRoute path="/signup" component={SignUp} />
-        <UnProtectedRoute path="/order/:id/status" component={StatusPage} />
+        <Route path="/order/:id/status" component={StatusPage} />
         {/* <UnProtectedRoute path="/status" component={StatusPage} /> */}
 
         <ProtectedRoute path='/home' component={Home} />
         <Route path="/logout" component={Logout} />
-        <Route exact path="/" component={NewHome} />
+        <Route path="/" component={NewHome} />
 
     </Switch>
   </Router>
