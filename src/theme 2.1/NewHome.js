@@ -119,6 +119,7 @@ class NewHome extends Component {
           if (sessionStorage.getItem("openCart")) {
             this.setState({ togglePopup: true });
           }
+          sessionStorage.removeItem("openCart");
           if (data.restaurant.restaurant_website_detail.ga_tracking_id) {
             ReactGA.initialize(
               `${data.restaurant.restaurant_website_detail.ga_tracking_id}`
