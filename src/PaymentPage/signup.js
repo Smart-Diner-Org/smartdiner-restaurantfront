@@ -436,7 +436,7 @@ class SignUp extends Component {
                           isVerified={this.state.isVerified}
                           mobile={this.state.mobile}
                         />
-                        {!this.state.token &&
+                        {this.state.token &&
                           (this.state.user_info.customer.customer_detail ? (
                             <>
                               <GetAddress
