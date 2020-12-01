@@ -165,7 +165,7 @@ class Payment extends React.Component {
             return <img src={icon} alt="payment-icon" />;
           })}
         </div>
-        <div className="container mt-20 ">
+        <div className="row d-flex flex-wrap justify-content-center mb-30">
           {this.props.errorMessage ? (
             <small className="row message ml-1" style={{ color: "#e22a28" }}>
               {this.props.errorMessage}

@@ -212,10 +212,11 @@
   padding-top: 30px;
   width: 100%;
 }
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 768px) {
   .payment-method {
     height: 100%;
     overflow-y: auto;
+    margin-bottom: 80px;
   }
 }
 
