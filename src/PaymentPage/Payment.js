@@ -49,47 +49,49 @@ class Payment extends React.Component {
           )}
           <div
             className={
+              sessionStorage.getItem("deliveryDate") &&
               sessionStorage.getItem("deliveryDate")
                 ? "col-lg-8 orders"
                 : "col-lg-12 orders"
             }
           >
-            {JSON.parse(sessionStorage.getItem("items")).length > 4 && (
-              <div className="d-flex justify-content-around mb-20">
-                {localStorage.getItem("PaymentType") &&
-                  JSON.parse(localStorage.getItem("PaymentType")).map(
-                    (paymentType) => {
-                      return (
-                        <button
-                          className={
-                            this.props.check ? "proceed" : "proceed disabled"
-                          }
-                          value={paymentType.payment_type.id}
-                          onClick={() =>
-                            this.props.check &&
-                            this.props.goPayment(paymentType.payment_type.id)
-                          }
-                        >
-                          {paymentNames[paymentType.payment_type.id]}
-                        </button>
-                      );
-                    }
+            {sessionStorage.getItem("items") &&
+              JSON.parse(sessionStorage.getItem("items")).length > 4 && (
+                <div className="d-flex justify-content-around mb-20">
+                  {localStorage.getItem("PaymentType") &&
+                    JSON.parse(localStorage.getItem("PaymentType")).map(
+                      (paymentType) => {
+                        return (
+                          <button
+                            className={
+                              this.props.check ? "proceed" : "proceed disabled"
+                            }
+                            value={paymentType.payment_type.id}
+                            onClick={() =>
+                              this.props.check &&
+                              this.props.goPayment(paymentType.payment_type.id)
+                            }
+                          >
+                            {paymentNames[paymentType.payment_type.id]}
+                          </button>
+                        );
+                      }
+                    )}
+                  {sessionStorage.getItem("totalWithoutTax") && (
+                    <button
+                      className="proceed"
+                      style={{
+                        color: "#000466",
+                        backgroundColor: "white",
+                        borderRadius: "8px",
+                        cursor: "default",
+                      }}
+                    >
+                      Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
+                    </button>
                   )}
-                {sessionStorage.getItem("totalWithoutTax") && (
-                  <button
-                    className="proceed"
-                    style={{
-                      color: "#000466",
-                      backgroundColor: "white",
-                      borderRadius: "8px",
-                      cursor: "default",
-                    }}
-                  >
-                    Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
-                  </button>
-                )}
-              </div>
-            )}
+                </div>
+              )}
             <h6 className="row d-flex justify-content-center">
               Items in the cart
             </h6>
