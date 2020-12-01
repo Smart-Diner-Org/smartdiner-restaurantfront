@@ -1,17 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=MuseoModerno:wght@700&display=swap");
 
 .signup {
-  overflow: auto;
   margin-bottom: -75px;
   padding-bottom: 75px;
 }
 
-@media screen and (min-width: 768px) {
-  .signup {
-    margin-bottom: -75px;
-    padding-bottom: 75px;
-  }
-}
 .signup input,
 .new-customer select {
   border: 1px solid #000466;
