@@ -11,6 +11,7 @@ import ola from "./assets/images/olamoney.svg";
 import freeRe from "./assets/images/freecharge.svg";
 import mobwik from "./assets/images/mobiwiki.svg";
 import Orders from "./Orders";
+import { paymentNames } from "../helpers/constant";
 
 const paymentIcons = [
   BHIM,
@@ -25,7 +26,6 @@ const paymentIcons = [
   freeRe,
   mobwik,
 ];
-const paymentNames =  {"1" : "Pay Cash","2":"Pay Online"}
 class Payment extends React.Component {
   render() {
     return (
