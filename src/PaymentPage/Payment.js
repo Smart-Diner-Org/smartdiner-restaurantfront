@@ -30,6 +30,43 @@ class Payment extends React.Component {
   render() {
     return (
       <div className="payment-method">
+        {sessionStorage.getItem("items") &&
+          JSON.parse(sessionStorage.getItem("items")).length > 4 && (
+            <div className="row d-flex justify-content-around mb-30">
+              {localStorage.getItem("PaymentType") &&
+                JSON.parse(localStorage.getItem("PaymentType")).map(
+                  (paymentType) => {
+                    return (
+                      <button
+                        className={
+                          this.props.check ? "proceed" : "proceed disabled"
+                        }
+                        value={paymentType.payment_type.id}
+                        onClick={() =>
+                          this.props.check &&
+                          this.props.goPayment(paymentType.payment_type.id)
+                        }
+                      >
+                        {paymentNames[paymentType.payment_type.id]}
+                      </button>
+                    );
+                  }
+                )}
+              {sessionStorage.getItem("totalWithoutTax") && (
+                <button
+                  className="proceed"
+                  style={{
+                    color: "#000466",
+                    backgroundColor: "white",
+                    borderRadius: "8px",
+                    cursor: "default",
+                  }}
+                >
+                  Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
+                </button>
+              )}
+            </div>
+          )}
         <div className="row">
           {sessionStorage.getItem("deliveryDate") && (
             <div className="col-lg-4 order-details">
@@ -55,43 +92,6 @@ class Payment extends React.Component {
                 : "col-lg-12 orders"
             }
           >
-            {sessionStorage.getItem("items") &&
-              JSON.parse(sessionStorage.getItem("items")).length > 4 && (
-                <div className="d-flex justify-content-around mb-20">
-                  {localStorage.getItem("PaymentType") &&
-                    JSON.parse(localStorage.getItem("PaymentType")).map(
-                      (paymentType) => {
-                        return (
-                          <button
-                            className={
-                              this.props.check ? "proceed" : "proceed disabled"
-                            }
-                            value={paymentType.payment_type.id}
-                            onClick={() =>
-                              this.props.check &&
-                              this.props.goPayment(paymentType.payment_type.id)
-                            }
-                          >
-                            {paymentNames[paymentType.payment_type.id]}
-                          </button>
-                        );
-                      }
-                    )}
-                  {sessionStorage.getItem("totalWithoutTax") && (
-                    <button
-                      className="proceed"
-                      style={{
-                        color: "#000466",
-                        backgroundColor: "white",
-                        borderRadius: "8px",
-                        cursor: "default",
-                      }}
-                    >
-                      Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
-                    </button>
-                  )}
-                </div>
-              )}
             <h6 className="row d-flex justify-content-center">
               Items in the cart
             </h6>
