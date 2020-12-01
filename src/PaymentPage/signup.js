@@ -411,10 +411,7 @@ class SignUp extends Component {
                 />
                 <div className="container" style={{ height: "80vh" }}>
                   {this.state.showPaymentMobile === false ? (
-                    <div
-                      className="col-12"
-                      style={{ height: "100%", overflowY: "auto" }}
-                    >
+                    <div className="col-12">
                       <div className="signup-header">
                         <Link to="/">
                           <label className="mb-20">
