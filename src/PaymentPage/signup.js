@@ -411,7 +411,7 @@ class SignUp extends Component {
                 />
                 <div className="container" style={{ height: "80vh" }}>
                   {this.state.showPaymentMobile === false ? (
-                    <div style={{ height: "100%", overflowY: "auto" }}>
+                    <div className="col-12">
                       <div className="signup-header">
                         <Link to="/">
                           <label className="mb-20">
@@ -421,7 +421,7 @@ class SignUp extends Component {
                         </Link>
                         <h2>Customer Details</h2>
                       </div>
-                      <div className="customer-details-form col-12">
+                      <div className="customer-details-form ">
                         <GetOTP
                           requestedOTP={this.state.requestedOTP}
                           MhandleChange={this.MhandleChange}
@@ -436,7 +436,7 @@ class SignUp extends Component {
                           isVerified={this.state.isVerified}
                           mobile={this.state.mobile}
                         />
-                        {!this.state.token &&
+                        {this.state.token &&
                           (this.state.user_info.customer.customer_detail ? (
                             <>
                               <GetAddress
