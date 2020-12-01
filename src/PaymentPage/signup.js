@@ -451,9 +451,10 @@ class SignUp extends Component {
                               />
                               <button
                                 className="continue-to-pay mb-20"
-                                onClick={() =>
-                                  this.setState({ showPaymentMobile: true })
-                                }
+                                onClick={() => {
+                                  window.scrollTo(0, 0);
+                                  this.setState({ showPaymentMobile: true });
+                                }}
                               >
                                 Checkout
                               </button>
