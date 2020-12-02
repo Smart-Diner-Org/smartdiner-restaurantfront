@@ -32,7 +32,7 @@ class Payment extends React.Component {
       <div className="payment-method">
         {sessionStorage.getItem("items") &&
           JSON.parse(sessionStorage.getItem("items")).length > 4 && (
-            <div className="row d-flex justify-content-around mb-30">
+            <div className="d-flex justify-content-around mb-30">
               {localStorage.getItem("PaymentType") &&
                 JSON.parse(localStorage.getItem("PaymentType")).map(
                   (paymentType) => {
