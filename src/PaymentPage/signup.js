@@ -383,7 +383,7 @@ class SignUp extends Component {
     });
 
     ReactGA.event({
-      category: "Customer",
+      category: "Customer signup page",
       action: "Clicked edit to Change his/her information",
       label: this.state.mobile,
     });
