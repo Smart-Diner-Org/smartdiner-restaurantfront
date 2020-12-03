@@ -12,6 +12,7 @@ import freeRe from "./assets/images/freecharge.svg";
 import mobwik from "./assets/images/mobiwiki.svg";
 import Orders from "./Orders";
 import { paymentNames } from "../helpers/constant";
+import ReactGA from "react-ga";
 
 const paymentIcons = [
   BHIM,
@@ -42,10 +43,17 @@ class Payment extends React.Component {
                           this.props.check ? "proceed" : "proceed disabled"
                         }
                         value={paymentType.payment_type.id}
-                        onClick={() =>
+                        onClick={() => {
                           this.props.check &&
-                          this.props.goPayment(paymentType.payment_type.id)
-                        }
+                            this.props.goPayment(paymentType.payment_type.id);
+                          ReactGA.event({
+                            category: "signup page",
+                            action: `Clicked ${
+                              paymentNames[paymentType.payment_type.id]
+                            } in top list of items`,
+                            label: `Chose for ${paymentType.payment_type.name}`,
+                          });
+                        }}
                       >
                         {paymentNames[paymentType.payment_type.id]}
                       </button>
@@ -136,10 +144,17 @@ class Payment extends React.Component {
                       this.props.check ? "proceed" : "proceed disabled"
                     }
                     value={paymentType.payment_type.id}
-                    onClick={() =>
+                    onClick={() => {
                       this.props.check &&
-                      this.props.goPayment(paymentType.payment_type.id)
-                    }
+                        this.props.goPayment(paymentType.payment_type.id);
+                      ReactGA.event({
+                        category: "signup page",
+                        action: `Clicked ${
+                          paymentNames[paymentType.payment_type.id]
+                        } in below list of items`,
+                        label: `Chose for ${paymentType.payment_type.name}`,
+                      });
+                    }}
                   >
                     {paymentNames[paymentType.payment_type.id]}
                   </button>

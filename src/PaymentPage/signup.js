@@ -404,10 +404,22 @@ class SignUp extends Component {
               <>
                 <NavHeader
                   check={this.state.showPaymentMobile}
-                  showCustomerDetails={() =>
-                    this.setState({ showPaymentMobile: false })
-                  }
-                  showPayment={() => this.setState({ showPaymentMobile: true })}
+                  showCustomerDetails={() => {
+                    ReactGA.event({
+                      category: "signup page",
+                      action: "Clicked customer details header link",
+                      label: `displays customer detials part`,
+                    });
+                    this.setState({ showPaymentMobile: false });
+                  }}
+                  showPayment={() => {
+                    ReactGA.event({
+                      category: "signup page",
+                      action: "Clicked Checkout header link",
+                      label: `displays payment part`,
+                    });
+                    this.setState({ showPaymentMobile: true });
+                  }}
                 />
                 <div className="container" style={{ height: "80vh" }}>
                   {this.state.showPaymentMobile === false ? (
@@ -455,6 +467,11 @@ class SignUp extends Component {
                               <button
                                 className="continue-to-pay mb-20"
                                 onClick={() => {
+                                  ReactGA.event({
+                                    category: "signup page",
+                                    action: "Clicked checkout button",
+                                    label: `after displaying address card click event takes to payment part`,
+                                  });
                                   window.scrollTo(0, 0);
                                   this.setState({ showPaymentMobile: true });
                                 }}

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 
 function NavHeader(props) {
   return (
@@ -7,6 +8,11 @@ function NavHeader(props) {
     >
       <label
         onClick={() => {
+          ReactGA.event({
+            category: "signup page",
+            action: `Clicked Shopping Cart header link`,
+            label: `Opens up cart in the home page `,
+          });
           sessionStorage.setItem("openCart", true);
           window.open("/", "_self");
         }}
