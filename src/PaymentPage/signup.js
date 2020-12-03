@@ -189,6 +189,7 @@ class SignUp extends Component {
             action: "Received OTP",
             label: data.mobile,
           });
+          this.setState({ errorMessage: "" });
         })
         .catch((error) => {
           if (error && error.response && error.response.data) {
@@ -208,11 +209,14 @@ class SignUp extends Component {
     await axios
       .post(`${this.apiLink}auth/verify_otp`, data)
       .then((res) => {
-        this.setState({ user_info: res.data });
-        this.setState({ token: res.data.accessToken });
         sessionStorage.setItem("token", res.data.accessToken);
-        this.setState({ successMessage: res.data.message });
-        this.setState({ isVerified: true });
+        this.setState({
+          user_info: res.data,
+          token: res.data.accessToken,
+          successMessage: res.data.message,
+          errorMessage: "",
+          isVerified: true,
+        });
         clearInterval(myInterval);
         ReactGA.event({
           category: "OTP",
@@ -280,8 +284,11 @@ class SignUp extends Component {
         },
       })
       .then((res) => {
-        this.setState({ user_info: res.data });
-        this.setState({ successMessage: res.data.message });
+        this.setState({
+          user_info: res.data,
+          successMessage: res.data.message,
+          errorMessage: "",
+        });
         ReactGA.event({
           category: "Customer",
           action: "Added Customer Details",
