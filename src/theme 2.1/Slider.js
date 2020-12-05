@@ -50,9 +50,9 @@ class Slider extends Component {
               </Carousel.Item>
             )}
             {this.state.slider &&
-              this.state.slider.map((item) => {
+              this.state.slider.map((item,index) => {
                 return (
-                  <Carousel.Item>
+                  <Carousel.Item key={index}>
                     <div
                       className="single-slider single-slider-1 "
                       onClick={() => {

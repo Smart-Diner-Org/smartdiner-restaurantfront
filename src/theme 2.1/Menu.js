@@ -113,6 +113,7 @@ class Menu extends Component {
               {this.props.categoryArray.map((category, index) => {
                 return (
                   <option
+                    key={index}
                     ref={(option) => (this.dropDown[index] = option)}
                     className={index === 0 ? "active" : ""}
                     value={`${category.id}`}
