@@ -166,7 +166,7 @@ class Item extends Component {
                     >
                       {this.props.priceList.map((item, index) => {
                         return (
-                          <option id={`${item.id}`} value={index}>
+                          <option key={index} id={`${item.id}`} value={index}>
                             {item.quantity_values.quantity}{" "}
                             {item.measure_values.name} - Rs.{item.price}
                           </option>
