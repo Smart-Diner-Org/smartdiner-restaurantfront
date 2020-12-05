@@ -27,6 +27,22 @@ const paymentIcons = [
   mobwik,
 ];
 class Payment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      onlyCOD: false,
+    };
+  }
+  componentDidMount() {
+    if (
+      localStorage.getItem("PaymentType") &&
+      JSON.parse(localStorage.getItem("PaymentType")).length === 1
+    ) {
+      JSON.parse(localStorage.getItem("PaymentType"))[0].id ===
+        Number(Object.keys(paymentNames)[0]) && //Object.keys(paymentNames)[0]: Cash on delivery
+        this.setState({ onlyCOD: true });
+    }
+  }
   render() {
     return (
       <div className="payment-method">
@@ -47,7 +63,9 @@ class Payment extends React.Component {
                           this.props.goPayment(paymentType.payment_type.id)
                         }
                       >
-                        {paymentNames[paymentType.payment_type.id]}
+                        {this.state.onlyCOD
+                          ? "Order Now"
+                          : paymentNames[paymentType.payment_type.id]}
                       </button>
                     );
                   }
@@ -141,7 +159,9 @@ class Payment extends React.Component {
                       this.props.goPayment(paymentType.payment_type.id)
                     }
                   >
-                    {paymentNames[paymentType.payment_type.id]}
+                    {this.state.onlyCOD
+                      ? "Order Now"
+                      : paymentNames[paymentType.payment_type.id]}
                   </button>
                 );
               }
@@ -160,11 +180,13 @@ class Payment extends React.Component {
             </button>
           )}
         </div>
-        <div className="d-flex flex-wrap justify-content-around mt-40">
-          {paymentIcons.map((icon) => {
-            return <img src={icon} alt="payment-icon" />;
-          })}
-        </div>
+        {this.state.onlyCOD === false && (
+          <div className="d-flex flex-wrap justify-content-around mt-40">
+            {paymentIcons.map((icon) => {
+              return <img src={icon} alt="payment-icon" />;
+            })}
+          </div>
+        )}
         <div className="row d-flex flex-wrap justify-content-center mb-40">
           {this.props.errorMessage ? (
             <small className="row message ml-1" style={{ color: "#e22a28" }}>
