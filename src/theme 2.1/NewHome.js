@@ -178,6 +178,23 @@ class NewHome extends Component {
 
     this.getCategories(this.state.items);
   }
+  getCategories(items) {
+    //fetching categories from itemsarray
+    let categoryArray = [];
+    items.map((item) => {
+      if (item.id) {
+        if (categoryArray.indexOf(item.id) === -1) {
+          let data = {
+            id: item.id,
+            name: item.name,
+          };
+          categoryArray.push(data);
+        }
+      }
+    });
+
+    this.setState({ categoryArray: categoryArray });
+  }
 
   populateQuantity(item) {
     var tempObj = new Object();
@@ -375,22 +392,6 @@ class NewHome extends Component {
     this.setState({
       togglePopup: !this.state.togglePopup,
     });
-  }
-
-  getCategories(items) {
-    //fetching categories from itemsarray
-    let categoryArray = [];
-    let indexes = [];
-    items.map((item) => {
-      if (item.category) {
-        if (indexes.indexOf(item.category.name) === -1) {
-          indexes.push(item.category.name);
-          categoryArray.push(item.category);
-        }
-      }
-    });
-
-    this.setState({ categoryArray: categoryArray });
   }
 
   checkDistance() {
