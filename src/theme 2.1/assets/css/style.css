@@ -1376,6 +1376,40 @@ hr {
     padding-bottom: 80px;
   }
 }
+/* Pop UP css */
+
+.modal-content {
+  padding: 0px 20px;
+  border: none;
+}
+.modal-content .modal-header{
+  border: none;
+}
+.modal-content .modal-header h4,
+.modal-content .modal-header h6 {
+  color: #000466;
+  margin: 0.5em 0;
+}
+.modal-header .close {
+  align-self: center;
+  color: #e22a28;
+}
+.modal-body input[type="radio"] {
+  margin-right: 1em;
+}
+.modal-body label {
+  color: #000466;
+}
+.modal-body .continue-btn{
+  padding: 0.25em 1em;
+  border: 1px solid #000466;
+  background-color: #000466;
+  color: white;
+  margin: 1em;
+  font-family: "MuseoModerno";
+}
+
+/* Pop Up Ends here */
 
 .collection-tilte {
   font-size: 46px;

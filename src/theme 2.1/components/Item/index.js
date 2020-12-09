@@ -3,6 +3,8 @@ import Burger from "../../assets/images/food1.jpg";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
+import Modal from "react-bootstrap/Modal";
+import QuantityButtons from "../QuantityButtons/index";
 
 class Item extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Item extends Component {
           : null,
       showToolTip: false,
       target: null,
+      showModal: false,
       canEnableAddToCart:
         this.props.priceList && this.props.priceList.length > 0 ? true : false,
     };
@@ -49,6 +52,48 @@ class Item extends Component {
         className="col-md-4 "
         style={{ marginBlockEnd: "2rem", marginBlockStart: "1.5rem" }}
       >
+        <Modal
+          show={this.state.showModal}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          backdrop="static"
+          onHide={() => this.setState({ showModal: false })}
+        >
+          <Modal.Header closeButton>
+            <div>
+              <h4>Choose your custom order</h4>
+              <h6>
+                Rs. {this.props.priceList[0].price} - Rs.{" "}
+                {this.props.priceList[this.props.priceList.length - 1].price}
+              </h6>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+            {this.props.priceList.map((item, index) => {
+              return (
+                <div className="row">
+                  <div
+                    className="col-6 d-flex flex-column"
+                    style={{ borderRight: "1px solid lightgrey" }}
+                  >
+                    <label key={index} id={`${item.id}`} value={index}>
+                      <input type="radio" value="" />
+                      {item.quantity_values.quantity} {item.measure_values.name}{" "}
+                      - Rs.{item.price}
+                    </label>
+                  </div>
+                  <div className="col-6 d-flex justify-content-center">
+                    <QuantityButtons />
+                  </div>
+                </div>
+              );
+            })}
+            <div className="row">
+              <button className="continue-btn ml-auto">Continue</button>
+            </div>
+          </Modal.Body>
+        </Modal>
+
         {/* {!this.state.canEnableAddToCart && <p>Call/WhatsApp us to order Customized Cakes.</p>} */}
         <div className="single-product-items">
           <div className="product-item-image">
@@ -64,14 +109,10 @@ class Item extends Component {
               </a>
             )}
 
-            {this.props.discount > 0 ? (
-              <>
-                <div className="product-discount-tag">
-                  <p>{this.props.discount}% OFF</p>
-                </div>
-              </>
-            ) : (
-              ""
+            {this.props.discount > 0 && (
+              <div className="product-discount-tag">
+                <p>{this.props.discount}% OFF</p>
+              </div>
             )}
           </div>
           <div className="product-item-content mt-30">
@@ -157,73 +198,56 @@ class Item extends Component {
 
                 <div className="d-flex flex-column justify-content-end">
                   <div>
-                    <select
-                      id={"price_list_" + this.props.productId}
-                      className="menu-price-list-dropdown mt-10 "
-                      onChange={(e) => {
-                        this.priceListChanged(e);
-                      }}
-                    >
-                      {this.props.priceList.map((item, index) => {
-                        return (
-                          <option key={index} id={`${item.id}`} value={index}>
-                            {item.quantity_values.quantity}{" "}
-                            {item.measure_values.name} - Rs.{item.price}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-
-                  <div
-                    className="input-group mb-3 mt-10"
-                    style={{
-                      width: "fit-content",
-                      border: "1px solid black",
-                      borderRadius: "23px",
-                      maxWidth: "112px",
-                    }}
-                  >
-                    <div className="input-group-prepend">
+                    {this.props.priceList.length === 1 ? (
+                      <>
+                        <select
+                          id={"price_list_" + this.props.productId}
+                          className="menu-price-list-dropdown mt-10 mb-10"
+                          onChange={(e) => {
+                            this.priceListChanged(e);
+                          }}
+                        >
+                          {this.props.priceList.map((item, index) => {
+                            return (
+                              <option
+                                key={index}
+                                id={`${item.id}`}
+                                value={index}
+                              >
+                                {item.quantity_values.quantity}{" "}
+                                {item.measure_values.name} - Rs.{item.price}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <QuantityButtons
+                          increaseQuantity={() =>
+                            this.props.changequantity(
+                              1,
+                              this.props.categoryID,
+                              this.props.menuID,
+                              this.props.priceList[0].id
+                            )
+                          }
+                          decreaseQuantity={() =>
+                            this.props.changequantity(
+                              -1,
+                              this.props.categoryID,
+                              this.props.menuID,
+                              this.props.priceList[0].id
+                            )
+                          }
+                          quantity={this.props.priceList[0].quantity}
+                        />
+                      </>
+                    ) : (
                       <button
-                        className="button-round"
-                        style={{ borderLeft: "0px" }}
-                        type="button"
-                        onClick={() => {
-                          this.props.decreasequantity();
-                          this.updateQuantity(
-                            document.getElementById(
-                              "price_list_" + this.props.productId
-                            ).value
-                          );
-                        }}
+                        className="btn btn-dark"
+                        onClick={() => this.setState({ showModal: true })}
                       >
-                        −
+                        Add to Cart
                       </button>
-                    </div>
-                    <input
-                      type="text"
-                      className="total-quantity"
-                      value={this.state.quantity ? this.state.quantity : 0}
-                    />
-
-                    <div className="input-group-append">
-                      <button
-                        className="button-round"
-                        style={{ borderRight: "0px" }}
-                        type="button"
-                        onClick={() => {
-                          this.props.increasequantity();
-                          this.updateQuantity(
-                            document.getElementById(
-                              "price_list_" + this.props.productId
-                            ).value
-                          );
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
+                    )}
                   </div>
                 </div>
               </>

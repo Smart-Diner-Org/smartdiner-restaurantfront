@@ -32,27 +32,6 @@ class Product extends Component {
                         duration={500}
                         className="row product-items-active"
                       >
-                        {/* {
-                                        this.props.items.map((item, index) => {
-                                        if(item.category.id==this.props.selectedType)
-                                        return <Item
-                                            key={index}
-                                            short_description={item.short_description}
-                                            description={item.description}
-                                            quantity={item.quantity}
-                                            itemName={item.name}
-                                            image={item.image}
-                                            priceList={item.menu_quantity_measure_price_list}
-                                            discount={item.discount}
-                                            discountPrice={item.discountPrice}
-                                            increasequantity={() => this.props.changequantity(item, 1)}
-                                            decreasequantity={() => this.props.changequantity(item, -1)}
-                                            productId={item.id}
-                                            setDesclaimer={this.setDesclaimer}
-                                            contact_number = {this.props.contact_number}
-                                        />
-                                    })
-                                } */}
                         {this.props.items.map((singleCategory) => {
                           if (singleCategory.id == this.props.selectedType) {
                             return singleCategory.menus.map((item, index) => {
@@ -69,12 +48,7 @@ class Product extends Component {
                                   }
                                   discount={item.discount}
                                   discountPrice={item.discountPrice}
-                                  increasequantity={() =>
-                                    this.props.changequantity(item, 1)
-                                  }
-                                  decreasequantity={() =>
-                                    this.props.changequantity(item, -1)
-                                  }
+                                  changequantity={this.props.changequantity}
                                   categoryID={singleCategory.id}
                                   menuID={item.id}
                                 />

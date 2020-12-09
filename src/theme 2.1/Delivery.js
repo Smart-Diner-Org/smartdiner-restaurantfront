@@ -77,7 +77,6 @@ class Delivery extends Component {
   }
 
   render() {
-    console.log(this.props.restaurant_website_detail);
     return (
       <div>
         {this.props.restaurant_website_detail.is_run_time_booking_enabled && (

@@ -7,14 +7,16 @@ import FlipMove from "react-flip-move";
 class BagItemList extends React.Component {
   values() {
     const total = this.props.items.reduce(function (accumulator, currentValue) {
-      for (let key in currentValue) {
-        const valueToBeAdded =
-          currentValue[key].discount > 0
-            ? currentValue[key].discountPrice * currentValue[key].quantity
-            : currentValue[key].originalPrice * currentValue[key].quantity;
-        const newTotal = accumulator + valueToBeAdded;
-        return newTotal;
-      }
+      const valueToBeAdded =
+        currentValue.menu.discount > 0
+          ? (currentValue.selectedMenuQuantity.price -
+              currentValue.selectedMenuQuantity.price *
+                (currentValue.menu.discount / 100)) *
+            currentValue.selectedMenuQuantity.quantity
+          : currentValue.selectedMenuQuantity.price *
+            currentValue.selectedMenuQuantity.quantity;
+      const newTotal = accumulator + valueToBeAdded;
+      return newTotal;
     }, 0);
     const baseConvenienceFee = (3 / 100) * total + 3;
     const tax = baseConvenienceFee + (18 / 100) * baseConvenienceFee;
@@ -31,46 +33,36 @@ class BagItemList extends React.Component {
   render() {
     return (
       <div>
-        <FlipMove
-          duration={500}
-        >
+        <FlipMove duration={500}>
           {this.props.items.map((item, index) => {
-            for (let key in item) {
-              return (
-                <BillItem
-                  key={index}
-                  description={item[key].short_description}
-                  quantity={item[key].quantity}
-                  itemName={item[key].name}
-                  image={item[key].image}
-                  price={item[key].originalPrice}
-                  discount={item[key].discount}
-                  productId={item[key].id}
-                  discountPrice={item[key].discountPrice}
-                  selectedMenuQuantityMeasurePriceId={
-                    item[key].selectedMenuQuantityMeasurePriceId
-                  }
-                  menuQuantity={item[
-                    key
-                  ].menu_quantity_measure_price_list.filter((menu) => {
-                    return (
-                      menu.id == item[key].selectedMenuQuantityMeasurePriceId
-                    );
-                  })}
-                  removeItem={() => {
-                    this.props.changequantity(key, "remove");
-                  }}
-                  increasequantity={(e) => {
-                    e.preventDefault();
-                    this.props.changequantity(key, 1);
-                  }}
-                  decreasequantity={(e) => {
-                    e.preventDefault();
-                    this.props.changequantity(key, -1);
-                  }}
-                />
-              );
-            }
+            return (
+              <BillItem
+                key={index}
+                description={item.menu.short_description}
+                quantity={item.selectedMenuQuantity.quantity}
+                itemName={item.menu.name}
+                image={item.menu.image}
+                price={item.selectedMenuQuantity.price}
+                discount={item.menu.discount}
+                // productId={item[key].id}
+                discountPrice={
+                  item.selectedMenuQuantity.price -
+                  item.selectedMenuQuantity.price * (item.menu.discount / 100)
+                }
+                menuQuantity={item.selectedMenuQuantity}
+                removeItem={() => {
+                  this.props.changequantity("remove");
+                }}
+                increasequantity={(e) => {
+                  e.preventDefault();
+                  this.props.changequantity(1);
+                }}
+                decreasequantity={(e) => {
+                  e.preventDefault();
+                  this.props.changequantity(-1);
+                }}
+              />
+            );
           })}
         </FlipMove>
         <Bill values={this.values()} />

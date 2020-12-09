@@ -54,9 +54,6 @@ class NewHome extends Component {
     this.gotocart = this.gotocart.bind(this);
     this.contshpng = this.contshpng.bind(this);
     this.editlocation = this.editlocation.bind(this);
-    this.changequantityinBag = this.changequantityinBag.bind(this);
-    this.populateQuantity = this.populateQuantity.bind(this);
-    this.updateBag = this.updateBag.bind(this);
   }
 
   async componentDidMount() {
@@ -110,7 +107,7 @@ class NewHome extends Component {
           ) {
             this.setState({
               bagItems: JSON.parse(sessionStorage.getItem("items")),
-              items: JSON.parse(sessionStorage.getItem("menu-items")),
+              items: JSON.parse(localStorage.getItem("menu-items")),
               boundary: Boolean(sessionStorage.getItem("boundary")),
               total: sessionStorage.getItem("total"),
               showPopup: false,
@@ -196,127 +193,82 @@ class NewHome extends Component {
     this.setState({ categoryArray: categoryArray });
   }
 
-  populateQuantity(item) {
-    var tempObj = new Object();
-    var originalPrice = document.getElementById("original_price_" + item.id)
-      .value;
-    var discountPrice = null;
-    if (document.getElementById("discounted_price_" + item.id)) {
-      discountPrice = document.getElementById("discounted_price_" + item.id)
-        .value;
-    }
-    item["originalPrice"] = originalPrice;
-    item["discountPrice"] = discountPrice;
-    if (!tempObj[item["customKey"]]) tempObj[item["customKey"]] = item;
-    tempObj[item["customKey"]]["quantity"] = 1;
-    return tempObj;
-  }
-
-  changequantity(sourceItem, value) {
-    //this is for adding/increasing items to cart
-    var self = this;
-    function handleNewItem(argument) {
-      switch (value) {
-        case 1:
-          sourceItem.quantity = 1;
-          let index = document.getElementById("price_list_" + item.id).value;
-          sourceItem.menu_quantity_measure_price_list[index].quantity = 1;
-          oldArrayItems.push(self.populateQuantity(item));
-          ReactGA.event({
-            category: "Menu",
-            action: "add",
-            label: `${sourceItem.name}`,
-            value: 1,
-          });
-          break;
-        case -1:
-          break;
-        default:
-          alert("something went wrong");
-      }
-    }
-    var item = {};
-    item = Object.assign({}, sourceItem);
-    var selectedMenuQuantityMeasurePriceId;
-    if (document.getElementById("price_list_" + item.id)) {
-      var dropDownEle = document.getElementById("price_list_" + item.id);
-      selectedMenuQuantityMeasurePriceId =
-        dropDownEle.options[dropDownEle.selectedIndex].id;
-    } else if (document.getElementById("bag-price-list")) {
-      var bagItem = document.getElementById("bag-price-list");
-      selectedMenuQuantityMeasurePriceId = bagItem.value;
-    } else {
-      alert("something Wrong. Price list is not populating");
-      return;
-    }
-    item[
-      "selectedMenuQuantityMeasurePriceId"
-    ] = selectedMenuQuantityMeasurePriceId;
-    var customKey = item.id + "_" + item.selectedMenuQuantityMeasurePriceId;
-    item["customKey"] = customKey;
-
-    let oldArrayItems = this.state.bagItems;
-    if (oldArrayItems.length == 0) handleNewItem();
-    else {
-      var found = false;
-      for (var i = 0; i < oldArrayItems.length; i++) {
-        var tempObj_2 = oldArrayItems[i];
-        if (tempObj_2[item["customKey"]]) {
-          if (!tempObj_2[item["customKey"]]["quantity"])
-            tempObj_2[item["customKey"]]["quantity"] = 0;
-
-          switch (value) {
-            case 1:
-              tempObj_2[item["customKey"]]["quantity"] += 1;
-              ReactGA.event({
-                category: "Menu",
-                action: "Product quantity increased",
-                label: `${sourceItem.name}`,
-                value: tempObj_2[item["customKey"]]["quantity"],
-              });
-              break;
-            case -1:
-              if (tempObj_2[item["customKey"]]["quantity"] > 0) {
-                tempObj_2[item["customKey"]]["quantity"] -= 1;
-                ReactGA.event({
-                  category: "Menu",
-                  action: "Product quantity decreased",
-                  label: `${sourceItem.name}`,
-                  value: tempObj_2[item["customKey"]]["quantity"],
-                });
+  changequantity = (
+    value,
+    categoryID,
+    menuID,
+    selectedMenuQuantityMeasurePriceId
+  ) => {
+    let newItemsArray = this.state.items;
+    for (let i = 0; i < newItemsArray.length; i++) {
+      if (newItemsArray[i].id === categoryID) {
+        for (let j = 0; j < newItemsArray[i].menus.length; j++) {
+          if (newItemsArray[i].menus[j].id === menuID) {
+            for (
+              let k = 0;
+              k <
+              newItemsArray[i].menus[j].menu_quantity_measure_price_list.length;
+              k++
+            ) {
+              if (
+                newItemsArray[i].menus[j].menu_quantity_measure_price_list[k]
+                  .id === selectedMenuQuantityMeasurePriceId
+              ) {
+                if (
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ]
+                ) {
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ] =
+                    newItemsArray[i].menus[j].menu_quantity_measure_price_list[
+                      k
+                    ]["quantity"] + value;
+                } else {
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ] = 1;
+                }
               }
-              if (tempObj_2[item["customKey"]]["quantity"] <= 0) {
-                ReactGA.event({
-                  category: "Menu",
-                  action: "Product removed",
-                  label: `${sourceItem.name}`,
-                });
-                oldArrayItems.splice(i, 1);
-              }
-              break;
-            default:
-              alert("something went wrong");
+            }
           }
-          sourceItem.quantity = tempObj_2[item["customKey"]]["quantity"];
-          let index = document.getElementById("price_list_" + item.id).value;
-          sourceItem.menu_quantity_measure_price_list[index].quantity =
-            tempObj_2[item["customKey"]]["quantity"];
-          found = true;
         }
       }
-      if (!found) handleNewItem();
     }
-    this.updateBag(oldArrayItems);
-    sessionStorage.setItem("menu-items", JSON.stringify(this.state.items));
-  }
+    this.setState({ items: newItemsArray });
+    localStorage.setItem("menu-items", JSON.stringify(newItemsArray));
+    this.computeBagItems(newItemsArray);
+  };
 
-  updateBag(array) {
-    this.setState({ bagItems: array });
-    sessionStorage.setItem("items", JSON.stringify(array));
-    let total = array.length;
+  computeBagItems = (items) => {
+    let selectedMenuArray = [];
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < items[i].menus.length; j++) {
+        for (
+          let k = 0;
+          k < items[i].menus[j].menu_quantity_measure_price_list.length;
+          k++
+        ) {
+          if (
+            items[i].menus[j].menu_quantity_measure_price_list[k].quantity > 0
+          ) {
+            let menu = {
+              menu: items[i].menus[j],
+              selectedMenuQuantity:
+                items[i].menus[j].menu_quantity_measure_price_list[k],
+            };
+            selectedMenuArray.push(menu);
+          }
+        }
+      }
+    }
+    this.setState({ bagItems: selectedMenuArray });
+    sessionStorage.setItem("items", JSON.stringify(selectedMenuArray));
+    let total = selectedMenuArray.length;
     this.setState({ total: total });
     sessionStorage.setItem("total", total);
-  }
+  };
 
   changequantityinBag(customKey, value) {
     let oldArrayItems = this.state.bagItems;
