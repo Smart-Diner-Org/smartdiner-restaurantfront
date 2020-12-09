@@ -199,6 +199,7 @@ class NewHome extends Component {
     menuID,
     selectedMenuQuantityMeasurePriceId
   ) => {
+    console.log(value,categoryID,menuID,selectedMenuQuantityMeasurePriceId)
     let newItemsArray = this.state.items;
     for (let i = 0; i < newItemsArray.length; i++) {
       if (newItemsArray[i].id === categoryID) {
@@ -716,7 +717,7 @@ class NewHome extends Component {
               this.state.total !== 0 && (
                 <Bag
                   closePopup={this.togglePopup}
-                  changequantity={this.changequantityinBag}
+                  changequantity={this.changequantity}
                   items={this.state.bagItems}
                   total={this.state.total}
                   quantity={this.state.quantity}

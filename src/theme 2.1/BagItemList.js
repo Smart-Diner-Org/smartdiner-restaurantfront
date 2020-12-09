@@ -44,23 +44,35 @@ class BagItemList extends React.Component {
                 image={item.menu.image}
                 price={item.selectedMenuQuantity.price}
                 discount={item.menu.discount}
-                // productId={item[key].id}
                 discountPrice={
                   item.selectedMenuQuantity.price -
                   item.selectedMenuQuantity.price * (item.menu.discount / 100)
                 }
                 menuQuantity={item.selectedMenuQuantity}
                 removeItem={() => {
-                  this.props.changequantity("remove");
+                  this.props.changequantity(
+                    -item.selectedMenuQuantity.quantity,
+                    Number(item.menu.category_id),
+                    item.menu.id,
+                    item.selectedMenuQuantity.id
+                  )
                 }}
-                increasequantity={(e) => {
-                  e.preventDefault();
-                  this.props.changequantity(1);
-                }}
-                decreasequantity={(e) => {
-                  e.preventDefault();
-                  this.props.changequantity(-1);
-                }}
+                increasequantity={() =>
+                  this.props.changequantity(
+                    1,
+                    Number(item.menu.category_id),
+                    item.menu.id,
+                    item.selectedMenuQuantity.id
+                  )
+                }
+                decreasequantity={() =>
+                  this.props.changequantity(
+                    -1,
+                    Number(item.menu.category_id),
+                    item.menu.id,
+                    item.selectedMenuQuantity.id
+                  )
+                }
               />
             );
           })}

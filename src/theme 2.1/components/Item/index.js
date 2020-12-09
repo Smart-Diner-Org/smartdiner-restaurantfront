@@ -71,19 +71,37 @@ class Item extends Component {
           <Modal.Body>
             {this.props.priceList.map((item, index) => {
               return (
-                <div className="row">
+                <div className="row" key={index}>
                   <div
                     className="col-6 d-flex flex-column"
                     style={{ borderRight: "1px solid lightgrey" }}
                   >
-                    <label key={index} id={`${item.id}`} value={index}>
+                    <label id={`${item.id}`} value={index}>
                       <input type="radio" value="" />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
                       - Rs.{item.price}
                     </label>
                   </div>
                   <div className="col-6 d-flex justify-content-center">
-                    <QuantityButtons />
+                    <QuantityButtons
+                      increaseQuantity={() =>
+                        this.props.changequantity(
+                          1,
+                          this.props.categoryID,
+                          this.props.menuID,
+                          item.id
+                        )
+                      }
+                      decreaseQuantity={() =>
+                        this.props.changequantity(
+                          -1,
+                          this.props.categoryID,
+                          this.props.menuID,
+                          item.id
+                        )
+                      }
+                      quantity={item.quantity}
+                    />
                   </div>
                 </div>
               );
