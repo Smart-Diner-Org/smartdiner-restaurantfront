@@ -199,7 +199,6 @@ class NewHome extends Component {
     menuID,
     selectedMenuQuantityMeasurePriceId
   ) => {
-    console.log(value,categoryID,menuID,selectedMenuQuantityMeasurePriceId)
     let newItemsArray = this.state.items;
     for (let i = 0; i < newItemsArray.length; i++) {
       if (newItemsArray[i].id === categoryID) {
@@ -264,6 +263,7 @@ class NewHome extends Component {
         }
       }
     }
+    console.log(selectedMenuArray)
     this.setState({ bagItems: selectedMenuArray });
     sessionStorage.setItem("items", JSON.stringify(selectedMenuArray));
     let total = selectedMenuArray.length;
