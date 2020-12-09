@@ -10,40 +10,34 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      price:
-        this.props.priceList && this.props.priceList.length > 0
-          ? this.props.priceList[0].price
-          : null,
-      quantity:
-        this.props.priceList && this.props.priceList.length > 0
-          ? this.props.priceList[0].quantity
-          : null,
       showToolTip: false,
       target: null,
       showModal: false,
       canEnableAddToCart:
         this.props.priceList && this.props.priceList.length > 0 ? true : false,
+      showModalText: "Add to Cart",
     };
-
-    this.priceListChanged = this.priceListChanged.bind(this);
-    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
-  priceListChanged(e) {
-    const index = e.target.value;
-    const price = this.props.priceList[index].price;
-    this.setState({
-      price: price,
-    });
-    this.updateQuantity(index);
-  }
-
-  updateQuantity(index) {
-    const quantity = this.props.priceList[index].quantity;
-    this.setState({
-      quantity: quantity,
-    });
-  }
+  handleChecked = (e, id) => {
+    if (Number(e.target.value) > 0) {
+      this.props.changequantity(
+        -e.target.value,
+        this.props.categoryID,
+        this.props.menuID,
+        id
+      );
+      e.target.checked = false;
+    } else {
+      this.props.changequantity(
+        1,
+        this.props.categoryID,
+        this.props.menuID,
+        id
+      );
+      e.target.checked = true;
+    }
+  };
 
   render() {
     return (
@@ -76,38 +70,49 @@ class Item extends Component {
                     className="col-6 d-flex flex-column"
                     style={{ borderRight: "1px solid lightgrey" }}
                   >
-                    <label id={`${item.id}`} value={index}>
-                      <input type="radio" value="" />
+                    <label id={`${item.id}`}>
+                      <input
+                        type="radio"
+                        value={item.quantity}
+                        onChange={(e) => this.handleChecked(e, item.id)}
+                      />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
                       - Rs.{item.price}
                     </label>
                   </div>
                   <div className="col-6 d-flex justify-content-center">
-                    <QuantityButtons
-                      increaseQuantity={() =>
-                        this.props.changequantity(
-                          1,
-                          this.props.categoryID,
-                          this.props.menuID,
-                          item.id
-                        )
-                      }
-                      decreaseQuantity={() =>
-                        this.props.changequantity(
-                          -1,
-                          this.props.categoryID,
-                          this.props.menuID,
-                          item.id
-                        )
-                      }
-                      quantity={item.quantity}
-                    />
+                    {item.quantity > 0 && (
+                      <QuantityButtons
+                        increaseQuantity={() =>
+                          this.props.changequantity(
+                            1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            item.id
+                          )
+                        }
+                        decreaseQuantity={() =>
+                          this.props.changequantity(
+                            -1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            item.id
+                          )
+                        }
+                        quantity={item.quantity}
+                      />
+                    )}
                   </div>
                 </div>
               );
             })}
             <div className="row">
-              <button className="continue-btn ml-auto">Continue</button>
+              <button
+                className="continue-btn ml-auto"
+                onClick={() => this.setState({ showModal: false })}
+              >
+                Continue
+              </button>
             </div>
           </Modal.Body>
         </Modal>
@@ -180,36 +185,38 @@ class Item extends Component {
                         textDecoration: "line-through",
                       }}
                     >
-                      Rs.{this.state.price}
+                      Rs.{this.props.priceList[0].price}
                     </span>
                     <span style={{ color: "#000000" }}>
                       Rs.
-                      {this.state.price -
-                        this.state.price * (this.props.discount / 100)}
+                      {this.props.priceList[0].price -
+                        this.props.priceList[0].price *
+                          (this.props.discount / 100)}
                     </span>
                     <input
                       type="hidden"
                       id={"original_price_" + this.props.productId}
-                      value={this.state.price}
+                      value={this.props.priceList[0].price}
                     ></input>
                     <input
                       type="hidden"
                       id={"discounted_price_" + this.props.productId}
                       value={
-                        this.state.price -
-                        this.state.price * (this.props.discount / 100)
+                        this.props.priceList[0].price -
+                        this.props.priceList[0].price *
+                          (this.props.discount / 100)
                       }
                     ></input>
                   </>
                 ) : (
                   <>
                     <span style={{ color: "#000000" }}>
-                      Rs.{this.state.price}
+                      Rs.{this.props.priceList[0].price}
                     </span>
                     <input
                       type="hidden"
                       id={"original_price_" + this.props.productId}
-                      value={this.state.price}
+                      value={this.props.priceList[0].price}
                     ></input>
                   </>
                 )}
@@ -217,53 +224,31 @@ class Item extends Component {
                 <div className="d-flex flex-column justify-content-end">
                   <div>
                     {this.props.priceList.length === 1 ? (
-                      <>
-                        <select
-                          id={"price_list_" + this.props.productId}
-                          className="menu-price-list-dropdown mt-10 mb-10"
-                          onChange={(e) => {
-                            this.priceListChanged(e);
-                          }}
-                        >
-                          {this.props.priceList.map((item, index) => {
-                            return (
-                              <option
-                                key={index}
-                                id={`${item.id}`}
-                                value={index}
-                              >
-                                {item.quantity_values.quantity}{" "}
-                                {item.measure_values.name} - Rs.{item.price}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        <QuantityButtons
-                          increaseQuantity={() =>
-                            this.props.changequantity(
-                              1,
-                              this.props.categoryID,
-                              this.props.menuID,
-                              this.props.priceList[0].id
-                            )
-                          }
-                          decreaseQuantity={() =>
-                            this.props.changequantity(
-                              -1,
-                              this.props.categoryID,
-                              this.props.menuID,
-                              this.props.priceList[0].id
-                            )
-                          }
-                          quantity={this.props.priceList[0].quantity}
-                        />
-                      </>
+                      <QuantityButtons
+                        increaseQuantity={() =>
+                          this.props.changequantity(
+                            1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            this.props.priceList[0].id
+                          )
+                        }
+                        decreaseQuantity={() =>
+                          this.props.changequantity(
+                            -1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            this.props.priceList[0].id
+                          )
+                        }
+                        quantity={this.props.priceList[0].quantity}
+                      />
                     ) : (
                       <button
-                        className="btn btn-dark"
+                        className="btn add-to-cart"
                         onClick={() => this.setState({ showModal: true })}
                       >
-                        Add to Cart
+                        {this.state.showModalText}
                       </button>
                     )}
                   </div>

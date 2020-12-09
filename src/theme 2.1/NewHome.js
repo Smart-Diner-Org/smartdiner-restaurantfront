@@ -263,7 +263,6 @@ class NewHome extends Component {
         }
       }
     }
-    console.log(selectedMenuArray);
     this.setState({ bagItems: selectedMenuArray });
     sessionStorage.setItem("items", JSON.stringify(selectedMenuArray));
     let total = selectedMenuArray.length;
