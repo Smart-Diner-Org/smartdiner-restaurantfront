@@ -225,7 +225,7 @@ class NewHome extends Component {
                     newItemsArray[i].menus[j].menu_quantity_measure_price_list[
                       k
                     ]["quantity"] + value;
-                } else {
+                } else if (value === 1) {
                   newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
                     "quantity"
                   ] = 1;
@@ -263,7 +263,7 @@ class NewHome extends Component {
         }
       }
     }
-    console.log(selectedMenuArray)
+    console.log(selectedMenuArray);
     this.setState({ bagItems: selectedMenuArray });
     sessionStorage.setItem("items", JSON.stringify(selectedMenuArray));
     let total = selectedMenuArray.length;
