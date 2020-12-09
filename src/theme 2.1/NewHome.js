@@ -271,60 +271,60 @@ class NewHome extends Component {
     sessionStorage.setItem("total", total);
   };
 
-  changequantityinBag(customKey, value) {
-    let oldArrayItems = this.state.bagItems;
-    oldArrayItems.map((item) => {
-      if (Object.keys(item).toString() === customKey) {
-        let index = oldArrayItems.indexOf(item);
+  // changequantityinBag(customKey, value) {
+  //   let oldArrayItems = this.state.bagItems;
+  //   oldArrayItems.map((item) => {
+  //     if (Object.keys(item).toString() === customKey) {
+  //       let index = oldArrayItems.indexOf(item);
 
-        switch (value) {
-          case "remove":
-            if (index >= 0) {
-              oldArrayItems.splice(index, 1);
-              ReactGA.event({
-                category: "Cart",
-                action: "Product Removed",
-                label: item[customKey].name,
-              });
-            }
-            break;
-          case 1:
-            item[customKey].quantity += 1;
-            ReactGA.event({
-              category: "Cart",
-              action: "Product quantity Increases",
-              label: item[customKey].name,
-              value: item[customKey].quantity,
-            });
-            break;
-          case -1:
-            if (item[customKey].quantity > 0) {
-              ReactGA.event({
-                category: "Cart",
-                action: "Product quantity decreased",
-                label: item[customKey].name,
-                value: item[customKey].quantity,
-              });
-              item[customKey].quantity -= 1;
-            }
-            if (item[customKey].quantity <= 0) {
-              if (index >= 0) {
-                oldArrayItems.splice(index, 1);
-                ReactGA.event({
-                  category: "Cart",
-                  action: "Product removed",
-                  label: item[customKey].name,
-                });
-              }
-            }
-            break;
-          default:
-            alert("something went wrong");
-        }
-      }
-    });
-    this.updateBag(oldArrayItems);
-  }
+  //       switch (value) {
+  //         case "remove":
+  //           if (index >= 0) {
+  //             oldArrayItems.splice(index, 1);
+  //             ReactGA.event({
+  //               category: "Cart",
+  //               action: "Product Removed",
+  //               label: item[customKey].name,
+  //             });
+  //           }
+  //           break;
+  //         case 1:
+  //           item[customKey].quantity += 1;
+  //           ReactGA.event({
+  //             category: "Cart",
+  //             action: "Product quantity Increases",
+  //             label: item[customKey].name,
+  //             value: item[customKey].quantity,
+  //           });
+  //           break;
+  //         case -1:
+  //           if (item[customKey].quantity > 0) {
+  //             ReactGA.event({
+  //               category: "Cart",
+  //               action: "Product quantity decreased",
+  //               label: item[customKey].name,
+  //               value: item[customKey].quantity,
+  //             });
+  //             item[customKey].quantity -= 1;
+  //           }
+  //           if (item[customKey].quantity <= 0) {
+  //             if (index >= 0) {
+  //               oldArrayItems.splice(index, 1);
+  //               ReactGA.event({
+  //                 category: "Cart",
+  //                 action: "Product removed",
+  //                 label: item[customKey].name,
+  //               });
+  //             }
+  //           }
+  //           break;
+  //         default:
+  //           alert("something went wrong");
+  //       }
+  //     }
+  //   });
+  //   this.updateBag(oldArrayItems);
+  // }
 
   setType(type) {
     //to display respective items for menu items selected
