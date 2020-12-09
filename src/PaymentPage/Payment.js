@@ -125,28 +125,21 @@ class Payment extends React.Component {
               {sessionStorage.getItem("items") &&
                 JSON.parse(sessionStorage.getItem("items")).map(
                   (item, index) => {
-                    for (let key in item) {
-                      return (
-                        <Orders
-                          key={index}
-                          quantity={item[key].quantity}
-                          itemName={item[key].name}
-                          discountPrice={
-                            item[key].discountPrice
-                              ? item[key].discountPrice
-                              : item[key].originalPrice
-                          }
-                          menuQuantity={item[
-                            key
-                          ].menu_quantity_measure_price_list.filter((menu) => {
-                            return (
-                              menu.id ==
-                              item[key].selectedMenuQuantityMeasurePriceId
-                            );
-                          })}
-                        />
-                      );
-                    }
+                    return (
+                      <Orders
+                        key={index}
+                        quantity={item.selectedMenuQuantity.quantity}
+                        itemName={item.menu.name}
+                        price={
+                          item.menu.discount > 0
+                            ? item.selectedMenuQuantity.price -
+                              item.selectedMenuQuantity.price *
+                                (item.menu.discount / 100)
+                            : item.selectedMenuQuantity.price
+                        }
+                        menuQuantity={item.selectedMenuQuantity}
+                      />
+                    );
                   }
                 )}
             </ul>

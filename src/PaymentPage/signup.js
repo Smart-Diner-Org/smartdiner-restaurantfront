@@ -312,7 +312,7 @@ class SignUp extends Component {
         id: items.menu.id,
         quantity: items.selectedMenuQuantity.quantity,
         price:
-          items.menus.discount > 0
+          items.menu.discount > 0
             ? items.selectedMenuQuantity.price -
               items.selectedMenuQuantity.price * (items.menu.discount / 100)
             : items.selectedMenuQuantity.price,
