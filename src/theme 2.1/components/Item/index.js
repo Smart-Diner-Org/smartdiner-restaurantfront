@@ -16,11 +16,11 @@ class Item extends Component {
       showModal: false,
       canEnableAddToCart:
         this.props.priceList && this.props.priceList.length > 0 ? true : false,
-      showModalText: "Add to Cart",
+      modalTotal: 0,
     };
   }
 
-  handleChecked = (e, id) => {
+  handleChecked = (e, id, discount) => {
     if (Number(e.target.value) > 0) {
       this.props.changequantity(
         -e.target.value,
@@ -38,6 +38,25 @@ class Item extends Component {
       );
       e.target.checked = true;
     }
+    this.calculateModalTotal(discount);
+  };
+
+  calculateModalTotal = (discount) => {
+    const total = this.props.priceList.reduce(function (
+      accumulator,
+      currentValue
+    ) {
+      const valueToBeAdded = currentValue.quantity
+        ? discount > 0
+          ? (currentValue.price - currentValue.price * (discount / 100)) *
+            currentValue.quantity
+          : currentValue.price * currentValue.quantity
+        : 0;
+      const newTotal = accumulator + valueToBeAdded;
+      return newTotal;
+    },
+    0);
+    this.setState({ modalTotal: total });
   };
 
   render() {
@@ -51,48 +70,61 @@ class Item extends Component {
           show={this.state.showModal}
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          backdrop="static"
           onHide={() => this.setState({ showModal: false })}
         >
           <Modal.Header closeButton>
-            <div>
-              <h4>Choose your custom order</h4>
-              <h6>
-                Rs. {this.props.priceList[0].price} - Rs.{" "}
-                {this.props.priceList[this.props.priceList.length - 1].price}
-              </h6>
-            </div>
+            <h4>Choose your custom order</h4>
           </Modal.Header>
           <Modal.Body>
             {this.props.priceList.map((item, index) => {
               return (
                 <div className="row" key={index}>
-                  <div
-                    className="col-6 d-flex flex-column"
-                    style={{ borderRight: "1px solid lightgrey" }}
-                  >
+                  <div className="col-auto d-flex flex-column">
                     <label id={`${item.id}`}>
                       <input
                         type="radio"
                         ref={(a) => (this.checkboxes[index] = a)}
                         value={item.quantity}
-                        onClick={(e) => this.handleChecked(e, item.id)}
+                        onClick={(e) =>
+                          this.handleChecked(e, item.id, this.props.discount)
+                        }
                       />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
-                      - Rs.{item.price}
+                      -{" "}
+                      {this.props.discount > 0 ? (
+                        <>
+                          <span
+                            style={{
+                              textDecoration: "line-through",
+                              opacity: "0.4",
+                              marginRight: "5px",
+                            }}
+                          >
+                            Rs.{item.price}
+                          </span>
+                          <span>
+                            Rs.
+                            {item.price -
+                              item.price * (this.props.discount / 100)}
+                          </span>
+                        </>
+                      ) : (
+                        <span>Rs.{item.price}</span>
+                      )}
                     </label>
                   </div>
-                  <div className="col-6 d-flex justify-content-center">
+                  <div className="col-4">
                     {item.quantity > 0 && (
                       <QuantityButtons
-                        increaseQuantity={() =>
+                        increaseQuantity={() => {
                           this.props.changequantity(
                             1,
                             this.props.categoryID,
                             this.props.menuID,
                             item.id
-                          )
-                        }
+                          );
+                          this.calculateModalTotal(this.props.discount);
+                        }}
                         decreaseQuantity={() => {
                           if (item.quantity === 1) {
                             this.checkboxes[index].checked = false;
@@ -103,6 +135,7 @@ class Item extends Component {
                             this.props.menuID,
                             item.id
                           );
+                          this.calculateModalTotal(this.props.discount);
                         }}
                         quantity={item.quantity}
                       />
@@ -112,6 +145,14 @@ class Item extends Component {
               );
             })}
             <div className="row">
+              {this.state.modalTotal > 0 && (
+                <h5
+                  style={{ color: "#000466" }}
+                  className="col d-flex align-self-center"
+                >
+                  Total : Rs. {this.state.modalTotal}
+                </h5>
+              )}
               <button
                 className="continue-btn ml-auto"
                 onClick={() => this.setState({ showModal: false })}
@@ -253,7 +294,7 @@ class Item extends Component {
                         className="btn add-to-cart"
                         onClick={() => this.setState({ showModal: true })}
                       >
-                        {this.state.showModalText}
+                        {this.state.modalTotal > 0 ? "Edit" : "Add to Cart"}
                       </button>
                     )}
                   </div>

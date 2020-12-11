@@ -47,7 +47,6 @@ class Product extends Component {
                                     item.menu_quantity_measure_price_list
                                   }
                                   discount={item.discount}
-                                  discountPrice={item.discountPrice}
                                   changequantity={this.props.changequantity}
                                   categoryID={singleCategory.id}
                                   menuID={item.id}
