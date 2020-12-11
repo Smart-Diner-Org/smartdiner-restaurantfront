@@ -59,6 +59,18 @@ class Item extends Component {
     this.setState({ modalTotal: total });
   };
 
+  openPriceListModal = () => {
+    if (this.state.modalTotal <= 0) {
+      this.props.changequantity(
+        1,
+        this.props.categoryID,
+        this.props.menuID,
+        this.props.priceList[0].id
+      );
+    }
+    this.setState({ showModal: true });
+  };
+
   render() {
     return (
       <div
@@ -85,6 +97,7 @@ class Item extends Component {
                         type="radio"
                         ref={(a) => (this.checkboxes[index] = a)}
                         value={item.quantity}
+                        checked={item.quantity > 0 && true}
                         onClick={(e) =>
                           this.handleChecked(e, item.id, this.props.discount)
                         }
@@ -292,7 +305,7 @@ class Item extends Component {
                     ) : (
                       <button
                         className="btn add-to-cart"
-                        onClick={() => this.setState({ showModal: true })}
+                        onClick={() => this.openPriceListModal()}
                       >
                         {this.state.modalTotal > 0 ? "Edit" : "Add to Cart"}
                       </button>
