@@ -59,7 +59,7 @@ class Item extends Component {
     this.setState({ modalTotal: total });
   };
 
-  openPriceListModal = () => {
+  openPriceListModal = (discount) => {
     if (this.state.modalTotal <= 0) {
       this.props.changequantity(
         1,
@@ -67,6 +67,7 @@ class Item extends Component {
         this.props.menuID,
         this.props.priceList[0].id
       );
+      this.calculateModalTotal(discount);
     }
     this.setState({ showModal: true });
   };
@@ -305,7 +306,7 @@ class Item extends Component {
                     ) : (
                       <button
                         className="btn add-to-cart"
-                        onClick={() => this.openPriceListModal()}
+                        onClick={() => this.openPriceListModal(this.props.discount)}
                       >
                         {this.state.modalTotal > 0 ? "Edit" : "Add to Cart"}
                       </button>
