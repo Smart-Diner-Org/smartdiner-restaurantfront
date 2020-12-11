@@ -765,7 +765,7 @@ class NewHome extends Component {
 
               <MapLocation
                 restaurantName={this.state.restaurant_info.name}
-                address={this.state.restaurantBranch[0].address}
+                address={this.state.restaurantBranch[0].name}
               />
               <Contact />
               {this.state.total > 0 && this.state.boundary && (
