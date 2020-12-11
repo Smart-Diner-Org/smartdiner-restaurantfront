@@ -9,6 +9,7 @@ import QuantityButtons from "../QuantityButtons/index";
 class Item extends Component {
   constructor(props) {
     super(props);
+    this.checkboxes = [];
     this.state = {
       showToolTip: false,
       target: null,
@@ -73,8 +74,9 @@ class Item extends Component {
                     <label id={`${item.id}`}>
                       <input
                         type="radio"
+                        ref={(a) => (this.checkboxes[index] = a)}
                         value={item.quantity}
-                        onChange={(e) => this.handleChecked(e, item.id)}
+                        onClick={(e) => this.handleChecked(e, item.id)}
                       />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
                       - Rs.{item.price}
@@ -91,13 +93,17 @@ class Item extends Component {
                             item.id
                           )
                         }
-                        decreaseQuantity={() =>
+                        decreaseQuantity={() =>{
+                          if(item.quantity === 1){
+                            this.checkboxes[index].checked = false
+                          }
                           this.props.changequantity(
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
                             item.id
                           )
+                        }
                         }
                         quantity={item.quantity}
                       />
