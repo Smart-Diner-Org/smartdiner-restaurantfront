@@ -72,6 +72,11 @@ class Item extends Component {
     this.setState({ showModal: true });
   };
 
+  closePriceListModal = () => {
+    this.props.showGetLocationAfterContinue();
+    this.setState({ showModal: false });
+  };
+
   render() {
     return (
       <div
@@ -83,7 +88,7 @@ class Item extends Component {
           show={this.state.showModal}
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          onHide={() => this.setState({ showModal: false })}
+          onHide={() => this.closePriceListModal()}
         >
           <Modal.Header closeButton>
             <h4>Choose your custom order</h4>
@@ -169,7 +174,7 @@ class Item extends Component {
               )}
               <button
                 className="continue-btn ml-auto"
-                onClick={() => this.setState({ showModal: false })}
+                onClick={() => this.closePriceListModal()}
               >
                 Continue
               </button>
@@ -310,7 +315,9 @@ class Item extends Component {
                           this.openPriceListModal(this.props.discount)
                         }
                       >
-                        {this.state.modalTotal > 0 ? "Edit" : "Add to Cart"}
+                        {this.state.modalTotal > 0 && this.props.total > 0
+                          ? "Edit"
+                          : "Add to Cart"}
                       </button>
                     )}
                   </div>

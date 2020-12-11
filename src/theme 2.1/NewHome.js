@@ -40,6 +40,7 @@ class NewHome extends Component {
       refregion: null,
       bagItems: [],
       distance: null,
+      showGetLocationAfterContinue: false,
     };
     this.changequantity = this.changequantity.bind(this);
     this.setType = this.setType.bind(this);
@@ -270,61 +271,6 @@ class NewHome extends Component {
     sessionStorage.setItem("total", total);
   };
 
-  // changequantityinBag(customKey, value) {
-  //   let oldArrayItems = this.state.bagItems;
-  //   oldArrayItems.map((item) => {
-  //     if (Object.keys(item).toString() === customKey) {
-  //       let index = oldArrayItems.indexOf(item);
-
-  //       switch (value) {
-  //         case "remove":
-  //           if (index >= 0) {
-  //             oldArrayItems.splice(index, 1);
-  //             ReactGA.event({
-  //               category: "Cart",
-  //               action: "Product Removed",
-  //               label: item[customKey].name,
-  //             });
-  //           }
-  //           break;
-  //         case 1:
-  //           item[customKey].quantity += 1;
-  //           ReactGA.event({
-  //             category: "Cart",
-  //             action: "Product quantity Increases",
-  //             label: item[customKey].name,
-  //             value: item[customKey].quantity,
-  //           });
-  //           break;
-  //         case -1:
-  //           if (item[customKey].quantity > 0) {
-  //             ReactGA.event({
-  //               category: "Cart",
-  //               action: "Product quantity decreased",
-  //               label: item[customKey].name,
-  //               value: item[customKey].quantity,
-  //             });
-  //             item[customKey].quantity -= 1;
-  //           }
-  //           if (item[customKey].quantity <= 0) {
-  //             if (index >= 0) {
-  //               oldArrayItems.splice(index, 1);
-  //               ReactGA.event({
-  //                 category: "Cart",
-  //                 action: "Product removed",
-  //                 label: item[customKey].name,
-  //               });
-  //             }
-  //           }
-  //           break;
-  //         default:
-  //           alert("something went wrong");
-  //       }
-  //     }
-  //   });
-  //   this.updateBag(oldArrayItems);
-  // }
-
   setType(type) {
     //to display respective items for menu items selected
     this.setState((prevState) => {
@@ -341,9 +287,11 @@ class NewHome extends Component {
 
   togglePopup() {
     //to open and close the cart(bag) component
-    this.setState({
-      togglePopup: !this.state.togglePopup,
-    });
+    if (this.state.total > 0) {
+      this.setState({
+        togglePopup: !this.state.togglePopup,
+      });
+    }
   }
 
   checkDistance() {
@@ -634,12 +582,7 @@ class NewHome extends Component {
     if (this.state.boundary === true) {
       this.setState({ showPopup: false });
     } else {
-      this.setState((prevState) => {
-        let newArray = prevState.items;
-        newArray.map((a) => (a.quantity = 0));
-        return { items: newArray };
-      });
-      this.setState({ total: 0 });
+      this.setState({ showGetLocationAfterContinue: false, total: 0 });
     }
   }
 
@@ -664,11 +607,11 @@ class NewHome extends Component {
 
   editlocation(event) {
     this.togglePopup();
-    this.setState({ showPopup: true });
-    sessionStorage.removeItem("boundary");
-    this.setState({ boundary: false });
+    this.setState({
+      showPopup: true,
+      boundary: false,
+    });
   }
-
   // ends here
 
   render() {
@@ -690,6 +633,7 @@ class NewHome extends Component {
           {this.state.restaurant_info.get_location_info.get_location_type_id ===
             "1" &&
             this.state.total !== 0 &&
+            this.state.showGetLocationAfterContinue &&
             this.state.showPopup && (
               <GetLocation
                 address={this.state.address}
@@ -709,8 +653,20 @@ class NewHome extends Component {
               />
             )}
 
-          {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
-          <div>
+          <div
+            style={
+              this.state.restaurant_info.get_location_info
+                .get_location_type_id === "1" &&
+              this.state.total !== 0 &&
+              this.state.showGetLocationAfterContinue &&
+              this.state.showPopup
+                ? {
+                    pointerEvents: "none",
+                    filter: "blur(7px)",
+                  }
+                : {}
+            }
+          >
             {this.state.togglePopup &&
               !this.state.showPopup &&
               this.state.total !== 0 && (
@@ -793,6 +749,10 @@ class NewHome extends Component {
                     .pre_order_info_image
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
+                showGetLocationAfterContinue={() => {
+                  this.setState({ showGetLocationAfterContinue: true });
+                }}
+                total={this.state.total}
               />
               <About
                 about={this.state.restaurant_info.about}

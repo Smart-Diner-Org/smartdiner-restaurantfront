@@ -50,6 +50,8 @@ class Product extends Component {
                                   changequantity={this.props.changequantity}
                                   categoryID={singleCategory.id}
                                   menuID={item.id}
+                                  showGetLocationAfterContinue={this.props.showGetLocationAfterContinue}
+                                  total={this.props.total}
                                 />
                               );
                             });
