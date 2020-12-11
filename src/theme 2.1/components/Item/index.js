@@ -306,7 +306,9 @@ class Item extends Component {
                     ) : (
                       <button
                         className="btn add-to-cart"
-                        onClick={() => this.openPriceListModal(this.props.discount)}
+                        onClick={() =>
+                          this.openPriceListModal(this.props.discount)
+                        }
                       >
                         {this.state.modalTotal > 0 ? "Edit" : "Add to Cart"}
                       </button>
