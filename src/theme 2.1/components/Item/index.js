@@ -127,7 +127,7 @@ class Item extends Component {
                       )}
                     </label>
                   </div>
-                  <div className="col-4">
+                  <div className="col-auto p-0">
                     {item.quantity > 0 && (
                       <QuantityButtons
                         increaseQuantity={() => {
@@ -164,7 +164,7 @@ class Item extends Component {
                   style={{ color: "#000466" }}
                   className="col d-flex align-self-center"
                 >
-                  Total : Rs. {this.state.modalTotal}
+                  Total: Rs. {this.state.modalTotal}
                 </h5>
               )}
               <button
