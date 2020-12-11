@@ -93,18 +93,17 @@ class Item extends Component {
                             item.id
                           )
                         }
-                        decreaseQuantity={() =>{
-                          if(item.quantity === 1){
-                            this.checkboxes[index].checked = false
+                        decreaseQuantity={() => {
+                          if (item.quantity === 1) {
+                            this.checkboxes[index].checked = false;
                           }
                           this.props.changequantity(
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
                             item.id
-                          )
-                        }
-                        }
+                          );
+                        }}
                         quantity={item.quantity}
                       />
                     )}
