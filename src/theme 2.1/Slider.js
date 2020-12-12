@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { defaultSliderImage } from "./constant";
+import ReactGA from "react-ga";
 
 class Slider extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       slider: JSON.parse(this.props.slider_images),
     };
@@ -34,7 +35,12 @@ class Slider extends Component {
                           </h1>
                           <div className="row">
                             <a href="#product">Place order</a>
-                            <a href={`tel:+91${this.props.contact_number}`} target="blank">Call us</a>
+                            <a
+                              href={`tel:+91${this.props.contact_number}`}
+                              target="blank"
+                            >
+                              Call us
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -44,19 +50,33 @@ class Slider extends Component {
               </Carousel.Item>
             )}
             {this.state.slider &&
-              this.state.slider.map((item) => {
+              this.state.slider.map((item,index) => {
                 return (
-                  <Carousel.Item>
+                  <Carousel.Item key={index}>
                     <div
                       className="single-slider single-slider-1 "
                       onClick={() => {
+                        if (item.slider_link_type) {
+                          ReactGA.event({
+                            category: "Slider Banner",
+                            action: "Clicked image ",
+                            label: `Jumped to ${item.slider_link_type} to ${item.slider_link_value}`,
+                          });
+                        }
                         if (item.slider_link_type === "menu_category") {
+                          ReactGA.event({
+                            category: "Slider Banner",
+                            action: "Clicked image ",
+                            label: `Jumped to menuCategory_${item.slider_link_value}`,
+                          });
                           document
                             .getElementById(
                               `menuCategory_${item.slider_link_value}`
                             )
                             .click();
-                            document.getElementById(`menu-dropdown`) && (document.getElementById(`menu-dropdown`).value = item.slider_link_value);
+                          document.getElementById(`menu-dropdown`) &&
+                            (document.getElementById(`menu-dropdown`).value =
+                              item.slider_link_value);
                         }
                       }}
                       style={
@@ -86,7 +106,10 @@ class Slider extends Component {
                                 )}
                                 {item.buttons[1].button_link_type ===
                                   "contact_info" && (
-                                  <a href={`tel:+91${this.props.contact_number}`} target="blank">
+                                  <a
+                                    href={`tel:+91${this.props.contact_number}`}
+                                    target="blank"
+                                  >
                                     {item.buttons[1].content}
                                   </a>
                                 )}

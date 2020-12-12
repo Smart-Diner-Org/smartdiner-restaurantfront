@@ -41,10 +41,8 @@ class Menu extends Component {
         is_visible: false,
       });
     }
-
-    console.log(window.pageYOffset);
     if (
-      window.pageYOffset > document.getElementById("product").offsetTop + 30 &&
+      window.pageYOffset > document.getElementById("product").offsetTop + 120 &&
       window.pageYOffset <
         document.getElementById("product").offsetTop +
           document.getElementById("product").offsetHeight -
@@ -115,6 +113,7 @@ class Menu extends Component {
               {this.props.categoryArray.map((category, index) => {
                 return (
                   <option
+                    key={index}
                     ref={(option) => (this.dropDown[index] = option)}
                     className={index === 0 ? "active" : ""}
                     value={`${category.id}`}

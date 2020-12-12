@@ -474,7 +474,8 @@ p {
   }
 }
 
-.header-area .navbar .navbar-nav .nav-item a {
+.header-area .navbar .navbar-nav .nav-item a,
+.headlogo label {
   font-size: 16px;
   font-weight: 600;
   color: #777;
@@ -486,8 +487,21 @@ p {
 }
 
 .header-area .navbar .navbar-nav .nav-item.active a,
-.header-area .navbar .navbar-nav .nav-item:hover a {
+.header-area .navbar .navbar-nav .nav-item:hover a,
+.headlogo label:hover {
   color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.headlogo label {
+  margin-top: 7px;
+  margin-left: 3px;
+}
+
+@media (max-width: 991px) {
+  .headlogo label {
+    display: none;
+  }
 }
 
 .headlogo {
@@ -853,7 +867,7 @@ hr {
   color: var(--secondary-color);
 }
 
-.react-multi-carousel-item{
+.react-multi-carousel-item {
   margin-right: 30px;
   display: flex;
   justify-content: flex-start;
@@ -1000,7 +1014,6 @@ hr {
     /*height: 100%;
     width: auto;*/
   }
-  
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1041,9 +1054,9 @@ hr {
   height: 50px;
   width: 50px;
 }
-.whatsup-icon img{
- filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
- -webkit-filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.5));
+.whatsup-icon img {
+  filter: drop-shadow(2px 6px 2px rgba(60, 64, 67, 0.15));
+  -webkit-filter: drop-shadow(2px 6px 2px rgba(60, 64, 67, 0.2));
 }
 @media only screen and (max-width: 768px) {
   .whatsup-icon-mobile {
@@ -1363,6 +1376,57 @@ hr {
     padding-bottom: 80px;
   }
 }
+/* Pop UP css */
+
+.modal-content {
+  padding: 0px 20px;
+  border: none;
+}
+.modal-content .modal-header {
+  border: none;
+}
+.modal-content .modal-header h4,
+.modal-content .modal-header h6 {
+  color: #000466;
+  margin: 0.5em 0;
+}
+.modal-header .close {
+  align-self: center;
+  color: #e22a28;
+}
+.modal-body input[type="radio"] {
+  margin-right: 1em;
+}
+.modal-body label {
+  color: #000466;
+}
+.modal-body .continue-btn {
+  padding: 0.25em 1em;
+  border: 1px solid #000466;
+  background-color: #000466;
+  color: white;
+  margin: 1em;
+  font-family: "MuseoModerno";
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-body .total-quantity {
+    width: 30px;
+  }
+  .modal-body h5{
+    font-size: 19px;
+  }
+}
+
+/* Pop Up Ends here */
+
+.add-to-cart {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.add-to-cart:hover {
+  color: white;
+}
 
 .collection-tilte {
   font-size: 46px;
@@ -1440,11 +1504,10 @@ hr {
   top: auto;
   width: 19.2%;
 }
-.desktop-sticky-top{
-  top:100px;
-  
+.desktop-sticky-top {
+  top: 100px;
 }
-.desktop-sticky-bottom{
+.desktop-sticky-bottom {
   bottom: 10px;
 }
 
@@ -1468,12 +1531,12 @@ hr {
   height: 50px;
   display: none;
   background-color: #000466;
-  color: #f7f7ff;
+  color: #ffffff;
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: 2px 10px rgba(0, 0, 0, 0.2);
+  border: none;
   font-family: "MuseoModerno";
 }
 .count {
@@ -2810,6 +2873,7 @@ p.form-message.error {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 20px;
   text-align: center;
   border: 1px solid black;

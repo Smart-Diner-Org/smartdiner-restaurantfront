@@ -3,44 +3,79 @@ import Burger from "../../assets/images/food1.jpg";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
+import Modal from "react-bootstrap/Modal";
+import QuantityButtons from "../QuantityButtons/index";
 
 class Item extends Component {
   constructor(props) {
     super(props);
+    this.checkboxes = [];
     this.state = {
-      price:
-        this.props.priceList && this.props.priceList.length > 0
-          ? this.props.priceList[0].price
-          : null,
-      quantity:
-        this.props.priceList && this.props.priceList.length > 0
-          ? this.props.priceList[0].quantity
-          : null,
       showToolTip: false,
       target: null,
+      showModal: false,
       canEnableAddToCart:
         this.props.priceList && this.props.priceList.length > 0 ? true : false,
+      modalTotal: 0,
     };
-
-    this.priceListChanged = this.priceListChanged.bind(this);
-    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
-  priceListChanged(e) {
-    const index = e.target.value;
-    const price = this.props.priceList[index].price;
-    this.setState({
-      price: price,
-    });
-    this.updateQuantity(index);
-  }
+  handleChecked = (e, id, discount) => {
+    if (Number(e.target.value) > 0) {
+      this.props.changequantity(
+        -e.target.value,
+        this.props.categoryID,
+        this.props.menuID,
+        id
+      );
+      e.target.checked = false;
+    } else {
+      this.props.changequantity(
+        1,
+        this.props.categoryID,
+        this.props.menuID,
+        id
+      );
+      e.target.checked = true;
+    }
+    this.calculateModalTotal(discount);
+  };
 
-  updateQuantity(index) {
-    const quantity = this.props.priceList[index].quantity;
-    this.setState({
-      quantity: quantity,
-    });
-  }
+  calculateModalTotal = (discount) => {
+    const total = this.props.priceList.reduce(function (
+      accumulator,
+      currentValue
+    ) {
+      const valueToBeAdded = currentValue.quantity
+        ? discount > 0
+          ? (currentValue.price - currentValue.price * (discount / 100)) *
+            currentValue.quantity
+          : currentValue.price * currentValue.quantity
+        : 0;
+      const newTotal = accumulator + valueToBeAdded;
+      return newTotal;
+    },
+    0);
+    this.setState({ modalTotal: total });
+  };
+
+  openPriceListModal = (discount) => {
+    if (this.state.modalTotal <= 0) {
+      this.props.changequantity(
+        1,
+        this.props.categoryID,
+        this.props.menuID,
+        this.props.priceList[0].id
+      );
+      this.calculateModalTotal(discount);
+    }
+    this.setState({ showModal: true });
+  };
+
+  closePriceListModal = () => {
+    this.props.showGetLocationAfterContinue();
+    this.setState({ showModal: false });
+  };
 
   render() {
     return (
@@ -49,6 +84,104 @@ class Item extends Component {
         className="col-md-4 "
         style={{ marginBlockEnd: "2rem", marginBlockStart: "1.5rem" }}
       >
+        <Modal
+          show={this.state.showModal}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          onHide={() => this.closePriceListModal()}
+        >
+          <Modal.Header closeButton>
+            <h4>Choose your custom order</h4>
+          </Modal.Header>
+          <Modal.Body>
+            {this.props.priceList.map((item, index) => {
+              return (
+                <div className="row" key={index}>
+                  <div className="col-auto d-flex flex-column">
+                    <label id={`${item.id}`}>
+                      <input
+                        type="radio"
+                        ref={(a) => (this.checkboxes[index] = a)}
+                        value={item.quantity}
+                        checked={item.quantity > 0 && true}
+                        onClick={(e) =>
+                          this.handleChecked(e, item.id, this.props.discount)
+                        }
+                      />
+                      {item.quantity_values.quantity} {item.measure_values.name}{" "}
+                      -{" "}
+                      {this.props.discount > 0 ? (
+                        <>
+                          <span
+                            style={{
+                              textDecoration: "line-through",
+                              opacity: "0.4",
+                              marginRight: "5px",
+                            }}
+                          >
+                            Rs.{item.price}
+                          </span>
+                          <span>
+                            Rs.
+                            {item.price -
+                              item.price * (this.props.discount / 100)}
+                          </span>
+                        </>
+                      ) : (
+                        <span>Rs.{item.price}</span>
+                      )}
+                    </label>
+                  </div>
+                  <div className="col-auto p-0">
+                    {item.quantity > 0 && (
+                      <QuantityButtons
+                        increaseQuantity={() => {
+                          this.props.changequantity(
+                            1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            item.id
+                          );
+                          this.calculateModalTotal(this.props.discount);
+                        }}
+                        decreaseQuantity={() => {
+                          if (item.quantity === 1) {
+                            this.checkboxes[index].checked = false;
+                          }
+                          this.props.changequantity(
+                            -1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            item.id
+                          );
+                          this.calculateModalTotal(this.props.discount);
+                        }}
+                        quantity={item.quantity}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+            <div className="row">
+              {this.state.modalTotal > 0 && (
+                <h5
+                  style={{ color: "#000466" }}
+                  className="col d-flex align-self-center"
+                >
+                  Total: Rs. {this.state.modalTotal}
+                </h5>
+              )}
+              <button
+                className="continue-btn ml-auto"
+                onClick={() => this.closePriceListModal()}
+              >
+                Continue
+              </button>
+            </div>
+          </Modal.Body>
+        </Modal>
+
         {/* {!this.state.canEnableAddToCart && <p>Call/WhatsApp us to order Customized Cakes.</p>} */}
         <div className="single-product-items">
           <div className="product-item-image">
@@ -64,14 +197,10 @@ class Item extends Component {
               </a>
             )}
 
-            {this.props.discount > 0 ? (
-              <>
-                <div className="product-discount-tag">
-                  <p>{this.props.discount}% OFF</p>
-                </div>
-              </>
-            ) : (
-              ""
+            {this.props.discount > 0 && (
+              <div className="product-discount-tag">
+                <p>{this.props.discount}% OFF</p>
+              </div>
             )}
           </div>
           <div className="product-item-content mt-30">
@@ -121,109 +250,76 @@ class Item extends Component {
                         textDecoration: "line-through",
                       }}
                     >
-                      Rs.{this.state.price}
+                      Rs.{this.props.priceList[0].price}
                     </span>
                     <span style={{ color: "#000000" }}>
                       Rs.
-                      {this.state.price -
-                        this.state.price * (this.props.discount / 100)}
+                      {this.props.priceList[0].price -
+                        this.props.priceList[0].price *
+                          (this.props.discount / 100)}
                     </span>
                     <input
                       type="hidden"
                       id={"original_price_" + this.props.productId}
-                      value={this.state.price}
+                      value={this.props.priceList[0].price}
                     ></input>
                     <input
                       type="hidden"
                       id={"discounted_price_" + this.props.productId}
                       value={
-                        this.state.price -
-                        this.state.price * (this.props.discount / 100)
+                        this.props.priceList[0].price -
+                        this.props.priceList[0].price *
+                          (this.props.discount / 100)
                       }
                     ></input>
                   </>
                 ) : (
                   <>
                     <span style={{ color: "#000000" }}>
-                      Rs.{this.state.price}
+                      Rs.{this.props.priceList[0].price}
                     </span>
                     <input
                       type="hidden"
                       id={"original_price_" + this.props.productId}
-                      value={this.state.price}
+                      value={this.props.priceList[0].price}
                     ></input>
                   </>
                 )}
 
                 <div className="d-flex flex-column justify-content-end">
                   <div>
-                    <select
-                      id={"price_list_" + this.props.productId}
-                      className="menu-price-list-dropdown mt-10 "
-                      onChange={(e) => {
-                        this.priceListChanged(e);
-                      }}
-                    >
-                      {this.props.priceList.map((item, index) => {
-                        return (
-                          <option id={`${item.id}`} value={index}>
-                            {item.quantity_values.quantity}{" "}
-                            {item.measure_values.name} - Rs.{item.price}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-
-                  <div
-                    className="input-group mb-3 mt-10"
-                    style={{
-                      width: "fit-content",
-                      border: "1px solid black",
-                      borderRadius: "23px",
-                      maxWidth: "112px",
-                    }}
-                  >
-                    <div className="input-group-prepend">
+                    {this.props.priceList.length === 1 ? (
+                      <QuantityButtons
+                        increaseQuantity={() =>
+                          this.props.changequantity(
+                            1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            this.props.priceList[0].id
+                          )
+                        }
+                        decreaseQuantity={() =>
+                          this.props.changequantity(
+                            -1,
+                            this.props.categoryID,
+                            this.props.menuID,
+                            this.props.priceList[0].id
+                          )
+                        }
+                        quantity={this.props.priceList[0].quantity}
+                      />
+                    ) : (
                       <button
-                        className="button-round"
-                        style={{ borderLeft: "0px" }}
-                        type="button"
-                        onClick={() => {
-                          this.props.decreasequantity();
-                          this.updateQuantity(
-                            document.getElementById(
-                              "price_list_" + this.props.productId
-                            ).value
-                          );
-                        }}
+                        className="btn add-to-cart"
+                        onClick={() =>
+                          this.openPriceListModal(this.props.discount)
+                        }
                       >
-                        −
+                        {this.state.modalTotal > 0 && this.props.total > 0
+                          ? "Edit"
+                          : "Add to Cart"}
                       </button>
-                    </div>
-                    <input
-                      type="text"
-                      className="total-quantity"
-                      value={this.state.quantity ? this.state.quantity : 0}
-                    />
-
-                    <div className="input-group-append">
-                      <button
-                        className="button-round"
-                        style={{ borderRight: "0px" }}
-                        type="button"
-                        onClick={() => {
-                          this.props.increasequantity();
-                          this.updateQuantity(
-                            document.getElementById(
-                              "price_list_" + this.props.productId
-                            ).value
-                          );
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
+                    )}
                   </div>
                 </div>
               </>

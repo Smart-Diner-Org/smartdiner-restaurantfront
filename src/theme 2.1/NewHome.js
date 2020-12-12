@@ -38,8 +38,9 @@ class NewHome extends Component {
       togglePopup: false,
       refpostcode: "",
       refregion: null,
-      bagItems: new Array(),
+      bagItems: [],
       distance: null,
+      showGetLocationAfterContinue: false,
     };
     this.changequantity = this.changequantity.bind(this);
     this.setType = this.setType.bind(this);
@@ -54,9 +55,6 @@ class NewHome extends Component {
     this.gotocart = this.gotocart.bind(this);
     this.contshpng = this.contshpng.bind(this);
     this.editlocation = this.editlocation.bind(this);
-    this.changequantityinBag = this.changequantityinBag.bind(this);
-    this.populateQuantity = this.populateQuantity.bind(this);
-    this.updateBag = this.updateBag.bind(this);
   }
 
   async componentDidMount() {
@@ -68,7 +66,7 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
-          
+
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -80,6 +78,29 @@ class NewHome extends Component {
               : null,
             isLoaded: true,
           });
+          localStorage.setItem(
+            "LocationplaceID",
+            data.restaurant.get_location_info.get_location_place_id
+          );
+          localStorage.setItem(
+            "LocationTypeID",
+            data.restaurant.get_location_info.get_location_type_id
+          );
+          localStorage.setItem(
+            "DeliveryLocations",
+            data.restaurant.restaurant_branches[0].delivery_locations
+          );
+          if (data.restaurant.get_location_info.get_location_type_id === "2") {
+            this.setState({
+              boundary: true,
+              showPopup: false,
+            });
+            sessionStorage.setItem("boundary", true);
+          }
+          localStorage.setItem(
+            "PaymentType",
+            JSON.stringify(data.restaurant.payment_types)
+          );
 
           if (
             sessionStorage.getItem("items") &&
@@ -87,12 +108,16 @@ class NewHome extends Component {
           ) {
             this.setState({
               bagItems: JSON.parse(sessionStorage.getItem("items")),
-              items: JSON.parse(sessionStorage.getItem("menu-items")),
+              items: JSON.parse(localStorage.getItem("menu-items")),
               boundary: Boolean(sessionStorage.getItem("boundary")),
               total: sessionStorage.getItem("total"),
               showPopup: false,
             });
           }
+          if (sessionStorage.getItem("openCart")) {
+            this.setState({ togglePopup: true });
+          }
+          sessionStorage.removeItem("openCart");
           if (data.restaurant.restaurant_website_detail.ga_tracking_id) {
             ReactGA.initialize(
               `${data.restaurant.restaurant_website_detail.ga_tracking_id}`
@@ -151,183 +176,100 @@ class NewHome extends Component {
 
     this.getCategories(this.state.items);
   }
-
-  populateQuantity(item) {
-    var tempObj = new Object();
-    var originalPrice = document.getElementById("original_price_" + item.id)
-      .value;
-    var discountPrice = null;
-    if (document.getElementById("discounted_price_" + item.id)) {
-      discountPrice = document.getElementById("discounted_price_" + item.id)
-        .value;
-    }
-    item["originalPrice"] = originalPrice;
-    item["discountPrice"] = discountPrice;
-    if (!tempObj[item["customKey"]]) tempObj[item["customKey"]] = item;
-    tempObj[item["customKey"]]["quantity"] = 1;
-    return tempObj;
-  }
-
-  changequantity(sourceItem, value) {
-    //this is for adding/increasing items to cart
-    var self = this;
-    function handleNewItem(argument) {
-      switch (value) {
-        case 1:
-          sourceItem.quantity = 1;
-          let index = document.getElementById("price_list_" + item.id).value;
-          sourceItem.menu_quantity_measure_price_list[index].quantity = 1;
-          oldArrayItems.push(self.populateQuantity(item));
-          ReactGA.event({
-            category: "Menu",
-            action: "add",
-            label: `${sourceItem.name}`,
-            value: 1,
-          });
-          break;
-        case -1:
-          break;
-        default:
-          alert("something went wrong");
-      }
-    }
-    var item = {};
-    item = Object.assign({}, sourceItem);
-    var selectedMenuQuantityMeasurePriceId;
-    if (document.getElementById("price_list_" + item.id)) {
-      var dropDownEle = document.getElementById("price_list_" + item.id);
-      selectedMenuQuantityMeasurePriceId =
-        dropDownEle.options[dropDownEle.selectedIndex].id;
-    } else if (document.getElementById("bag-price-list")) {
-      var bagItem = document.getElementById("bag-price-list");
-      selectedMenuQuantityMeasurePriceId = bagItem.value;
-    } else {
-      alert("something Wrong. Price list is not populating");
-      return;
-    }
-    item[
-      "selectedMenuQuantityMeasurePriceId"
-    ] = selectedMenuQuantityMeasurePriceId;
-    var customKey = item.id + "_" + item.selectedMenuQuantityMeasurePriceId;
-    item["customKey"] = customKey;
-
-    let oldArrayItems = this.state.bagItems;
-    if (oldArrayItems.length == 0) handleNewItem();
-    else {
-      var found = false;
-      for (var i = 0; i < oldArrayItems.length; i++) {
-        var tempObj_2 = oldArrayItems[i];
-        if (tempObj_2[item["customKey"]]) {
-          if (!tempObj_2[item["customKey"]]["quantity"])
-            tempObj_2[item["customKey"]]["quantity"] = 0;
-
-          switch (value) {
-            case 1:
-              tempObj_2[item["customKey"]]["quantity"] += 1;
-              ReactGA.event({
-                category: "Menu",
-                action: "Product quantity increased",
-                label: `${sourceItem.name}`,
-                value: tempObj_2[item["customKey"]]["quantity"],
-              });
-              break;
-            case -1:
-              if (tempObj_2[item["customKey"]]["quantity"] > 0) {
-                tempObj_2[item["customKey"]]["quantity"] -= 1;
-                ReactGA.event({
-                  category: "Menu",
-                  action: "Product quantity decreased",
-                  label: `${sourceItem.name}`,
-                  value: tempObj_2[item["customKey"]]["quantity"],
-                });
-              }
-              if (tempObj_2[item["customKey"]]["quantity"] <= 0) {
-                ReactGA.event({
-                  category: "Menu",
-                  action: "Product removed",
-                  label: `${sourceItem.name}`,
-                });
-                oldArrayItems.splice(i, 1);
-              }
-              break;
-            default:
-              alert("something went wrong");
-          }
-          sourceItem.quantity = tempObj_2[item["customKey"]]["quantity"];
-          let index = document.getElementById("price_list_" + item.id).value;
-          sourceItem.menu_quantity_measure_price_list[index].quantity =
-            tempObj_2[item["customKey"]]["quantity"];
-          found = true;
-        }
-      }
-      if (!found) handleNewItem();
-    }
-    this.updateBag(oldArrayItems);
-    sessionStorage.setItem("menu-items", JSON.stringify(this.state.items));
-  }
-
-  updateBag(array) {
-    this.setState({ bagItems: array });
-    sessionStorage.setItem("items", JSON.stringify(array));
-    let total = array.length;
-    this.setState({ total: total });
-    sessionStorage.setItem("total", total);
-  }
-
-  changequantityinBag(customKey, value) {
-    let oldArrayItems = this.state.bagItems;
-    oldArrayItems.map((item) => {
-      if (Object.keys(item).toString() === customKey) {
-        let index = oldArrayItems.indexOf(item);
-
-        switch (value) {
-          case "remove":
-            if (index >= 0) {
-              oldArrayItems.splice(index, 1);
-              ReactGA.event({
-                category: "Cart",
-                action: "Product Removed",
-                label: item[customKey].name,
-              });
-            }
-            break;
-          case 1:
-            item[customKey].quantity += 1;
-            ReactGA.event({
-              category: "Cart",
-              action: "Product quantity Increases",
-              label: item[customKey].name,
-              value: item[customKey].quantity,
-            });
-            break;
-          case -1:
-            if (item[customKey].quantity > 0) {
-              ReactGA.event({
-                category: "Cart",
-                action: "Product quantity decreased",
-                label: item[customKey].name,
-                value: item[customKey].quantity,
-              });
-              item[customKey].quantity -= 1;
-            }
-            if (item[customKey].quantity <= 0) {
-              if (index >= 0) {
-                oldArrayItems.splice(index, 1);
-                ReactGA.event({
-                  category: "Cart",
-                  action: "Product removed",
-                  label: item[customKey].name,
-                });
-              }
-            }
-            break;
-          default:
-            alert("something went wrong");
+  getCategories(items) {
+    //fetching categories from itemsarray
+    let categoryArray = [];
+    items.map((item) => {
+      if (item.id) {
+        if (categoryArray.indexOf(item.id) === -1) {
+          let data = {
+            id: item.id,
+            name: item.name,
+          };
+          categoryArray.push(data);
         }
       }
     });
-    this.updateBag(oldArrayItems);
+
+    this.setState({ categoryArray: categoryArray });
   }
+
+  changequantity = (
+    value,
+    categoryID,
+    menuID,
+    selectedMenuQuantityMeasurePriceId
+  ) => {
+    let newItemsArray = this.state.items;
+    for (let i = 0; i < newItemsArray.length; i++) {
+      if (newItemsArray[i].id === categoryID) {
+        for (let j = 0; j < newItemsArray[i].menus.length; j++) {
+          if (newItemsArray[i].menus[j].id === menuID) {
+            for (
+              let k = 0;
+              k <
+              newItemsArray[i].menus[j].menu_quantity_measure_price_list.length;
+              k++
+            ) {
+              if (
+                newItemsArray[i].menus[j].menu_quantity_measure_price_list[k]
+                  .id === selectedMenuQuantityMeasurePriceId
+              ) {
+                if (
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ]
+                ) {
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ] =
+                    newItemsArray[i].menus[j].menu_quantity_measure_price_list[
+                      k
+                    ]["quantity"] + value;
+                } else if (value === 1) {
+                  newItemsArray[i].menus[j].menu_quantity_measure_price_list[k][
+                    "quantity"
+                  ] = 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    this.setState({ items: newItemsArray });
+    localStorage.setItem("menu-items", JSON.stringify(newItemsArray));
+    this.computeBagItems(newItemsArray);
+  };
+
+  computeBagItems = (items) => {
+    let selectedMenuArray = [];
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < items[i].menus.length; j++) {
+        for (
+          let k = 0;
+          k < items[i].menus[j].menu_quantity_measure_price_list.length;
+          k++
+        ) {
+          if (
+            items[i].menus[j].menu_quantity_measure_price_list[k].quantity > 0
+          ) {
+            let menu = {
+              menu: items[i].menus[j],
+              selectedMenuQuantity:
+                items[i].menus[j].menu_quantity_measure_price_list[k],
+            };
+            selectedMenuArray.push(menu);
+          }
+        }
+      }
+    }
+    this.setState({ bagItems: selectedMenuArray });
+    sessionStorage.setItem("items", JSON.stringify(selectedMenuArray));
+    let total = selectedMenuArray.length;
+    this.setState({ total: total });
+    sessionStorage.setItem("total", total);
+  };
 
   setType(type) {
     //to display respective items for menu items selected
@@ -345,25 +287,11 @@ class NewHome extends Component {
 
   togglePopup() {
     //to open and close the cart(bag) component
-    this.setState({
-      togglePopup: !this.state.togglePopup,
-    });
-  }
-
-  getCategories(items) {
-    //fetching categories from itemsarray
-    let categoryArray = [];
-    let indexes = [];
-    items.map((item) => {
-      if (item.category) {
-        if (indexes.indexOf(item.category.name) === -1) {
-          indexes.push(item.category.name);
-          categoryArray.push(item.category);
-        }
-      }
-    });
-
-    this.setState({ categoryArray: categoryArray });
+    if (this.state.total > 0) {
+      this.setState({
+        togglePopup: !this.state.togglePopup,
+      });
+    }
   }
 
   checkDistance() {
@@ -393,7 +321,12 @@ class NewHome extends Component {
           async (response, status) => {
             if (status !== "OK") {
               alert("Error was: " + status);
-            } else {
+            } else if (
+              Boolean(
+                response.rows[0].elements[0].distance &&
+                  response.rows[0].elements[0].distance.value
+              ) === true
+            ) {
               distance = response.rows[0].elements[0].distance.value;
               let address;
               Geocode.fromLatLng(
@@ -423,7 +356,7 @@ class NewHome extends Component {
                     withInDistance = true;
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
@@ -457,12 +390,12 @@ class NewHome extends Component {
                       ) ||
                         flag)
                     ) {
-                      alert("Welcome you sir... we are happy to serve you");
+                      alert("Thank you! We are happy to serve you...");
                       this.setState({ boundary: true });
                       sessionStorage.setItem("boundary", true);
                     }
                   } else if (withInDistance) {
-                    alert("Welcome you sir... we are happy to serve you");
+                    alert("Thank you! We are happy to serve you...");
                     this.setState({ boundary: true });
                     sessionStorage.setItem("boundary", true);
                   }
@@ -487,6 +420,10 @@ class NewHome extends Component {
                 (error) => {
                   console.error(error);
                 }
+              );
+            } else {
+              alert(
+                "Sorry! We cannot deliver there. Please try with other locations."
               );
             }
           }
@@ -536,7 +473,12 @@ class NewHome extends Component {
             async (response, status) => {
               if (status !== "OK") {
                 alert("Error was: " + status);
-              } else {
+              } else if (
+                Boolean(
+                  response.rows[0].elements[0].distance &&
+                    response.rows[0].elements[0].distance.value
+                ) === true
+              ) {
                 distance = response.rows[0].elements[0].distance.value;
                 sessionStorage.setItem("lat", latLng.lat);
                 sessionStorage.setItem("long", latLng.lng);
@@ -551,7 +493,7 @@ class NewHome extends Component {
                   withInDistance = true;
                 } else {
                   alert(
-                    "Sorry for our Incovenience.... You're out of our boundary"
+                    "Sorry for our Incovenience.... You're out of our service boundary"
                   );
                   this.setState({ boundary: false });
                 }
@@ -593,17 +535,17 @@ class NewHome extends Component {
                     ) ||
                     flag
                   ) {
-                    alert("Welcome you sir... we are happy to serve you");
+                    alert("Thank you! We are happy to serve you...");
                     this.setState({ boundary: true });
                     sessionStorage.setItem("boundary", true);
                   } else {
                     alert(
-                      "Sorry for our Incovenience.... You're out of our boundary"
+                      "Sorry for our Incovenience.... You're out of our service boundary"
                     );
                     this.setState({ boundary: false });
                   }
                 } else if (withInDistance) {
-                  alert("Welcome you sir... we are happy to serve you");
+                  alert("Thank you! We are happy to serve you...");
                   this.setState({ boundary: true });
                   sessionStorage.setItem("boundary", true);
                 }
@@ -623,6 +565,10 @@ class NewHome extends Component {
                     value: 1,
                   });
                 }
+              } else {
+                alert(
+                  "Sorry! We cannot deliver there. Please try with other locations."
+                );
               }
             }
           );
@@ -636,12 +582,7 @@ class NewHome extends Component {
     if (this.state.boundary === true) {
       this.setState({ showPopup: false });
     } else {
-      this.setState((prevState) => {
-        let newArray = prevState.items;
-        newArray.map((a) => (a.quantity = 0));
-        return { items: newArray };
-      });
-      this.setState({ total: 0 });
+      this.setState({ showGetLocationAfterContinue: false, total: 0 });
     }
   }
 
@@ -666,11 +607,11 @@ class NewHome extends Component {
 
   editlocation(event) {
     this.togglePopup();
-    this.setState({ showPopup: true });
-    sessionStorage.removeItem("boundary");
-    this.setState({ boundary: false });
+    this.setState({
+      showPopup: true,
+      boundary: false,
+    });
   }
-
   // ends here
 
   render() {
@@ -689,33 +630,49 @@ class NewHome extends Component {
     } else {
       return (
         <div>
-          {this.state.total !== 0 && this.state.showPopup && (
-            <GetLocation
-              address={this.state.address}
-              getCoords={this.getCoords}
-              handleChange={this.handleChange}
-              checkDistance={this.checkDistance}
-              PAhandleChange={this.PAhandleChange}
-              handleSelect={this.handleSelect}
-              close={this.close}
-              pickMyLocation={
-                this.state.restaurant_info.restaurant_website_detail
-                  .is_pick_my_location_enabled
-              }
-              boundary={this.state.boundary}
-              gotocart={this.gotocart}
-              contshpng={this.contshpng}
-            />
-          )}
+          {this.state.restaurant_info.get_location_info.get_location_type_id ===
+            "1" &&
+            this.state.total !== 0 &&
+            this.state.showGetLocationAfterContinue &&
+            this.state.showPopup && (
+              <GetLocation
+                address={this.state.address}
+                getCoords={this.getCoords}
+                handleChange={this.handleChange}
+                checkDistance={this.checkDistance}
+                PAhandleChange={this.PAhandleChange}
+                handleSelect={this.handleSelect}
+                close={this.close}
+                pickMyLocation={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .is_pick_my_location_enabled
+                }
+                boundary={this.state.boundary}
+                gotocart={this.gotocart}
+                contshpng={this.contshpng}
+              />
+            )}
 
-          {/* <div style={(this.state.total == 1) && this.state.showpopup && this.state.boundary===false?{filter: 'blur(10px)'}:{}}> */}
-          <div>
+          <div
+            style={
+              this.state.restaurant_info.get_location_info
+                .get_location_type_id === "1" &&
+              this.state.total !== 0 &&
+              this.state.showGetLocationAfterContinue &&
+              this.state.showPopup
+                ? {
+                    pointerEvents: "none",
+                    filter: "blur(7px)",
+                  }
+                : {}
+            }
+          >
             {this.state.togglePopup &&
               !this.state.showPopup &&
               this.state.total !== 0 && (
                 <Bag
                   closePopup={this.togglePopup}
-                  changequantity={this.changequantityinBag}
+                  changequantity={this.changequantity}
                   items={this.state.bagItems}
                   total={this.state.total}
                   quantity={this.state.quantity}
@@ -754,13 +711,14 @@ class NewHome extends Component {
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
               />
-              <MultiCards  cards  = {JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail
-                    .cards
-                )}/>
+              <MultiCards
+                cards={JSON.parse(
+                  this.state.restaurant_info.restaurant_website_detail.cards
+                )}
+              />
               <Description
                 delivery_locations={
-                  this.state.restaurantBranch[0].delivery_locations
+                  this.state.restaurantBranch[0].delivery_locations_to_display
                 }
                 preOrder={
                   this.state.restaurant_info.restaurant_website_detail
@@ -778,7 +736,6 @@ class NewHome extends Component {
                   this.state.restaurant_info.restaurant_website_detail
                     .has_customisation_info
                 }
-               
               />
 
               <Product
@@ -792,6 +749,10 @@ class NewHome extends Component {
                     .pre_order_info_image
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
+                showGetLocationAfterContinue={() => {
+                  this.setState({ showGetLocationAfterContinue: true });
+                }}
+                total={this.state.total}
               />
               <About
                 about={this.state.restaurant_info.about}
@@ -804,13 +765,16 @@ class NewHome extends Component {
 
               <MapLocation
                 restaurantName={this.state.restaurant_info.name}
-                address={this.state.restaurantBranch[0].address}
+                address={this.state.restaurantBranch[0].name}
               />
               <Contact />
-              {this.state.total > 0 && (
+              {this.state.total > 0 && this.state.boundary && (
                 <CheckoutButton
                   total={this.state.total}
-                  togglePopup={this.togglePopup}
+                  checkOutToBag={() => {
+                    this.setState({ showPopup: false });
+                    this.togglePopup();
+                  }}
                 />
               )}
               <WhatsAppIcon
