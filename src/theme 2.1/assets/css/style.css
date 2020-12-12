@@ -2888,6 +2888,9 @@ p.form-message.error {
   background-color: var(--secondary-color);
   color: white;
 }
+.custom-menu-call-button:hover{
+  color: white;
+}
 
 .product-description .product-add .product-add-count .nice-number input {
   width: 150px !important;
