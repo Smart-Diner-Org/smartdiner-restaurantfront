@@ -5,7 +5,7 @@ function Orders(props) {
     <li>
       <label>{props.itemName}</label>
       <label>{props.quantity}</label>
-      <label>Rs.{props.discountPrice}</label>
+      <label>Rs.{props.price}</label>
       <label>{props.menuQuantity.quantity_values.quantity} {props.menuQuantity?.measure_values.name}</label>
     </li>
   );
