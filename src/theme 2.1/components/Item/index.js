@@ -28,6 +28,11 @@ class Item extends Component {
         this.props.menuID,
         id
       );
+      ReactGA.event({
+        category: `Product ID:${this.props.categoryID}`,
+        action: `Menuprice list item ID:${id}`,
+        label: `Removed by value ${e.target.value} by unchecking button`,
+      });
       e.target.checked = false;
     } else {
       this.props.changequantity(
@@ -36,6 +41,11 @@ class Item extends Component {
         this.props.menuID,
         id
       );
+      ReactGA.event({
+        category: `Product ID:${this.props.categoryID}`,
+        action: `Menuprice list item ID:${id}`,
+        label: `1 added bychecking button`,
+      });
       e.target.checked = true;
     }
     this.calculateModalTotal(discount);
@@ -68,6 +78,17 @@ class Item extends Component {
         this.props.priceList[0].id
       );
       this.calculateModalTotal(discount);
+      ReactGA.event({
+        category: `Product`,
+        action: `Clicked Add to Cart button`,
+        label: `Opened the menuPriceList for the first time`,
+      });
+    } else {
+      ReactGA.event({
+        category: `Product`,
+        action: `Clicked Add to Cart button`,
+        label: `Opened the menuPriceList for the editing orders`,
+      });
     }
     this.setState({ showModal: true });
   };
@@ -75,6 +96,11 @@ class Item extends Component {
   closePriceListModal = () => {
     this.props.showGetLocationAfterContinue();
     this.setState({ showModal: false });
+    ReactGA.event({
+      category: `Menu PriceList Modal`,
+      action: `Clicked Continue/close button`,
+      label: `Closed the menuPriceList modal`,
+    });
   };
 
   render() {
@@ -142,9 +168,19 @@ class Item extends Component {
                             this.props.menuID,
                             item.id
                           );
+                          ReactGA.event({
+                            category: `MenuPricelist modal: ${this.props.menuID}`,
+                            action: `Clicked + button ${item.id}`,
+                            label: `Increase quantity by 1`,
+                          });
                           this.calculateModalTotal(this.props.discount);
                         }}
                         decreaseQuantity={() => {
+                          ReactGA.event({
+                            category: `MenuPricelist modal: ${this.props.menuID}`,
+                            action: `Clicked - button ${item.id}`,
+                            label: `Decrease quantity by 1`,
+                          });
                           if (item.quantity === 1) {
                             this.checkboxes[index].checked = false;
                           }
@@ -290,22 +326,32 @@ class Item extends Component {
                   <div>
                     {this.props.priceList.length === 1 ? (
                       <QuantityButtons
-                        increaseQuantity={() =>
+                        increaseQuantity={() => {
+                          ReactGA.event({
+                            category: `Product: ${this.props.menuID}`,
+                            action: `Clicked + button ${this.props.priceList[0].id}`,
+                            label: `Increase quantity by 1`,
+                          });
                           this.props.changequantity(
                             1,
                             this.props.categoryID,
                             this.props.menuID,
                             this.props.priceList[0].id
-                          )
-                        }
-                        decreaseQuantity={() =>
+                          );
+                        }}
+                        decreaseQuantity={() => {
+                          ReactGA.event({
+                            category: `Product: ${this.props.menuID}`,
+                            action: `Clicked - button ${this.props.priceList[0].id}`,
+                            label: `Decrease quantity by 1`,
+                          });
                           this.props.changequantity(
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
                             this.props.priceList[0].id
-                          )
-                        }
+                          );
+                        }}
                         quantity={this.props.priceList[0].quantity}
                       />
                     ) : (

@@ -3,6 +3,7 @@ import BillItem from "./components/BillItem";
 import Bill from "./Bill";
 import Delivery from "./Delivery";
 import FlipMove from "react-flip-move";
+import ReactGA from "react-ga";
 
 class BagItemList extends React.Component {
   values() {
@@ -50,29 +51,44 @@ class BagItemList extends React.Component {
                 }
                 menuQuantity={item.selectedMenuQuantity}
                 removeItem={() => {
+                  ReactGA.event({
+                    category: `Bag: ${item.menu.id}`,
+                    action: `Clicked X button ${item.selectedMenuQuantity.id}`,
+                    label: `Removed Item from cart by value ${item.selectedMenuQuantity.quantity}`,
+                  });
                   this.props.changequantity(
                     -item.selectedMenuQuantity.quantity,
                     Number(item.menu.category_id),
                     item.menu.id,
                     item.selectedMenuQuantity.id
-                  )
+                  );
                 }}
-                increasequantity={() =>
+                increasequantity={() => {
+                  ReactGA.event({
+                    category: `Bag: ${item.menu.id}`,
+                    action: `Clicked + button ${item.selectedMenuQuantity.id}`,
+                    label: `Increase quantity by 1`,
+                  });
                   this.props.changequantity(
                     1,
                     Number(item.menu.category_id),
                     item.menu.id,
                     item.selectedMenuQuantity.id
-                  )
-                }
-                decreasequantity={() =>
+                  );
+                }}
+                decreasequantity={() => {
+                  ReactGA.event({
+                    category: `Bag: ${item.menu.id}`,
+                    action: `Clicked - button ${item.selectedMenuQuantity.id}`,
+                    label: `Decrease quantity by 1`,
+                  });
                   this.props.changequantity(
                     -1,
                     Number(item.menu.category_id),
                     item.menu.id,
                     item.selectedMenuQuantity.id
-                  )
-                }
+                  );
+                }}
               />
             );
           })}
