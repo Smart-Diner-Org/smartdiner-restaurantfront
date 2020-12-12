@@ -384,7 +384,8 @@ class Item extends Component {
                     });
                   }}
                 >
-                  <i class="lni-phone-handset"></i>
+                  Call now to book
+                  <i class="lni-phone-handset ml-10"></i>
                 </a>
               </>
             )}
