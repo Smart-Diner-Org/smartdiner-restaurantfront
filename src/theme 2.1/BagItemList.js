@@ -52,8 +52,9 @@ class BagItemList extends React.Component {
                 menuQuantity={item.selectedMenuQuantity}
                 removeItem={() => {
                   ReactGA.event({
-                    category: `Bag: ${item.menu.id}`,
-                    action: `Clicked X button ${item.selectedMenuQuantity.id}`,
+                    category: `In Bag Product: ${item.menu.name}`,
+                    action: `Clicked X button with ${item.selectedMenuQuantity.quantity_values.quantity}
+                    ${item.selectedMenuQuantity.measure_values.name}`,
                     label: `Removed Item from cart by value ${item.selectedMenuQuantity.quantity}`,
                   });
                   this.props.changequantity(
@@ -65,8 +66,9 @@ class BagItemList extends React.Component {
                 }}
                 increasequantity={() => {
                   ReactGA.event({
-                    category: `Bag: ${item.menu.id}`,
-                    action: `Clicked + button ${item.selectedMenuQuantity.id}`,
+                    category: `In Bag Product: ${item.menu.name}`,
+                    action: `Clicked + button ${item.selectedMenuQuantity.quantity_values.quantity}
+                    ${item.selectedMenuQuantity.measure_values.name}`,
                     label: `Increase quantity by 1`,
                   });
                   this.props.changequantity(
@@ -78,9 +80,10 @@ class BagItemList extends React.Component {
                 }}
                 decreasequantity={() => {
                   ReactGA.event({
-                    category: `Bag: ${item.menu.id}`,
-                    action: `Clicked - button ${item.selectedMenuQuantity.id}`,
-                    label: `Decrease quantity by 1`,
+                    category: `In Bag Product: ${item.menu.name}`,
+                    action: `Clicked - button ${item.selectedMenuQuantity.quantity_values.quantity}
+                    ${item.selectedMenuQuantity.measure_values.name}`,
+                    label: `decrease quantity by 1`,
                   });
                   this.props.changequantity(
                     -1,

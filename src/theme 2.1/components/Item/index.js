@@ -20,18 +20,18 @@ class Item extends Component {
     };
   }
 
-  handleChecked = (e, id, discount) => {
+  handleChecked = (e, item, discount) => {
     if (Number(e.target.value) > 0) {
       this.props.changequantity(
         -e.target.value,
         this.props.categoryID,
         this.props.menuID,
-        id
+        item.id
       );
       ReactGA.event({
-        category: `Product ID:${this.props.categoryID}`,
-        action: `Menuprice list item ID:${id}`,
-        label: `Removed by value ${e.target.value} by unchecking button`,
+        category: `Product: ${this.props.itemName}`,
+        action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+        label: `Increase quantity by 1`,
       });
       e.target.checked = false;
     } else {
@@ -39,12 +39,12 @@ class Item extends Component {
         1,
         this.props.categoryID,
         this.props.menuID,
-        id
+        item.id
       );
       ReactGA.event({
-        category: `Product ID:${this.props.categoryID}`,
-        action: `Menuprice list item ID:${id}`,
-        label: `1 added bychecking button`,
+        category: `Product: ${this.props.itemName}`,
+        action: `Menuprice list item ${item.quantity_values.quantity} ${item.measure_values.name}`,
+        label: `1 item added by checking button`,
       });
       e.target.checked = true;
     }
@@ -79,9 +79,9 @@ class Item extends Component {
       );
       this.calculateModalTotal(discount);
       ReactGA.event({
-        category: `Product`,
+        category: `Product: ${this.props.itemName}`,
         action: `Clicked Add to Cart button`,
-        label: `Opened the menuPriceList for the first time`,
+        label: `Opened the menuPriceList for the first time and default ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name} added`,
       });
     } else {
       ReactGA.event({
@@ -131,7 +131,7 @@ class Item extends Component {
                         value={item.quantity}
                         checked={item.quantity > 0 && true}
                         onClick={(e) =>
-                          this.handleChecked(e, item.id, this.props.discount)
+                          this.handleChecked(e, item, this.props.discount)
                         }
                       />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
@@ -169,16 +169,16 @@ class Item extends Component {
                             item.id
                           );
                           ReactGA.event({
-                            category: `MenuPricelist modal: ${this.props.menuID}`,
-                            action: `Clicked + button ${item.id}`,
+                            category: `MenuPricelist modal: ${this.props.itemName}`,
+                            action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
                             label: `Increase quantity by 1`,
                           });
                           this.calculateModalTotal(this.props.discount);
                         }}
                         decreaseQuantity={() => {
                           ReactGA.event({
-                            category: `MenuPricelist modal: ${this.props.menuID}`,
-                            action: `Clicked - button ${item.id}`,
+                            category: `MenuPricelist modal: ${this.props.itemName}`,
+                            action: `Clicked - button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
                             label: `Decrease quantity by 1`,
                           });
                           if (item.quantity === 1) {
@@ -328,8 +328,8 @@ class Item extends Component {
                       <QuantityButtons
                         increaseQuantity={() => {
                           ReactGA.event({
-                            category: `Product: ${this.props.menuID}`,
-                            action: `Clicked + button ${this.props.priceList[0].id}`,
+                            category: `Product: ${this.props.itemName}`,
+                            action: `Clicked + button ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name}`,
                             label: `Increase quantity by 1`,
                           });
                           this.props.changequantity(
@@ -341,7 +341,7 @@ class Item extends Component {
                         }}
                         decreaseQuantity={() => {
                           ReactGA.event({
-                            category: `Product: ${this.props.menuID}`,
+                            category: `Product: ${this.props.itemName}`,
                             action: `Clicked - button ${this.props.priceList[0].id}`,
                             label: `Decrease quantity by 1`,
                           });
