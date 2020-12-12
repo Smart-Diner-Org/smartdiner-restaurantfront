@@ -126,7 +126,7 @@ class Item extends Component {
                   <div className="col-auto d-flex flex-column">
                     <label id={`${item.id}`}>
                       <input
-                        type="radio"
+                        type="checkbox"
                         ref={(a) => (this.checkboxes[index] = a)}
                         value={item.quantity}
                         checked={item.quantity > 0 && true}

@@ -1394,7 +1394,7 @@ hr {
   align-self: center;
   color: #e22a28;
 }
-.modal-body input[type="radio"] {
+.modal-body input[type="checkbox"] {
   margin-right: 1em;
 }
 .modal-body label {
@@ -2875,7 +2875,7 @@ p.form-message.error {
   align-items: center;
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   border: 1px solid black;
   padding: 5px 10px;
