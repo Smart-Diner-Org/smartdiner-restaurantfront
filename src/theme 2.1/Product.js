@@ -52,6 +52,7 @@ class Product extends Component {
                                   menuID={item.id}
                                   showGetLocationAfterContinue={this.props.showGetLocationAfterContinue}
                                   total={this.props.total}
+                                  contact_number={this.props.contact_number}
                                 />
                               );
                             });

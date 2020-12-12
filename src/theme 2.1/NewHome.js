@@ -737,7 +737,6 @@ class NewHome extends Component {
                     .has_customisation_info
                 }
               />
-
               <Product
                 setType={this.setType}
                 changequantity={this.changequantity}
