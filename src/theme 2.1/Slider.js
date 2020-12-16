@@ -50,7 +50,7 @@ class Slider extends Component {
               </Carousel.Item>
             )}
             {this.state.slider &&
-              this.state.slider.map((item,index) => {
+              this.state.slider.map((item, index) => {
                 return (
                   <Carousel.Item key={index}>
                     <div
@@ -100,7 +100,16 @@ class Slider extends Component {
                               <div className="row call-to-action-button">
                                 {item.buttons[0].button_link_type ===
                                   "menu" && (
-                                  <a href="#product">
+                                  <a
+                                    href="#product"
+                                    onClick={() =>
+                                      ReactGA.event({
+                                        category: "Slider Banner",
+                                        action: `Clicked ${item.buttons[0].content} button`,
+                                        label: `Jumped to Menu section of the page`,
+                                      })
+                                    }
+                                  >
                                     {item.buttons[0].content}
                                   </a>
                                 )}
@@ -109,6 +118,13 @@ class Slider extends Component {
                                   <a
                                     href={`tel:+91${this.props.contact_number}`}
                                     target="blank"
+                                    onClick={() =>
+                                      ReactGA.event({
+                                        category: "Slider Banner",
+                                        action: `Clicked ${item.buttons[1].content} button`,
+                                        label: `Opened contact App to make call`,
+                                      })
+                                    }
                                   >
                                     {item.buttons[1].content}
                                   </a>
