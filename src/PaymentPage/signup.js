@@ -442,8 +442,7 @@ class SignUp extends Component {
                               action: `Clicked back to ${sessionStorage.getItem(
                                 "title"
                               )}`,
-                              label: `Opens home page `,
-                              transport: "beacon",
+                              label: `Opens home page `
                             })
                           }
                         >
@@ -543,7 +542,6 @@ class SignUp extends Component {
                                 "title"
                               )}`,
                               label: `Opens home page `,
-                              transport: "beacon",
                             })
                           }
                         >
