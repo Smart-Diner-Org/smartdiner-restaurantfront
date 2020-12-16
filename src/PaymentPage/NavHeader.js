@@ -12,7 +12,7 @@ function NavHeader(props) {
             category: "signup page",
             action: `Clicked Shopping Cart header link`,
             label: `Opens up cart in the home page `,
-            transport:"beacon",
+            transport: "beacon",
           });
           sessionStorage.setItem("openCart", true);
           window.open("/", "_self");
@@ -28,7 +28,7 @@ function NavHeader(props) {
             action: `Clicked Customer Details header link`,
             label: `Shows customer detials part `,
           });
-          props.showCustomerDetails();
+          props.showCustomerDetails && props.showCustomerDetails();
         }}
       >
         2. Customer Details
@@ -41,7 +41,7 @@ function NavHeader(props) {
             action: `Clicked Checkout header link`,
             label: `Shows Payment part `,
           });
-          props.showPayment();
+          props.showPayment && props.showPayment();
         }}
       >
         3. Checkout
