@@ -10,6 +10,7 @@ export default class ScrollToTop extends Component {
             category: "Home Page",
             action: `Clicked fixed WhatsApp icon`,
             label: `Opens WhatsApp to chat`,
+            transport:"beacon"
           })}
           href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`}
           target="blank"
