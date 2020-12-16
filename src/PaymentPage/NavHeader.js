@@ -20,9 +20,31 @@ function NavHeader(props) {
         1. Shopping Cart
       </label>
       <label>{">"}</label>
-      <label onClick={props.showCustomerDetails}>2. Customer Details</label>
+      <label
+        onClick={() => {
+          ReactGA.event({
+            category: "signup page",
+            action: `Clicked Customer Details header link`,
+            label: `Shows customer detials part `,
+          });
+          props.showCustomerDetails();
+        }}
+      >
+        2. Customer Details
+      </label>
       <label>{">"}</label>
-      <label onClick={props.showPayment}>3. Checkout</label>
+      <label
+        onClick={() => {
+          ReactGA.event({
+            category: "signup page",
+            action: `Clicked Checkout header link`,
+            label: `Shows Payment part `,
+          });
+          props.showPayment();
+        }}
+      >
+        3. Checkout
+      </label>
     </div>
   );
 }
