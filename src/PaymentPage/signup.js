@@ -434,7 +434,19 @@ class SignUp extends Component {
                       style={{ overflowY: "auto", height: "100%" }}
                     >
                       <div className="signup-header">
-                        <Link to="/">
+                        <Link
+                          to="/"
+                          onClick={() =>
+                            ReactGA.event({
+                              category: "signup page",
+                              action: `Clicked back to ${sessionStorage.getItem(
+                                "title"
+                              )}`,
+                              label: `Opens home page `,
+                              transport: "beacon",
+                            })
+                          }
+                        >
                           <label className="mb-20">
                             <i class="lni lni-arrow-left"></i> Back to{" "}
                             {sessionStorage.getItem("title")}{" "}
@@ -522,7 +534,19 @@ class SignUp extends Component {
                   <div className="row">
                     <div className="col-lg-5 col-md-5 col-sm-12 signup-left">
                       <div className="signup-header">
-                        <Link to="/">
+                        <Link
+                          to="/"
+                          onClick={() =>
+                            ReactGA.event({
+                              category: "signup page",
+                              action: `Clicked back to ${sessionStorage.getItem(
+                                "title"
+                              )}`,
+                              label: `Opens home page `,
+                              transport: "beacon",
+                            })
+                          }
+                        >
                           <label className="mb-20">
                             <i class="lni lni-arrow-left"></i> Back to{" "}
                             {sessionStorage.getItem("title")}{" "}

@@ -12,6 +12,7 @@ function NavHeader(props) {
             category: "signup page",
             action: `Clicked Shopping Cart header link`,
             label: `Opens up cart in the home page `,
+            transport:"beacon",
           });
           sessionStorage.setItem("openCart", true);
           window.open("/", "_self");
