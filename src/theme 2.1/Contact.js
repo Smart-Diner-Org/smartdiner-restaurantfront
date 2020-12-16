@@ -30,7 +30,7 @@ class Contact extends Component {
     };
     ReactGA.event({
       category: "Home Page contact form",
-      action: `CLicked Contact button with email ${this.state.email}`,
+      action: `Clicked Contact button with email ${this.state.email}`,
       label: `Submitted contact form by ${this.state.name}`
     });
     await axios
