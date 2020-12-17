@@ -5,6 +5,7 @@ import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
 import Modal from "react-bootstrap/Modal";
 import QuantityButtons from "../QuantityButtons/index";
+import { notShowDirectLocation, showDirectLocation } from "../../constant";
 
 class Item extends Component {
   constructor(props) {
@@ -75,7 +76,8 @@ class Item extends Component {
         1,
         this.props.categoryID,
         this.props.menuID,
-        this.props.priceList[0].id
+        this.props.priceList[0].id,
+        notShowDirectLocation
       );
       this.calculateModalTotal(discount);
       ReactGA.event({
@@ -94,7 +96,7 @@ class Item extends Component {
   };
 
   closePriceListModal = () => {
-    this.props.showGetLocationAfterContinue();
+    this.props.setShowLocationPopup();
     this.setState({ showModal: false });
     ReactGA.event({
       category: `Menu PriceList Modal`,
@@ -166,7 +168,8 @@ class Item extends Component {
                             1,
                             this.props.categoryID,
                             this.props.menuID,
-                            item.id
+                            item.id,
+                            notShowDirectLocation
                           );
                           ReactGA.event({
                             category: `MenuPricelist modal: ${this.props.itemName}`,
@@ -188,7 +191,8 @@ class Item extends Component {
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
-                            item.id
+                            item.id,
+                            notShowDirectLocation
                           );
                           this.calculateModalTotal(this.props.discount);
                         }}
@@ -336,7 +340,8 @@ class Item extends Component {
                             1,
                             this.props.categoryID,
                             this.props.menuID,
-                            this.props.priceList[0].id
+                            this.props.priceList[0].id,
+                            showDirectLocation
                           );
                         }}
                         decreaseQuantity={() => {
@@ -349,7 +354,8 @@ class Item extends Component {
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
-                            this.props.priceList[0].id
+                            this.props.priceList[0].id,
+                            showDirectLocation
                           );
                         }}
                         quantity={this.props.priceList[0].quantity}

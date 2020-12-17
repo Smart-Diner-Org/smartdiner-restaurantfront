@@ -23,24 +23,23 @@ class NewHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoaded: false,
       selectedType: "",
       items: [{}],
       restaurant_info: [{}],
       restaurantBranch: [{}],
-      isLoaded: false,
       total: 0,
       address: "",
       boundary: false,
       postalcode: "",
       lat: "",
       long: "",
-      showLocationPopup: true,
-      showBag: false,
       refpostcode: "",
       refregion: null,
       bagItems: [],
       distance: null,
-      showGetLocationAfterContinue: false,
+      showLocationPopup: false,
+      showBag: false,
     };
   }
 
@@ -97,8 +96,7 @@ class NewHome extends Component {
               bagItems: JSON.parse(sessionStorage.getItem("items")),
               items: JSON.parse(localStorage.getItem("menu-items")),
               boundary: Boolean(sessionStorage.getItem("boundary")),
-              total: sessionStorage.getItem("total"),
-              showLocationPopup: false,
+              total: sessionStorage.getItem("total")
             });
           }
           if (sessionStorage.getItem("openCart")) {
@@ -184,7 +182,8 @@ class NewHome extends Component {
     value,
     categoryID,
     menuID,
-    selectedMenuQuantityMeasurePriceId
+    selectedMenuQuantityMeasurePriceId,
+    showDirectLocation
   ) => {
     let newItemsArray = this.state.items;
     for (let i = 0; i < newItemsArray.length; i++) {
@@ -225,10 +224,10 @@ class NewHome extends Component {
     }
     this.setState({ items: newItemsArray });
     localStorage.setItem("menu-items", JSON.stringify(newItemsArray));
-    this.computeBagItems(newItemsArray);
+    this.computeBagItems(newItemsArray, showDirectLocation);
   };
 
-  computeBagItems = (items) => {
+  computeBagItems = (items, showDirectLocation) => {
     let selectedMenuArray = [];
     for (let i = 0; i < items.length; i++) {
       for (let j = 0; j < items[i].menus.length; j++) {
@@ -255,6 +254,9 @@ class NewHome extends Component {
     let total = selectedMenuArray.length;
     this.setState({ total: total });
     sessionStorage.setItem("total", total);
+    if (total > 0 && this.state.boundary === false && showDirectLocation) {
+      this.setState({ showLocationPopup: true });
+    }
   };
 
   setType = (type) => {
@@ -568,7 +570,7 @@ class NewHome extends Component {
     if (this.state.boundary === true) {
       this.setState({ showLocationPopup: false });
     } else {
-      this.setState({ showGetLocationAfterContinue: false, total: 0 });
+      this.setState({ total: 0, showLocationPopup: false });
     }
   };
 
@@ -618,8 +620,6 @@ class NewHome extends Component {
         <div>
           {this.state.restaurant_info.get_location_info.get_location_type_id ===
             "1" &&
-            this.state.total !== 0 &&
-            this.state.showGetLocationAfterContinue &&
             this.state.showLocationPopup && (
               <GetLocation
                 address={this.state.address}
@@ -644,7 +644,7 @@ class NewHome extends Component {
               this.state.restaurant_info.get_location_info
                 .get_location_type_id === "1" &&
               this.state.total !== 0 &&
-              this.state.showGetLocationAfterContinue &&
+              this.state.showDirectLocationPopUp &&
               this.state.showLocationPopup
                 ? {
                     pointerEvents: "none",
@@ -734,10 +734,11 @@ class NewHome extends Component {
                     .pre_order_info_image
                 }
                 contact_number={this.state.restaurantBranch[0].contact_number}
-                showGetLocationAfterContinue={() => {
-                  this.setState({ showGetLocationAfterContinue: true });
-                }}
                 total={this.state.total}
+                setShowLocationPopup={() => {
+                  if (this.state.boundary === false && this.state.total > 0)
+                    this.setState({ showLocationPopup: true });
+                }}
               />
               <About
                 about={this.state.restaurant_info.about}

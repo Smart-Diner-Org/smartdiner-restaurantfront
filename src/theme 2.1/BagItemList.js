@@ -4,6 +4,7 @@ import Bill from "./Bill";
 import Delivery from "./Delivery";
 import FlipMove from "react-flip-move";
 import ReactGA from "react-ga";
+import { notShowDirectLocation } from "./constant";
 
 class BagItemList extends React.Component {
   values() {
@@ -61,7 +62,8 @@ class BagItemList extends React.Component {
                     -item.selectedMenuQuantity.quantity,
                     Number(item.menu.category_id),
                     item.menu.id,
-                    item.selectedMenuQuantity.id
+                    item.selectedMenuQuantity.id,
+                    notShowDirectLocation
                   );
                 }}
                 increasequantity={() => {
@@ -75,7 +77,8 @@ class BagItemList extends React.Component {
                     1,
                     Number(item.menu.category_id),
                     item.menu.id,
-                    item.selectedMenuQuantity.id
+                    item.selectedMenuQuantity.id,
+                    notShowDirectLocation
                   );
                 }}
                 decreasequantity={() => {
@@ -89,7 +92,8 @@ class BagItemList extends React.Component {
                     -1,
                     Number(item.menu.category_id),
                     item.menu.id,
-                    item.selectedMenuQuantity.id
+                    item.selectedMenuQuantity.id,
+                    notShowDirectLocation
                   );
                 }}
               />
