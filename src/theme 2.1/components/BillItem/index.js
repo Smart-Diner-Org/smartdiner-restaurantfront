@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import BurgerImage from "../../assets/images/food1.jpg";
 
 class BillItem extends Component {
+  
   render() {
     return (
+      
       <div class="bag-item mb-10">
         <div class="container ">
           <div className="row d-flex align-items-center">
@@ -43,6 +45,7 @@ class BillItem extends Component {
                 >
                   <i class="lni lni-dinner"></i>
                 </label>
+                {!this.props.statuspage && 
                 <div className="col-auto">
                   <button
                     className="cancelbutton"
@@ -50,7 +53,8 @@ class BillItem extends Component {
                   >
                     X
                   </button>
-                </div>
+                </div>}
+                
               </div>
               <div className="row mt-10 mb-10">
                 <div className="col-5 des">
@@ -82,6 +86,8 @@ class BillItem extends Component {
                     <label>Rs.{this.props.price}</label>
                   )}
                 </div>
+                {this.props.statuspage?<div className="quantity"><label>{this.props.quantity}</label></div>
+                :
                 <div className="col-4 ">
                   <div className="quantity d-flex justify-content-around">
                     <button
@@ -101,6 +107,28 @@ class BillItem extends Component {
                     </button>
                   </div>
                 </div>
+                }
+                {/*
+                <div className="col-4 ">
+                  <div className="quantity d-flex justify-content-around">
+                    <button
+                      name="sub"
+                      className="d-flex justify-content-center align-items-center "
+                      onClick={this.props.decreasequantity}
+                    >
+                      -
+                    </button>
+                    <label>{this.props.quantity}</label>
+                    <button
+                      name="add"
+                      className="d-flex justify-content-center align-items-center"
+                      onClick={this.props.increasequantity}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                */}
               </div>
               <div className="row"></div>
               <div className="row col-6">
@@ -127,6 +155,7 @@ class BillItem extends Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }

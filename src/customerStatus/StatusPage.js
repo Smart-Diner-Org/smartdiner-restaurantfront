@@ -6,6 +6,7 @@ import Alert from "react-bootstrap/Alert";
 import { defaultAboutImage } from "../theme 2.1/constant";
 import OTPpage from "./OTPpage"
 import ReactGA from "react-ga";
+import BillItem from "../theme 2.1/components/BillItem"
 
 const orderNotFound = "Order not found";
 const invalidOrder = "Invalid Order";
@@ -38,6 +39,7 @@ class StatusPage extends React.Component {
       errorMessage: "",
       mobileVerification:false,
       isVerified : false,
+      statuspage:true,
       
     };
     this.OTPverfication = this.OTPverfication.bind(this)
@@ -404,37 +406,40 @@ class StatusPage extends React.Component {
               )}
 
               <div className="col-lg-6 col-sm-0 restaurantDetails">
-                <Link to="/">
-                  <h1 className="mb-5">{this.state.data.restuarantName}</h1>
-                </Link>
-                <div className="restaurantImages">
-                  <div className="row">
-                    <div className="col-3 d-flex flex-column justify-content-between">
-                      <img
-                        src={defaultAboutImage} 
-                        className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                        alt=""
-                      />
-                      <img
-                        src={defaultAboutImage}
-                        className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                        alt=""
-                      />
-                      <img
-                        src={defaultAboutImage}
-                        className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-9">
-                      <img
-                        src={defaultAboutImage}
-                        className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                        alt=""
-                      />
-                    </div>
+                  <h3 className="mb-5">Your Order - {this.state.data.restuarantName}</h3>
+                
+                  {this.state.data.orderDetailMenus.map((item)=><BillItem 
+                  itemName={item.menu_quantity_measure_price.menu.name}
+                  price={item.order_detail.original_price}
+                  image={item.menu_quantity_measure_price.menu.image}
+                  quantity={item.order_detail.quantity} 
+                  menuQuantity={item.menu_quantity_measure_price} 
+                  statuspage={this.state.statuspage}
+                  discount={item.menu_quantity_measure_price.menu.discount}
+                  discountPrice={item.order_detail.price}
+                  description={item.menu_quantity_measure_price.menu.short_description}
+                   />)}
+                
+                
+                
+                {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==2 && 
+                <button className="paybutton"><a href={this.state.data.paymentLink} target="blank" >Pay now</a></button>}
+                
+                
+                {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==1 &&
+                 <button className="paybutton green">Successfully paid</button>}
+                {this.state.data.paymentTypeId==1 && this.state.data.paymentStatusId==2 &&
+                 <button className="paybutton">Cash on delivery</button>}
+              
+              <div className="row links col-12 mt-50">
+                  <div className="col-6">
+                    <button><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+                  </div>
+                  <div className="col-6">
+                    <button><a href="/" target="blank"> Visit {this.state.data.restuarantName}</a></button>
                   </div>
                 </div>
+                
               </div>
             </div>
 
