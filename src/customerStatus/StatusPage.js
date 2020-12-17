@@ -19,6 +19,7 @@ class StatusPage extends React.Component {
     super(props);
     //this.apiLink = `${process.env.REACT_APP_BASE_URL}/`;
     this.state = {
+      isLoaded: false,
       data: {},
       flag1: false,
       flag2: false,
@@ -123,6 +124,7 @@ class StatusPage extends React.Component {
           const data = res.data;
           console.log(data);
           this.setState({ data: data });
+          this.setState({isLoaded: true})
           this.setState({mobileVerification:data.mobileVerification})
           if (data.message === orderNotFound || data.message === invalidOrder) {
             this.setState({ wrongOrder: wrongOrderMessage });
@@ -217,6 +219,19 @@ class StatusPage extends React.Component {
   }
 
   render() {
+    const { isLoaded } = this.state;
+    if (!isLoaded) {
+      return (
+        <div>
+          <div className="preloader">
+            <div className="spin">
+              <div className="cube1"></div>
+              <div className="cube2"></div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
     return (
       <div>
         {this.state.mobileVerification &&
@@ -278,6 +293,7 @@ class StatusPage extends React.Component {
                 </div>
               )}
 
+              
               {!this.state.orderCancelled && (
                 <div className="col-lg-1 col-1 deliveryProgress">
                   <div className="progress progress-bar-vertical">
@@ -404,7 +420,7 @@ class StatusPage extends React.Component {
                   </div>
                 </div>
               )}
-
+            
               <div className="col-lg-6 col-sm-0 restaurantDetails">
                   <h3 className="mb-5">Your Order - {this.state.data.restuarantName}</h3>
                 
@@ -491,6 +507,7 @@ class StatusPage extends React.Component {
         </div>
       </div>
     );
+   }
   }
 }
 
