@@ -160,8 +160,7 @@ class NewHome extends Component {
       items.push(item);
     });
     this.setState({ items: items });
-
-    this.getCategories(this.state.items);
+    this.getCategories(items);
   };
   getCategories = (items) => {
     //fetching categories from itemsarray
