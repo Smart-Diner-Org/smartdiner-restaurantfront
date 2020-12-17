@@ -34,27 +34,14 @@ class NewHome extends Component {
       postalcode: "",
       lat: "",
       long: "",
-      showPopup: true,
-      togglePopup: false,
+      showLocationPopup: true,
+      showBag: false,
       refpostcode: "",
       refregion: null,
       bagItems: [],
       distance: null,
       showGetLocationAfterContinue: false,
     };
-    this.changequantity = this.changequantity.bind(this);
-    this.setType = this.setType.bind(this);
-    this.togglePopup = this.togglePopup.bind(this);
-    this.getItems = this.getItems.bind(this);
-    this.getCategories = this.getCategories.bind(this);
-    this.categoryArray = [];
-    this.checkDistance = this.checkDistance.bind(this);
-    this.PAhandleChange = this.PAhandleChange.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.close = this.close.bind(this);
-    this.gotocart = this.gotocart.bind(this);
-    this.contshpng = this.contshpng.bind(this);
-    this.editlocation = this.editlocation.bind(this);
   }
 
   async componentDidMount() {
@@ -93,7 +80,7 @@ class NewHome extends Component {
           if (data.restaurant.get_location_info.get_location_type_id === "2") {
             this.setState({
               boundary: true,
-              showPopup: false,
+              showLocationPopup: false,
             });
             sessionStorage.setItem("boundary", true);
           }
@@ -111,11 +98,11 @@ class NewHome extends Component {
               items: JSON.parse(localStorage.getItem("menu-items")),
               boundary: Boolean(sessionStorage.getItem("boundary")),
               total: sessionStorage.getItem("total"),
-              showPopup: false,
+              showLocationPopup: false,
             });
           }
           if (sessionStorage.getItem("openCart")) {
-            this.setState({ togglePopup: true });
+            this.setState({ showBag: true });
           }
           sessionStorage.removeItem("openCart");
           if (data.restaurant.restaurant_website_detail.ga_tracking_id) {
@@ -160,7 +147,7 @@ class NewHome extends Component {
     }
   }
 
-  getItems(data) {
+  getItems = (data) => {
     //Storing API data into our state
     let restaurantDetails = [];
     data.restaurant.restaurant_branches.map((item) => {
@@ -175,8 +162,8 @@ class NewHome extends Component {
     this.setState({ items: items });
 
     this.getCategories(this.state.items);
-  }
-  getCategories(items) {
+  };
+  getCategories = (items) => {
     //fetching categories from itemsarray
     let categoryArray = [];
     items.map((item) => {
@@ -192,7 +179,7 @@ class NewHome extends Component {
     });
 
     this.setState({ categoryArray: categoryArray });
-  }
+  };
 
   changequantity = (
     value,
@@ -271,7 +258,7 @@ class NewHome extends Component {
     sessionStorage.setItem("total", total);
   };
 
-  setType(type) {
+  setType = (type) => {
     //to display respective items for menu items selected
     this.setState((prevState) => {
       return {
@@ -283,18 +270,18 @@ class NewHome extends Component {
       action: "Category",
       label: "Clicked to different menu category option",
     });
-  }
+  };
 
-  togglePopup() {
+  togglePopup = () => {
     //to open and close the cart(bag) component
     if (this.state.total > 0) {
       this.setState({
-        togglePopup: !this.state.togglePopup,
+        showBag: !this.state.showBag,
       });
     }
-  }
+  };
 
-  checkDistance() {
+  checkDistance = () => {
     let distance;
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -434,7 +421,7 @@ class NewHome extends Component {
         alert("Please allow location access to determine your location");
       }
     );
-  }
+  };
 
   // particular for LocationSeacrhinput
 
@@ -578,40 +565,40 @@ class NewHome extends Component {
     //   address = null
   };
 
-  close() {
+  close = () => {
     if (this.state.boundary === true) {
-      this.setState({ showPopup: false });
+      this.setState({ showLocationPopup: false });
     } else {
       this.setState({ showGetLocationAfterContinue: false, total: 0 });
     }
-  }
+  };
 
-  gotocart(event) {
-    this.setState({ showPopup: false });
+  gotocart = () => {
+    this.setState({ showLocationPopup: false });
     this.togglePopup();
     ReactGA.event({
       category: "Location access",
       action: "Clicked Go to cart button",
       label: "User directly when to cart after adding 1 item",
     });
-  }
+  };
 
-  contshpng(event) {
-    this.setState({ showPopup: false });
+  contshpng = () => {
+    this.setState({ showLocationPopup: false });
     ReactGA.event({
       category: "Location access",
       action: "Clicked continue shopping button",
       label: "User continued to view more menu items",
     });
-  }
+  };
 
-  editlocation(event) {
+  editlocation = () => {
     this.togglePopup();
     this.setState({
-      showPopup: true,
+      showLocationPopup: true,
       boundary: false,
     });
-  }
+  };
   // ends here
 
   render() {
@@ -634,7 +621,7 @@ class NewHome extends Component {
             "1" &&
             this.state.total !== 0 &&
             this.state.showGetLocationAfterContinue &&
-            this.state.showPopup && (
+            this.state.showLocationPopup && (
               <GetLocation
                 address={this.state.address}
                 getCoords={this.getCoords}
@@ -659,7 +646,7 @@ class NewHome extends Component {
                 .get_location_type_id === "1" &&
               this.state.total !== 0 &&
               this.state.showGetLocationAfterContinue &&
-              this.state.showPopup
+              this.state.showLocationPopup
                 ? {
                     pointerEvents: "none",
                     filter: "blur(7px)",
@@ -667,8 +654,8 @@ class NewHome extends Component {
                 : {}
             }
           >
-            {this.state.togglePopup &&
-              !this.state.showPopup &&
+            {this.state.showBag &&
+              !this.state.showLocationPopup &&
               this.state.total !== 0 && (
                 <Bag
                   closePopup={this.togglePopup}
@@ -692,8 +679,8 @@ class NewHome extends Component {
 
             <div
               style={
-                this.state.togglePopup &&
-                !this.state.showPopup &&
+                this.state.showBag &&
+                !this.state.showLocationPopup &&
                 this.state.total &&
                 sessionStorage.getItem("boundary") !== 0
                   ? {
@@ -771,7 +758,7 @@ class NewHome extends Component {
                 <CheckoutButton
                   total={this.state.total}
                   checkOutToBag={() => {
-                    this.setState({ showPopup: false });
+                    this.setState({ showLocationPopup: false });
                     this.togglePopup();
                   }}
                 />
