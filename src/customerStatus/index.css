@@ -75,7 +75,8 @@
 }
 
 .deliveryProgress {
-  height: 450px;
+  /*height: 450px;*/
+  height: auto;
   min-height: 100px;
 }
 
@@ -181,4 +182,18 @@
       /*display: none;*/
       margin-top: 20px;
   }
+  .deliveryProgress {
+    height: 450px; 
+    min-height: 100px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .restaurantDetails{
+    /*display: none;*/
+    margin-top: 20px;
+}
+.deliveryProgress {
+  height: 450px;
+  min-height: 100px;
+}
 }
