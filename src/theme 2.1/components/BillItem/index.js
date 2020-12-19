@@ -6,8 +6,8 @@ class BillItem extends Component {
   render() {
     return (
       
-      <div class="bag-item mb-10">
-        <div class="container ">
+      <div className="bag-item mb-10">
+        <div className="container ">
           <div className="row d-flex align-items-center">
             <div className="col-2 p-0">
               <div
@@ -43,7 +43,7 @@ class BillItem extends Component {
                   className="col-auto mr-auto"
                   style={{ color: "#e22a28" }}
                 >
-                  <i class="lni lni-dinner"></i>
+                  <i className="lni lni-dinner"></i>
                 </label>
                 {!this.props.statuspage && 
                 <div className="col-auto">
@@ -63,7 +63,7 @@ class BillItem extends Component {
                 </div>
 
                 <div
-                  class="col-3 price-display"
+                  className="col-3 price-display"
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -86,7 +86,7 @@ class BillItem extends Component {
                     <label>Rs.{this.props.price}</label>
                   )}
                 </div>
-                {this.props.statuspage?<div className="quantity"><label>{this.props.quantity}</label></div>
+                {this.props.statuspage?<div className="quantity" style={{maxHeight:"50px",maxWidth:"50px"}}><label>{this.props.quantity}</label></div>
                 :
                 <div className="col-4 ">
                   <div className="quantity d-flex justify-content-around">
@@ -108,27 +108,6 @@ class BillItem extends Component {
                   </div>
                 </div>
                 }
-                {/*
-                <div className="col-4 ">
-                  <div className="quantity d-flex justify-content-around">
-                    <button
-                      name="sub"
-                      className="d-flex justify-content-center align-items-center "
-                      onClick={this.props.decreasequantity}
-                    >
-                      -
-                    </button>
-                    <label>{this.props.quantity}</label>
-                    <button
-                      name="add"
-                      className="d-flex justify-content-center align-items-center"
-                      onClick={this.props.increasequantity}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-                */}
               </div>
               <div className="row"></div>
               <div className="row col-6">

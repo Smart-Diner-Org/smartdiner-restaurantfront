@@ -42,13 +42,13 @@ class OTPpage extends React.Component {
         < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
         {elementsArray.map((k, i) => (
                                         <input className="otp-box col-lg-mx-10"
-                                      
+                                        key={i}
                                         ref={(ref) => (refArray[i] = ref)} 
                                         onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
                                         maxLength={1}
                                         />
                                     ))}
-                                  <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i class="lni lni-timer"></i></strong> </React.Fragment> 
+                                  <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment> 
         </ React.Fragment>
         <div className="contact-button mt-10">
           {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
@@ -65,7 +65,7 @@ class OTPpage extends React.Component {
         </div>
       
         <div className="contact-button mt-60 mb-30">
-        <button classname="col-lg-6 col-sm-6"><a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+        <button className="col-lg-6 col-sm-6"><a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
         {/*<a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a>*/}
         </div>

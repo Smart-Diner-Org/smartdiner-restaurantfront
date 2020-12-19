@@ -424,14 +424,15 @@ class StatusPage extends React.Component {
               <div className="col-lg-6 col-sm-0 restaurantDetails">
                   <h3 className="mb-5">Your Order - {this.state.data.restuarantName}</h3>
                 
-                  {this.state.data.orderDetailMenus.map((item)=><BillItem 
+                  {this.state.data.orderDetailMenus.map((item,index)=><BillItem key={index}
                   itemName={item.menu_quantity_measure_price.menu.name}
                   price={item.order_detail.original_price}
                   image={item.menu_quantity_measure_price.menu.image}
                   quantity={item.order_detail.quantity} 
                   menuQuantity={item.menu_quantity_measure_price} 
                   statuspage={this.state.statuspage}
-                  discount={item.menu_quantity_measure_price.menu.discount}
+                  discount={((item.order_detail.original_price-item.order_detail.price)/item.order_detail.original_price)*
+                  100}
                   discountPrice={item.order_detail.price}
                   description={item.menu_quantity_measure_price.menu.short_description}
                    />)}
