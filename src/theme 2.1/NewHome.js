@@ -96,7 +96,7 @@ class NewHome extends Component {
               bagItems: JSON.parse(sessionStorage.getItem("items")),
               items: JSON.parse(localStorage.getItem("menu-items")),
               boundary: Boolean(sessionStorage.getItem("boundary")),
-              total: sessionStorage.getItem("total")
+              total: sessionStorage.getItem("total"),
             });
           }
           if (sessionStorage.getItem("openCart")) {
@@ -642,10 +642,7 @@ class NewHome extends Component {
           <div
             style={
               this.state.restaurant_info.get_location_info
-                .get_location_type_id === "1" &&
-              this.state.total !== 0 &&
-              this.state.showDirectLocationPopUp &&
-              this.state.showLocationPopup
+                .get_location_type_id === "1" && this.state.showLocationPopup
                 ? {
                     pointerEvents: "none",
                     filter: "blur(7px)",
