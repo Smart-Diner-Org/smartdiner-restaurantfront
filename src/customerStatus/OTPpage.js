@@ -10,6 +10,7 @@ class OTPpage extends React.Component {
     constructor(props){
         super(props);
     }
+    /*
     navigateBasedonArrowKeyPressed(e, i){
       if (e.key >= 0 && e.key <= 9) refArray[i].value = e.key;
       if (e.target.value && i < 3) refArray[i + 1].focus();
@@ -32,6 +33,7 @@ class OTPpage extends React.Component {
           this.props.OTPverfication(value,this.props.customerContactNumber)
       }
   }
+  */
     render() {
       return (
           <div className="otpPage-container conainer">
