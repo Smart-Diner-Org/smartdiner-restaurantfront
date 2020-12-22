@@ -5,6 +5,7 @@ import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
 import Modal from "react-bootstrap/Modal";
 import QuantityButtons from "../QuantityButtons/index";
+import { notShowDirectLocation, showDirectLocation } from "../../constant";
 
 class Item extends Component {
   constructor(props) {
@@ -20,22 +21,32 @@ class Item extends Component {
     };
   }
 
-  handleChecked = (e, id, discount) => {
+  handleChecked = (e, item, discount) => {
     if (Number(e.target.value) > 0) {
       this.props.changequantity(
         -e.target.value,
         this.props.categoryID,
         this.props.menuID,
-        id
+        item.id
       );
+      ReactGA.event({
+        category: `Product: ${this.props.itemName}`,
+        action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+        label: `Increase quantity by 1`,
+      });
       e.target.checked = false;
     } else {
       this.props.changequantity(
         1,
         this.props.categoryID,
         this.props.menuID,
-        id
+        item.id
       );
+      ReactGA.event({
+        category: `Product: ${this.props.itemName}`,
+        action: `Menuprice list item ${item.quantity_values.quantity} ${item.measure_values.name}`,
+        label: `1 item added by checking button`,
+      });
       e.target.checked = true;
     }
     this.calculateModalTotal(discount);
@@ -65,16 +76,33 @@ class Item extends Component {
         1,
         this.props.categoryID,
         this.props.menuID,
-        this.props.priceList[0].id
+        this.props.priceList[0].id,
+        notShowDirectLocation
       );
       this.calculateModalTotal(discount);
+      ReactGA.event({
+        category: `Product: ${this.props.itemName}`,
+        action: `Clicked Add to Cart button`,
+        label: `Opened the menuPriceList for the first time and default ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name} added`,
+      });
+    } else {
+      ReactGA.event({
+        category: `Product`,
+        action: `Clicked Add to Cart button`,
+        label: `Opened the menuPriceList for the editing orders`,
+      });
     }
     this.setState({ showModal: true });
   };
 
   closePriceListModal = () => {
-    this.props.showGetLocationAfterContinue();
+    this.props.setShowLocationPopup();
     this.setState({ showModal: false });
+    ReactGA.event({
+      category: `Menu PriceList Modal`,
+      action: `Clicked Continue/close button`,
+      label: `Closed the menuPriceList modal`,
+    });
   };
 
   render() {
@@ -100,12 +128,12 @@ class Item extends Component {
                   <div className="col-auto d-flex flex-column">
                     <label id={`${item.id}`}>
                       <input
-                        type="radio"
+                        type="checkbox"
                         ref={(a) => (this.checkboxes[index] = a)}
                         value={item.quantity}
                         checked={item.quantity > 0 && true}
                         onClick={(e) =>
-                          this.handleChecked(e, item.id, this.props.discount)
+                          this.handleChecked(e, item, this.props.discount)
                         }
                       />
                       {item.quantity_values.quantity} {item.measure_values.name}{" "}
@@ -140,11 +168,22 @@ class Item extends Component {
                             1,
                             this.props.categoryID,
                             this.props.menuID,
-                            item.id
+                            item.id,
+                            notShowDirectLocation
                           );
+                          ReactGA.event({
+                            category: `MenuPricelist modal: ${this.props.itemName}`,
+                            action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+                            label: `Increase quantity by 1`,
+                          });
                           this.calculateModalTotal(this.props.discount);
                         }}
                         decreaseQuantity={() => {
+                          ReactGA.event({
+                            category: `MenuPricelist modal: ${this.props.itemName}`,
+                            action: `Clicked - button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+                            label: `Decrease quantity by 1`,
+                          });
                           if (item.quantity === 1) {
                             this.checkboxes[index].checked = false;
                           }
@@ -152,7 +191,8 @@ class Item extends Component {
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
-                            item.id
+                            item.id,
+                            notShowDirectLocation
                           );
                           this.calculateModalTotal(this.props.discount);
                         }}
@@ -290,22 +330,34 @@ class Item extends Component {
                   <div>
                     {this.props.priceList.length === 1 ? (
                       <QuantityButtons
-                        increaseQuantity={() =>
+                        increaseQuantity={() => {
+                          ReactGA.event({
+                            category: `Product: ${this.props.itemName}`,
+                            action: `Clicked + button ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name}`,
+                            label: `Increase quantity by 1`,
+                          });
                           this.props.changequantity(
                             1,
                             this.props.categoryID,
                             this.props.menuID,
-                            this.props.priceList[0].id
-                          )
-                        }
-                        decreaseQuantity={() =>
+                            this.props.priceList[0].id,
+                            showDirectLocation
+                          );
+                        }}
+                        decreaseQuantity={() => {
+                          ReactGA.event({
+                            category: `Product: ${this.props.itemName}`,
+                            action: `Clicked - button ${this.props.priceList[0].id}`,
+                            label: `Decrease quantity by 1`,
+                          });
                           this.props.changequantity(
                             -1,
                             this.props.categoryID,
                             this.props.menuID,
-                            this.props.priceList[0].id
-                          )
-                        }
+                            this.props.priceList[0].id,
+                            showDirectLocation
+                          );
+                        }}
                         quantity={this.props.priceList[0].quantity}
                       />
                     ) : (
@@ -338,7 +390,8 @@ class Item extends Component {
                     });
                   }}
                 >
-                  <i class="lni-phone-handset"></i>
+                  Call now to book
+                  <i class="lni-phone-handset ml-10"></i>
                 </a>
               </>
             )}
