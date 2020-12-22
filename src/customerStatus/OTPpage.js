@@ -63,7 +63,7 @@ class OTPpage extends React.Component {
              />
              
            </React.Fragment>
-           <div>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </div>
+           { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong>
 
         <div className="contact-button mt-20">
           {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
