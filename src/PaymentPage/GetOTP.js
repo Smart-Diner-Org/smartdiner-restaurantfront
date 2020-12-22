@@ -1,5 +1,5 @@
 import React from "react";
-
+import OTPBox from "./OTPBox"
 const refArray = [];
 let value = "";
 const elementsArray = [1, 2, 3, 4];
@@ -8,6 +8,7 @@ class GetOTP extends React.Component {
   constructor(props) {
     super();
   }
+  /*
   navigateBasedonArrowKeyPressed(e, i) {
     if (e.key >= 0 && e.key <= 9) refArray[i].value = e.key;
     if (e.target.value && i < 3) refArray[i + 1].focus();
@@ -30,10 +31,12 @@ class GetOTP extends React.Component {
       this.props.OTPverfication(value);
     }
   }
+  */
   render() {
     return (
       <div className="mobile-verification ">
         <form>
+         
           <input
             type="tel"
             class="form-control"
@@ -47,12 +50,14 @@ class GetOTP extends React.Component {
             value={this.props.mobile}
             onChange={this.props.MhandleChange}
           />
+  
           <div className="row mt-20 d-flex align-items-center" name="OTP">
             {!this.props.isVerified &&
               this.props.requestedOTP &&
               !(this.props.minutes == 0 && this.props.seconds == 0) && (
                 <div className="row pl-10 d-inline-flex">
                   <div className="col-10 d-flex">
+                    {/*
                     {elementsArray.map((k, i) => (
                       <input
                         className="otp-box "
@@ -65,7 +70,11 @@ class GetOTP extends React.Component {
                         maxLength="1"
                         minLength="1"
                       />
-                    ))}
+                      ))} */}
+                      <OTPBox 
+                      setOTPValue={this.props.setOTPValue}
+                      OTPverfication={this.props.OTPverfication}
+                      />
                     <h6
                       className="col-2 d-flex align-items-center mr-20"
                       style={{ color: "#000466" }}

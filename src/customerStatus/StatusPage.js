@@ -50,10 +50,10 @@ class StatusPage extends React.Component {
     this.setState({ OTP: value });
   };
   
-  async OTPverfication(otp,mobile) {
+  async OTPverfication(otp) {
     const data = {
-      //mobile: this.state.data.customerContactNumber,
-      mobile:mobile,
+      mobile: this.state.data.customerContactNumber,
+      //mobile:mobile,
       otp: otp,
     };
     await axios
@@ -87,6 +87,7 @@ class StatusPage extends React.Component {
   
   async resendOTP(event){
     event.preventDefault()
+    this.setState({errorMessage: ""})
     const data ={
         mobile : this.state.data.customerContactNumber
     }
@@ -420,7 +421,7 @@ class StatusPage extends React.Component {
                   </div>
                 </div>
               )}
-            
+              
               <div className="col-lg-6 col-sm-0 restaurantDetails">
                   <h3 className="mb-5">Your Order - {this.state.data.restuarantName}</h3>
                 
@@ -458,6 +459,7 @@ class StatusPage extends React.Component {
                 </div>
                 
               </div>
+    
             </div>
 
             <div className="container">
@@ -497,6 +499,7 @@ class StatusPage extends React.Component {
           successMessage={this.state.successMessage}
           errorMessage = {this.state.errorMessage}
           resendOTP={this.resendOTP}
+          
           />}
         <div className="status-footer">
           <p>

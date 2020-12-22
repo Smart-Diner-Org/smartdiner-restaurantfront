@@ -1,5 +1,6 @@
 import React from "react";
 import "./OTPpage.css"
+import OTPBox from "../PaymentPage/OTPBox"
 
 const refArray = [];
 let value = "";
@@ -38,10 +39,12 @@ class OTPpage extends React.Component {
           <h3>{this.props.restuarantName}</h3>
           {/*<a href="#">Login</a>/<a href="#">Sign up</a> */} 
         <p className="text-center mt-50">We have sent OTP to your given mobile number {this.props.customerContactNumber} please enter the OTP below</p>
-        
+        {/*
         < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
         {elementsArray.map((k, i) => (
                                         <input className="otp-box col-lg-mx-10"
+                                        type="number"
+                                        
                                         key={i}
                                         ref={(ref) => (refArray[i] = ref)} 
                                         onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
@@ -50,7 +53,17 @@ class OTPpage extends React.Component {
                                     ))}
                                   <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment> 
         </ React.Fragment>
-        <div className="contact-button mt-10">
+        */}
+           < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
+             <OTPBox 
+             setOTPValue={this.props.setOTPValue}
+             OTPverfication={this.props.OTPverfication}
+             />
+             <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment>
+           </React.Fragment>
+
+
+        <div className="contact-button mt-20">
           {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
           }
           </div>
@@ -59,13 +72,17 @@ class OTPpage extends React.Component {
                                 <small className="ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
                                 :
                                 <small className="ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
-                           </div>
+          
+                          </div>
+        {/*
         <div>
-        <button className="login-button">Login</button>
+        
+          
+        <button className="login-button">Login</button> 
         </div>
-      
+        */}
         <div className="contact-button mt-60 mb-30">
-        <button className="col-lg-6 col-sm-6"><a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+        <button><a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
         {/*<a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a>*/}
         </div>

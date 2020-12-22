@@ -18,10 +18,10 @@
 .otpPage-container .login-button{
     background-color: #000466;
     color:#ffffff;
-    width:700px;
+    width:600px;
    /* width: 100%;
     max-width:700px;*/
-    height:60px;
+    height:50px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 30px;
@@ -32,8 +32,8 @@
 .contact-button button{
     background-color: #ffffff;
     color:#000466;
-    width:700px;
-    height:60px;
+    width:600px;
+    height:50px;
     border-color:#000466;
     font-family: "Lato";
 }
@@ -48,23 +48,29 @@
     border-top:#ffffff;
     color:#000466;
     text-align: center;
-    margin:15px;
-    width:120px;   
+    /*margin:15px;*/
+    margin:20px;
+    width:100px;   
 }
-
+.otp-box::-webkit-outer-spin-button,
+.otp-box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
  
 /* small mobile :320px. */
 @media (min-width: 576px) and (max-width: 767.98px) {
     .otpPage-container .login-button{
         width:350px;
-        height:60px;
+        height:50px;
     }
     .contact-button button{
         width:350px;
-        height:60px;
+        height:50px;
     }
     .otp-box{
         width: 40px;
+        margin:15px;
     }
 }
 /* Large Mobile :480px. */
@@ -72,13 +78,14 @@
 
     .otpPage-container .login-button{
         width:350px;
-        height:60px;
+        height:50px;
     }
     .contact-button button{
         width:350px;
-        height:60px;
+        height:50px;
     }
     .otp-box{
         width: 40px;
+        margin: 15px;
     }
 }
