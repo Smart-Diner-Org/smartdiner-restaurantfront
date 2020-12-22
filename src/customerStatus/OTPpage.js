@@ -61,9 +61,9 @@ class OTPpage extends React.Component {
              setOTPValue={this.props.setOTPValue}
              OTPverfication={this.props.OTPverfication}
              />
-             <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment>
+             
            </React.Fragment>
-
+           <div>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </div>
 
         <div className="contact-button mt-20">
           {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
@@ -83,8 +83,8 @@ class OTPpage extends React.Component {
         <button className="login-button">Login</button> 
         </div>
         */}
-        <div className="contact-button mt-60 mb-30">
-        <button><a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+        <div className="contact-button mt-60 mb-50">
+        <a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank"><button>Contact restuarant</button></a>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
         {/*<a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a>*/}
         </div>

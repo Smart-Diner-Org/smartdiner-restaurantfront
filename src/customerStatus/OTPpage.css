@@ -30,16 +30,25 @@
 
 }
 .contact-button button{
-    background-color: #ffffff;
+    background-color:#ffffff;
     color:#000466;
     width:600px;
     height:50px;
     border-color:#000466;
-    font-family: "Lato";
+    font-family: "MuseoModerno";
 }
 .contact-button a{
-    color:#000466;
+    color:#000466;  
     text-decoration: none;
+}
+/*
+.contact-button a:hover{
+    color:#ffffff;
+}
+*/
+.contact-button button:hover{
+    color:#ffffff;
+    background-color: #000466;
 }
 .otp-box{
     border-bottom-color:#000466;
