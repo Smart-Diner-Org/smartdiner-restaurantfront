@@ -203,3 +203,7 @@
   min-height: 100px;
 }
 }
+.pos{
+  position:fixed;
+  bottom:0;
+}

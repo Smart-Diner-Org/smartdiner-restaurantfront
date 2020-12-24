@@ -501,7 +501,7 @@ class StatusPage extends React.Component {
           resendOTP={this.resendOTP}
           
           />}
-        <div className="status-footer">
+        <div className={`${this.state.mobileVerification?'status-footer':'status-footer pos'}`}>
           <p>
             Powered by{" "}
             <a href="https://smartdiner.co" target="_lank">

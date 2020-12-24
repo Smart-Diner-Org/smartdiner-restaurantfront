@@ -83,7 +83,7 @@ class OTPpage extends React.Component {
         <button className="login-button">Login</button> 
         </div>
         */}
-        <div className="contact-button mt-60 mb-70">
+        <div className="contact-button mt-60 mb-150">
         <a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank"><button>Contact restuarant</button></a>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
         {/*<a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a>*/}
