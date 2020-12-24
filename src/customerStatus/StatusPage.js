@@ -499,6 +499,7 @@ class StatusPage extends React.Component {
           successMessage={this.state.successMessage}
           errorMessage = {this.state.errorMessage}
           resendOTP={this.resendOTP}
+          wrongOrder={this.state.wrongOrder}
           
           />}
         <div className={`${this.state.mobileVerification?'status-footer':'status-footer pos'}`}>

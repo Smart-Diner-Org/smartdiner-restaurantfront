@@ -1,6 +1,7 @@
 import React from "react";
 import "./OTPpage.css"
 import OTPBox from "../PaymentPage/OTPBox"
+import Alert from "react-bootstrap/Alert";
 
 const refArray = [];
 let value = "";
@@ -40,7 +41,14 @@ class OTPpage extends React.Component {
           <img src={this.props.logo} width="75" height="75" alt="logo" className="logo rounded-circle mt-50"></img>
           <h3>{this.props.restuarantName}</h3>
           {/*<a href="#">Login</a>/<a href="#">Sign up</a> */} 
+          {!this.props.wrongOrder && 
         <p className="text-center mt-50">We have sent OTP to your given mobile number {this.props.customerContactNumber} please enter the OTP below</p>
+          }
+          {this.props.wrongOrder &&  
+                 
+                  <p className="text-center mt-50" style={{color:"#e22a28"}}> {this.props.wrongOrder}</p>
+                  
+                }
         {/*
         < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
         {elementsArray.map((k, i) => (
@@ -56,6 +64,7 @@ class OTPpage extends React.Component {
                                   <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment> 
         </ React.Fragment>
         */}
+        {!this.props.wrongOrder && <>
            < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
              <OTPBox 
              setOTPValue={this.props.setOTPValue}
@@ -76,10 +85,12 @@ class OTPpage extends React.Component {
                                 <small className="ml-1" style={{color:"green"}}>{this.props.successMessage}</small>}
           
                           </div>
+           </>               
+          }
         {/*
         <div>
         
-          
+        
         <button className="login-button">Login</button> 
         </div>
         */}
