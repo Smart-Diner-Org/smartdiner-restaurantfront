@@ -424,7 +424,7 @@ class StatusPage extends React.Component {
               
               <div className="col-lg-6 col-sm-0 restaurantDetails">
                   <h3 className="mb-5">Your Order - {this.state.data.restuarantName}</h3>
-                
+                  <div className={`${this.state.data.orderDetailMenus.length >2 && 'scroll'}`}>
                   {this.state.data.orderDetailMenus.map((item,index)=><BillItem key={index}
                   itemName={item.menu_quantity_measure_price.menu.name}
                   price={item.order_detail.original_price}
@@ -437,11 +437,11 @@ class StatusPage extends React.Component {
                   discountPrice={item.order_detail.price}
                   description={item.menu_quantity_measure_price.menu.short_description}
                    />)}
-                
+                  </div>
                 
                 
                 {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==2 && 
-                <button className="paybutton"><a href={this.state.data.paymentLink} target="blank" >Pay now</a></button>}
+                <a href={this.state.data.paymentLink} className="paybutton" target="blank" >Pay now</a>}
                 
                 
                 {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==1 &&
@@ -449,7 +449,7 @@ class StatusPage extends React.Component {
                 {this.state.data.paymentTypeId==1 && this.state.data.paymentStatusId==2 &&
                  <button className="paybutton">Cash on delivery</button>}
               
-              <div className="row links col-12 mt-50">
+              <div className="row links mt-50">
                   <div className="col-6">
                     <button><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
                   </div>
