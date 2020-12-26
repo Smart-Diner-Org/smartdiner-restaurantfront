@@ -236,7 +236,7 @@ class StatusPage extends React.Component {
     return (
       <div>
         {this.state.mobileVerification &&
-        <div className="container customerStatusContainer">
+        <div className="container customerStatusContainer m_h">
           <div className="header">
             <div className="row">
               <div className="col">
