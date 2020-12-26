@@ -451,7 +451,7 @@ class StatusPage extends React.Component {
               
               <div className="row links mt-50">
                   <div className="col-6">
-                    <button><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+                  <button><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
                   </div>
                   <div className="col-6">
                     <button><a href="/" target="blank"> Visit {this.state.data.restuarantName}</a></button>
