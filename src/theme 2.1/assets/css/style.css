@@ -2382,9 +2382,11 @@ hr {
 
 .contact-box .contact-now-button {
   background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 .contact-box .contact-now-button:hover {
   background-color: white;
+  border-color: black;
 }
 
 .single-info {
