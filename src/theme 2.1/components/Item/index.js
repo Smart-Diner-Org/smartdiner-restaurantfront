@@ -329,37 +329,59 @@ class Item extends Component {
                 <div className="d-flex flex-column justify-content-end">
                   <div>
                     {this.props.priceList.length === 1 ? (
-                      <QuantityButtons
-                        increaseQuantity={() => {
-                          ReactGA.event({
-                            category: `Product: ${this.props.itemName}`,
-                            action: `Clicked + button ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name}`,
-                            label: `Increase quantity by 1`,
-                          });
-                          this.props.changequantity(
-                            1,
-                            this.props.categoryID,
-                            this.props.menuID,
-                            this.props.priceList[0].id,
-                            showDirectLocation
-                          );
-                        }}
-                        decreaseQuantity={() => {
-                          ReactGA.event({
-                            category: `Product: ${this.props.itemName}`,
-                            action: `Clicked - button ${this.props.priceList[0].id}`,
-                            label: `Decrease quantity by 1`,
-                          });
-                          this.props.changequantity(
-                            -1,
-                            this.props.categoryID,
-                            this.props.menuID,
-                            this.props.priceList[0].id,
-                            showDirectLocation
-                          );
-                        }}
-                        quantity={this.props.priceList[0].quantity}
-                      />
+                      this.props.priceList[0].quantity > 0 ? (
+                        <QuantityButtons
+                          increaseQuantity={() => {
+                            ReactGA.event({
+                              category: `Product: ${this.props.itemName}`,
+                              action: `Clicked + button ${this.props.priceList[0].quantity_values.quantity} ${this.props.priceList[0].measure_values.name}`,
+                              label: `Increase quantity by 1`,
+                            });
+                            this.props.changequantity(
+                              1,
+                              this.props.categoryID,
+                              this.props.menuID,
+                              this.props.priceList[0].id,
+                              showDirectLocation
+                            );
+                          }}
+                          decreaseQuantity={() => {
+                            ReactGA.event({
+                              category: `Product: ${this.props.itemName}`,
+                              action: `Clicked - button ${this.props.priceList[0].id}`,
+                              label: `Decrease quantity by 1`,
+                            });
+                            this.props.changequantity(
+                              -1,
+                              this.props.categoryID,
+                              this.props.menuID,
+                              this.props.priceList[0].id,
+                              showDirectLocation
+                            );
+                          }}
+                          quantity={this.props.priceList[0].quantity}
+                        />
+                      ) : (
+                        <button
+                          className="btn add-to-cart"
+                          onClick={() => {
+                            ReactGA.event({
+                              category: `Product: ${this.props.itemName}`,
+                              action: `Clicked Add to Cart Button`,
+                              label: `Added item with 1 quantity`,
+                            });
+                            this.props.changequantity(
+                              1,
+                              this.props.categoryID,
+                              this.props.menuID,
+                              this.props.priceList[0].id,
+                              showDirectLocation
+                            );
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      )
                     ) : (
                       <button
                         className="btn add-to-cart"

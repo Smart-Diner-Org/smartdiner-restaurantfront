@@ -46,7 +46,7 @@ class Payment extends React.Component {
   }
   render() {
     return (
-      <div className="payment-method">
+      <div className="payment-method text-center">
         {sessionStorage.getItem("items") &&
           JSON.parse(sessionStorage.getItem("items")).length > 4 && (
             <div className="d-flex justify-content-around mb-30">
@@ -95,7 +95,7 @@ class Payment extends React.Component {
           )}
         <div className="row">
           {sessionStorage.getItem("deliveryDate") && (
-            <div className="col-lg-4 order-details">
+            <div className="col-lg-3 order-details">
               {sessionStorage.getItem("deliveryDate") && (
                 <>
                   <h6>Delivery Date</h6>
@@ -114,7 +114,7 @@ class Payment extends React.Component {
             className={
               sessionStorage.getItem("deliveryDate") &&
               sessionStorage.getItem("deliveryDate")
-                ? "col-lg-8 orders"
+                ? "col-lg-9 orders"
                 : "col-lg-12 orders"
             }
           >
