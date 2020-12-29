@@ -486,6 +486,7 @@ class StatusPage extends React.Component {
         </div>
           
           }
+          <div className="min_ht">
           {!this.state.mobileVerification && 
           <OTPpage 
           logo={this.state.data.logo} 
@@ -502,6 +503,7 @@ class StatusPage extends React.Component {
           wrongOrder={this.state.wrongOrder}
           
           />}
+          </div>
         <div className={`${this.state.mobileVerification?'status-footer':'status-footer pos'}`}>
           <p>
             Powered by{" "}

@@ -228,3 +228,9 @@
 .m_h{
   min-height: 100vh;
 }
+.min_ht{
+  min-height:100%;
+  margin-bottom: -100px;
+  padding-bottom: 100px;
+
+}
