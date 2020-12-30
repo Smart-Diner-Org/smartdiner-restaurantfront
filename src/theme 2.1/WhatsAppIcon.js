@@ -9,7 +9,7 @@ export default class ScrollToTop extends Component {
           href={`https://api.whatsapp.com/send?phone=91${this.props.contact_number}`}
           target="blank"
           className="whatsup-icon"
-        >
+        >Chat with us
           <img loading="lazy" src={Whatsup} alt="whatsapp" />
         </a>
       </div>
