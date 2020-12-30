@@ -1435,6 +1435,7 @@ hr {
 
 .add-to-cart {
   background-color: var(--secondary-color);
+  border: none;
   color: white;
 }
 .add-to-cart:hover {
@@ -2892,7 +2893,7 @@ p.form-message.error {
   margin-bottom: 5px;
   font-size: 16px;
   text-align: center;
-  border: 1px solid black;
+  border: none;
   padding: 5px 10px;
   border-radius: 4px;
   -webkit-border-radius: 8px;
