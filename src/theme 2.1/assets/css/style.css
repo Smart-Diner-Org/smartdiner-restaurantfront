@@ -1052,12 +1052,24 @@ hr {
   bottom: 20px;
   right: 20px;
   z-index: 99;
+  width: auto;
   height: 50px;
-  width: 50px;
+  border-radius: 25px;
+  background-color:white;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: black;
+  font-size: 1em;
+  font-weight: 500;
 }
 .whatsup-icon img {
-  filter: drop-shadow(3px 4px 4px rgba(60, 64, 67, 1));
-  -webkit-filter: drop-shadow(3px 4px 4px rgba(60, 64, 67, 1));
+  width: 46px;
+  height: 46px;
 }
 @media only screen and (max-width: 768px) {
   .whatsup-icon-mobile {
