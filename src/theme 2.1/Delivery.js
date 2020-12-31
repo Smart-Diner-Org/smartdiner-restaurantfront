@@ -131,6 +131,13 @@ class Delivery extends Component {
                         ? "YYYY-MM-DD HH:MM"
                         : "YYYY-MM-DD"
                     }
+                    onFocus={() =>
+                      ReactGA.event({
+                        category: "Cart",
+                        action: "Clicked date picker in cart",
+                        label: "Focus event on date picker",
+                      })
+                    }
                     onChange={(deliveryDateTime) => {
                       ReactGA.event({
                         category: "Cart",

@@ -4,7 +4,15 @@
   margin-bottom: -75px;
   padding-bottom: 75px;
 }
+.signup::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+.signup {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .signup input,
 .new-customer select {
   border: 1px solid #000466;

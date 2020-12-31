@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BagImage from "./assets/images/bag.png";
 import Logo from "./assets/images/logo.png";
+import ReactGA from "react-ga";
 
 class HeadComponent extends Component {
   constructor(props) {
@@ -76,29 +77,68 @@ class HeadComponent extends Component {
                 >
                   <ul id="nav" className="navbar-nav ml-auto">
                     <li className="nav-item">
-                      <a data-scroll-nav="0" href="#about">
+                      <a
+                        data-scroll-nav="0"
+                        href="#about"
+                        onClick={() =>
+                          ReactGA.event({
+                            category: "Home Page Header Nav Link",
+                            action: `Clicked About`,
+                            label: `Jumped to about section`,
+                          })
+                        }
+                      >
                         About
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a data-scroll-nav="0" href="#location">
+                      <a
+                        data-scroll-nav="0"
+                        href="#location"
+                        onClick={() =>
+                          ReactGA.event({
+                            category: "Home Page Header Nav Link",
+                            action: `Clicked Location`,
+                            label: `Jumped to location section`,
+                          })
+                        }
+                      >
                         Location
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li
+                      className="nav-item"
+                      onClick={() =>
+                        ReactGA.event({
+                          category: "Home Page Header Nav Link",
+                          action: `Clicked Menu`,
+                          label: `Jumped to Menu/product section`,
+                        })
+                      }
+                    >
                       <a data-scroll-nav="0" href="#product">
                         Menu
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a data-scroll-nav="0" href="#contact">
+                      <a
+                        data-scroll-nav="0"
+                        href="#contact"
+                        onClick={() =>
+                          ReactGA.event({
+                            category: "Home Page Header Nav Link",
+                            action: `Clicked Contact`,
+                            label: `Jumped to Contact section`,
+                          })
+                        }
+                      >
                         Contact
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div className="headlogo">
-                  {/* {this.props.total==0 && <span className="tooltiptext">Your Cart is Empty</span>} */}
+                  {/* eslint-disable-next-line */}
                   <a
                     data-scroll-nav="0"
                     href="#"
@@ -110,7 +150,7 @@ class HeadComponent extends Component {
                       className="img-responsive cart"
                       alt="Cart"
                     />
-                    <label style={{color:"#000466"}}>Cart</label>
+                    <label style={{ color: "#000466" }}>Cart</label>
                     <span className="badge">{this.props.total}</span>
                   </a>
                 </div>

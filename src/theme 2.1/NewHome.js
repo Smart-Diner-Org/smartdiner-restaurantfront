@@ -756,6 +756,11 @@ class NewHome extends Component {
                   total={this.state.total}
                   checkOutToBag={() => {
                     this.setState({ showLocationPopup: false });
+                    ReactGA.event({
+                      category: "Home Page",
+                      action: `Clicked Checkout Button`,
+                      label: `Opens Cart `,
+                    });
                     this.togglePopup();
                   }}
                 />
