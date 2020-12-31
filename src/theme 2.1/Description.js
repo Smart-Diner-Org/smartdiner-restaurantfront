@@ -38,7 +38,7 @@ class Description extends React.Component {
             </div>
           )}
 
-          {this.props.preOrder && !this.props.preOrderImage && (
+          {/* {this.props.preOrder && !this.props.preOrderImage && (
             <div
               class="d-flex mt-20 justify-content-center align-items-center"
               style={{ width: "100%", backgroundColor: "black" }}
@@ -47,7 +47,7 @@ class Description extends React.Component {
                 We also provide Pre-Order service
               </h5>
             </div>
-          )}
+          )} */}
           
 
           {/* {this.props.preOrder && this.props.preOrderImage && (
