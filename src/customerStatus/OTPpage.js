@@ -11,33 +11,10 @@ class OTPpage extends React.Component {
     constructor(props){
         super(props);
     }
-    /*
-    navigateBasedonArrowKeyPressed(e, i){
-      if (e.key >= 0 && e.key <= 9) refArray[i].value = e.key;
-      if (e.target.value && i < 3) refArray[i + 1].focus();
-      switch (e.key) {
-      case "ArrowRight":
-          if (i < 3) refArray[i + 1].focus();
-          break;
-      case "ArrowLeft":
-          if (i > 0) refArray[i - 1].focus();
-          break;
-      case "Backspace":
-          if (i > 0 && !e.target.value) refArray[i - 1].focus();
-          break;
-      default:
-          break;
-      }
-      value = `${refArray[0].value}${refArray[1].value}${refArray[2].value}${refArray[3].value}`;
-      this.props.setOTPValue(value)
-      if(value.length == 4 ){
-          this.props.OTPverfication(value,this.props.customerContactNumber)
-      }
-  }
-  */
+    
     render() {
       return (
-          <div className="otpPage-container conainer">
+          <div className="otpPage-container d-flex flex-column justify-content-center align-items-center">
           <img src={this.props.logo} width="75" height="75" alt="logo" className="logo rounded-circle mt-50"></img>
           <h3>{this.props.restuarantName}</h3>
           {/*<a href="#">Login</a>/<a href="#">Sign up</a> */} 
@@ -49,36 +26,25 @@ class OTPpage extends React.Component {
                   <p className="text-center mt-50" style={{color:"#e22a28"}}> {this.props.wrongOrder}</p>
                   
                 }
-        {/*
-        < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
-        {elementsArray.map((k, i) => (
-                                        <input className="otp-box col-lg-mx-10"
-                                        type="number"
-                                        
-                                        key={i}
-                                        ref={(ref) => (refArray[i] = ref)} 
-                                        onKeyUp={(e) => this.navigateBasedonArrowKeyPressed(e, i)}
-                                        maxLength={1}
-                                        />
-                                    ))}
-                                  <React.Fragment>{ this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong> </React.Fragment> 
-        </ React.Fragment>
-        */}
+        
         {!this.props.wrongOrder && <>
-           < React.Fragment className="otp-box col-lg-10 "style={{width:"50px"}}>
+          < div className="otp-box d-inline-flex justify-content-center ">
              <OTPBox 
              setOTPValue={this.props.setOTPValue}
              OTPverfication={this.props.OTPverfication}
              />
-             
-           </React.Fragment>
+              <div className="d-flex align-items-center ">
            { this.props.minutes }:{ this.props.seconds < 10 ? `0${this.props.seconds }` : this.props.seconds }<strong style={{color:"#000466",fontSize:"15px"}}><i className="lni lni-timer"></i></strong>
+           </div>
+           
+           </div>
+          
 
         <div className="contact-button mt-20">
           {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
           }
           </div>
-          <div className="container mt-20">
+          <div className="container  d-flex justify-content-center mt-20">
                                 {this.props.errorMessage ?
                                 <small className="ml-1" style={{color:"#e22a28"}}>{this.props.errorMessage}</small> 
                                 :
@@ -87,17 +53,11 @@ class OTPpage extends React.Component {
                           </div>
            </>               
           }
-        {/*
-        <div>
-        
-        
-        <button className="login-button">Login</button> 
-        </div>
-        */}
-        <div className="contact-button mt-60 mb-150">
+       
+        <div className="contact-button mt-60 mb-50">
         <a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank"><button>Contact restuarant</button></a>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
-        {/*<a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank">Contact restuarant</a>*/}
+        
         </div>
         
         </div>

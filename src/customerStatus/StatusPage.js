@@ -486,8 +486,9 @@ class StatusPage extends React.Component {
         </div>
           
           }
-          <div className="min_ht">
-          {!this.state.mobileVerification && 
+         
+          {!this.state.mobileVerification &&
+           <div className="d-flex justify-content-center min_ht">
           <OTPpage 
           logo={this.state.data.logo} 
           restuarantName={this.state.data.restuarantName} 
@@ -502,8 +503,9 @@ class StatusPage extends React.Component {
           resendOTP={this.resendOTP}
           wrongOrder={this.state.wrongOrder}
           
-          />}
-          </div>
+          />
+          </div>}
+          
         <div className={`${this.state.mobileVerification?'status-footer':'status-footer pos'}`}>
           <p>
             Powered by{" "}
