@@ -1,7 +1,7 @@
 import React from "react";
 import "./OTPpage.css"
 import OTPBox from "../PaymentPage/OTPBox"
-import Alert from "react-bootstrap/Alert";
+import ReactGA from "react-ga";
 
 const refArray = [];
 let value = "";
@@ -41,7 +41,7 @@ class OTPpage extends React.Component {
           
 
         <div className="contact-button mt-20">
-          {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend otp</button>
+          {this.props.minutes===0 && this.props.seconds===0 && <button onClick={ this.props.resendOTP }>Resend OTP</button>
           }
           </div>
           <div className="container  d-flex justify-content-center mt-20">
@@ -55,7 +55,14 @@ class OTPpage extends React.Component {
           }
        
         <div className="contact-button mt-60 mb-50">
-        <a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank"><button>Contact restuarant</button></a>
+        <a href={`tel:+91${this.props.restaurantContactNumber}`} target="blank"><button onClick={() => {
+                        ReactGA.event({
+                        category: "otp page",
+                        action: "Clicked on Contact Restaurant",
+                        label: `Restaurant number ${this.props.restaurantContactNumber}`,
+                        
+                      });
+                    }}>Contact Restaurant</button></a>
         {/*<button classname="col-lg-6 col-sm-6">Send feedback</button>*/}
         
         </div>

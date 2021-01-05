@@ -69,11 +69,6 @@ class StatusPage extends React.Component {
         this.setState({mobileVerification:true})
         console.log(res.data.message)
         clearInterval(myInterval);
-        ReactGA.event({
-          category: "OTP",
-          action: "Verified OTP",
-          label: data.mobile,
-        });
         
       })
       .catch((error) => {
@@ -96,9 +91,9 @@ class StatusPage extends React.Component {
         .then(res => {
             this.setState({successMessage:res.data.message})
             ReactGA.event({
-                category: "OTP",
+                category: "OTP status page ",
                 action: "Request for re-send OTP",
-                label: data.mobile
+                label: this.state.data.customerContactNumber
               })
         })
         .catch( (error) => {
@@ -134,7 +129,9 @@ class StatusPage extends React.Component {
     } catch (error) {
       alert("Failed to fetch information from server");
     }
-
+      ReactGA.initialize(`${this.state.data.gaTrackingId}`)
+      ReactGA.pageview("/statuspage");
+   
     const favicon = document.getElementById("favicon");
     favicon.href = this.state.data.logo;
     document.title = this.state.data.restuarantName;
@@ -441,7 +438,16 @@ class StatusPage extends React.Component {
                 
                 
                 {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==2 && 
-                <a href={this.state.data.paymentLink} className="paybutton" target="blank" >Pay now</a>}
+                <a href={this.state.data.paymentLink} className="paybutton" target="blank"
+                onClick={() => {
+                  
+                  ReactGA.event({
+                    category: "status page",
+                    action: "Clicked on pay now button",
+                    label: "opens online payment link",
+                
+                  });
+                }} >Pay now</a>}
                 
                 
                 {this.state.data.paymentTypeId==2 && this.state.data.paymentStatusId==1 &&
@@ -451,10 +457,24 @@ class StatusPage extends React.Component {
               
               <div className="row links mt-50">
                   <div className="col-6">
-                  <button><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact restuarant</a></button>
+                  <button onClick={() => {
+                        ReactGA.event({
+                        category: "status page",
+                        action: "Clicked on Contact restaurant",
+                        label: `Restaurant number ${this.state.data.restaurantContactNumber}`,
+                        
+                      });
+                    }}><a href={`tel:+91${this.state.data.restaurantContactNumber}`} target="blank">Contact Restaurant</a></button>
                   </div>
                   <div className="col-6">
-                    <button><a href="/" target="blank"> Visit {this.state.data.restuarantName}</a></button>
+                    <button onClick={() => {
+                        ReactGA.event({
+                        category: "status page",
+                        action: `Clicked on Visit ${this.state.restuarantName}`,
+                        label: `Opens ${this.state.data.restuarantName}`,
+                        
+                      });
+                    }}><a href="/" target="blank"> Visit {this.state.data.restuarantName}</a></button>
                   </div>
                 </div>
                 
