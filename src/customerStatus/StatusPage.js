@@ -1,13 +1,10 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import { defaultAboutImage } from "../theme 2.1/constant";
 import OTPpage from "./OTPpage"
 import ReactGA from "react-ga";
 import BillItem from "../theme 2.1/components/BillItem"
-
 const orderNotFound = "Order not found";
 const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
@@ -17,7 +14,6 @@ const wrongOrderMessage =
 class StatusPage extends React.Component {
   constructor(props) {
     super(props);
-    //this.apiLink = `${process.env.REACT_APP_BASE_URL}/`;
     this.state = {
       isLoaded: false,
       data: {},
@@ -53,7 +49,6 @@ class StatusPage extends React.Component {
   async OTPverfication(otp) {
     const data = {
       mobile: this.state.data.customerContactNumber,
-      //mobile:mobile,
       otp: otp,
     };
     await axios

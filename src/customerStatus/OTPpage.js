@@ -3,10 +3,6 @@ import "./OTPpage.css"
 import OTPBox from "../PaymentPage/OTPBox"
 import ReactGA from "react-ga";
 
-const refArray = [];
-let value = "";
-const elementsArray = [1, 2, 3, 4];
-
 class OTPpage extends React.Component {
     constructor(props){
         super(props);
