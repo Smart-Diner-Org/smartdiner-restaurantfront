@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 import ReactGA from "react-ga";
+import { withRouter } from "react-router-dom";
 
 class Delivery extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class Delivery extends Component {
         label: "/signup",
         transport: "beacon",
       });
-      window.location = "/signup";
+      this.props.history.push("/signup");
     } else {
       alert("Tell us when you want to enjoy your food...");
     }
@@ -96,7 +97,7 @@ class Delivery extends Component {
                     label: "/signup",
                     transport: "beacon",
                   });
-                  window.location = "/signup";
+                  this.props.history.push("/signup");
                 }}
               >
                 {this.props.restaurant_website_detail.is_pre_booking_enabled
@@ -160,4 +161,4 @@ class Delivery extends Component {
     );
   }
 }
-export default Delivery;
+export default withRouter(Delivery);

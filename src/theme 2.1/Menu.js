@@ -20,11 +20,17 @@ class Menu extends Component {
     var scrollComponent = this;
 
     document.addEventListener("scroll", function (e) {
-      scrollComponent.toggleVisibility();
+      try {
+        scrollComponent.toggleVisibility();
+      } catch (error) {
+        console.log("Product is undefined");
+      }
     });
   }
 
   toggleVisibility() {
+    if (!document.getElementById("product")) return;
+
     if (
       window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <
