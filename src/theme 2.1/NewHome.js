@@ -137,8 +137,8 @@ class NewHome extends Component {
             this.state.restaurantBranch[0].id
           );
           // console.log(this.state.items)
-          const title=document.getElementById("title");
-          title.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
+          const title1=document.getElementById("title1");
+          title1.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
         });
     } catch (error) {
       console.log(error);
