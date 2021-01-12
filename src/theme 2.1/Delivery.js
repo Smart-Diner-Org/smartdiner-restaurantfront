@@ -3,7 +3,7 @@ import "flatpickr/dist/themes/airbnb.css";
 import Flatpickr from "react-flatpickr";
 import ReactGA from "react-ga";
 import { generateDeliveryTimeSlot } from "./generateTimeSlot";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
 class Delivery extends Component {
   constructor(props) {
@@ -23,9 +23,11 @@ class Delivery extends Component {
     ) {
       sessionStorage.setItem("deliveryTime", this.state.selectedTimeSlot);
     } else {
-      document.getElementById("datepicker").value = null;
       this.setState({ deliveryDateTime: null });
-      alert("Please select the time slot for delivery...");
+      document.getElementById("datepicker").value = null;
+      alert(
+        "Please tell us when you want to enjoy your food by selecting Date and Time for delivery..."
+      );
       return false;
     }
     if (this.state.deliveryDateTime) {
@@ -39,7 +41,9 @@ class Delivery extends Component {
       sessionStorage.setItem("deliveryDate", date);
       this.props.history.push("/signup");
     } else {
-      alert("Tell us when you want to enjoy your food...");
+      alert(
+        "Please tell us when you want to enjoy your food by selecting Date for delivery..."
+      );
     }
   }
 

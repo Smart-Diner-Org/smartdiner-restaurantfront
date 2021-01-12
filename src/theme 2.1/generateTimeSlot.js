@@ -19,7 +19,6 @@ export const generateDeliveryTimeSlot = (timeSlot, selectedDate, priorTime) => {
     hour,
     min
   );
-  console.log(timeSplitRes[0]);
   const timeDifference = selectedDateTime.getTime() - new Date().getTime();
   const timeLimit = priorTime * 60 * 60 * 1000;
 

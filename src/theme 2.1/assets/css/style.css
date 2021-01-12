@@ -732,12 +732,15 @@ hr {
   background: none;
   text-align: center;
   padding: 10px;
-  width: 250px;
+  width: 100%;
   font-family: "Lato";
   font-weight: bold;
   border: none;
   color: #000466 !important;
   border-bottom: 1px solid #7777;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .delivery-type-inputs input:after {
@@ -749,6 +752,11 @@ hr {
 
 .delivery-type-inputs input[value]:not([value=""]) + input:after {
   content: "" !important;
+}
+
+.delivery-type-inputs .menu-dropdown{
+  width: 100%;
+  margin :20px 0px;
 }
 
 .bill-container {
@@ -1055,7 +1063,7 @@ hr {
   width: auto;
   height: 50px;
   border-radius: 25px;
-  background-color:white;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
   cursor: pointer;
   display: flex;
@@ -1426,7 +1434,7 @@ hr {
   .modal-body .total-quantity {
     width: 30px;
   }
-  .modal-body h5{
+  .modal-body h5 {
     font-size: 19px;
   }
 }
@@ -2904,7 +2912,7 @@ p.form-message.error {
   background-color: var(--secondary-color);
   color: white;
 }
-.custom-menu-call-button:hover{
+.custom-menu-call-button:hover {
   color: white;
 }
 
