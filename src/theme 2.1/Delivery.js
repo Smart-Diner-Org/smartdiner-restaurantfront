@@ -9,14 +9,13 @@ class Delivery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pre_order: false,
       deliveryDateTime: null,
       selectedTimeSlot: null,
+      noSlots: false,
     };
-    this.canRoute = this.canRoute.bind(this);
   }
 
-  canRoute() {
+  canRoute = () => {
     if (
       this.props.restaurant_website_detail.is_pre_booking_time_required &&
       this.state.selectedTimeSlot
@@ -45,7 +44,7 @@ class Delivery extends Component {
         "Please tell us when you want to enjoy your food by selecting Date for delivery..."
       );
     }
-  }
+  };
 
   render() {
     return (
@@ -109,7 +108,7 @@ class Delivery extends Component {
                       document.getElementById(
                         "delivery_timeSlot_dropdown"
                       ).selectedIndex = 0;
-                      this.setState({selectedTimeSlot:null})
+                      this.setState({ selectedTimeSlot: null });
                     }}
                   />
                   {this.props.restaurant_website_detail
@@ -144,7 +143,14 @@ class Delivery extends Component {
                     </select>
                   )}
                 </div>
-                <button onClick={this.canRoute} className="mt-20">
+                <button
+                  onClick={this.canRoute}
+                  className={
+                    this.state.deliveryDateTime && this.state.selectedTimeSlot
+                      ? "mt-20"
+                      : "disabled mt-20"
+                  }
+                >
                   Schedule order
                 </button>
               </>

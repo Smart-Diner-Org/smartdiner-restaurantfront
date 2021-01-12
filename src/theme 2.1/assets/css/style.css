@@ -749,14 +749,21 @@ hr {
   font-family: "Lato";
   font-weight: bold;
 }
+.delivery-type .disabled {
+  pointer-events: none;
+  background-color: #eeeeee !important;
+  color: #b1b1b1 !important;
+  border: none !important;
+  cursor: not-allowed;
+}
 
 .delivery-type-inputs input[value]:not([value=""]) + input:after {
   content: "" !important;
 }
 
-.delivery-type-inputs .menu-dropdown{
+.delivery-type-inputs .menu-dropdown {
   width: 100%;
-  margin :20px 0px;
+  margin: 20px 0px;
 }
 
 .bill-container {
