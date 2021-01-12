@@ -23,8 +23,6 @@ class Delivery extends Component {
     ) {
       sessionStorage.setItem("deliveryTime", this.state.selectedTimeSlot);
     } else {
-      this.setState({ deliveryDateTime: null });
-      document.getElementById("datepicker").value = null;
       alert(
         "Please tell us when you want to enjoy your food by selecting Date and Time for delivery..."
       );
@@ -89,7 +87,7 @@ class Delivery extends Component {
                 </p>
                 <div className="delivery-type-inputs mt-10">
                   <Flatpickr
-                    id="datepicker"
+                    id="delivery_datepicker"
                     options={{ minDate: "today" }}
                     placeholder={"YYYY-MM-DD"}
                     onFocus={() =>
