@@ -663,9 +663,11 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
+                  delivery_slots={this.state.restaurantBranch[0].delivery_slots.split(
+                    ","
+                  )}
                 />
               )}
-
             <HeadComponent
               togglePopup={this.togglePopup}
               total={this.state.total}

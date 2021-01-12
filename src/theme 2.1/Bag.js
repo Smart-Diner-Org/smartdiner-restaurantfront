@@ -27,6 +27,7 @@ class Bag extends Component {
             items={this.props.items}
             changequantity={this.props.changequantity}
             restaurant_website_detail={this.props.restaurant_website_detail}
+            delivery_slots={this.props.delivery_slots}
           />
         ) : (
           <p className="mt-20 mb-20">
