@@ -23,6 +23,8 @@ class Delivery extends Component {
     ) {
       sessionStorage.setItem("deliveryTime", this.state.selectedTimeSlot);
     } else {
+      this.setState({ deliveryDateTime: null });
+      document.getElementById("delivery_datepicker").value = null;
       alert(
         "Please tell us when you want to enjoy your food by selecting Date and Time for delivery..."
       );
@@ -104,13 +106,17 @@ class Delivery extends Component {
                         label: "tried to change date",
                       });
                       this.setState({ deliveryDateTime });
+                      document.getElementById(
+                        "delivery_timeSlot_dropdown"
+                      ).selectedIndex = 0;
+                      this.setState({selectedTimeSlot:null})
                     }}
                   />
                   {this.props.restaurant_website_detail
                     .is_pre_booking_time_required && (
                     <select
                       className="menu-dropdown"
-                      id="menu-dropdown"
+                      id="delivery_timeSlot_dropdown"
                       onChange={(e) => {
                         this.setState({ selectedTimeSlot: e.target.value });
                       }}
