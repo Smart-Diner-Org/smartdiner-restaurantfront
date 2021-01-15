@@ -46,7 +46,8 @@ class Delivery extends Component {
       deliveryDateTime,
       this.props.restaurant_website_detail.pre_book_prior_time
     );
-    if (availableSlot.length < 1) this.setState({ noSlotsMessage: true });
+    if (availableSlot.length < 1)
+      this.setState({ noSlotsMessage: true, availableSlot: [] });
     else
       this.setState({
         deliveryDateTime,
