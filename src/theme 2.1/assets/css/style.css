@@ -1452,6 +1452,7 @@ hr {
   background-color: var(--secondary-color);
   border: none;
   color: white;
+  margin-bottom: 5px;
 }
 .add-to-cart:hover {
   color: white;
