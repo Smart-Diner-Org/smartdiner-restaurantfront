@@ -23,6 +23,7 @@ class Menu extends Component {
         scrollComponent.toggleVisibility();
       } catch (error) {
         console.log("Product is undefined");
+        console.log("product is undefined");
       }
     });
   }
