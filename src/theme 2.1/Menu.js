@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -128,6 +127,9 @@ class Menu extends Component {
                 );
               })}
             </select>
+            <span
+              className={is_visible ? "custom-arrow1" : "custom-arrow"}
+            ></span>
           </div>
         </div>
       </div>
