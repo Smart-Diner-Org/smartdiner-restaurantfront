@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import "flatpickr/dist/themes/airbnb.css";
-import Flatpickr from "react-flatpickr";
 import ReactGA from "react-ga";
 import { generateDeliveryTimeSlot } from "./generateTimeSlot";
 import { withRouter } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { DatePicker } from "antd";
 
 class Delivery extends Component {
   constructor(props) {
@@ -98,19 +97,11 @@ class Delivery extends Component {
                     : `Let us know when your order needs to be ready and the time of pick up.`}
                 </p>
                 <div className="delivery-type-inputs mt-10">
-                  <Flatpickr
-                    id="delivery_datepicker"
-                    options={{ minDate: "today" }}
-                    placeholder={"YYYY-MM-DD"}
-                    onFocus={() =>
-                      ReactGA.event({
-                        category: "Cart",
-                        action: "Clicked date picker in cart",
-                        label: "Focus event on date picker",
-                      })
-                    }
-                    onChange={(deliveryDateTime) => {
-                      this.datePickerChange(deliveryDateTime);
+                  <DatePicker
+                    size={"large"}
+                    allowClear={false}
+                    getPopupContainer={(triggerNode) => {
+                      return triggerNode.parentNode;
                     }}
                   />
                   <Alert
@@ -120,6 +111,7 @@ class Delivery extends Component {
                   >
                     <p>No delivery slot available for the Selected Date</p>
                   </Alert>
+
                   {this.props.restaurant_website_detail
                     .is_pre_booking_time_required && (
                     <select
@@ -155,8 +147,8 @@ class Delivery extends Component {
                   onClick={this.canRoute}
                   className={
                     this.state.deliveryDateTime && this.state.selectedTimeSlot
-                      ? "mt-20"
-                      : "disabled mt-20"
+                      ? "mt-20 schedule-order-button"
+                      : "schedule-order-button disabled mt-20"
                   }
                 >
                   Schedule order
