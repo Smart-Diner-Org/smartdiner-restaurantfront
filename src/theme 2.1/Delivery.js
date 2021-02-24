@@ -3,7 +3,7 @@ import ReactGA from "react-ga";
 import { generateDeliveryTimeSlot } from "./generateTimeSlot";
 import { withRouter } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import { DatePicker } from "antd";
+import DatePicker from "antd/lib/date-picker";
 
 class Delivery extends Component {
   constructor(props) {
@@ -56,6 +56,13 @@ class Delivery extends Component {
       });
   };
 
+  disabledDate = (current) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    return current.valueOf() < yesterday;
+  };
+
   render() {
     return (
       <div>
@@ -89,71 +96,70 @@ class Delivery extends Component {
           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
               <hr />
+              <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
+                {this.props.restaurant_website_detail.is_delivery_available
+                  ? `Select your delivery date and time.`
+                  : `Let us know when your order needs to be ready and the time of pick up.`}
+              </p>
+              <DatePicker
+                size={"large"}
+                getPopupContainer={(triggerNode) => {
+                  return triggerNode.parentNode;
+                }}
+                onChange={(deliveryDateTime) => {
+                  this.datePickerChange(deliveryDateTime);
+                }}
+                disabledDate={this.disabledDate}
+                className="mt-10"
+              />
+              <Alert
+                className="mt-10"
+                show={this.state.noSlotsMessage}
+                variant="danger"
+              >
+                <p>No delivery slot available for the Selected Date</p>
+              </Alert>
 
-              <>
-                <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
-                  {this.props.restaurant_website_detail.is_delivery_available
-                    ? `Select your delivery date and time.`
-                    : `Let us know when your order needs to be ready and the time of pick up.`}
-                </p>
-                <div className="delivery-type-inputs mt-10">
-                  <DatePicker
-                    size={"large"}
-                    allowClear={false}
-                    getPopupContainer={(triggerNode) => {
-                      return triggerNode.parentNode;
-                    }}
-                  />
-                  <Alert
-                    className="mt-10"
-                    show={this.state.noSlotsMessage}
-                    variant="danger"
-                  >
-                    <p>No delivery slot available for the Selected Date</p>
-                  </Alert>
-
-                  {this.props.restaurant_website_detail
-                    .is_pre_booking_time_required && (
-                    <select
-                      className={
-                        this.state.availableSlot.length > 0
-                          ? "menu-dropdown"
-                          : "menu-dropdown disabled"
-                      }
-                      id="delivery_timeSlot_dropdown"
-                      onChange={(e) => {
-                        ReactGA.event({
-                          category: "Cart",
-                          action: "Clicked delivery time slots dropdown",
-                          label: `selected slot ${e.target.value}`,
-                        });
-                        this.setState({ selectedTimeSlot: e.target.value });
-                      }}
-                    >
-                      <option value="" disabled selected hidden>
-                        Select Delivery Time Slot
-                      </option>
-                      {this.state.availableSlot.map((timeSlot, index) => {
-                        return (
-                          <option key={index} data-toggle="pill">
-                            {timeSlot}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  )}
-                </div>
-                <button
-                  onClick={this.canRoute}
+              {this.props.restaurant_website_detail
+                .is_pre_booking_time_required && (
+                <select
                   className={
-                    this.state.deliveryDateTime && this.state.selectedTimeSlot
-                      ? "mt-20 schedule-order-button"
-                      : "schedule-order-button disabled mt-20"
+                    this.state.availableSlot.length > 0
+                      ? "menu-dropdown"
+                      : "menu-dropdown disabled"
                   }
+                  id="delivery_timeSlot_dropdown"
+                  onChange={(e) => {
+                    ReactGA.event({
+                      category: "Cart",
+                      action: "Clicked delivery time slots dropdown",
+                      label: `selected slot ${e.target.value}`,
+                    });
+                    this.setState({ selectedTimeSlot: e.target.value });
+                  }}
                 >
-                  Schedule order
-                </button>
-              </>
+                  <option value="" disabled selected hidden>
+                    Select Delivery Time Slot
+                  </option>
+                  {this.state.availableSlot.map((timeSlot, index) => {
+                    return (
+                      <option key={index} data-toggle="pill">
+                        {timeSlot}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
+              <button
+                onClick={this.canRoute}
+                className={
+                  this.state.deliveryDateTime && this.state.selectedTimeSlot
+                    ? "mt-20 schedule-order-button"
+                    : "schedule-order-button disabled mt-20"
+                }
+              >
+                Schedule order
+              </button>
             </>
           )}
         </div>
