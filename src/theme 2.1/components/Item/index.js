@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Burger from "../../assets/images/food1.jpg";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
 import Modal from "react-bootstrap/Modal";
 import QuantityButtons from "../QuantityButtons/index";
 import { notShowDirectLocation, showDirectLocation } from "../../constant";
+import Popover from "antd/lib/popover";
 
 class Item extends Component {
   constructor(props) {
@@ -249,34 +248,31 @@ class Item extends Component {
               <h5 className="product-title">
                 <a>{this.props.itemName}</a>
               </h5>
-              {this.props.description && (
-                <label
-                  onPointerEnter={(e) => {
-                    this.setState({
-                      target: e.target,
-                      showToolTip: true,
-                    });
-                  }}
-                  onPointerLeave={(e) => {
-                    this.setState({
-                      target: null,
-                      showToolTip: false,
-                    });
-                  }}
-                  className="info-icon ml-auto d-flex align-items-center"
-                >
-                  i
-                </label>
-              )}
-              <Overlay
-                show={this.state.showToolTip}
-                placement="bottom-end"
-                target={this.state.target}
+              <Popover
+                overlayStyle={{ maxWidth: "250px" }}
+                placement="bottomRight"
+                content={this.props.description}
               >
-                <Popover id="popover-contained">
-                  <Popover.Content>{this.props.description}</Popover.Content>
-                </Popover>
-              </Overlay>
+                {this.props.description && (
+                  <label
+                    onPointerEnter={(e) => {
+                      this.setState({
+                        target: e.target,
+                        showToolTip: true,
+                      });
+                    }}
+                    onPointerLeave={(e) => {
+                      this.setState({
+                        target: null,
+                        showToolTip: false,
+                      });
+                    }}
+                    className="info-icon ml-auto d-flex align-items-center"
+                  >
+                    i
+                  </label>
+                )}
+              </Popover>
             </div>
 
             <p className="description">{this.props.short_description}</p>
