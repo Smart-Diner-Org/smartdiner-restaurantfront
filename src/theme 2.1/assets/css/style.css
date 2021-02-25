@@ -736,7 +736,16 @@ hr {
   cursor: not-allowed;
 }
 
-
+.delivery-type .ant-picker{
+  border: 0;
+  border-bottom: 1px solid black;
+  font-family: "MuseoModerno";
+}
+.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+  border: 0;
+  border-bottom: 1px solid #b1b1b1;
+  box-shadow: none;
+}
 
 .delivery-type .menu-dropdown {
   width: auto;

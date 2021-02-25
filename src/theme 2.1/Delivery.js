@@ -106,11 +106,19 @@ class Delivery extends Component {
                 getPopupContainer={(triggerNode) => {
                   return triggerNode.parentNode;
                 }}
+                showToday={false}
                 onChange={(deliveryDateTime) => {
                   this.datePickerChange(deliveryDateTime);
                 }}
                 disabledDate={this.disabledDate}
                 className="mt-10"
+                onFocus={() =>
+                  ReactGA.event({
+                    category: "Cart",
+                    action: "Clicked date picker in cart",
+                    label: "Focus event on date picker",
+                  })
+                }
               />
               <Alert
                 className="mt-10"
@@ -138,7 +146,7 @@ class Delivery extends Component {
                     this.setState({ selectedTimeSlot: e.target.value });
                   }}
                 >
-                  <option value="" disabled selected hidden>
+                  <option value="" selected hidden>
                     Select Delivery Time Slot
                   </option>
                   {this.state.availableSlot.map((timeSlot, index) => {
