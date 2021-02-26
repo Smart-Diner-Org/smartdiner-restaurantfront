@@ -1,7 +1,6 @@
 import React from "react";
 import "./OTPpage.css"
 import OTPBox from "../PaymentPage/OTPBox"
-import Alert from "react-bootstrap/Alert";
 
 const refArray = [];
 let value = "";
