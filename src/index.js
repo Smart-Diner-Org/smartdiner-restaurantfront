@@ -7,18 +7,13 @@ import * as serviceWorker from './serviceWorker';
 // import Signup from './signup';
 // import Login from './login';
 import routes from './routes';
-import 'bootstrap/dist/css/bootstrap.min.css';  
 import 'antd/dist/antd.css';
 
-import './theme 2.1/assets/css/animate.css'
 import './theme 2.1/assets/css/bootstrap.min.css'
 import './theme 2.1/assets/css/style.css'
 import './theme 2.1/assets/css/default.css'
 import './theme 2.1/assets/css/LineIcons.css'
-import './theme 2.1/assets/css/magnific-popup.css'
-import './theme 2.1/assets/css/responsive.css'
 import './theme 2.1/assets/css/style.css'
-import './theme 2.1/assets/css/style.css.map'
 
 // ReactDOM.render(
 //   <React.StrictMode>
