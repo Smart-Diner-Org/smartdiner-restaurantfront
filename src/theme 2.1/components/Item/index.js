@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Burger from "../../assets/images/food1.jpg";
 import ReactGA from "react-ga";
-import Modal  from "antd/lib/modal";
+import Modal from "antd/lib/modal";
 import QuantityButtons from "../QuantityButtons/index";
 import { notShowDirectLocation, showDirectLocation } from "../../constant";
 import Popover from "antd/lib/popover";
@@ -70,7 +70,7 @@ class Item extends Component {
   };
 
   openPriceListModal = (discount) => {
-    if (this.state.modalTotal <= 0) {
+    if (this.state.modalTotal <= 0 || this.props.total <= 0) {
       this.props.changequantity(
         1,
         this.props.categoryID,
@@ -126,7 +126,7 @@ class Item extends Component {
                       type="checkbox"
                       ref={(a) => (this.checkboxes[index] = a)}
                       value={item.quantity}
-                      checked={item.quantity > 0 && true}
+                      checked={item.quantity > 0 ? true : false}
                       onClick={(e) =>
                         this.handleChecked(e, item, this.props.discount)
                       }

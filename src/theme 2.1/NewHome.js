@@ -158,6 +158,7 @@ class NewHome extends Component {
       items.push(item);
     });
     this.setState({ items: items });
+    sessionStorage.setItem("initialItem", JSON.stringify(items));
     this.getCategories(items);
   };
   getCategories = (items) => {
@@ -254,6 +255,9 @@ class NewHome extends Component {
     let total = selectedMenuArray.length;
     this.setState({ total: total });
     sessionStorage.setItem("total", total);
+    if (total === 0) {
+      this.setState({ showBag: false });
+    }
     if (total > 0 && this.state.boundary === false && showDirectLocation) {
       this.setState({ showLocationPopup: true });
     }
@@ -261,10 +265,8 @@ class NewHome extends Component {
 
   setType = (type) => {
     //to display respective items for menu items selected
-    this.setState((prevState) => {
-      return {
-        selectedType: type,
-      };
+    this.setState({
+      selectedType: type,
     });
     ReactGA.event({
       category: "Menu",
@@ -346,7 +348,10 @@ class NewHome extends Component {
                     alert(
                       "Sorry for our Incovenience.... You're out of our service boundary"
                     );
-                    this.setState({ boundary: false });
+                    this.setState({
+                      boundary: false,
+                      items: JSON.parse(sessionStorage.getItem("initialItem")),
+                    });
                   }
 
                   if (withInDistance && this.state.refregion) {
@@ -530,7 +535,10 @@ class NewHome extends Component {
                     alert(
                       "Sorry for our Incovenience.... You're out of our service boundary"
                     );
-                    this.setState({ boundary: false });
+                    this.setState({
+                      boundary: false,
+                      items: JSON.parse(sessionStorage.getItem("initialItem")),
+                    });
                   }
                 } else if (withInDistance) {
                   alert("Thank you! We are happy to serve you...");
@@ -570,7 +578,11 @@ class NewHome extends Component {
     if (this.state.boundary === true) {
       this.setState({ showLocationPopup: false });
     } else {
-      this.setState({ total: 0, showLocationPopup: false });
+      this.setState({
+        total: 0,
+        showLocationPopup: false,
+        items: JSON.parse(sessionStorage.getItem("initialItem")),
+      });
     }
   };
 
