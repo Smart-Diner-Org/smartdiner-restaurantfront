@@ -109,7 +109,7 @@ class Menu extends Component {
             className={is_visible ? "mobile sticky" : "mobile"}
           >
             <select
-              className="menu-dropdown"
+              className="menu-dropdown custom-dropdown-1"
               id="menu-dropdown"
               onChange={(e) => this.onDropdownSelected(e.target.value)}
             >
