@@ -70,28 +70,26 @@ class Delivery extends Component {
           <hr />
         )}
         <div className="delivery-type">
-          <>
-            {this.props.restaurant_website_detail
-              .is_run_time_booking_enabled && (
-              <button
-                onClick={() => {
-                  sessionStorage.removeItem("deliveryDate");
-                  sessionStorage.removeItem("deliveryTime");
-                  ReactGA.event({
-                    category: "Cart",
-                    action: "Order now",
-                    label: "/signup",
-                    transport: "beacon",
-                  });
-                  window.location = "/signup";
-                }}
-              >
-                {this.props.restaurant_website_detail.is_pre_booking_enabled
-                  ? "Order Now"
-                  : "Check Out"}
-              </button>
-            )}
-          </>
+          {this.props.restaurant_website_detail.is_run_time_booking_enabled && (
+            <button
+              className="schedule-order-button"
+              onClick={() => {
+                sessionStorage.removeItem("deliveryDate");
+                sessionStorage.removeItem("deliveryTime");
+                ReactGA.event({
+                  category: "Cart",
+                  action: "Order now",
+                  label: "/signup",
+                  transport: "beacon",
+                });
+                window.location = "/signup";
+              }}
+            >
+              {this.props.restaurant_website_detail.is_pre_booking_enabled
+                ? "Order Now"
+                : "Check Out"}
+            </button>
+          )}
 
           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>

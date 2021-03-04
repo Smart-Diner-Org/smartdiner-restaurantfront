@@ -490,7 +490,6 @@ class NewHome extends Component {
                   );
                   this.setState({ boundary: false });
                 }
-
                 if (withInDistance && this.state.refregion) {
                   let flag;
                   for (
@@ -524,7 +523,11 @@ class NewHome extends Component {
                   }
                   if (
                     this.state.refpostcode.includes(
-                      Number(this.state.postalcode)
+                      Number(
+                        results[0].address_components[
+                          results[0].address_components.length - 1
+                        ].long_name
+                      )
                     ) ||
                     flag
                   ) {
@@ -675,9 +678,11 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
-                  delivery_slots={this.state.restaurantBranch[0].delivery_slots.split(
-                    ","
-                  )}
+                  delivery_slots={
+                    this.state.restaurantBranch[0] &&
+                    this.state.restaurantBranch[0].delivery_slots &&
+                    this.state.restaurantBranch[0].delivery_slots.split(",")
+                  }
                 />
               )}
             <HeadComponent
