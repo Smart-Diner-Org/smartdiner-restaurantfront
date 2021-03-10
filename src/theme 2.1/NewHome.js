@@ -596,7 +596,7 @@ class NewHome extends Component {
   editlocation = () => {
     this.togglePopup();
     this.setState({
-      showLocationPopup: true
+      showLocationPopup: true,
     });
   };
   // ends here
@@ -662,9 +662,11 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
-                  delivery_slots={this.state.restaurantBranch[0].delivery_slots.split(
-                    ","
-                  )}
+                  delivery_slots={
+                    this.state.restaurantBranch[0] &&
+                    this.state.restaurantBranch[0].delivery_slots &&
+                    this.state.restaurantBranch[0].delivery_slots.split(",")
+                  }
                 />
               )}
             <HeadComponent
