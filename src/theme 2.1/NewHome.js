@@ -596,8 +596,7 @@ class NewHome extends Component {
   editlocation = () => {
     this.togglePopup();
     this.setState({
-      showLocationPopup: true,
-      boundary: false,
+      showLocationPopup: true
     });
   };
   // ends here

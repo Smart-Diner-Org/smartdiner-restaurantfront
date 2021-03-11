@@ -718,7 +718,7 @@ hr {
   align-items: center;
 }
 
-.delivery-type button {
+.delivery-type .schedule-order-button {
   width: 250px;
   height: 50px;
   font-size: 1.25em;
@@ -728,27 +728,6 @@ hr {
   border: none;
 }
 
-.delivery-type-inputs input {
-  background: none;
-  text-align: center;
-  padding: 10px;
-  width: 100%;
-  font-family: "Lato";
-  font-weight: bold;
-  border: none;
-  color: #000466 !important;
-  border-bottom: 1px solid #7777;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.delivery-type-inputs input:after {
-  color: #b1b1b1;
-  content: attr(placeholder) !important;
-  font-family: "Lato";
-  font-weight: bold;
-}
 .delivery-type .disabled {
   pointer-events: none;
   background-color: #eeeeee !important;
@@ -757,12 +736,19 @@ hr {
   cursor: not-allowed;
 }
 
-.delivery-type-inputs input[value]:not([value=""]) + input:after {
-  content: "" !important;
+.delivery-type .ant-picker{
+  border: 0;
+  border-bottom: 1px solid black;
+  font-family: "MuseoModerno";
+}
+.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+  border: 0;
+  border-bottom: 1px solid #b1b1b1;
+  box-shadow: none;
 }
 
-.delivery-type-inputs .menu-dropdown {
-  width: 100%;
+.delivery-type .menu-dropdown {
+  width: auto;
   margin: 20px 0px;
 }
 
@@ -1452,6 +1438,7 @@ hr {
   background-color: var(--secondary-color);
   border: none;
   color: white;
+  margin-bottom: 5px;
 }
 .add-to-cart:hover {
   color: white;
