@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 // import Login from './login';
 import routes from './routes';
 import 'bootstrap/dist/css/bootstrap.min.css';  
+import 'antd/dist/antd.css';
 
 import './theme 2.1/assets/css/animate.css'
 import './theme 2.1/assets/css/bootstrap.min.css'

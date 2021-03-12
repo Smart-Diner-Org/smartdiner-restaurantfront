@@ -718,7 +718,7 @@ hr {
   align-items: center;
 }
 
-.delivery-type button {
+.delivery-type .schedule-order-button {
   width: 250px;
   height: 50px;
   font-size: 1.25em;
@@ -728,27 +728,28 @@ hr {
   border: none;
 }
 
-.delivery-type-inputs input {
-  background: none;
-  text-align: center;
-  padding: 10px;
-  width: 250px;
-  font-family: "Lato";
-  font-weight: bold;
-  border: none;
-  color: #000466 !important;
-  border-bottom: 1px solid #7777;
+.delivery-type .disabled {
+  pointer-events: none;
+  background-color: #eeeeee !important;
+  color: #b1b1b1 !important;
+  border: none !important;
+  cursor: not-allowed;
 }
 
-.delivery-type-inputs input:after {
-  color: #b1b1b1;
-  content: attr(placeholder) !important;
-  font-family: "Lato";
-  font-weight: bold;
+.delivery-type .ant-picker{
+  border: 0;
+  border-bottom: 1px solid black;
+  font-family: "MuseoModerno";
+}
+.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+  border: 0;
+  border-bottom: 1px solid #b1b1b1;
+  box-shadow: none;
 }
 
-.delivery-type-inputs input[value]:not([value=""]) + input:after {
-  content: "" !important;
+.delivery-type .menu-dropdown {
+  width: auto;
+  margin: 20px 0px;
 }
 
 .bill-container {
@@ -1055,7 +1056,7 @@ hr {
   width: auto;
   height: 50px;
   border-radius: 25px;
-  background-color:white;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
   cursor: pointer;
   display: flex;
@@ -1426,7 +1427,7 @@ hr {
   .modal-body .total-quantity {
     width: 30px;
   }
-  .modal-body h5{
+  .modal-body h5 {
     font-size: 19px;
   }
 }
@@ -1437,6 +1438,7 @@ hr {
   background-color: var(--secondary-color);
   border: none;
   color: white;
+  margin-bottom: 5px;
 }
 .add-to-cart:hover {
   color: white;
@@ -1517,6 +1519,7 @@ hr {
   position: fixed;
   top: auto;
   width: 19.2%;
+  max-width: 262.5px;
 }
 .desktop-sticky-top {
   top: 100px;
@@ -2904,7 +2907,7 @@ p.form-message.error {
   background-color: var(--secondary-color);
   color: white;
 }
-.custom-menu-call-button:hover{
+.custom-menu-call-button:hover {
   color: white;
 }
 

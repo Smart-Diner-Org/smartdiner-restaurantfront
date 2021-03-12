@@ -1,81 +1,69 @@
 import React, { Component } from "react";
-import "flatpickr/dist/themes/airbnb.css";
-import Flatpickr from "react-flatpickr";
 import ReactGA from "react-ga";
+import { generateDeliveryTimeSlot } from "./generateTimeSlot";
 import { withRouter } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import DatePicker from "antd/lib/date-picker";
 
 class Delivery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pre_order: false,
       deliveryDateTime: null,
+      selectedTimeSlot: null,
+      availableSlot: [],
+      noSlotsMessage: false,
     };
-    this.canRoute = this.canRoute.bind(this);
   }
 
-  canRoute() {
+  canRoute = () => {
+    sessionStorage.setItem("deliveryTime", this.state.selectedTimeSlot);
     const dateTime = new Date(this.state.deliveryDateTime);
     let month = "" + (dateTime.getMonth() + 1);
     let day = "" + dateTime.getDate();
     let year = dateTime.getFullYear();
-
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
-
-    let hours = dateTime.getHours();
-    let minutes = dateTime.getMinutes();
-
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-
     const date = `${year}-${month}-${day}`;
-    const time = `${hours}:${minutes}`;
     sessionStorage.setItem("deliveryDate", date);
-    if (this.props.restaurant_website_detail.is_pre_booking_time_required) {
-      const timeDifference = dateTime.getTime() - new Date().getTime();
-      const timeLimit =
-        this.props.restaurant_website_detail.pre_book_prior_time *
-        60 *
-        60 *
-        1000;
-      if (timeDifference <= timeLimit) {
-        ReactGA.event({
-          category: "Cart",
-          action: "Clicked shcedule order button",
-          label: `chose delivery timings less than time limit: ${this.props.restaurant_website_detail.pre_book_prior_time}`,
-        });
-        alert(
-          `we take orders placed ${this.props.restaurant_website_detail.pre_book_prior_time} hours in advance of the delivery time.`
-        );
-        document.getElementById("datepicker").value = null;
-        this.setState({ deliveryDateTime: null });
-        return false;
-      }
-      sessionStorage.setItem("deliveryTime", time);
-    }
+    ReactGA.event({
+      category: "Cart",
+      action: "Clicked Proceed button",
+      label: `by choosing date ${date} and slot ${this.state.selectedTimeSlot}`,
+    });
+    this.props.history.push("/signup");
+  };
 
-    if (
-      Boolean(
-        this.props.restaurant_website_detail.is_pre_booking_enabled &&
-          this.state.deliveryDateTime
-      )
-    ) {
-      ReactGA.event({
-        category: "Cart",
-        action: "Order Later",
-        label: "/signup",
-        transport: "beacon",
+  datePickerChange = (deliveryDateTime) => {
+    ReactGA.event({
+      category: "Cart",
+      action: "Clicked date picker in cart",
+      label: "tried to change date",
+    });
+    let availableSlot = generateDeliveryTimeSlot(
+      this.props.delivery_slots,
+      deliveryDateTime,
+      this.props.restaurant_website_detail.pre_book_prior_time
+    );
+    if (availableSlot.length < 1)
+      this.setState({ noSlotsMessage: true, availableSlot: [] });
+    else
+      this.setState({
+        deliveryDateTime,
+        selectedTimeSlot: null,
+        availableSlot: availableSlot,
+        noSlotsMessage: false,
       });
-      this.props.history.push("/signup");
-    } else {
-      alert("Tell us when you want to enjoy your food...");
-    }
-  }
+
+    this.props.history.push("/signup");
+  };
+
+  disabledDate = (current) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    return current.valueOf() < yesterday;
+  };
 
   render() {
     return (
@@ -88,6 +76,7 @@ class Delivery extends Component {
             {this.props.restaurant_website_detail
               .is_run_time_booking_enabled && (
               <button
+                className="schedule-order-button"
                 onClick={() => {
                   sessionStorage.removeItem("deliveryDate");
                   sessionStorage.removeItem("deliveryTime");
@@ -110,49 +99,78 @@ class Delivery extends Component {
           {this.props.restaurant_website_detail.is_pre_booking_enabled && (
             <>
               <hr />
+              <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
+                {this.props.restaurant_website_detail.is_delivery_available
+                  ? `Select your delivery date and time.`
+                  : `Let us know when your order needs to be ready and the time of pick up.`}
+              </p>
+              <DatePicker
+                size={"large"}
+                getPopupContainer={(triggerNode) => {
+                  return triggerNode.parentNode;
+                }}
+                showToday={false}
+                onChange={(deliveryDateTime) => {
+                  this.datePickerChange(deliveryDateTime);
+                }}
+                disabledDate={this.disabledDate}
+                className="mt-10"
+                onFocus={() =>
+                  ReactGA.event({
+                    category: "Cart",
+                    action: "Clicked date picker in cart",
+                    label: "Focus event on date picker",
+                  })
+                }
+              />
+              <Alert
+                className="mt-10"
+                show={this.state.noSlotsMessage}
+                variant="danger"
+              >
+                <p>No delivery slot available for the Selected Date</p>
+              </Alert>
 
-              <>
-                <p className="mt-20 text-justify" style={{ maxWidth: "350px" }}>
-                  {this.props.restaurant_website_detail.is_delivery_available
-                    ? `Select your delivery date and time.`
-                    : `Let us know when your order needs to be ready and the time of pick up.`}
-                </p>
-                <div className="delivery-type-inputs mt-10">
-                  <Flatpickr
-                    id="datepicker"
-                    options={
-                      this.props.restaurant_website_detail
-                        .is_pre_booking_time_required
-                        ? { enableTime: true, minDate: "today" }
-                        : { minDate: "today" }
-                    }
-                    placeholder={
-                      this.props.restaurant_website_detail
-                        .is_pre_booking_time_required
-                        ? "YYYY-MM-DD HH:MM"
-                        : "YYYY-MM-DD"
-                    }
-                    onFocus={() =>
-                      ReactGA.event({
-                        category: "Cart",
-                        action: "Clicked date picker in cart",
-                        label: "Focus event on date picker",
-                      })
-                    }
-                    onChange={(deliveryDateTime) => {
-                      ReactGA.event({
-                        category: "Cart",
-                        action: "Clicked date picker in cart",
-                        label: "tried to change date",
-                      });
-                      this.setState({ deliveryDateTime });
-                    }}
-                  />
-                </div>
-                <button onClick={this.canRoute} className="mt-20">
-                  Schedule order
-                </button>
-              </>
+              {this.props.restaurant_website_detail
+                .is_pre_booking_time_required && (
+                <select
+                  className={
+                    this.state.availableSlot.length > 0
+                      ? "menu-dropdown"
+                      : "menu-dropdown disabled"
+                  }
+                  id="delivery_timeSlot_dropdown"
+                  onChange={(e) => {
+                    ReactGA.event({
+                      category: "Cart",
+                      action: "Clicked delivery time slots dropdown",
+                      label: `selected slot ${e.target.value}`,
+                    });
+                    this.setState({ selectedTimeSlot: e.target.value });
+                  }}
+                >
+                  <option value="" selected hidden>
+                    Select Delivery Time Slot
+                  </option>
+                  {this.state.availableSlot.map((timeSlot, index) => {
+                    return (
+                      <option key={index} data-toggle="pill">
+                        {timeSlot}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
+              <button
+                onClick={this.canRoute}
+                className={
+                  this.state.deliveryDateTime && this.state.selectedTimeSlot
+                    ? "mt-20 schedule-order-button"
+                    : "schedule-order-button disabled mt-20"
+                }
+              >
+                Schedule order
+              </button>
             </>
           )}
         </div>
