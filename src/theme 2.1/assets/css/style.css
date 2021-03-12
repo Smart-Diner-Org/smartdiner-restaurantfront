@@ -1466,6 +1466,7 @@ hr {
   position: fixed;
   top: auto;
   width: 19.2%;
+  max-width: 262.5px;
 }
 .desktop-sticky-top {
   top: 100px;

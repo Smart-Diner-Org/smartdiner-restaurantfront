@@ -56,8 +56,7 @@ class StatusPage extends React.Component {
       otp: otp,
     };
     await axios
-      .post(`https://testingapi.smartdiner.co/auth/verify_otp`, data)
-
+      .post(`${process.env.REACT_APP_BASE_URL}/verify_otp`, data)
       .then((res) => {
         console.log(res.data);
         this.setState({ user_info: res.data });
@@ -91,7 +90,7 @@ class StatusPage extends React.Component {
     };
     sessionStorage.removeItem("token");
     await axios
-      .post(`https://testingapi.smartdiner.co/auth/resend_otp`, data)
+      .post(`${process.env.REACT_APP_BASE_URL}/auth/resend_otp`, data)
       .then((res) => {
         this.setState({ successMessage: res.data.message });
         ReactGA.event({
@@ -250,12 +249,9 @@ class StatusPage extends React.Component {
                     </p>
                     {/* <p className="date mt-10">{this.state.wrongOrder && this.state.wrongOrder}</p> */}
                     {this.state.wrongOrder && (
-                      <Alert
-                        className="mt-10"
-                        message={this.state.wrongOrder}
-                        type="error"
-                        showIcon
-                      />
+                      <Alert className="mt-10" variant="danger">
+                        {this.state.wrongOrder}
+                      </Alert>
                     )}
                   </div>
                   {!this.state.wrongOrder && (

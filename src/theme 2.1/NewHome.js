@@ -52,7 +52,6 @@ class NewHome extends Component {
         )
         .then((res) => {
           const data = res.data;
-
           this.getItems(data);
           this.setState({
             restaurant_info: data.restaurant,
@@ -138,6 +137,8 @@ class NewHome extends Component {
             this.state.restaurantBranch[0].id
           );
           // console.log(this.state.items)
+          const title1=document.getElementById("title1");
+          title1.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
         });
     } catch (error) {
       console.log(error);
@@ -609,7 +610,6 @@ class NewHome extends Component {
     this.togglePopup();
     this.setState({
       showLocationPopup: true,
-      boundary: false,
     });
   };
   // ends here
@@ -675,9 +675,11 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
-                  delivery_slots={this.state.restaurantBranch[0].delivery_slots.split(
-                    ","
-                  )}
+                  delivery_slots={
+                    this.state.restaurantBranch[0] &&
+                    this.state.restaurantBranch[0].delivery_slots &&
+                    this.state.restaurantBranch[0].delivery_slots.split(",")
+                  }
                 />
               )}
             <HeadComponent
