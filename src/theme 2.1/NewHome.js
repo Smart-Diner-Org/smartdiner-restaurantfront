@@ -137,8 +137,8 @@ class NewHome extends Component {
             this.state.restaurantBranch[0].id
           );
           // console.log(this.state.items)
-          const title1=document.getElementById("title1");
-          title1.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
+          const title1 = document.getElementById("title1");
+          title1.content = `${this.state.restaurant_info.restaurant_website_detail.page_title}`;
         });
     } catch (error) {
       console.log(error);
@@ -489,38 +489,28 @@ class NewHome extends Component {
 
                 if (withInDistance && this.state.refregion) {
                   let flag;
-                  for (
-                    let i = 0;
-                    i < results[0].address_components.length;
-                    i++
-                  ) {
+                  const addr = this.state.refregion.map((item) =>
+                    item.toLowerCase()
+                  );
+                  for (let i = 0; i < results[0].address_components.length; i++) {
                     if (
-                      address.includes(
-                        results[0].address_components[i].long_name
+                      addr.includes(
+                        results[0].address_components[i].long_name.toLowerCase()
                       ) ||
-                      address.includes(
-                        results[0].address_components[i].short_name
+                      addr.includes(
+                        results[0].address_components[i].short_name.toLowerCase()
                       )
                     ) {
-                      for (
-                        var ss = this.state.refregion.length - 1;
-                        ss >= 0;
-                        ss--
-                      ) {
-                        if (
-                          address
-                            .toLowerCase()
-                            .includes(this.state.refregion[ss].toLowerCase())
-                        ) {
-                          flag = true;
-                          break;
-                        }
-                      }
+                      flag = true;
+                      break;
                     }
                   }
+
                   if (
                     this.state.refpostcode.includes(
-                      Number(this.state.postalcode)
+                      results[0].address_components[
+                        results[0].address_components.length - 1
+                      ].long_name
                     ) ||
                     flag
                   ) {
