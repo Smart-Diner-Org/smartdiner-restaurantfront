@@ -736,12 +736,13 @@ hr {
   cursor: not-allowed;
 }
 
-.delivery-type .ant-picker{
+.delivery-type .ant-picker {
   border: 0;
   border-bottom: 1px solid black;
   font-family: "MuseoModerno";
 }
-.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+.delivery-type .ant-picker:focus,
+.delivery-type .ant-picker-focused {
   border: 0;
   border-bottom: 1px solid #b1b1b1;
   box-shadow: none;
@@ -1536,6 +1537,9 @@ hr {
   .custom-arrow1 {
     right: 55px;
   }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
 }
 @media screen and (width: 411px) {
   .custom-arrow {
@@ -1543,6 +1547,9 @@ hr {
   }
   .custom-arrow1 {
     right: 61px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
   }
 }
 @media screen and (width: 360px) {
@@ -1552,6 +1559,9 @@ hr {
   .custom-arrow1 {
     right: 54px;
   }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
 }
 @media screen and (width: 320px) {
   .custom-arrow {
@@ -1560,6 +1570,9 @@ hr {
   .custom-arrow1 {
     right: 48px;
   }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
 }
 @media screen and (width: 280px) {
   .custom-arrow {
@@ -1567,6 +1580,9 @@ hr {
   }
   .custom-arrow1 {
     right: 41px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
   }
 }
 @media screen and (width: 768px) {
