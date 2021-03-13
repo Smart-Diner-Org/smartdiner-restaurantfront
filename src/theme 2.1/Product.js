@@ -53,6 +53,7 @@ class Product extends Component {
                                   total={this.props.total}
                                   contact_number={this.props.contact_number}
                                   setShowLocationPopup={this.props.setShowLocationPopup}
+                                  is_available={item.is_available}
                                 />
                               );
                             });

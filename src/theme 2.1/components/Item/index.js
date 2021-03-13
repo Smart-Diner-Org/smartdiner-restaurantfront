@@ -221,9 +221,16 @@ class Item extends Component {
             </div>
           </Modal.Body>
         </Modal>
-
-        {/* {!this.state.canEnableAddToCart && <p>Call/WhatsApp us to order Customized Cakes.</p>} */}
-        <div className="single-product-items">
+        <div
+          className="single-product-items"
+          style={
+            this.props.is_available
+              ? {}
+              : {
+                  opacity: "0.45",
+                }
+          }
+        >
           <div className="product-item-image">
             {this.props.image ? (
               <>
@@ -378,8 +385,17 @@ class Item extends Component {
                               showDirectLocation
                             );
                           }}
+                          style={
+                            this.props.is_available
+                              ? {}
+                              : {
+                                  pointerEvents: "none",
+                                }
+                          }
                         >
-                          Add to Cart
+                          {this.props.is_available
+                            ? "Add to Cart"
+                            : "Not availabe right now"}
                         </button>
                       )
                     ) : (
@@ -388,10 +404,23 @@ class Item extends Component {
                         onClick={() =>
                           this.openPriceListModal(this.props.discount)
                         }
+                        style={
+                          this.props.is_available
+                            ? {}
+                            : {
+                                pointerEvents: "none",
+                              }
+                        }
                       >
-                        {this.state.modalTotal > 0 && this.props.total > 0
-                          ? "Edit"
-                          : "Add to Cart"}
+                        {this.props.is_available ? (
+                          <>
+                            {this.state.modalTotal > 0 && this.props.total > 0
+                              ? "Edit"
+                              : "Add to Cart"}
+                          </>
+                        ) : (
+                          "Not availabe right now"
+                        )}
                       </button>
                     )}
                   </div>
@@ -411,9 +440,21 @@ class Item extends Component {
                       transport: "beacon",
                     });
                   }}
+                  style={
+                    this.props.is_available
+                      ? {}
+                      : {
+                          pointerEvents: "none",
+                        }
+                  }
                 >
-                  Call now to book
-                  <i class="lni-phone-handset ml-10"></i>
+                  {this.props.is_available ? (
+                    <>
+                      Call now to book <i class="lni-phone-handset ml-10"></i>
+                    </>
+                  ) : (
+                    "Not availabe right now"
+                  )}
                 </a>
               </>
             )}
