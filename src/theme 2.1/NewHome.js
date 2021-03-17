@@ -75,6 +75,7 @@ class NewHome extends Component {
             "DeliveryLocations",
             data.restaurant.restaurant_branches[0].delivery_locations
           );
+          sessionStorage.setItem("is_ecommerce", data.restaurant.is_ecommerce);
           if (data.restaurant.get_location_info.get_location_type_id === "2") {
             this.setState({
               boundary: true,
@@ -137,8 +138,8 @@ class NewHome extends Component {
             this.state.restaurantBranch[0].id
           );
           // console.log(this.state.items)
-          const title1=document.getElementById("title1");
-          title1.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
+          const title1 = document.getElementById("title1");
+          title1.content = `${this.state.restaurant_info.restaurant_website_detail.page_title}`;
         });
     } catch (error) {
       console.log(error);

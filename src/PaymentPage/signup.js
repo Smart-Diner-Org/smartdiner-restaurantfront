@@ -63,10 +63,12 @@ class SignUp extends Component {
       paymentErrorMessage: "",
       addressTwo: sessionStorage.getItem("address"),
       addressOne: "",
+      cityValueInText: "",
       isMobile: false,
       COD: false,
       redirectUrl: "",
       showPaymentMobile: false,
+      stateId: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.MhandleChange = this.MhandleChange.bind(this);
@@ -267,16 +269,25 @@ class SignUp extends Component {
 
   async addCustomer(event) {
     event.preventDefault();
-    const data = {
-      name: this.state.name,
-      email: this.state.email,
-      addressOne: this.state.addressOne,
-      addressTwo: this.state.addressTwo,
-      cityId: 1, //coiambatore
-      stateId: 1, //tamilnadu
-      latitude: sessionStorage.getItem("lat"),
-      longitude: sessionStorage.getItem("long"),
-    };
+    const data = Boolean(sessionStorage.getItem("is_ecommerce"))
+      ? {
+          name: this.state.name,
+          email: this.state.email,
+          addressOne: this.state.addressOne,
+          addressTwo: this.state.addressTwo,
+          cityValueInText: this.state.cityValueInText,
+          stateId: this.state.stateId,
+        }
+      : {
+          name: this.state.name,
+          email: this.state.email,
+          addressOne: this.state.addressOne,
+          addressTwo: this.state.addressTwo,
+          cityId: 1, //coiambatore
+          stateId: 1, //tamilnadu
+          latitude: sessionStorage.getItem("lat"),
+          longitude: sessionStorage.getItem("long"),
+        };
     await axios
       .post(`${this.apiLink}after_login/customer/update_details`, data, {
         headers: {
@@ -399,6 +410,10 @@ class SignUp extends Component {
     this.setState({ addressTwo: e.target.value });
   };
 
+  setStateID = (value) => {
+    this.setState({ stateId: value });
+  };
+
   render() {
     if (this.state.COD)
       return <Redirect to={`/order/${this.state.redirectUrl}/status`} />;
@@ -442,7 +457,7 @@ class SignUp extends Component {
                               action: `Clicked back to ${sessionStorage.getItem(
                                 "title"
                               )}`,
-                              label: `Opens home page `
+                              label: `Opens home page `,
                             })
                           }
                         >
@@ -504,6 +519,7 @@ class SignUp extends Component {
                               successMessage={this.state.successMessage}
                               errorMessage={this.state.errorMessage}
                               selectAddress={this.selectAddress}
+                              setStateID={this.setStateID}
                             />
                           ))}
                       </div>
@@ -585,6 +601,7 @@ class SignUp extends Component {
                               successMessage={this.state.successMessage}
                               errorMessage={this.state.errorMessage}
                               selectAddress={this.selectAddress}
+                              setStateID={this.setStateID}
                             />
                           ))}
                       </div>
