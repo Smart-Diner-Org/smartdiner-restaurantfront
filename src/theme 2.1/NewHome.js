@@ -75,7 +75,7 @@ class NewHome extends Component {
             "DeliveryLocations",
             data.restaurant.restaurant_branches[0].delivery_locations
           );
-          sessionStorage.setItem("is_ecommerce", !data.restaurant.is_ecommerce);
+          sessionStorage.setItem("is_ecommerce", data.restaurant.is_ecommerce);
           if (data.restaurant.get_location_info.get_location_type_id === "2") {
             this.setState({
               boundary: true,
