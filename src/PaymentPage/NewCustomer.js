@@ -56,14 +56,14 @@ class NewCustomer extends Component {
             name="addressOne"
             placeholder={
               localStorage.getItem("LocationplaceID") === "2" &&
-              Boolean(sessionStorage.getItem("is_ecommerce")) === true
+              sessionStorage.getItem("is_ecommerce") === "true"
                 ? "House number, Street"
                 : "Address Line 1"
             }
             onChange={this.props.handleChange}
           />
           {localStorage.getItem("LocationplaceID") === "2" &&
-            Boolean(sessionStorage.getItem("is_ecommerce")) === true && (
+            sessionStorage.getItem("is_ecommerce") === "true" && (
               <input
                 className=" mt-10"
                 type="text"
@@ -75,7 +75,7 @@ class NewCustomer extends Component {
             )}
 
           {localStorage.getItem("LocationplaceID") === "2" &&
-            Boolean(sessionStorage.getItem("is_ecommerce")) === true && (
+            sessionStorage.getItem("is_ecommerce") === "true" && (
               <input
                 className=" mt-10"
                 type="text"
@@ -87,13 +87,13 @@ class NewCustomer extends Component {
             )}
 
           {localStorage.getItem("LocationplaceID") === "1" &&
-            Boolean(sessionStorage.getItem("is_ecommerce")) === false && (
+            sessionStorage.getItem("is_ecommerce") === "false" && (
               <label style={{ fontSize: "18px" }} className="mt-10">
                 {this.props.addressTwo}
               </label>
             )}
           {localStorage.getItem("LocationplaceID") === "2" &&
-            Boolean(sessionStorage.getItem("is_ecommerce")) === false && (
+            sessionStorage.getItem("is_ecommerce") === "false" && (
               <Select
                 className="mt-10 col-12 p-0"
                 required
@@ -112,8 +112,9 @@ class NewCustomer extends Component {
                   })}
               </Select>
             )}
+          {console.log(Boolean(sessionStorage.getItem("is_ecommerce")))}
           {localStorage.getItem("LocationplaceID") === "2" &&
-            Boolean(sessionStorage.getItem("is_ecommerce")) === true && (
+            sessionStorage.getItem("is_ecommerce") === "true" && (
               <Select
                 required
                 placeholder="Select State"

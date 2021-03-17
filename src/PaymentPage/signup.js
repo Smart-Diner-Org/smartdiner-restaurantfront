@@ -269,25 +269,26 @@ class SignUp extends Component {
 
   async addCustomer(event) {
     event.preventDefault();
-    const data = Boolean(sessionStorage.getItem("is_ecommerce"))
-      ? {
-          name: this.state.name,
-          email: this.state.email,
-          addressOne: this.state.addressOne,
-          addressTwo: this.state.addressTwo,
-          cityValueInText: this.state.cityValueInText,
-          stateId: this.state.stateId,
-        }
-      : {
-          name: this.state.name,
-          email: this.state.email,
-          addressOne: this.state.addressOne,
-          addressTwo: this.state.addressTwo,
-          cityId: 1, //coiambatore
-          stateId: 1, //tamilnadu
-          latitude: sessionStorage.getItem("lat"),
-          longitude: sessionStorage.getItem("long"),
-        };
+    const data =
+      sessionStorage.getItem("is_ecommerce") === "true"
+        ? {
+            name: this.state.name,
+            email: this.state.email,
+            addressOne: this.state.addressOne,
+            addressTwo: this.state.addressTwo,
+            cityValueInText: this.state.cityValueInText,
+            stateId: this.state.stateId,
+          }
+        : {
+            name: this.state.name,
+            email: this.state.email,
+            addressOne: this.state.addressOne,
+            addressTwo: this.state.addressTwo,
+            cityId: 1, //coiambatore
+            stateId: 1, //tamilnadu
+            latitude: sessionStorage.getItem("lat"),
+            longitude: sessionStorage.getItem("long"),
+          };
     await axios
       .post(`${this.apiLink}after_login/customer/update_details`, data, {
         headers: {
