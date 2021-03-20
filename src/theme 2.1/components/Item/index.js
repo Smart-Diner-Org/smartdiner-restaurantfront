@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Burger from "../../assets/images/food1.jpg";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
 import ReactGA from "react-ga";
-import Modal from "react-bootstrap/Modal";
+import Modal  from "antd/lib/modal";
 import QuantityButtons from "../QuantityButtons/index";
 import { notShowDirectLocation, showDirectLocation } from "../../constant";
+import Popover from "antd/lib/popover";
 
 class Item extends Component {
   constructor(props) {
@@ -113,113 +112,107 @@ class Item extends Component {
         style={{ marginBlockEnd: "2rem", marginBlockStart: "1.5rem" }}
       >
         <Modal
-          show={this.state.showModal}
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-          onHide={() => this.closePriceListModal()}
+          title="Choose your custom order"
+          visible={this.state.showModal}
+          footer={null}
+          onCancel={this.closePriceListModal}
         >
-          <Modal.Header closeButton>
-            <h4>Choose your custom order</h4>
-          </Modal.Header>
-          <Modal.Body>
-            {this.props.priceList.map((item, index) => {
-              return (
-                <div className="row" key={index}>
-                  <div className="col-auto d-flex flex-column">
-                    <label id={`${item.id}`}>
-                      <input
-                        type="checkbox"
-                        ref={(a) => (this.checkboxes[index] = a)}
-                        value={item.quantity}
-                        checked={item.quantity > 0 && true}
-                        onClick={(e) =>
-                          this.handleChecked(e, item, this.props.discount)
-                        }
-                      />
-                      {item.quantity_values.quantity} {item.measure_values.name}{" "}
-                      -{" "}
-                      {this.props.discount > 0 ? (
-                        <>
-                          <span
-                            style={{
-                              textDecoration: "line-through",
-                              opacity: "0.4",
-                              marginRight: "5px",
-                            }}
-                          >
-                            Rs.{item.price}
-                          </span>
-                          <span>
-                            Rs.
-                            {item.price -
-                              item.price * (this.props.discount / 100)}
-                          </span>
-                        </>
-                      ) : (
-                        <span>Rs.{item.price}</span>
-                      )}
-                    </label>
-                  </div>
-                  <div className="col-auto p-0">
-                    {item.quantity > 0 && (
-                      <QuantityButtons
-                        increaseQuantity={() => {
-                          this.props.changequantity(
-                            1,
-                            this.props.categoryID,
-                            this.props.menuID,
-                            item.id,
-                            notShowDirectLocation
-                          );
-                          ReactGA.event({
-                            category: `MenuPricelist modal: ${this.props.itemName}`,
-                            action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
-                            label: `Increase quantity by 1`,
-                          });
-                          this.calculateModalTotal(this.props.discount);
-                        }}
-                        decreaseQuantity={() => {
-                          ReactGA.event({
-                            category: `MenuPricelist modal: ${this.props.itemName}`,
-                            action: `Clicked - button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
-                            label: `Decrease quantity by 1`,
-                          });
-                          if (item.quantity === 1) {
-                            this.checkboxes[index].checked = false;
-                          }
-                          this.props.changequantity(
-                            -1,
-                            this.props.categoryID,
-                            this.props.menuID,
-                            item.id,
-                            notShowDirectLocation
-                          );
-                          this.calculateModalTotal(this.props.discount);
-                        }}
-                        quantity={item.quantity}
-                      />
+          {this.props.priceList.map((item, index) => {
+            return (
+              <div className="row" key={index}>
+                <div className="col-auto d-flex flex-column">
+                  <label id={`${item.id}`}>
+                    <input
+                      type="checkbox"
+                      ref={(a) => (this.checkboxes[index] = a)}
+                      value={item.quantity}
+                      checked={item.quantity > 0 && true}
+                      onClick={(e) =>
+                        this.handleChecked(e, item, this.props.discount)
+                      }
+                    />
+                    {item.quantity_values.quantity} {item.measure_values.name} -{" "}
+                    {this.props.discount > 0 ? (
+                      <>
+                        <span
+                          style={{
+                            textDecoration: "line-through",
+                            opacity: "0.4",
+                            marginRight: "5px",
+                          }}
+                        >
+                          Rs.{item.price}
+                        </span>
+                        <span>
+                          Rs.
+                          {item.price -
+                            item.price * (this.props.discount / 100)}
+                        </span>
+                      </>
+                    ) : (
+                      <span>Rs.{item.price}</span>
                     )}
-                  </div>
+                  </label>
                 </div>
-              );
-            })}
-            <div className="row">
-              {this.state.modalTotal > 0 && (
-                <h5
-                  style={{ color: "#000466" }}
-                  className="col d-flex align-self-center"
-                >
-                  Total: Rs. {this.state.modalTotal}
-                </h5>
-              )}
-              <button
-                className="continue-btn ml-auto"
-                onClick={() => this.closePriceListModal()}
+                <div className="col-auto p-0">
+                  {item.quantity > 0 && (
+                    <QuantityButtons
+                      increaseQuantity={() => {
+                        this.props.changequantity(
+                          1,
+                          this.props.categoryID,
+                          this.props.menuID,
+                          item.id,
+                          notShowDirectLocation
+                        );
+                        ReactGA.event({
+                          category: `MenuPricelist modal: ${this.props.itemName}`,
+                          action: `Clicked + button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+                          label: `Increase quantity by 1`,
+                        });
+                        this.calculateModalTotal(this.props.discount);
+                      }}
+                      decreaseQuantity={() => {
+                        ReactGA.event({
+                          category: `MenuPricelist modal: ${this.props.itemName}`,
+                          action: `Clicked - button of ${item.quantity_values.quantity} ${item.measure_values.name}`,
+                          label: `Decrease quantity by 1`,
+                        });
+                        if (item.quantity === 1) {
+                          this.checkboxes[index].checked = false;
+                        }
+                        this.props.changequantity(
+                          -1,
+                          this.props.categoryID,
+                          this.props.menuID,
+                          item.id,
+                          notShowDirectLocation
+                        );
+                        this.calculateModalTotal(this.props.discount);
+                      }}
+                      quantity={item.quantity}
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+          <div className="row">
+            {this.state.modalTotal > 0 && (
+              <h5
+                style={{ color: "#000466" }}
+                className="col d-flex align-self-center"
               >
-                Continue
-              </button>
-            </div>
-          </Modal.Body>
+                Total: Rs. {this.state.modalTotal}
+              </h5>
+            )}
+            <button
+              className="continue-btn ml-auto"
+              onClick={() => this.closePriceListModal()}
+            >
+              Continue
+            </button>
+          </div>
         </Modal>
         <div
           className="single-product-items"
@@ -256,34 +249,31 @@ class Item extends Component {
               <h5 className="product-title">
                 <a>{this.props.itemName}</a>
               </h5>
-              {this.props.description && (
-                <label
-                  onPointerEnter={(e) => {
-                    this.setState({
-                      target: e.target,
-                      showToolTip: true,
-                    });
-                  }}
-                  onPointerLeave={(e) => {
-                    this.setState({
-                      target: null,
-                      showToolTip: false,
-                    });
-                  }}
-                  className="info-icon ml-auto d-flex align-items-center"
-                >
-                  i
-                </label>
-              )}
-              <Overlay
-                show={this.state.showToolTip}
-                placement="bottom-end"
-                target={this.state.target}
+              <Popover
+                overlayStyle={{ maxWidth: "250px" }}
+                placement="bottomRight"
+                content={this.props.description}
               >
-                <Popover id="popover-contained">
-                  <Popover.Content>{this.props.description}</Popover.Content>
-                </Popover>
-              </Overlay>
+                {this.props.description && (
+                  <label
+                    onPointerEnter={(e) => {
+                      this.setState({
+                        target: e.target,
+                        showToolTip: true,
+                      });
+                    }}
+                    onPointerLeave={(e) => {
+                      this.setState({
+                        target: null,
+                        showToolTip: false,
+                      });
+                    }}
+                    className="info-icon ml-auto d-flex align-items-center"
+                  >
+                    i
+                  </label>
+                )}
+              </Popover>
             </div>
 
             <p className="description">{this.props.short_description}</p>

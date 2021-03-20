@@ -830,22 +830,8 @@ hr {
 /*===========================
     3.SLIDER css 
 ===========================*/
-.slider-area {
-  bottom: 10px;
-}
-.slider-active .slick-dots {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  text-align: center;
-}
 
-.carousel-design {
+.carousel-design{
   bottom: 10px;
 }
 
@@ -897,32 +883,6 @@ hr {
   object-fit: contain;
 }
 
-@media only screen and (min-width: 1400px) {
-  .slider-active .slick-dots {
-    left: 30px;
-  }
-}
-
-.slider-active .slick-dots li {
-  line-height: 0;
-  margin: 15px 0;
-}
-
-.slider-active .slick-dots li button {
-  width: 10px;
-  height: 10px;
-  font-size: 0;
-  border: 0;
-  background-color: #555555;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.slider-active .slick-dots li.slick-active button {
-  width: 15px;
-  height: 15px;
-  background-color: #000000;
-}
 
 .single-slider {
   position: relative;
@@ -981,10 +941,7 @@ hr {
 .single-slider-1 .slider-bg {
   height: 100%;
 }
-.single-slider-1 .slider-bg img {
-  /*height: auto;
-  width: 100%;*/
-}
+
 .single-slider-1 {
   padding: 0 50px;
 }
@@ -1012,10 +969,7 @@ hr {
     height: 30vh;
     width: 100%;
   }
-  .single-slider-1 .slider-bg img {
-    /*height: 100%;
-    width: auto;*/
-  }
+ 
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1392,29 +1346,24 @@ hr {
 }
 /* Pop UP css */
 
-.modal-content {
-  padding: 0px 20px;
+.ant-modal-body {
   border: none;
 }
-.modal-content .modal-header {
+.ant-modal-body .modal-header {
   border: none;
 }
-.modal-content .modal-header h4,
-.modal-content .modal-header h6 {
-  color: #000466;
-  margin: 0.5em 0;
-}
-.modal-header .close {
+
+.ant-modal-content .ant-modal-close-x {
   align-self: center;
   color: #e22a28;
 }
-.modal-body input[type="checkbox"] {
+.ant-modal-body input[type="checkbox"] {
   margin-right: 1em;
 }
-.modal-body label {
+.ant-modal-body label {
   color: #000466;
 }
-.modal-body .continue-btn {
+.ant-modal-body .continue-btn {
   padding: 0.25em 1em;
   border: 1px solid #000466;
   background-color: #000466;
@@ -1427,9 +1376,7 @@ hr {
   .modal-body .total-quantity {
     width: 30px;
   }
-  .modal-body h5 {
-    font-size: 19px;
-  }
+  
 }
 
 /* Pop Up Ends here */

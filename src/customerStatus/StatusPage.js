@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Alert from "react-bootstrap/Alert";
+import Alert from "antd/lib/alert";
 import { defaultAboutImage } from "../theme 2.1/constant";
 import OTPpage from "./OTPpage";
 import ReactGA from "react-ga";
@@ -249,9 +249,12 @@ class StatusPage extends React.Component {
                     </p>
                     {/* <p className="date mt-10">{this.state.wrongOrder && this.state.wrongOrder}</p> */}
                     {this.state.wrongOrder && (
-                      <Alert className="mt-10" variant="danger">
-                        {this.state.wrongOrder}
-                      </Alert>
+                      <Alert
+                        className="mt-10"
+                        message={this.state.wrongOrder}
+                        type="error"
+                        showIcon
+                      />
                     )}
                   </div>
                   {!this.state.wrongOrder && (

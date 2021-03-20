@@ -667,6 +667,27 @@ class NewHome extends Component {
               logo={this.state.restaurant_info.logo}
               restaurantName={this.state.restaurant_info.name}
             />
+            <div
+              style={
+                this.state.showBag &&
+                !this.state.showLocationPopup &&
+                this.state.total &&
+                sessionStorage.getItem("boundary") !== 0
+                  ? {
+                      pointerEvents: "none",
+                      filter: "blur(10px)",
+                    }
+                  : {}
+              }
+            >
+              <Slider
+                slider_images={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .slider_images
+                }
+                contact_number={this.state.restaurantBranch[0].contact_number}
+              />
+            </div>
 
             <div
               style={
@@ -682,13 +703,6 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <Slider
-                slider_images={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .slider_images
-                }
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
               <MultiCards
                 cards={JSON.parse(
                   this.state.restaurant_info.restaurant_website_detail.cards

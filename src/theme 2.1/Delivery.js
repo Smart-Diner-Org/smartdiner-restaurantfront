@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactGA from "react-ga";
 import { generateDeliveryTimeSlot } from "./generateTimeSlot";
 import { withRouter } from "react-router-dom";
-import Alert from "react-bootstrap/Alert";
+import Alert from "antd/lib/alert";
 import DatePicker from "antd/lib/date-picker";
 
 class Delivery extends Component {
@@ -121,13 +121,14 @@ class Delivery extends Component {
                   })
                 }
               />
-              <Alert
-                className="mt-10"
-                show={this.state.noSlotsMessage}
-                variant="danger"
-              >
-                <p>No delivery slot available for the Selected Date</p>
-              </Alert>
+              {this.state.noSlotsMessage && (
+                <Alert
+                  className="mt-10"
+                  message="No delivery slot available for the Selected Date"
+                  type="error"
+                  showIcon
+                />
+              )}
 
               {this.props.restaurant_website_detail
                 .is_pre_booking_time_required && (
