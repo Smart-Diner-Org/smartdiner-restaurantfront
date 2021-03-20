@@ -256,6 +256,9 @@ class NewHome extends Component {
     let total = selectedMenuArray.length;
     this.setState({ total: total });
     sessionStorage.setItem("total", total);
+    if (total === 0) {
+      this.setState({ showBag: false });
+    }
     if (total > 0 && this.state.boundary === false && showDirectLocation) {
       this.setState({ showLocationPopup: true });
     }

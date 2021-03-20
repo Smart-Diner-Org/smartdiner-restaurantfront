@@ -54,6 +54,8 @@ class Delivery extends Component {
         availableSlot: availableSlot,
         noSlotsMessage: false,
       });
+
+    this.props.history.push("/signup");
   };
 
   disabledDate = (current) => {
@@ -84,7 +86,7 @@ class Delivery extends Component {
                     label: "/signup",
                     transport: "beacon",
                   });
-                  window.location = "/signup";
+                  this.props.history.push("/signup");
                 }}
               >
                 {this.props.restaurant_website_detail.is_pre_booking_enabled
