@@ -29,6 +29,8 @@ class Menu extends Component {
   }
 
   toggleVisibility() {
+    if (!document.getElementById("product")) return;
+
     if (
       window.pageYOffset > document.getElementById("product").offsetTop &&
       window.pageYOffset <

@@ -249,9 +249,12 @@ class StatusPage extends React.Component {
                     </p>
                     {/* <p className="date mt-10">{this.state.wrongOrder && this.state.wrongOrder}</p> */}
                     {this.state.wrongOrder && (
-                      <Alert className="mt-10" variant="danger">
-                        {this.state.wrongOrder}
-                      </Alert>
+                      <Alert
+                        className="mt-10"
+                        message={this.state.wrongOrder}
+                        type="error"
+                        showIcon
+                      />
                     )}
                   </div>
                   {!this.state.wrongOrder && (

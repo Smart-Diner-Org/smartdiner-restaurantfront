@@ -75,6 +75,7 @@ class NewHome extends Component {
             "DeliveryLocations",
             data.restaurant.restaurant_branches[0].delivery_locations
           );
+          sessionStorage.setItem("is_ecommerce", data.restaurant.is_ecommerce);
           if (data.restaurant.get_location_info.get_location_type_id === "2") {
             this.setState({
               boundary: true,
@@ -137,8 +138,8 @@ class NewHome extends Component {
             this.state.restaurantBranch[0].id
           );
           // console.log(this.state.items)
-          const title1=document.getElementById("title1");
-          title1.content=`${this.state.restaurant_info.restaurant_website_detail.page_title}`;
+          const title1 = document.getElementById("title1");
+          title1.content = `${this.state.restaurant_info.restaurant_website_detail.page_title}`;
         });
     } catch (error) {
       console.log(error);
@@ -494,38 +495,28 @@ class NewHome extends Component {
 
                 if (withInDistance && this.state.refregion) {
                   let flag;
-                  for (
-                    let i = 0;
-                    i < results[0].address_components.length;
-                    i++
-                  ) {
+                  const addr = this.state.refregion.map((item) =>
+                    item.toLowerCase()
+                  );
+                  for (let i = 0; i < results[0].address_components.length; i++) {
                     if (
-                      address.includes(
-                        results[0].address_components[i].long_name
+                      addr.includes(
+                        results[0].address_components[i].long_name.toLowerCase()
                       ) ||
-                      address.includes(
-                        results[0].address_components[i].short_name
+                      addr.includes(
+                        results[0].address_components[i].short_name.toLowerCase()
                       )
                     ) {
-                      for (
-                        var ss = this.state.refregion.length - 1;
-                        ss >= 0;
-                        ss--
-                      ) {
-                        if (
-                          address
-                            .toLowerCase()
-                            .includes(this.state.refregion[ss].toLowerCase())
-                        ) {
-                          flag = true;
-                          break;
-                        }
-                      }
+                      flag = true;
+                      break;
                     }
                   }
+
                   if (
                     this.state.refpostcode.includes(
-                      Number(this.state.postalcode)
+                      results[0].address_components[
+                        results[0].address_components.length - 1
+                      ].long_name
                     ) ||
                     flag
                   ) {
@@ -688,6 +679,27 @@ class NewHome extends Component {
               logo={this.state.restaurant_info.logo}
               restaurantName={this.state.restaurant_info.name}
             />
+            <div
+              style={
+                this.state.showBag &&
+                !this.state.showLocationPopup &&
+                this.state.total &&
+                sessionStorage.getItem("boundary") !== 0
+                  ? {
+                      pointerEvents: "none",
+                      filter: "blur(10px)",
+                    }
+                  : {}
+              }
+            >
+              <Slider
+                slider_images={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .slider_images
+                }
+                contact_number={this.state.restaurantBranch[0].contact_number}
+              />
+            </div>
 
             <div
               style={
@@ -703,13 +715,6 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <Slider
-                slider_images={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .slider_images
-                }
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
               <MultiCards
                 cards={JSON.parse(
                   this.state.restaurant_info.restaurant_website_detail.cards

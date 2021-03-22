@@ -13,8 +13,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.signup input,
-.new-customer select {
+.signup input{
   border: 1px solid #000466;
   border-radius: 5px;
   display: flex;
@@ -160,14 +159,20 @@
   color: #000466;
 }
 
-.new-customer input,
-.new-customer select {
+.new-customer input {
   color: #000466;
   width: 100%;
   padding: 5px;
   font-family: "Lato";
 }
 
+.new-customer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+  border: 1px solid #000466;
+  border-radius: 4px;
+}
+.new-customer .ant-select-arrow{
+  color: #000466;
+}
 .address {
   font-family: "Lato";
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);

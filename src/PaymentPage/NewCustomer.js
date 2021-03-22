@@ -1,6 +1,33 @@
+import { Select } from "antd";
 import React, { Component } from "react";
+import axios from "axios";
+
+const { Option } = Select;
 
 class NewCustomer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      statesList: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/after_login/get_states`, {
+        headers: {
+          "x-access-token": `${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        this.setState({ statesList: res.data.states });
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="new-customer ">
@@ -27,36 +54,78 @@ class NewCustomer extends Component {
             type="text"
             required
             name="addressOne"
-            placeholder="Address Line 1"
+            placeholder={
+              localStorage.getItem("LocationplaceID") === "2" &&
+              sessionStorage.getItem("is_ecommerce") === "true"
+                ? "House number, Street"
+                : "Address Line 1"
+            }
             onChange={this.props.handleChange}
           />
-          {localStorage.getItem("LocationplaceID") === "1" && (
-            <label style={{ fontSize: "18px" }} className="mt-10">
-              {this.props.addressTwo}
-            </label>
-          )}
-          {localStorage.getItem("LocationplaceID") === "2" && (
-            <select
-              className="mt-10"
-              required
-              onChange={this.props.selectAddress}
-            >
-              <option value="" disabled selected hidden>
-                Select Area/Locality
-              </option>
-              {localStorage
-                .getItem("DeliveryLocations")
-                .split(",")
-                .map((location, index) => {
-                  return (
-                    <option key={index} value={location}>
-                      {location}
-                    </option>
-                  );
-                })}
-            </select>
-          )}
+          {localStorage.getItem("LocationplaceID") === "2" &&
+            sessionStorage.getItem("is_ecommerce") === "true" && (
+              <input
+                className=" mt-10"
+                type="text"
+                required
+                name="addressTwo"
+                placeholder="Locality/Area, Pincode"
+                onChange={this.props.handleChange}
+              />
+            )}
 
+          {localStorage.getItem("LocationplaceID") === "2" &&
+            sessionStorage.getItem("is_ecommerce") === "true" && (
+              <input
+                className=" mt-10"
+                type="text"
+                required
+                name="cityValueInText"
+                placeholder="City name"
+                onChange={this.props.handleChange}
+              />
+            )}
+
+          {localStorage.getItem("LocationplaceID") === "1" &&
+            sessionStorage.getItem("is_ecommerce") === "false" && (
+              <label style={{ fontSize: "18px" }} className="mt-10">
+                {this.props.addressTwo}
+              </label>
+            )}
+          {localStorage.getItem("LocationplaceID") === "2" &&
+            sessionStorage.getItem("is_ecommerce") === "false" && (
+              <Select
+                className="mt-10 col-12 p-0"
+                required
+                onChange={this.props.selectAddress}
+                placeholder="Select Area/Locality"
+              >
+                {localStorage
+                  .getItem("DeliveryLocations")
+                  .split(",")
+                  .map((location, index) => {
+                    return (
+                      <Option key={index} value={location}>
+                        {location}
+                      </Option>
+                    );
+                  })}
+              </Select>
+            )}
+          {console.log(Boolean(sessionStorage.getItem("is_ecommerce")))}
+          {localStorage.getItem("LocationplaceID") === "2" &&
+            sessionStorage.getItem("is_ecommerce") === "true" && (
+              <Select
+                required
+                placeholder="Select State"
+                className="mt-10 col-12 p-0"
+                onChange={this.props.setStateID}
+              >
+                {this.state.statesList.map((state) => (
+                  <Option value={state.id}>{state.name}</Option>
+                ))}
+              </Select>
+            )}
           {this.props.errorMessage && (
             <small className="error-message" style={{ color: "#e22a28" }}>
               {this.props.errorMessage}
