@@ -54,8 +54,6 @@ class Delivery extends Component {
         availableSlot: availableSlot,
         noSlotsMessage: false,
       });
-
-    this.props.history.push("/signup");
   };
 
   disabledDate = (current) => {
