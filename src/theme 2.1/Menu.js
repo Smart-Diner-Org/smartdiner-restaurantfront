@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { Select } from "antd";
+const { Option } = Select;
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -111,25 +112,31 @@ class Menu extends Component {
             id="menu-drop-down"
             className={is_visible ? "mobile sticky" : "mobile"}
           >
-            <select
-              className="menu-dropdown"
+            <Select
+              style={{
+                width: "80%",
+                marginBottom: "20px",
+              }}
+              dropdownStyle={{
+                borderRadius: "5px",
+              }}
+              size={"large"}
               id="menu-dropdown"
-              onChange={(e) => this.onDropdownSelected(e.target.value)}
+              defaultValue={this.props.categoryArray[0].name}
+              onChange={(value) => this.onDropdownSelected(value)}
             >
               {this.props.categoryArray.map((category, index) => {
                 return (
-                  <option
+                  <Option
                     key={index}
-                    ref={(option) => (this.dropDown[index] = option)}
-                    className={index === 0 ? "active" : ""}
                     value={`${category.id}`}
                     data-toggle="pill"
                   >
                     {category.name}
-                  </option>
+                  </Option>
                 );
               })}
-            </select>
+            </Select>
           </div>
         </div>
       </div>
