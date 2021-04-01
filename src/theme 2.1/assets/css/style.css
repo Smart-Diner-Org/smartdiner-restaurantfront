@@ -736,12 +736,13 @@ hr {
   cursor: not-allowed;
 }
 
-.delivery-type .ant-picker{
+.delivery-type .ant-picker {
   border: 0;
   border-bottom: 1px solid black;
   font-family: "MuseoModerno";
 }
-.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+.delivery-type .ant-picker:focus,
+.delivery-type .ant-picker-focused {
   border: 0;
   border-bottom: 1px solid #b1b1b1;
   box-shadow: none;
@@ -831,7 +832,7 @@ hr {
     3.SLIDER css 
 ===========================*/
 
-.carousel-design{
+.carousel-design {
   bottom: 10px;
 }
 
@@ -882,7 +883,6 @@ hr {
   width: auto;
   object-fit: contain;
 }
-
 
 .single-slider {
   position: relative;
@@ -969,7 +969,6 @@ hr {
     height: 30vh;
     width: 100%;
   }
- 
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1376,7 +1375,6 @@ hr {
   .modal-body .total-quantity {
     width: 30px;
   }
-  
 }
 
 /* Pop Up Ends here */
@@ -1474,7 +1472,20 @@ hr {
 .desktop-sticky-bottom {
   bottom: 10px;
 }
-
+.collectionMenu .ant-select-selector {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff;
+  border-radius: 8px !important;
+  border-color: none !important;
+  font-family: "MuseoModerno";
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
+}
+.collectionMenu .ant-select-arrow {
+  color: #ffffff;
+}
 .desktop-rel {
   position: relative;
   width: 100%;

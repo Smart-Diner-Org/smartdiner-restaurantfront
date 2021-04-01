@@ -113,12 +113,14 @@ class Menu extends Component {
             className={is_visible ? "mobile sticky" : "mobile"}
           >
             <Select
+              className="collectionMenu"
               style={{
                 width: "80%",
                 marginBottom: "20px",
               }}
               dropdownStyle={{
-                borderRadius: "5px",
+                borderRadius: "8px",
+                fontFamily: "MuseoModerno",
               }}
               size={"large"}
               id="menu-dropdown"
