@@ -496,13 +496,19 @@ class NewHome extends Component {
                   const addr = this.state.refregion.map((item) =>
                     item.toLowerCase()
                   );
-                  for (let i = 0; i < results[0].address_components.length; i++) {
+                  for (
+                    let i = 0;
+                    i < results[0].address_components.length;
+                    i++
+                  ) {
                     if (
                       addr.includes(
                         results[0].address_components[i].long_name.toLowerCase()
                       ) ||
                       addr.includes(
-                        results[0].address_components[i].short_name.toLowerCase()
+                        results[0].address_components[
+                          i
+                        ].short_name.toLowerCase()
                       )
                     ) {
                       flag = true;

@@ -38,44 +38,35 @@ class Description extends React.Component {
             </div>
           )}
 
-          {/* {this.props.preOrder && !this.props.preOrderImage && (
-            <div
-              class="d-flex mt-20 justify-content-center align-items-center"
-              style={{ width: "100%", backgroundColor: "black" }}
-            >
-              <h5 class="mt-10 mb-10 " style={{ color: "white" }}>
-                We also provide Pre-Order service
-              </h5>
-            </div>
-          )} */}
-          
-
-          {/* {this.props.preOrder && this.props.preOrderImage && (
-            <div className="mt-20" style={{ width: "100%" }}>
-              <img
-                loading="lazy"
-                src={this.props.preOrderImage}
-                alt="preOrderImage"
-              />
-            </div>
-          )} */}
-
           {this.props.has_customisation_info && (
             <div className="call-for-order mt-70">
               <div class="section-title">
-                <h5 class="mb-15">Our Customized Cakes</h5>
+                <h5 class="mb-15">Our Customized Orders</h5>
               </div>
               <div className="row">
-                <div className="col-lg-8 col-sm-12">
+                <div
+                  className="col-lg-8 col-sm-12"
+                  style={
+                    this.props.customisation_info_content[0].images
+                      ? {}
+                      : { display: "none" }
+                  }
+                >
                   <div className="align-items-center custom-images">
-                    {this.props.customisation_info_content[0].images.map(
+                    {this.props.customisation_info_content[0].images?.map(
                       (imgSrc) => (
                         <img src={imgSrc} alt="call for order"></img>
                       )
                     )}
                   </div>
                 </div>
-                <div className="col-lg-4 col-sm-12 mt-10 text-justify ">
+                <div
+                  className={
+                    this.props.customisation_info_content[0].images
+                      ? "col-lg-4 col-sm-12 mt-10 text-justify"
+                      : "col-12 text-justify"
+                  }
+                >
                   {this.props.customisation_info_content[0].content}
                 </div>
               </div>
