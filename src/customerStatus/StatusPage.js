@@ -381,15 +381,22 @@ class StatusPage extends React.Component {
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">Out for delivery</h4>
                             <div className="deliveryGuy container">
-                              <div className="row">
-                                <img src="" alt="" />
+                              <div className="row d-flex align-items-center">
+                                <img
+                                  src="https://graphicriver.img.customer.envatousercontent.com/files/292679805/preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2da54bb3b99ae71f23e0493c61bf2152"
+                                  alt=""
+                                />
                                 <div className="deliveryGuyDetails">
                                   <p>
-                                    Delivery guy{" "}
-                                    <i className="lni lni-phone"></i>
-                                  </p>
-                                  <p>
-                                    {this.state.data.resturantContactNumber}
+                                    John Wick <br />
+                                    {/* {this.state.data.resturantContactNumber} */}
+                                    +91-808893984
+                                    <a
+                                      href={`tel:+91${this.state.data.restaurantContactNumber}`}
+                                      target="blank"
+                                    >
+                                      <i className="lni-phone-handset"></i>
+                                    </a>
                                   </p>
                                 </div>
                               </div>
