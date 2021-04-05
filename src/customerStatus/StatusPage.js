@@ -407,30 +407,22 @@ class StatusPage extends React.Component {
                               alt=""
                             />
                           </div>
-                          {this.state.isEcommerce ? (
-                            <div className="orderDetails ml-2">
-                              <h4 className="orderTitle">
-                                Order has been accepted by
-                              </h4>
-                              <p className="description">
-                                {this.state.data.restuarantName}
-                              </p>
-                              {/* <p className="description">Till then <a href="https://google.com"
+
+                          <div className="orderDetails ml-2">
+                            <h4 className="orderTitle">
+                              {this.state.isEcommerce
+                                ? "Order has been accepted by"
+                                : "Food is being prepared"}
+                            </h4>
+                            <p className="description">
+                              {this.state.isEcommerce
+                                ? `${this.state.data.restuarantName}`
+                                : `${this.state.data.restuarantName} is preparing
+                                your food till then.`}
+                            </p>
+                            {/* <p className="description">Till then <a href="https://google.com"
                                             target="blank">https://google.com</a></p> */}
-                            </div>
-                          ) : (
-                            <div className="orderDetails ml-2">
-                              <h4 className="orderTitle">
-                                Food is being prepared
-                              </h4>
-                              <p className="description">
-                                {this.state.data.restuarantName} is preparing
-                                your food till then.
-                              </p>
-                              {/* <p className="description">Till then <a href="https://google.com"
-                                            target="blank">https://google.com</a></p> */}
-                            </div>
-                          )}
+                          </div>
                         </div>
                       </div>
 
@@ -484,21 +476,20 @@ class StatusPage extends React.Component {
                               alt=""
                             />
                           </div>
-                          {this.state.isEcommerce ? (
-                            <div className="orderDetails ml-2">
-                              <h4 className="orderTitle">Delivered</h4>
-                            </div>
-                          ) : (
-                            <div className="orderDetails ml-2">
-                              <h4 className="orderTitle">Lets start eating</h4>
-                              {/* <p className="description">Dont forget to rate</p>
+
+                          <div className="orderDetails ml-2">
+                            <h4 className="orderTitle">
+                              {this.state.isEcommerce
+                                ? "Delivered"
+                                : "Lets start eating"}{" "}
+                            </h4>
+                            {/* <p className="description">Dont forget to rate</p>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star" aria-hidden="true"></i>
                                     <i className="fa fa-star" aria-hidden="true"></i> */}
-                            </div>
-                          )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -566,7 +557,9 @@ class StatusPage extends React.Component {
                             href={`tel:+91${this.state.data.restaurantContactNumber}`}
                             target="blank"
                           >
-                            Contact restuarant
+                            {this.state.isEcommerce
+                              ? "Contact Store"
+                              : "Contact restuarant"}
                           </a>
                         </button>
                       </div>
@@ -592,7 +585,11 @@ class StatusPage extends React.Component {
                       {/* <p>Pincode</p> */}
                     </div>
                     <div className="location col-6 pt-10 d-flex flex-column justify-content-around">
-                      <h6>Restaurant Contact details</h6>
+                      <h6>
+                        {this.state.isEcommerce
+                          ? "Store Contact details"
+                          : "Restaurant Contact details"}{" "}
+                      </h6>
                       <p>{this.state.data.restaurantContactNumber}</p>
                       <br />
                       <p>{this.state.data.restuarantEmailId}</p>
