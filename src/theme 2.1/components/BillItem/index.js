@@ -2,19 +2,18 @@ import React, { Component } from "react";
 import BurgerImage from "../../assets/images/food1.jpg";
 
 class BillItem extends Component {
-  
   render() {
     return (
-      
       <div className="bag-item mb-10">
         <div className="container ">
           <div className="row d-flex align-items-center">
             <div className="col-2 p-0">
               <div
                 style={{
-                  height: "120px",
+                  height: "100px",
                   width: "100%",
-                  maxWidth: "120px",
+                  maxWidth: "100px",
+
                   display: "flex",
                   alignItems: "centre",
                   borderRadius: "8px",
@@ -45,21 +44,31 @@ class BillItem extends Component {
                 >
                   <i className="lni lni-dinner"></i>
                 </label>
-                {!this.props.statuspage && 
-                <div className="col-auto pr-0">
-                  <button
-                    className="cancelbutton"
-                    onClick={this.props.removeItem}
-                  >
-                    X
-                  </button>
-                </div>}
-                
+
+                {!this.props.statuspage && (
+                  <div className="col-auto pr-0">
+                    <button
+                      className="cancelbutton"
+                      onClick={this.props.removeItem}
+                    >
+                      X
+                    </button>
+                  </div>
+                )}
               </div>
               <div className="row mt-10 mb-10">
                 <div className="col-5 des">
                   <h4 className="itemname">{this.props.itemName}</h4>
-                  <h6 className="containment">{this.props.description}</h6>
+
+                  {this.props.description != null &&
+                  this.props.description.length > 37 ? (
+                    <h6 className="containment">
+                      {this.props.description.slice(0, 37).concat("...")}
+                    </h6>
+                  ) : (
+                    <h6 className="containment">{this.props.description}</h6>
+                  )}
+                  {/* <h6 className="containment">{this.props.description}</h6> */}
                 </div>
 
                 <div
@@ -86,28 +95,35 @@ class BillItem extends Component {
                     <label>Rs.{this.props.price}</label>
                   )}
                 </div>
-                {this.props.statuspage?<div className="quantity" style={{maxHeight:"50px",maxWidth:"50px"}}><label>{this.props.quantity}</label></div>
-                :
-                <div className="col-4 pr-0">
-                  <div className="quantity d-flex justify-content-around">
-                    <button
-                      name="sub"
-                      className="d-flex justify-content-center align-items-center "
-                      onClick={this.props.decreasequantity}
-                    >
-                      -
-                    </button>
+
+                {this.props.statuspage ? (
+                  <div
+                    className="quantity"
+                    style={{ maxHeight: "50px", maxWidth: "50px" }}
+                  >
                     <label>{this.props.quantity}</label>
-                    <button
-                      name="add"
-                      className="d-flex justify-content-center align-items-center"
-                      onClick={this.props.increasequantity}
-                    >
-                      +
-                    </button>
                   </div>
-                </div>
-                }
+                ) : (
+                  <div className="col-4 ">
+                    <div className="quantity d-flex justify-content-around">
+                      <button
+                        name="sub"
+                        className="d-flex justify-content-center align-items-center "
+                        onClick={this.props.decreasequantity}
+                      >
+                        -
+                      </button>
+                      <label>{this.props.quantity}</label>
+                      <button
+                        name="add"
+                        className="d-flex justify-content-center align-items-center"
+                        onClick={this.props.increasequantity}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="row"></div>
               <div className="row col-6">
@@ -134,7 +150,6 @@ class BillItem extends Component {
           </div>
         </div>
       </div>
-      
     );
   }
 }
