@@ -104,7 +104,7 @@ class BillItem extends Component {
                     <label>{this.props.quantity}</label>
                   </div>
                 ) : (
-                  <div className="col-4 ">
+                  <div className="col-4 pr-0">
                     <div className="quantity d-flex justify-content-around">
                       <button
                         name="sub"
