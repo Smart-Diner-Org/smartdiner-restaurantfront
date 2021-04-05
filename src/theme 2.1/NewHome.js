@@ -699,7 +699,7 @@ class NewHome extends Component {
               }
             >
               {this.state.restaurant_info.restaurant_website_detail
-                .slider_images.length > 0 && (
+                .slider_images?.length > 0 && (
                 <Slider
                   slider_images={
                     this.state.restaurant_info.restaurant_website_detail
