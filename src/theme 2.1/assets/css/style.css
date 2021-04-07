@@ -1477,7 +1477,8 @@ hr {
   color: #ffffff;
   border-radius: 8px !important;
   border-color: none !important;
-  font-family: "MuseoModerno";
+  font-family: "Poppins, sans-serif";
+  font-weight: 600;
   -webkit-border-radius: 8px !important;
   -moz-border-radius: 8px !important;
   -ms-border-radius: 8px !important;
@@ -1486,6 +1487,7 @@ hr {
 .collectionMenu .ant-select-arrow {
   color: #ffffff;
 }
+
 .desktop-rel {
   position: relative;
   width: 100%;
