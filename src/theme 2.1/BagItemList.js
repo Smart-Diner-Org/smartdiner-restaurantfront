@@ -7,31 +7,6 @@ import ReactGA from "react-ga";
 import { notShowDirectLocation } from "./constant";
 
 class BagItemList extends React.Component {
-  values() {
-    const total = this.props.items.reduce(function (accumulator, currentValue) {
-      const valueToBeAdded =
-        currentValue.menu.discount > 0
-          ? (currentValue.selectedMenuQuantity.price -
-              currentValue.selectedMenuQuantity.price *
-                (currentValue.menu.discount / 100)) *
-            currentValue.selectedMenuQuantity.quantity
-          : currentValue.selectedMenuQuantity.price *
-            currentValue.selectedMenuQuantity.quantity;
-      const newTotal = accumulator + valueToBeAdded;
-      return newTotal;
-    }, 0);
-    const baseConvenienceFee = (3 / 100) * total + 3;
-    const tax = baseConvenienceFee + (18 / 100) * baseConvenienceFee;
-    const totalWithTax = total + tax;
-    // sessionStorage.setItem("totalWithTax",totalWithTax)
-    sessionStorage.setItem("totalWithoutTax", total);
-
-    return [total, tax, totalWithTax];
-  }
-
-  // var convenienceFee = ((3/100) * orderPrice) + 3 + ((18/100) * (((3/100) * orderPrice) + 3));
-  // var total payable amount = orderPrice + convenienceFee;
-
   render() {
     return (
       <div>
@@ -100,7 +75,11 @@ class BagItemList extends React.Component {
             );
           })}
         </FlipMove>
-        <Bill values={this.values()} />
+        <Bill
+          items={this.props.items}
+          payTax={this.props.restaurant_website_detail.should_calculate_gst}
+          taxPercentage={this.props.restaurant_website_detail.gst_percentage}
+        />
         <Delivery
           restaurant_website_detail={this.props.restaurant_website_detail}
           delivery_slots={this.props.delivery_slots}

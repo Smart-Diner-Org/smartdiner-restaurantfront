@@ -78,7 +78,7 @@ class Payment extends React.Component {
                     );
                   }
                 )}
-              {sessionStorage.getItem("totalWithoutTax") && (
+              {sessionStorage.getItem("totalWithTax") && (
                 <button
                   className="proceed"
                   style={{
@@ -88,7 +88,7 @@ class Payment extends React.Component {
                     cursor: "default",
                   }}
                 >
-                  Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
+                  Total: Rs. {sessionStorage.getItem("totalWithTax")}
                 </button>
               )}
             </div>
@@ -174,7 +174,7 @@ class Payment extends React.Component {
                 );
               }
             )}
-          {sessionStorage.getItem("totalWithoutTax") && (
+          {sessionStorage.getItem("totalWithTax") && (
             <button
               className="proceed"
               style={{
@@ -184,7 +184,7 @@ class Payment extends React.Component {
                 cursor: "default",
               }}
             >
-              Total: Rs. {sessionStorage.getItem("totalWithoutTax")}
+              Total: Rs. {sessionStorage.getItem("totalWithTax")}
             </button>
           )}
         </div>

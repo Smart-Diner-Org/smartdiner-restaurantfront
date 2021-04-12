@@ -14,8 +14,8 @@ export default function calculateTotalPrice(itemsList, taxPercentage = 0) {
   const CGST = total * (taxPercentage / 2 / 100);
   const SGST = total * (taxPercentage / 2 / 100);
   const totalWithTax = total + CGST + SGST;
-  // sessionStorage.setItem("totalWithTax",totalWithTax)
-  sessionStorage.setItem("totalWithoutTax", total);
+
+  sessionStorage.setItem("totalWithTax", totalWithTax);
 
   return [total, CGST, SGST, totalWithTax];
 }
