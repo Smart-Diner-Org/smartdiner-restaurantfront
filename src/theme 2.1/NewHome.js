@@ -16,6 +16,7 @@ import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
 import CheckoutButton from "./CheckoutButton";
 import MultiCards from "./MultiCards";
+import calculateTotalPrice from "../helpers/CommonFunctions";
 
 const google = window.google;
 
@@ -280,9 +281,21 @@ class NewHome extends Component {
   togglePopup = () => {
     //to open and close the cart(bag) component
     if (this.state.total > 0) {
-      this.setState({
-        showBag: !this.state.showBag,
-      });
+      if (
+        Number(calculateTotalPrice(this.state.bagItems)[0]) >=
+        Number(
+          this.state.restaurant_info.restaurant_website_detail
+            .min_purchase_amount
+        )
+      ) {
+        this.setState({
+          showBag: !this.state.showBag,
+        });
+      } else {
+        alert(
+          `Please make a minimum order purchase of Rs.${this.state.restaurant_info.restaurant_website_detail.min_purchase_amount}`
+        );
+      }
     }
   };
 
@@ -498,13 +511,19 @@ class NewHome extends Component {
                   const addr = this.state.refregion.map((item) =>
                     item.toLowerCase()
                   );
-                  for (let i = 0; i < results[0].address_components.length; i++) {
+                  for (
+                    let i = 0;
+                    i < results[0].address_components.length;
+                    i++
+                  ) {
                     if (
                       addr.includes(
                         results[0].address_components[i].long_name.toLowerCase()
                       ) ||
                       addr.includes(
-                        results[0].address_components[i].short_name.toLowerCase()
+                        results[0].address_components[
+                          i
+                        ].short_name.toLowerCase()
                       )
                     ) {
                       flag = true;
