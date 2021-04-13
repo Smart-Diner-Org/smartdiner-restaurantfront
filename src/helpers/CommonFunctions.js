@@ -1,4 +1,8 @@
-export default function calculateTotalPrice(itemsList, taxPercentage = 0) {
+export default function calculateTotalPrice(
+  itemsList,
+  taxPercentage = 0,
+  deliveryCharge = 0
+) {
   const total = itemsList.reduce(function (accumulator, currentValue) {
     const valueToBeAdded =
       currentValue.menu.discount > 0
@@ -13,7 +17,7 @@ export default function calculateTotalPrice(itemsList, taxPercentage = 0) {
   }, 0);
   const CGST = total * (taxPercentage / 2 / 100);
   const SGST = total * (taxPercentage / 2 / 100);
-  const totalWithTax = total + CGST + SGST;
+  const totalWithTax = total + CGST + SGST + deliveryCharge;
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
 

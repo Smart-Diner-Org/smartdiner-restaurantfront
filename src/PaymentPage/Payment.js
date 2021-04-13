@@ -88,7 +88,8 @@ class Payment extends React.Component {
                     cursor: "default",
                   }}
                 >
-                  Total: Rs. {sessionStorage.getItem("totalWithTax")}
+                  Total: Rs.{" "}
+                  {Number(sessionStorage.getItem("totalWithTax")).toFixed(2)}
                 </button>
               )}
             </div>
@@ -184,7 +185,8 @@ class Payment extends React.Component {
                 cursor: "default",
               }}
             >
-              Total: Rs. {sessionStorage.getItem("totalWithTax")}
+              Total: Rs.{" "}
+              {Number(sessionStorage.getItem("totalWithTax")).toFixed(2)}
             </button>
           )}
         </div>

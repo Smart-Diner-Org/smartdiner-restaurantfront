@@ -685,6 +685,7 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
+                  is_ecommerce={this.state.restaurant_info.is_ecommerce}
                   delivery_slots={
                     this.state.restaurantBranch[0] &&
                     this.state.restaurantBranch[0].delivery_slots &&

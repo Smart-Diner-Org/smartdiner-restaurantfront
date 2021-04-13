@@ -5,7 +5,8 @@ class Bill extends Component {
   render() {
     const [total, CGST, SGST, totalWithTax] = calculateTotalPrice(
       this.props.items,
-      this.props.payTax ? this.props.taxPercentage : 0
+      this.props.taxPercentage,
+      Number(this.props.default_delivery_charge)
     );
     return (
       <div class="bill-container">
@@ -32,6 +33,16 @@ class Bill extends Component {
                 <br />
               </div>
             </>
+          )}
+          {this.props.default_delivery_charge > 0 && (
+            <div className="row">
+              <label className="col-auto mr-auto">Delivery Charge</label>
+              <br />
+              <label className="col-auto">{`Rs ${Number(
+                this.props.default_delivery_charge
+              ).toFixed(2)}`}</label>
+              <br />
+            </div>
           )}
           <div className="final-bill row">
             <div class="col-6">
