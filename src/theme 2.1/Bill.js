@@ -18,16 +18,22 @@ class Bill extends Component {
             <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
             <br />
           </div>
-          {this.props.payTax && (
+          {Number(this.props.taxPercentage) > 0 && (
             <>
-              <div className="row">
-                <label className="col-auto mr-auto">CGST</label>
+              <div className="row d-flex align-items-center">
+                <label className="col-auto mr-auto">
+                  CGST
+                  <small>({Number(this.props.taxPercentage) / 2}%)</small>
+                </label>
                 <br />
                 <label className="col-auto">{`Rs ${CGST.toFixed(2)}`}</label>
                 <br />
               </div>
               <div className="row">
-                <label className="col-auto mr-auto">SGST</label>
+                <label className="col-auto mr-auto">
+                  SGST
+                  <small>({Number(this.props.taxPercentage) / 2}%)</small>
+                </label>
                 <br />
                 <label className="col-auto">{`Rs ${SGST.toFixed(2)}`}</label>
                 <br />
@@ -56,6 +62,12 @@ class Bill extends Component {
                 To Pay :<span>{`Rs${totalWithTax.toFixed(2)}`}</span>
               </label>
             </div>
+            {totalWithTax < Number(this.props.min_purchase_amount) && (
+              <small
+                className="col-12 text-right"
+                style={{ color: "#e22a28" }}
+              >{`Minimum purchase of Rs ${this.props.min_purchase_amount} is required`}</small>
+            )}
           </div>
         </div>
       </div>

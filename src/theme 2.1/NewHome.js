@@ -281,21 +281,9 @@ class NewHome extends Component {
   togglePopup = () => {
     //to open and close the cart(bag) component
     if (this.state.total > 0) {
-      if (
-        Number(calculateTotalPrice(this.state.bagItems)[0]) >=
-        Number(
-          this.state.restaurant_info.restaurant_website_detail
-            .min_purchase_amount
-        )
-      ) {
-        this.setState({
-          showBag: !this.state.showBag,
-        });
-      } else {
-        alert(
-          `Please make a minimum order purchase of Rs.${this.state.restaurant_info.restaurant_website_detail.min_purchase_amount}`
-        );
-      }
+      this.setState({
+        showBag: !this.state.showBag,
+      });
     }
   };
 
