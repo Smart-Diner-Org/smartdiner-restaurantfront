@@ -498,13 +498,19 @@ class NewHome extends Component {
                   const addr = this.state.refregion.map((item) =>
                     item.toLowerCase()
                   );
-                  for (let i = 0; i < results[0].address_components.length; i++) {
+                  for (
+                    let i = 0;
+                    i < results[0].address_components.length;
+                    i++
+                  ) {
                     if (
                       addr.includes(
                         results[0].address_components[i].long_name.toLowerCase()
                       ) ||
                       addr.includes(
-                        results[0].address_components[i].short_name.toLowerCase()
+                        results[0].address_components[
+                          i
+                        ].short_name.toLowerCase()
                       )
                     ) {
                       flag = true;
@@ -692,13 +698,16 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <Slider
-                slider_images={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .slider_images
-                }
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
+              {this.state.restaurant_info.restaurant_website_detail
+                .slider_images?.length > 0 && (
+                <Slider
+                  slider_images={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .slider_images
+                  }
+                  contact_number={this.state.restaurantBranch[0].contact_number}
+                />
+              )}
             </div>
 
             <div
