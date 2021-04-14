@@ -74,7 +74,12 @@ class Delivery extends Component {
             {this.props.restaurant_website_detail
               .is_run_time_booking_enabled && (
               <button
-                className="schedule-order-button"
+                className={`schedule-order-button ${
+                  Number(sessionStorage.getItem("totalWithTax")) <
+                  Number(this.props.min_purchase_amount)
+                    ? "disabled"
+                    : ""
+                }`}
                 onClick={() => {
                   sessionStorage.removeItem("deliveryDate");
                   sessionStorage.removeItem("deliveryTime");
@@ -112,7 +117,12 @@ class Delivery extends Component {
                   this.datePickerChange(deliveryDateTime);
                 }}
                 disabledDate={this.disabledDate}
-                className="mt-10"
+                className={`mt-10 ${
+                  Number(sessionStorage.getItem("totalWithTax")) <
+                  Number(this.props.min_purchase_amount)
+                    ? "disabled"
+                    : ""
+                }`}
                 onFocus={() =>
                   ReactGA.event({
                     category: "Cart",
