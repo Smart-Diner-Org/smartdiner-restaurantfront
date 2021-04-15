@@ -631,6 +631,11 @@ hr {
   font-size: 0.75em;
 }
 
+@media screen and (max-width: 50em) {
+  .bag-item .containment {
+   display: none;
+  }
+}
 .price-display {
   color: #000466;
   font-family: "MuseoModerno";
