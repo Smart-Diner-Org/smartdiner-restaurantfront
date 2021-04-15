@@ -20,7 +20,7 @@ class Bill extends Component {
           </div>
           {Number(this.props.taxPercentage) > 0 && (
             <>
-              <div className="row d-flex align-items-center">
+              <div className="row">
                 <label className="col-auto mr-auto">
                   CGST
                   <small>({Number(this.props.taxPercentage) / 2}%)</small>
