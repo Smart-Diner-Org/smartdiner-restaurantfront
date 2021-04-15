@@ -146,7 +146,12 @@ class Payment extends React.Component {
             </ul>
             {Number(sessionStorage.getItem("CGST")) > 0 && (
               <div className="row mt-20" style={{ color: "#000466" }}>
-                <label className="col-auto mr-auto">CGST</label>
+                <label className="col-auto mr-auto">
+                  CGST{" "}
+                  <small>
+                    ({sessionStorage.getItem("taxPercentageHalfed")}%)
+                  </small>
+                </label>
                 <br />
                 <label className="col-auto">
                   Rs.{sessionStorage.getItem("CGST")}
@@ -156,7 +161,12 @@ class Payment extends React.Component {
             )}
             {Number(sessionStorage.getItem("SGST")) > 0 && (
               <div className="row" style={{ color: "#000466" }}>
-                <label className="col-auto mr-auto">SGST</label>
+                <label className="col-auto mr-auto">
+                  SGST{" "}
+                  <small>
+                    ({sessionStorage.getItem("taxPercentageHalfed")}%)
+                  </small>
+                </label>
                 <br />
                 <label className="col-auto">
                   Rs.{sessionStorage.getItem("SGST")}
