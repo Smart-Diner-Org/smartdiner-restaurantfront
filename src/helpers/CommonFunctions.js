@@ -17,11 +17,11 @@ export default function calculateTotalPrice(
   }, 0);
   const CGST = total * (taxPercentage / 2 / 100);
   const SGST = total * (taxPercentage / 2 / 100);
-  const totalWithTax = total + CGST + SGST + deliveryCharge;
+  const totalWithTax = (total + CGST + SGST + deliveryCharge).toFixed(2);
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
-  sessionStorage.setItem("SGST", SGST);
-  sessionStorage.setItem("CGST", CGST);
+  sessionStorage.setItem("SGST", SGST.toFixed(2));
+  sessionStorage.setItem("CGST", CGST.toFixed(2));
   sessionStorage.setItem("deliveryCharge", deliveryCharge);
 
   return [total, CGST, SGST, totalWithTax];
