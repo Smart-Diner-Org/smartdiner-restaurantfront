@@ -144,9 +144,39 @@ class Payment extends React.Component {
                   }
                 )}
             </ul>
+            {Number(sessionStorage.getItem("CGST")) > 0 && (
+              <div className="row mt-20" style={{ color: "#000466" }}>
+                <label className="col-auto mr-auto">CGST</label>
+                <br />
+                <label className="col-auto">
+                  Rs.{sessionStorage.getItem("CGST")}
+                </label>
+                <br />
+              </div>
+            )}
+            {Number(sessionStorage.getItem("SGST")) > 0 && (
+              <div className="row" style={{ color: "#000466" }}>
+                <label className="col-auto mr-auto">SGST</label>
+                <br />
+                <label className="col-auto">
+                  Rs.{sessionStorage.getItem("SGST")}
+                </label>
+                <br />
+              </div>
+            )}
+            {Number(sessionStorage.getItem("deliveryCharge")) > 0 && (
+              <div className="row" style={{ color: "#000466" }}>
+                <label className="col-auto mr-auto">Delivery Charge</label>
+                <br />
+                <label className="col-auto">
+                  Rs.{sessionStorage.getItem("deliveryCharge")}
+                </label>
+                <br />
+              </div>
+            )}
           </div>
         </div>
-        <div className="d-flex justify-content-around mt-40">
+        <div className="d-flex justify-content-around mt-20">
           {localStorage.getItem("PaymentType") &&
             JSON.parse(localStorage.getItem("PaymentType")).map(
               (paymentType) => {

@@ -20,6 +20,9 @@ export default function calculateTotalPrice(
   const totalWithTax = total + CGST + SGST + deliveryCharge;
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
+  sessionStorage.setItem("SGST", SGST);
+  sessionStorage.setItem("CGST", CGST);
+  sessionStorage.setItem("deliveryCharge", deliveryCharge);
 
   return [total, CGST, SGST, totalWithTax];
 }
