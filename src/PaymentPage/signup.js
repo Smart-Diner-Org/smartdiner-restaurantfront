@@ -335,7 +335,7 @@ class SignUp extends Component {
     });
     const data = {
       restuarantBranchId: sessionStorage.getItem("restBranchID"),
-      total_price: sessionStorage.getItem("totalWithoutTax"),
+      total_price: sessionStorage.getItem("totalWithTax"),
       latitude: sessionStorage.getItem("lat"),
       longitude: sessionStorage.getItem("long"),
       menus: selectedArray,
@@ -463,8 +463,8 @@ class SignUp extends Component {
                           }
                         >
                           <label className="mb-20">
-                            <i class="lni lni-arrow-left"></i> Back to{" "}
-                            {sessionStorage.getItem("title")}{" "}
+                            <i class="lni lni-arrow-left"></i> Back to
+                            {sessionStorage.getItem("title")}
                           </label>
                         </Link>
                         <h2>Customer Details</h2>
@@ -563,8 +563,8 @@ class SignUp extends Component {
                           }
                         >
                           <label className="mb-20">
-                            <i class="lni lni-arrow-left"></i> Back to{" "}
-                            {sessionStorage.getItem("title")}{" "}
+                            <i class="lni lni-arrow-left"></i> Back to
+                            {sessionStorage.getItem("title")}
                           </label>
                         </Link>
                         <h2>Customer Details</h2>

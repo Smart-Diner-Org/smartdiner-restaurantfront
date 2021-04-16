@@ -41,6 +41,7 @@ class StatusPage extends React.Component {
       mobileVerification: false,
       isVerified: false,
       statuspage: true,
+      isEcommerce: false,
     };
     this.OTPverfication = this.OTPverfication.bind(this);
     this.resendOTP = this.resendOTP.bind(this);
@@ -124,6 +125,7 @@ class StatusPage extends React.Component {
           this.setState({ data: data });
           this.setState({ isLoaded: true });
           this.setState({ mobileVerification: data.mobileVerification });
+          this.setState({ isEcommerce: data.isEcommerce });
           if (data.message === orderNotFound || data.message === invalidOrder) {
             this.setState({ wrongOrder: wrongOrderMessage });
           }
@@ -136,41 +138,97 @@ class StatusPage extends React.Component {
     favicon.href = this.state.data.logo;
     document.title = this.state.data.restuarantName;
 
-    if (this.state.data.stage_id == 1 || this.state.data.stage_id == 2) {
-      this.setState({
-        flag1: true,
-        progress: "25%",
-      });
-    } else if (this.state.data.stage_id == 3 || this.state.data.stage_id == 4) {
-      this.setState({
-        flag1: true,
-        flag2: true,
-        progress: "50%",
-      });
-    } else if (this.state.data.stage_id == 5 || this.state.data.stage_id == 6) {
-      this.setState({
-        flag1: true,
-        flag2: true,
-        flag3: true,
-        progress: "75%",
-      });
-    } else if (this.state.data.stage_id == 7 || this.state.data.stage_id == 8) {
-      this.setState({
-        flag1: true,
-        flag2: true,
-        flag3: true,
-        flag4: true,
-        progress: "100%",
-      });
-    }
-    if (this.state.data.stage_id == 9) {
-      this.setState({
-        orderCancelled: true,
-      });
+    if (this.state.isEcommerce) {
+      if (this.state.data.stage_id == 1) {
+        this.setState({
+          flag1: true,
+          progress: "25%",
+        });
+      } else if (
+        this.state.data.stage_id == 2 ||
+        this.state.data.stage_id == 3 ||
+        this.state.data.stage_id == 4 ||
+        this.state.data.stage_id == 5
+      ) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          progress: "50%",
+        });
+      } else if (this.state.data.stage_id == 6) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          flag3: true,
+          progress: "75%",
+        });
+      } else if (
+        this.state.data.stage_id == 7 ||
+        this.state.data.stage_id == 8
+      ) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          flag3: true,
+          flag4: true,
+          progress: "100%",
+        });
+      }
+      if (this.state.data.stage_id == 9) {
+        this.setState({
+          orderCancelled: true,
+        });
+      } else {
+        this.setState({
+          orderCancelled: false,
+        });
+      }
     } else {
-      this.setState({
-        orderCancelled: false,
-      });
+      if (this.state.data.stage_id == 1 || this.state.data.stage_id == 2) {
+        this.setState({
+          flag1: true,
+          progress: "25%",
+        });
+      } else if (
+        this.state.data.stage_id == 3 ||
+        this.state.data.stage_id == 4
+      ) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          progress: "50%",
+        });
+      } else if (
+        this.state.data.stage_id == 5 ||
+        this.state.data.stage_id == 6
+      ) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          flag3: true,
+          progress: "75%",
+        });
+      } else if (
+        this.state.data.stage_id == 7 ||
+        this.state.data.stage_id == 8
+      ) {
+        this.setState({
+          flag1: true,
+          flag2: true,
+          flag3: true,
+          flag4: true,
+          progress: "100%",
+        });
+      }
+      if (this.state.data.stage_id == 9) {
+        this.setState({
+          orderCancelled: true,
+        });
+      } else {
+        this.setState({
+          orderCancelled: false,
+        });
+      }
     }
     let date = new Date(this.state.data.createdDate);
     console.log(date);
@@ -349,13 +407,18 @@ class StatusPage extends React.Component {
                               alt=""
                             />
                           </div>
+
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">
-                              Food is being prepared
+                              {this.state.isEcommerce
+                                ? "Order has been accepted by"
+                                : "Food is being prepared"}
                             </h4>
                             <p className="description">
-                              {this.state.data.restuarantName} is preparing your
-                              food till then.
+                              {this.state.isEcommerce
+                                ? `${this.state.data.restuarantName}`
+                                : `${this.state.data.restuarantName} is preparing
+                                your food till then.`}
                             </p>
                             {/* <p className="description">Till then <a href="https://google.com"
                                             target="blank">https://google.com</a></p> */}
@@ -413,8 +476,13 @@ class StatusPage extends React.Component {
                               alt=""
                             />
                           </div>
+
                           <div className="orderDetails ml-2">
-                            <h4 className="orderTitle">Lets start eating</h4>
+                            <h4 className="orderTitle">
+                              {this.state.isEcommerce
+                                ? "Delivered"
+                                : "Lets start eating"}{" "}
+                            </h4>
                             {/* <p className="description">Dont forget to rate</p>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
@@ -489,7 +557,9 @@ class StatusPage extends React.Component {
                             href={`tel:+91${this.state.data.restaurantContactNumber}`}
                             target="blank"
                           >
-                            Contact restuarant
+                            {this.state.isEcommerce
+                              ? "Contact Store"
+                              : "Contact restuarant"}
                           </a>
                         </button>
                       </div>
@@ -515,7 +585,11 @@ class StatusPage extends React.Component {
                       {/* <p>Pincode</p> */}
                     </div>
                     <div className="location col-6 pt-10 d-flex flex-column justify-content-around">
-                      <h6>Restaurant Contact details</h6>
+                      <h6>
+                        {this.state.isEcommerce
+                          ? "Store Contact details"
+                          : "Restaurant Contact details"}{" "}
+                      </h6>
                       <p>{this.state.data.restaurantContactNumber}</p>
                       <br />
                       <p>{this.state.data.restuarantEmailId}</p>
