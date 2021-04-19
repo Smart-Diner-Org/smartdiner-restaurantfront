@@ -16,6 +16,7 @@ import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
 import CheckoutButton from "./CheckoutButton";
 import MultiCards from "./MultiCards";
+import calculateTotalPrice from "../helpers/CommonFunctions";
 
 const google = window.google;
 
@@ -498,13 +499,19 @@ class NewHome extends Component {
                   const addr = this.state.refregion.map((item) =>
                     item.toLowerCase()
                   );
-                  for (let i = 0; i < results[0].address_components.length; i++) {
+                  for (
+                    let i = 0;
+                    i < results[0].address_components.length;
+                    i++
+                  ) {
                     if (
                       addr.includes(
                         results[0].address_components[i].long_name.toLowerCase()
                       ) ||
                       addr.includes(
-                        results[0].address_components[i].short_name.toLowerCase()
+                        results[0].address_components[
+                          i
+                        ].short_name.toLowerCase()
                       )
                     ) {
                       flag = true;
@@ -666,6 +673,7 @@ class NewHome extends Component {
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
+                  is_ecommerce={this.state.restaurant_info.is_ecommerce}
                   delivery_slots={
                     this.state.restaurantBranch[0] &&
                     this.state.restaurantBranch[0].delivery_slots &&
@@ -692,13 +700,16 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <Slider
-                slider_images={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .slider_images
-                }
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
+              {this.state.restaurant_info.restaurant_website_detail
+                .slider_images?.length > 0 && (
+                <Slider
+                  slider_images={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .slider_images
+                  }
+                  contact_number={this.state.restaurantBranch[0].contact_number}
+                />
+              )}
             </div>
 
             <div
@@ -715,11 +726,20 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <MultiCards
-                cards={JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail.cards
-                )}
-              />
+              <div
+                style={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .slider_images?.length > 0
+                    ? {}
+                    : { marginTop: "50px" }
+                }
+              >
+                <MultiCards
+                  cards={JSON.parse(
+                    this.state.restaurant_info.restaurant_website_detail.cards
+                  )}
+                />
+              </div>
               <Description
                 delivery_locations={
                   this.state.restaurantBranch[0].delivery_locations_to_display
