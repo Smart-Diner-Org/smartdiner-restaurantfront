@@ -618,6 +618,10 @@ hr {
 .bag-item img {
   height: 100%;
   border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .des .itemname {
@@ -633,7 +637,10 @@ hr {
 
 @media screen and (max-width: 50em) {
   .bag-item .containment {
-   display: none;
+    display: none;
+  }
+  .bag-item img {
+    object-fit: contain;
   }
 }
 .price-display {
@@ -714,7 +721,7 @@ hr {
   text-decoration-color: #ffc009;
 }
 
-.bill-container small{
+.bill-container small {
   margin-left: 5px;
   color: #777;
   font-weight: 900;
@@ -746,12 +753,13 @@ hr {
   cursor: not-allowed;
 }
 
-.delivery-type .ant-picker{
+.delivery-type .ant-picker {
   border: 0;
   border-bottom: 1px solid black;
   font-family: "MuseoModerno";
 }
-.delivery-type .ant-picker:focus,.delivery-type  .ant-picker-focused{
+.delivery-type .ant-picker:focus,
+.delivery-type .ant-picker-focused {
   border: 0;
   border-bottom: 1px solid #b1b1b1;
   box-shadow: none;
@@ -841,7 +849,7 @@ hr {
     3.SLIDER css 
 ===========================*/
 
-.carousel-design{
+.carousel-design {
   bottom: 10px;
 }
 
@@ -892,7 +900,6 @@ hr {
   width: auto;
   object-fit: contain;
 }
-
 
 .single-slider {
   position: relative;
@@ -979,7 +986,6 @@ hr {
     height: 30vh;
     width: 100%;
   }
- 
 }
 
 .single-slider .slider-product-image .slider-discount-tag {
@@ -1386,7 +1392,6 @@ hr {
   .modal-body .total-quantity {
     width: 30px;
   }
-  
 }
 
 /* Pop Up Ends here */
