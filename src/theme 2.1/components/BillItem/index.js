@@ -8,17 +8,7 @@ class BillItem extends Component {
         <div className="container ">
           <div className="row d-flex align-items-center">
             <div className="col-2 p-0">
-              <div
-                style={{
-                  height: "100px",
-                  width: "100%",
-                  maxWidth: "100px",
-
-                  display: "flex",
-                  alignItems: "centre",
-                  borderRadius: "8px",
-                }}
-              >
+              <div className="img-container">
                 {this.props.image ? (
                   <>
                     <a href="#">
@@ -26,12 +16,12 @@ class BillItem extends Component {
                         loading="lazy"
                         src={this.props.image}
                         alt="Product"
-                      />{" "}
+                      />
                     </a>
                   </>
                 ) : (
                   <a href="#">
-                    <img loading="lazy" src={BurgerImage} alt="Product" />{" "}
+                    <img loading="lazy" src={BurgerImage} alt="Product" />
                   </a>
                 )}
               </div>
