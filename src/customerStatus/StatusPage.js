@@ -1,9 +1,7 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Alert from "antd/lib/alert";
-import { defaultAboutImage } from "../theme 2.1/constant";
 import OTPpage from "./OTPpage";
 import ReactGA from "react-ga";
 import BillItem from "../theme 2.1/components/BillItem";
@@ -13,6 +11,17 @@ const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
   "It does not seem to be the right order. Please check";
 let myInterval;
+
+const progressTwoTexts = {
+  1: [
+    "Order accepted by the restaurant.",
+    " Looking for the delivery partner.",
+  ],
+  2: ["Food is being prepared", "& the food will be picked soon"],
+  3: ["Order accepted by the restaurant.", "Looking for the delivery partner."],
+  4: ["Food is being prepared", "& the food will be picked soon"],
+  6: ["Delivery got delayed.", "Sorry for the inconvenience."],
+};
 
 class StatusPage extends React.Component {
   constructor(props) {
@@ -231,7 +240,6 @@ class StatusPage extends React.Component {
       }
     }
     let date = new Date(this.state.data.createdDate);
-    console.log(date);
     let newdate = date.toDateString().split(" ");
     let dt = `${newdate[0]}, ${newdate[2]} ${newdate[1]}`;
     this.setState({
@@ -410,16 +418,20 @@ class StatusPage extends React.Component {
 
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">
-                              {this.state.isEcommerce
-                                ? "Order has been accepted by"
-                                : "Food is being prepared"}
+                              {this.state.data.deliveryRequestStageId
+                                ? progressTwoTexts[
+                                    this.state.data.deliveryRequestStageId
+                                  ][0]
+                                : "Order has been accepted by"}
                             </h4>
                             <p className="description">
-                              {this.state.isEcommerce
-                                ? `${this.state.data.restuarantName}`
-                                : `${this.state.data.restuarantName} is preparing
-                                your food till then.`}
+                              {this.state.data.deliveryRequestStageId
+                                ? progressTwoTexts[
+                                    this.state.data.deliveryRequestStageId
+                                  ][1]
+                                : `${this.state.data.restuarantName}`}
                             </p>
+
                             {/* <p className="description">Till then <a href="https://google.com"
                                             target="blank">https://google.com</a></p> */}
                           </div>
@@ -451,11 +463,14 @@ class StatusPage extends React.Component {
                                 />
                                 <div className="deliveryGuyDetails">
                                   <p>
-                                    John Wick <br />
-                                    {/* {this.state.data.resturantContactNumber} */}
-                                    +91-808893984
+                                    {this.state.data.deliveryPersonName} <br />
+                                    +91-
+                                    {
+                                      this.state.data
+                                        .deliveryPersonContactNumber
+                                    }
                                     <a
-                                      href={`tel:+91${this.state.data.restaurantContactNumber}`}
+                                      href={`tel:+91${this.state.data.deliveryPersonContactNumber}`}
                                       target="blank"
                                     >
                                       <i className="lni-phone-handset"></i>
