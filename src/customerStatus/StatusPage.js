@@ -62,20 +62,17 @@ class StatusPage extends React.Component {
   async OTPverfication(otp) {
     const data = {
       mobile: this.state.data.customerContactNumber,
-      //mobile:mobile,
       otp: otp,
     };
     await axios
       .post(`${process.env.REACT_APP_BASE_URL}/verify_otp`, data)
       .then((res) => {
-        console.log(res.data);
         this.setState({ user_info: res.data });
         this.setState({ token: res.data.accessToken });
         sessionStorage.setItem("token", res.data.accessToken);
         this.setState({ successMessage: res.data.message });
         this.setState({ isVerified: true });
         this.setState({ mobileVerification: true });
-        console.log(res.data.message);
         clearInterval(myInterval);
         ReactGA.event({
           category: "OTP",
@@ -130,7 +127,6 @@ class StatusPage extends React.Component {
         )
         .then((res) => {
           const data = res.data;
-          console.log(data);
           this.setState({ data: data });
           this.setState({ isLoaded: true });
           this.setState({ mobileVerification: data.mobileVerification });
@@ -354,7 +350,7 @@ class StatusPage extends React.Component {
                       )}
                       {this.state.data.cancellationDateTime != null && (
                         <p className="cancelledOrder">
-                          Cancelled on {this.state.cancellationDate} at{" "}
+                          Cancelled on {this.state.cancellationDate} at
                           {this.state.cancellationTime}
                         </p>
                       )}
@@ -418,14 +414,20 @@ class StatusPage extends React.Component {
 
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">
-                              {this.state.data.deliveryRequestStageId
+                              {this.state.isEcommerce === false &&
+                              [1, 2, 3, 4, 6].includes(
+                                Number(this.state.data.deliveryRequestStageId)
+                              )
                                 ? progressTwoTexts[
                                     this.state.data.deliveryRequestStageId
                                   ][0]
                                 : "Order has been accepted by"}
                             </h4>
                             <p className="description">
-                              {this.state.data.deliveryRequestStageId
+                              {this.state.isEcommerce === false &&
+                              [1, 2, 3, 4, 6].includes(
+                                Number(this.state.data.deliveryRequestStageId)
+                              )
                                 ? progressTwoTexts[
                                     this.state.data.deliveryRequestStageId
                                   ][1]
@@ -465,10 +467,10 @@ class StatusPage extends React.Component {
                                   <p>
                                     {this.state.data.deliveryPersonName} <br />
                                     +91-
-                                    {
-                                      this.state.data
-                                        .deliveryPersonContactNumber
-                                    }
+                                    {this.state.data.deliveryPersonContactNumber
+                                      ? this.state.data
+                                          .deliveryPersonContactNumber
+                                      : "9999999999"}
                                     <a
                                       href={`tel:+91${this.state.data.deliveryPersonContactNumber}`}
                                       target="blank"
@@ -503,7 +505,7 @@ class StatusPage extends React.Component {
                             <h4 className="orderTitle">
                               {this.state.isEcommerce
                                 ? "Delivered"
-                                : "Lets start eating"}{" "}
+                                : "Lets start eating"}
                             </h4>
                             {/* <p className="description">Dont forget to rate</p>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>
