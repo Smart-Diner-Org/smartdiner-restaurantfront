@@ -114,28 +114,15 @@ class Menu extends Component {
           >
             <Select
               className="collectionMenu"
-              style={{
-                width: "80%",
-                marginBottom: "20px",
-              }}
-              dropdownStyle={{
-                borderRadius: "8px",
-                fontFamily: "MuseoModerno",
-                backgroundColor: "var(--secondary-color)",
-              }}
               size={"large"}
               id="menu-dropdown"
+              getPopupContainer={(triggerNode) => triggerNode.parentElement}
               defaultValue={this.props.categoryArray[0].name}
-              onChange={(value) => this.onDropdownSelected(value)}
+              onSelect={(value, event) => this.onDropdownSelected(event.key)}
             >
-              {this.props.categoryArray.map((category, index) => {
+              {this.props.categoryArray.map((category) => {
                 return (
-                  <Option
-                    style={{ backgroundColor: "var(--secondary-color)", color: "#ffffff" }}
-                    key={index}
-                    value={`${category.id}`}
-                    data-toggle="pill"
-                  >
+                  <Option key={category.id} value={`${category.name}`}>
                     {category.name}
                   </Option>
                 );

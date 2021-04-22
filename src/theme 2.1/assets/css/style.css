@@ -710,7 +710,7 @@ hr {
   text-decoration-color: #ffc009;
 }
 
-.bill-container small{
+.bill-container small {
   margin-left: 5px;
   color: #777;
   font-weight: 900;
@@ -1478,6 +1478,11 @@ hr {
 .desktop-sticky-bottom {
   bottom: 10px;
 }
+
+.collectionMenu {
+  width: 80%;
+  margin-bottom: 20px;
+}
 .collectionMenu .ant-select-selector {
   background-color: var(--secondary-color) !important;
   color: #ffffff;
@@ -1491,6 +1496,21 @@ hr {
 }
 .collectionMenu .ant-select-arrow {
   color: #ffffff;
+}
+.ant-select-dropdown {
+  padding: 0px;
+}
+.ant-select-item-option-content {
+  text-align: left;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+}
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: #000;
 }
 
 .desktop-rel {
