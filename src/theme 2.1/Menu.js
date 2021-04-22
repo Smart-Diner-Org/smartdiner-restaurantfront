@@ -120,7 +120,7 @@ class Menu extends Component {
               }}
               dropdownStyle={{
                 borderRadius: "8px",
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: "MuseoModerno",
                 backgroundColor: "var(--secondary-color)",
               }}
               size={"large"}
@@ -131,7 +131,7 @@ class Menu extends Component {
               {this.props.categoryArray.map((category, index) => {
                 return (
                   <Option
-                    style={{ color: "#ffffff" }}
+                    style={{ backgroundColor: "var(--secondary-color)", color: "#ffffff" }}
                     key={index}
                     value={`${category.id}`}
                     data-toggle="pill"
