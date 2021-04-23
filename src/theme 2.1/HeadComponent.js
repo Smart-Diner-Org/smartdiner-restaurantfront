@@ -53,7 +53,7 @@ class HeadComponent extends Component {
                     />
                   )}
                   <h4 className="pl-20 d-flex align-items-center">
-                    {this.props.restaurantName}
+                    <span>{this.props.restaurantName}</span>
                   </h4>
                 </a>
 

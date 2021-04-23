@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { Select } from "antd";
+const { Option } = Select;
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -111,25 +112,22 @@ class Menu extends Component {
             id="menu-drop-down"
             className={is_visible ? "mobile sticky" : "mobile"}
           >
-            <select
-              className="menu-dropdown"
+            <Select
+              className="collectionMenu"
+              size={"large"}
               id="menu-dropdown"
-              onChange={(e) => this.onDropdownSelected(e.target.value)}
+              getPopupContainer={(triggerNode) => triggerNode.parentElement}
+              defaultValue={this.props.categoryArray[0].name}
+              onSelect={(value, event) => this.onDropdownSelected(event.key)}
             >
-              {this.props.categoryArray.map((category, index) => {
+              {this.props.categoryArray.map((category) => {
                 return (
-                  <option
-                    key={index}
-                    ref={(option) => (this.dropDown[index] = option)}
-                    className={index === 0 ? "active" : ""}
-                    value={`${category.id}`}
-                    data-toggle="pill"
-                  >
+                  <Option key={category.id} value={`${category.name}`}>
                     {category.name}
-                  </option>
+                  </Option>
                 );
               })}
-            </select>
+            </Select>
           </div>
         </div>
       </div>
