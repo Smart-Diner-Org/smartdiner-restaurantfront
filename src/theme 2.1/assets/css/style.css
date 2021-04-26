@@ -975,6 +975,9 @@ hr {
     height: 30vh;
     width: 100%;
   }
+  .single-slider .slider-bg img{
+    max-height: 30vh;
+  }
  
 }
 
