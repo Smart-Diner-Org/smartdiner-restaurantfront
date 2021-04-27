@@ -687,51 +687,46 @@ class NewHome extends Component {
               logo={this.state.restaurant_info.logo}
               restaurantName={this.state.restaurant_info.name}
             />
-            <div
-              style={
-                this.state.showBag &&
-                !this.state.showLocationPopup &&
-                this.state.total &&
-                sessionStorage.getItem("boundary") !== 0
-                  ? {
-                      pointerEvents: "none",
-                      filter: "blur(10px)",
-                    }
-                  : {}
-              }
-            >
-              {this.state.restaurant_info.restaurant_website_detail
-                .slider_images?.length > 0 && (
-                <Slider
-                  slider_images={
-                    this.state.restaurant_info.restaurant_website_detail
-                      .slider_images
-                  }
-                  contact_number={this.state.restaurantBranch[0].contact_number}
-                />
-              )}
-            </div>
-
-            <div
-              style={
-                this.state.showBag &&
-                !this.state.showLocationPopup &&
-                this.state.total &&
-                sessionStorage.getItem("boundary") !== 0
-                  ? {
-                      pointerEvents: "none",
-                      filter: "blur(10px)",
-                      position: "fixed",
-                    }
-                  : {}
-              }
-            >
+            <div className="mt-200">
               <div
                 style={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .slider_images?.length > 0
-                    ? {}
-                    : { marginTop: "50px" }
+                  this.state.showBag &&
+                  !this.state.showLocationPopup &&
+                  this.state.total &&
+                  sessionStorage.getItem("boundary") !== 0
+                    ? {
+                        pointerEvents: "none",
+                        filter: "blur(10px)",
+                      }
+                    : {}
+                }
+              >
+                {this.state.restaurant_info.restaurant_website_detail
+                  .slider_images?.length > 0 && (
+                  <Slider
+                    slider_images={
+                      this.state.restaurant_info.restaurant_website_detail
+                        .slider_images
+                    }
+                    contact_number={
+                      this.state.restaurantBranch[0].contact_number
+                    }
+                  />
+                )}
+              </div>
+
+              <div
+                style={
+                  this.state.showBag &&
+                  !this.state.showLocationPopup &&
+                  this.state.total &&
+                  sessionStorage.getItem("boundary") !== 0
+                    ? {
+                        pointerEvents: "none",
+                        filter: "blur(10px)",
+                        position: "fixed",
+                      }
+                    : {}
                 }
               >
                 <MultiCards
@@ -739,84 +734,84 @@ class NewHome extends Component {
                     this.state.restaurant_info.restaurant_website_detail.cards
                   )}
                 />
-              </div>
-              <Description
-                delivery_locations={
-                  this.state.restaurantBranch[0].delivery_locations_to_display
-                }
-                preOrder={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .is_pre_booking_enabled
-                }
-                preOrderImage={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .pre_order_info_image
-                }
-                customisation_info_content={JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail
-                    .customisation_info_content
-                )}
-                has_customisation_info={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .has_customisation_info
-                }
-              />
-              <Product
-                setType={this.setType}
-                changequantity={this.changequantity}
-                items={this.state.items}
-                selectedType={this.state.selectedType}
-                categoryArray={this.state.categoryArray}
-                preOrderImage={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .pre_order_info_image
-                }
-                contact_number={this.state.restaurantBranch[0].contact_number}
-                total={this.state.total}
-                setShowLocationPopup={() => {
-                  if (this.state.boundary === false && this.state.total > 0)
-                    this.setState({ showLocationPopup: true });
-                }}
-              />
-              <About
-                about={this.state.restaurant_info.about}
-                timings={this.state.restaurantBranch[0].timings}
-                aboutImage={
-                  this.state.restaurant_info.restaurant_website_detail
-                    .about_image
-                }
-              />
-
-              <MapLocation
-                restaurantName={this.state.restaurant_info.name}
-                address={this.state.restaurantBranch[0].name}
-              />
-              <Contact />
-              {this.state.total > 0 && this.state.boundary && (
-                <CheckoutButton
+                <Description
+                  delivery_locations={
+                    this.state.restaurantBranch[0].delivery_locations_to_display
+                  }
+                  preOrder={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .is_pre_booking_enabled
+                  }
+                  preOrderImage={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .pre_order_info_image
+                  }
+                  customisation_info_content={JSON.parse(
+                    this.state.restaurant_info.restaurant_website_detail
+                      .customisation_info_content
+                  )}
+                  has_customisation_info={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .has_customisation_info
+                  }
+                />
+                <Product
+                  setType={this.setType}
+                  changequantity={this.changequantity}
+                  items={this.state.items}
+                  selectedType={this.state.selectedType}
+                  categoryArray={this.state.categoryArray}
+                  preOrderImage={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .pre_order_info_image
+                  }
+                  contact_number={this.state.restaurantBranch[0].contact_number}
                   total={this.state.total}
-                  checkOutToBag={() => {
-                    this.setState({ showLocationPopup: false });
-                    ReactGA.event({
-                      category: "Home Page",
-                      action: `Clicked Checkout Button`,
-                      label: `Opens Cart `,
-                    });
-                    this.togglePopup();
+                  setShowLocationPopup={() => {
+                    if (this.state.boundary === false && this.state.total > 0)
+                      this.setState({ showLocationPopup: true });
                   }}
                 />
-              )}
-              <WhatsAppIcon
-                contact_number={this.state.restaurantBranch[0].contact_number}
-                total={this.state.total}
-              />
-              <FootComponent
-                links={this.state.restaurant_info.restaurant_detail}
-                restaurantName={this.state.restaurant_info.name}
-                address={this.state.restaurantBranch[0].address}
-                email={this.state.restaurantBranch[0].email}
-                contact_number={this.state.restaurantBranch[0].contact_number}
-              />
+                <About
+                  about={this.state.restaurant_info.about}
+                  timings={this.state.restaurantBranch[0].timings}
+                  aboutImage={
+                    this.state.restaurant_info.restaurant_website_detail
+                      .about_image
+                  }
+                />
+
+                <MapLocation
+                  restaurantName={this.state.restaurant_info.name}
+                  address={this.state.restaurantBranch[0].name}
+                />
+                <Contact />
+                {this.state.total > 0 && this.state.boundary && (
+                  <CheckoutButton
+                    total={this.state.total}
+                    checkOutToBag={() => {
+                      this.setState({ showLocationPopup: false });
+                      ReactGA.event({
+                        category: "Home Page",
+                        action: `Clicked Checkout Button`,
+                        label: `Opens Cart `,
+                      });
+                      this.togglePopup();
+                    }}
+                  />
+                )}
+                <WhatsAppIcon
+                  contact_number={this.state.restaurantBranch[0].contact_number}
+                  total={this.state.total}
+                />
+                <FootComponent
+                  links={this.state.restaurant_info.restaurant_detail}
+                  restaurantName={this.state.restaurant_info.name}
+                  address={this.state.restaurantBranch[0].address}
+                  email={this.state.restaurantBranch[0].email}
+                  contact_number={this.state.restaurantBranch[0].contact_number}
+                />
+              </div>
             </div>
           </div>
         </div>

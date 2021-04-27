@@ -853,7 +853,6 @@ hr {
 
 .multi-cards {
   padding: 0 80px;
-  padding-top: 50px;
   margin-bottom: -80px;
 }
 @media only screen and (max-width: 768px) {
@@ -1832,10 +1831,6 @@ hr {
 }
 
 @media (max-width: 767px) {
-  .about-area {
-    padding-top: 75px;
-    padding-bottom: 80px;
-  }
   .description-content {
     margin-top: 0px;
   }

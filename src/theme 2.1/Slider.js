@@ -12,7 +12,7 @@ class Slider extends Component {
 
   render() {
     return (
-      <section id="home" className="slider-area pt-130 ">
+      <section id="home" className="slider-area">
         <div className="container-fluid position-relative carousel-design ">
           <Carousel autoplay>
             {this.state.slider.map((item, index) => {
