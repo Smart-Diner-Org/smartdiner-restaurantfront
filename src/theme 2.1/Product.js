@@ -6,7 +6,7 @@ import FlipMove from "react-flip-move";
 class Product extends Component {
   render() {
     return (
-      <section id="product" className="product-area pt-90 ">
+      <section id="product" className="product-area pt-30 ">
         <div className="container">
           <div className="row ">
             <h2 className="col-lg-3 col-md-4 collection-tilte">Menu</h2>
@@ -52,7 +52,9 @@ class Product extends Component {
                                   menuID={item.id}
                                   total={this.props.total}
                                   contact_number={this.props.contact_number}
-                                  setShowLocationPopup={this.props.setShowLocationPopup}
+                                  setShowLocationPopup={
+                                    this.props.setShowLocationPopup
+                                  }
                                   is_available={item.is_available}
                                 />
                               );

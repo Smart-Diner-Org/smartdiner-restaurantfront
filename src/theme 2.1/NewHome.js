@@ -726,11 +726,20 @@ class NewHome extends Component {
                   : {}
               }
             >
-              <MultiCards
-                cards={JSON.parse(
-                  this.state.restaurant_info.restaurant_website_detail.cards
-                )}
-              />
+              <div
+                style={
+                  this.state.restaurant_info.restaurant_website_detail
+                    .slider_images?.length > 0
+                    ? {}
+                    : { marginTop: "50px" }
+                }
+              >
+                <MultiCards
+                  cards={JSON.parse(
+                    this.state.restaurant_info.restaurant_website_detail.cards
+                  )}
+                />
+              </div>
               <Description
                 delivery_locations={
                   this.state.restaurantBranch[0].delivery_locations_to_display
