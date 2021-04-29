@@ -20,6 +20,15 @@ class HeadComponent extends Component {
     const el = document.querySelector("header");
     this.setState({ top: el.offsetTop, height: el.offsetHeight });
     window.addEventListener("scroll", this.handleScroll);
+    const navLinks = document.querySelectorAll(".nav-item");
+    const menuToggle = document.getElementById(
+      "navbarSupportedContentToggleButton"
+    );
+    navLinks.forEach((l) => {
+      l.addEventListener("click", () => {
+        menuToggle.click();
+      });
+    });
   }
 
   render() {
@@ -65,6 +74,7 @@ class HeadComponent extends Component {
                   aria-controls="navbarSupportedContent"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
+                  id="navbarSupportedContentToggleButton"
                 >
                   <span className="bar-icon"></span>
                   <span className="bar-icon"></span>
