@@ -8,17 +8,7 @@ class BillItem extends Component {
         <div className="container ">
           <div className="row d-flex align-items-center">
             <div className="col-2 p-0">
-              <div
-                style={{
-                  height: "100px",
-                  width: "100%",
-                  maxWidth: "100px",
-
-                  display: "flex",
-                  alignItems: "centre",
-                  borderRadius: "8px",
-                }}
-              >
+              <div className="img-container">
                 {this.props.image ? (
                   <>
                     <a href="#">
@@ -26,12 +16,12 @@ class BillItem extends Component {
                         loading="lazy"
                         src={this.props.image}
                         alt="Product"
-                      />{" "}
+                      />
                     </a>
                   </>
                 ) : (
                   <a href="#">
-                    <img loading="lazy" src={BurgerImage} alt="Product" />{" "}
+                    <img loading="lazy" src={BurgerImage} alt="Product" />
                   </a>
                 )}
               </div>
@@ -39,13 +29,14 @@ class BillItem extends Component {
             <div className="col-10">
               <div className="row">
                 <label
-                  className="col-auto mr-auto"
+                  className="col-auto mr-auto mb-0"
                   style={{ color: "#e22a28" }}
                 >
                   <i className="lni lni-dinner"></i>
                 </label>
+
                 {!this.props.statuspage && (
-                  <div className="col-auto">
+                  <div className="col-auto pr-0">
                     <button
                       className="cancelbutton"
                       onClick={this.props.removeItem}
@@ -94,6 +85,7 @@ class BillItem extends Component {
                     <label>Rs.{this.props.price}</label>
                   )}
                 </div>
+
                 {this.props.statuspage ? (
                   <div
                     className="quantity"
@@ -102,7 +94,7 @@ class BillItem extends Component {
                     <label>{this.props.quantity}</label>
                   </div>
                 ) : (
-                  <div className="col-4 ">
+                  <div className="col-4 pr-0">
                     <div className="quantity d-flex justify-content-around">
                       <button
                         name="sub"
