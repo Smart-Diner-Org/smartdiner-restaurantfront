@@ -376,14 +376,12 @@ p {
   }
 }
 
-
 @media screen and (max-width: 50em) {
   .header-area h4 span {
     white-space: break-spaces;
     width: 150px;
   }
 }
-
 
 .header-area-sticky {
   position: fixed;
@@ -983,6 +981,10 @@ hr {
     position: relative;
     height: 30vh;
     width: 100%;
+  }
+
+  .single-slider .slider-bg img {
+    max-height: 30vh;
   }
 }
 
