@@ -1,9 +1,7 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Alert from "antd/lib/alert";
-import { defaultAboutImage } from "../theme 2.1/constant";
 import OTPpage from "./OTPpage";
 import ReactGA from "react-ga";
 import BillItem from "../theme 2.1/components/BillItem";
@@ -13,6 +11,17 @@ const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
   "It does not seem to be the right order. Please check";
 let myInterval;
+
+const progressTwoTexts = {
+  1: [
+    "Order accepted by the restaurant.",
+    " Looking for the delivery partner.",
+  ],
+  2: ["Food is being prepared", "& the food will be picked soon"],
+  3: ["Order accepted by the restaurant.", "Looking for the delivery partner."],
+  4: ["Food is being prepared", "& the food will be picked soon"],
+  6: ["Delivery got delayed.", "Sorry for the inconvenience."],
+};
 
 class StatusPage extends React.Component {
   constructor(props) {
@@ -53,20 +62,17 @@ class StatusPage extends React.Component {
   async OTPverfication(otp) {
     const data = {
       mobile: this.state.data.customerContactNumber,
-      //mobile:mobile,
       otp: otp,
     };
     await axios
       .post(`${process.env.REACT_APP_BASE_URL}/verify_otp`, data)
       .then((res) => {
-        console.log(res.data);
         this.setState({ user_info: res.data });
         this.setState({ token: res.data.accessToken });
         sessionStorage.setItem("token", res.data.accessToken);
         this.setState({ successMessage: res.data.message });
         this.setState({ isVerified: true });
         this.setState({ mobileVerification: true });
-        console.log(res.data.message);
         clearInterval(myInterval);
         ReactGA.event({
           category: "OTP",
@@ -121,7 +127,6 @@ class StatusPage extends React.Component {
         )
         .then((res) => {
           const data = res.data;
-          console.log(data);
           this.setState({ data: data });
           this.setState({ isLoaded: true });
           this.setState({ mobileVerification: data.mobileVerification });
@@ -231,7 +236,6 @@ class StatusPage extends React.Component {
       }
     }
     let date = new Date(this.state.data.createdDate);
-    console.log(date);
     let newdate = date.toDateString().split(" ");
     let dt = `${newdate[0]}, ${newdate[2]} ${newdate[1]}`;
     this.setState({
@@ -346,7 +350,7 @@ class StatusPage extends React.Component {
                       )}
                       {this.state.data.cancellationDateTime != null && (
                         <p className="cancelledOrder">
-                          Cancelled on {this.state.cancellationDate} at{" "}
+                          Cancelled on {this.state.cancellationDate} at
                           {this.state.cancellationTime}
                         </p>
                       )}
@@ -410,16 +414,26 @@ class StatusPage extends React.Component {
 
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">
-                              {this.state.isEcommerce
-                                ? "Order has been accepted by"
-                                : "Food is being prepared"}
+                              {this.state.isEcommerce === false &&
+                              [1, 2, 3, 4, 6].includes(
+                                Number(this.state.data.deliveryRequestStageId)
+                              )
+                                ? progressTwoTexts[
+                                    this.state.data.deliveryRequestStageId
+                                  ][0]
+                                : "Order has been accepted by"}
                             </h4>
                             <p className="description">
-                              {this.state.isEcommerce
-                                ? `${this.state.data.restuarantName}`
-                                : `${this.state.data.restuarantName} is preparing
-                                your food till then.`}
+                              {this.state.isEcommerce === false &&
+                              [1, 2, 3, 4, 6].includes(
+                                Number(this.state.data.deliveryRequestStageId)
+                              )
+                                ? progressTwoTexts[
+                                    this.state.data.deliveryRequestStageId
+                                  ][1]
+                                : `${this.state.data.restuarantName}`}
                             </p>
+
                             {/* <p className="description">Till then <a href="https://google.com"
                                             target="blank">https://google.com</a></p> */}
                           </div>
@@ -444,15 +458,25 @@ class StatusPage extends React.Component {
                           <div className="orderDetails ml-2">
                             <h4 className="orderTitle">Out for delivery</h4>
                             <div className="deliveryGuy container">
-                              <div className="row">
-                                <img src="" alt="" />
+                              <div className="row d-flex align-items-center">
+                                <img
+                                  src="https://graphicriver.img.customer.envatousercontent.com/files/292679805/preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2da54bb3b99ae71f23e0493c61bf2152"
+                                  alt=""
+                                />
                                 <div className="deliveryGuyDetails">
                                   <p>
-                                    Delivery guy{" "}
-                                    <i className="lni lni-phone"></i>
-                                  </p>
-                                  <p>
-                                    {this.state.data.resturantContactNumber}
+                                    {this.state.data.deliveryPersonName} <br />
+                                    +91-
+                                    {this.state.data.deliveryPersonContactNumber
+                                      ? this.state.data
+                                          .deliveryPersonContactNumber
+                                      : "9999999999"}
+                                    <a
+                                      href={`tel:+91${this.state.data.deliveryPersonContactNumber}`}
+                                      target="blank"
+                                    >
+                                      <i className="lni-phone-handset"></i>
+                                    </a>
                                   </p>
                                 </div>
                               </div>
@@ -481,7 +505,7 @@ class StatusPage extends React.Component {
                             <h4 className="orderTitle">
                               {this.state.isEcommerce
                                 ? "Delivered"
-                                : "Lets start eating"}{" "}
+                                : "Lets start eating"}
                             </h4>
                             {/* <p className="description">Dont forget to rate</p>
                                     <i className="fa fa-star checked" aria-hidden="true"></i>

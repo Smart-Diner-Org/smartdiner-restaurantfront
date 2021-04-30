@@ -1,10 +1,8 @@
-
-
 .customerStatusContainer {
   padding: 30px;
 }
 
-.customerStatusContainer h1{
+.customerStatusContainer h1 {
   font-size: 2.5rem;
 }
 
@@ -35,15 +33,15 @@
 
 .address {
   padding: 30px;
-  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   word-wrap: break-word;
 }
 
-.address h6{
+.address h6 {
   margin-bottom: 1em;
 }
 
-.address p{
+.address p {
   margin-bottom: 0.1em;
 }
 
@@ -63,21 +61,54 @@
 }
 
 .shopping-bag {
-  background-image: url('./icons/043-window.png');
+  background-image: url("./icons/043-window.png");
 }
 
 .restaurant-icon {
-  background-image: url('./icons/035-online\ shopping.png');
+  background-image: url("./icons/035-online\ shopping.png");
 }
 
 .delivery-icon {
-  background-image: url('./icons/049-delivery\ truck.png');
+  background-image: url("./icons/049-delivery\ truck.png");
 }
 
 .deliveryProgress {
-  /*height: 450px;*/
   height: auto;
   min-height: 100px;
+}
+
+.deliveryGuy img {
+  height: 55px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.deliveryGuy i {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3em;
+  color: #000466;
+  border: 2px solid #000466;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  font-size: 16px;
+  font-weight: 900;
+}
+.deliveryGuy .deliveryGuyDetails p {
+  display: flex;
+}
+
+.deliveryGuy .deliveryGuyDetail a p{
+  margin-left: 3em;
 }
 
 .progress-bar-vertical {
@@ -105,12 +136,12 @@
   position: relative !important;
   word-wrap: break-word;
 }
-.location h6{
+.location h6 {
   color: white;
   margin-bottom: 5px;
 }
 
-.restaurantImages img{
+.restaurantImages img {
   border-radius: 8px;
 }
 
@@ -124,115 +155,102 @@
   background-color: #000466;
 }
 
-.status-footer a{
+.status-footer a {
   color: white;
   text-decoration: underline;
   text-decoration-color: yellow;
 }
 
-.status-footer a:hover{
+.status-footer a:hover {
   color: yellow;
   text-decoration: none;
 }
 
-.cancelledOrder{
-  color:#E22A28;
+.cancelledOrder {
+  color: #e22a28;
 }
 /*--*/
-.restaurantDetails h3{
+.restaurantDetails h3 {
   font-family: "MuseoModerno";
-  color:#000466;
-  
+  color: #000466;
 }
-.paybutton{
-  width: 100%; 
+.paybutton {
+  width: 100%;
   background-color: #000466;
-  color:#ffffff;
+  color: #ffffff;
   height: 50px;
   font-family: "MuseoModerno";
   font-size: 20px;
-  border:none;
-  margin-top:30px;
+  border: none;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
-.paybutton:hover{
-  color:#ffffff;
+.paybutton:hover {
+  color: #ffffff;
 }
-.green{
-  background-color:#08a860 ;
-}
-
-.paybutton a{
-  color:#ffffff;
-}
-.paybutton a:hover{
-  color:#ffffff;
+.green {
+  background-color: #08a860;
 }
 
-.links button{
+.paybutton a {
+  color: #ffffff;
+}
+.paybutton a:hover {
+  color: #ffffff;
+}
+
+.links button {
   background-color: #ffffff;
-  color:#000466;
-  border:solid 1px #000466;
+  color: #000466;
+  border: solid 1px #000466;
   font-family: "Lato";
-  width:100%;
+  width: 100%;
   height: 50px;
   text-align: center;
-  
 }
-.links a{
+.links a {
   text-decoration: none;
-  color:#000466;
-  width:100%;
+  color: #000466;
+  width: 100%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.links a:hover{
-  color:#ffffff;
+.links a:hover {
+  color: #ffffff;
   background-color: #000466;
 }
-@media screen and (max-width:50em) {
-  .restaurantDetails{
-      /*display: none;*/
-      margin-top: 20px;
+@media screen and (max-width: 50em) {
+  .restaurantDetails {
+    margin-top: 20px;
   }
   .deliveryProgress {
-    height: 450px; 
+    height: 450px;
     min-height: 100px;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  .restaurantDetails{
-    /*display: none;*/
+  .restaurantDetails {
     margin-top: 20px;
+  }
+  .deliveryProgress {
+    height: 450px;
+    min-height: 100px;
+  }
 }
-.deliveryProgress {
-  height: 450px;
-  min-height: 100px;
-}
-}
-.pos{
+.pos {
   position: relative;
-  /*bottom:0;*/
 }
-.scroll{
+.scroll {
   height: 370px;
-  overflow-y: scroll; 
-  /*overflow-x: hidden;*/
-  
+  overflow-y: scroll;
 }
-.m_h{
+.m_h {
   min-height: 100vh;
 }
-.min_ht{
-
-  min-height:100vh;
-  /*
-  margin-bottom: -100px;
-  padding-bottom: 100px;
-  */
+.min_ht {
+  min-height: 100vh;
 }
