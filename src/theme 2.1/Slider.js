@@ -102,6 +102,13 @@ class Slider extends Component {
               );
             })}
           </Carousel>
+          <div
+            className="row d-flex justify-content-center call-to-action-button"
+            style={{ position: "absolute", bottom: "20px" }}
+          >
+            <a href="#product">Place order</a>
+            <a href="#footer">Call us</a>
+          </div>
         </div>
       </section>
     );
