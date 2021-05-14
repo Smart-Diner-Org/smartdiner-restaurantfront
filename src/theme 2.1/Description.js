@@ -12,7 +12,7 @@ class Description extends React.Component {
 
   render() {
     return (
-      <section id="description" class="about-area description-content pt-50 ">
+      <section id="description" class="about-area description-content">
         <div class="container">
           {this.props.delivery_locations && (
             <div class="row mt-30">
@@ -38,8 +38,29 @@ class Description extends React.Component {
             </div>
           )}
 
+          {/* {this.props.preOrder && !this.props.preOrderImage && (
+            <div
+              class="d-flex mt-20 justify-content-center align-items-center"
+              style={{ width: "100%", backgroundColor: "black" }}
+            >
+              <h5 class="mt-10 mb-10 " style={{ color: "white" }}>
+                We also provide Pre-Order service
+              </h5>
+            </div>
+          )} */}
+
+          {/* {this.props.preOrder && this.props.preOrderImage && (
+            <div className="mt-20" style={{ width: "100%" }}>
+              <img
+                loading="lazy"
+                src={this.props.preOrderImage}
+                alt="preOrderImage"
+              />
+            </div>
+          )} */}
+
           {this.props.has_customisation_info && (
-            <div className="call-for-order mt-70">
+            <div className="call-for-order">
               <div class="section-title">
                 <h5 class="mb-15">Our Orders</h5>
               </div>
