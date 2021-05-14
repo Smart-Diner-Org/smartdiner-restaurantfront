@@ -1474,6 +1474,141 @@ hr {
   font-weight: 600;
   color: black;
 }
+.custom-dropdown-1 {
+  width: 70%;
+  padding: 10px 15px;
+  margin: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--secondary-color);
+  border: 0;
+  height: 47.2px;
+}
+.custom-arrow {
+  position: absolute;
+  display: block;
+  background-color: var(--secondary-color);
+  top: 40px;
+  right: 65px;
+  height: 47.2px;
+  width: 3rem;
+  pointer-events: none;
+  border-radius: 5px;
+}
+.custom-arrow1 {
+  position: absolute;
+  display: block;
+  background-color: var(--secondary-color);
+  top: 20px;
+  right: 55px;
+  height: 47.2px;
+  width: 3rem;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+@media screen and (width: 375px) {
+  .custom-arrow {
+    right: 65px;
+  }
+  .custom-arrow1 {
+    right: 55px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 411px) {
+  .custom-arrow {
+    right: 71px;
+  }
+  .custom-arrow1 {
+    right: 61px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 360px) {
+  .custom-arrow {
+    right: 64px;
+  }
+  .custom-arrow1 {
+    right: 54px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 320px) {
+  .custom-arrow {
+    right: 58px;
+  }
+  .custom-arrow1 {
+    right: 48px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 280px) {
+  .custom-arrow {
+    right: 51px;
+  }
+  .custom-arrow1 {
+    right: 41px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 768px) {
+  .custom-arrow {
+    right: 46px;
+    height: 47.2px;
+    width: 1rem;
+  }
+  .custom-arrow1 {
+    right: 114px;
+  }
+}
+.custom-arrow::before,
+.custom-arrow::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+.custom-arrow1::before,
+.custom-arrow1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.custom-arrow::after {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #ffffff;
+  top: 55%;
+}
+
+.custom-arrow1::after {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #ffffff;
+  top: 55%;
+}
+
 .menu-dropdown:focus {
   outline: none;
 }
