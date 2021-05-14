@@ -493,7 +493,6 @@ class NewHome extends Component {
                   );
                   this.setState({ boundary: false });
                 }
-
                 if (withInDistance && this.state.refregion) {
                   let flag;
                   const addr = this.state.refregion.map((item) =>
@@ -521,9 +520,11 @@ class NewHome extends Component {
 
                   if (
                     this.state.refpostcode.includes(
-                      results[0].address_components[
-                        results[0].address_components.length - 1
-                      ].long_name
+                      Number(
+                        results[0].address_components[
+                          results[0].address_components.length - 1
+                        ].long_name
+                      )
                     ) ||
                     flag
                   ) {
