@@ -379,7 +379,7 @@ p {
 @media screen and (max-width: 50em) {
   .header-area h4 span {
     white-space: break-spaces;
-    width: 150px;
+    width: 160px;
   }
 }
 
