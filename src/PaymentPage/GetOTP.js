@@ -26,20 +26,6 @@ class GetOTP extends React.Component {
               !(this.props.minutes == 0 && this.props.seconds == 0) && (
                 <div className="row pl-10 d-inline-flex">
                   <div className="col-10 d-flex">
-                    {/*
-                    {elementsArray.map((k, i) => (
-                      <input
-                        className="otp-box "
-                        type="number"
-                        key={i}
-                        ref={(ref) => (refArray[i] = ref)}
-                        onKeyUp={(e) =>
-                          this.navigateBasedonArrowKeyPressed(e, i)
-                        }
-                        maxLength="1"
-                        minLength="1"
-                      />
-                      ))} */}
                     <OTPBox
                       setOTPValue={this.props.setOTPValue}
                       OTPverfication={this.props.OTPverfication}
