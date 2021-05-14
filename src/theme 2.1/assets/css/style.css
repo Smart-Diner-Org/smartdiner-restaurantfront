@@ -516,6 +516,7 @@ p {
   margin: 20px;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .headlogo .tooltiptext {
@@ -920,7 +921,20 @@ hr {
   height: 80vh;
 }
 
-.slider-product-content a {
+@media (max-width: 767px) {
+  .carousel-control-next-icon {
+    display: none;
+  }
+  .carousel-control-prev-icon {
+    display: none;
+  }
+}
+
+.call-to-action-button {
+  width: 100%;
+}
+
+.call-to-action-button a {
   margin: 10px;
   padding: 10px 20px;
   pointer-events: all;
@@ -1099,7 +1113,7 @@ hr {
   color: white;
   font-size: 4em;
   z-index: 1;
-  padding: 0px 100px;
+  padding: 20px 0;
   text-align: center;
 }
 
@@ -1117,41 +1131,11 @@ hr {
 
 @media (max-width: 767px) {
   .single-slider .slider-product-content .slider-title {
-    font-size: 22px;
-    padding: 0 50px;
-  }
-  .single-slider .slider-product-content .row {
-    margin-top: 60%;
-  }
-}
-
-@media (max-width: 332px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 35%;
-  }
-}
-
-@media only screen and (min-width: 300px) and (max-width: 400px) {
-  .single-slider .slider-product-content .slider-title {
-    padding: 0 30px;
-  }
-}
-
-@media only screen and (min-width: 460px) and (max-width: 767px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 40%;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 900px) {
-  .single-slider .slider-product-content .row {
-    margin-top: 30%;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .single-slider .slider-product-content .slider-title {
-    font-size: 35px;
+    font-size: 24px;
+    position: absolute;
+    top: 80%;
+    color: var(--secondary-color);
+    margin-top: 20px;
   }
 }
 
@@ -1473,6 +1457,141 @@ hr {
   font-weight: 600;
   color: black;
 }
+.custom-dropdown-1 {
+  width: 70%;
+  padding: 10px 15px;
+  margin: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--secondary-color);
+  border: 0;
+  height: 47.2px;
+}
+.custom-arrow {
+  position: absolute;
+  display: block;
+  background-color: var(--secondary-color);
+  top: 40px;
+  right: 65px;
+  height: 47.2px;
+  width: 3rem;
+  pointer-events: none;
+  border-radius: 5px;
+}
+.custom-arrow1 {
+  position: absolute;
+  display: block;
+  background-color: var(--secondary-color);
+  top: 20px;
+  right: 55px;
+  height: 47.2px;
+  width: 3rem;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+@media screen and (width: 375px) {
+  .custom-arrow {
+    right: 65px;
+  }
+  .custom-arrow1 {
+    right: 55px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 411px) {
+  .custom-arrow {
+    right: 71px;
+  }
+  .custom-arrow1 {
+    right: 61px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 360px) {
+  .custom-arrow {
+    right: 64px;
+  }
+  .custom-arrow1 {
+    right: 54px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 320px) {
+  .custom-arrow {
+    right: 58px;
+  }
+  .custom-arrow1 {
+    right: 48px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 280px) {
+  .custom-arrow {
+    right: 51px;
+  }
+  .custom-arrow1 {
+    right: 41px;
+  }
+  .custom-dropdown-1 {
+    font-size: 16px;
+  }
+}
+@media screen and (width: 768px) {
+  .custom-arrow {
+    right: 46px;
+    height: 47.2px;
+    width: 1rem;
+  }
+  .custom-arrow1 {
+    right: 114px;
+  }
+}
+.custom-arrow::before,
+.custom-arrow::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+.custom-arrow1::before,
+.custom-arrow1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.custom-arrow::after {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #ffffff;
+  top: 55%;
+}
+
+.custom-arrow1::after {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #ffffff;
+  top: 55%;
+}
+
 .menu-dropdown:focus {
   outline: none;
 }

@@ -5,7 +5,7 @@ class Description extends React.Component {
     super(props);
     this.state = {
       location: this.props.delivery_locations
-        ? this.props.delivery_locations.split(",")
+        ? ["Gandhipuram", "Sulur", "Kalangal", "Siddhapudur"]
         : null,
     };
   }

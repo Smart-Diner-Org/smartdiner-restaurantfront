@@ -1,11 +1,10 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
-import Alert from "antd/lib/alert";
+import Alert from "react-bootstrap/Alert";
 import OTPpage from "./OTPpage";
 import ReactGA from "react-ga";
 import BillItem from "../theme 2.1/components/BillItem";
-
 const orderNotFound = "Order not found";
 const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
@@ -26,7 +25,6 @@ const progressTwoTexts = {
 class StatusPage extends React.Component {
   constructor(props) {
     super(props);
-    //this.apiLink = `${process.env.REACT_APP_BASE_URL}/`;
     this.state = {
       isLoaded: false,
       data: {},
@@ -138,6 +136,8 @@ class StatusPage extends React.Component {
     } catch (error) {
       alert("Failed to fetch information from server");
     }
+    ReactGA.initialize(`${this.state.data.gaTrackingId}`);
+    ReactGA.pageview("/statuspage");
 
     const favicon = document.getElementById("favicon");
     favicon.href = this.state.data.logo;
@@ -598,29 +598,103 @@ class StatusPage extends React.Component {
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="container">
-                  <div className="address row mt-5 ">
-                    <div className="col-6 d-flex flex-column justify-content-around">
-                      <h6>Delivery address:</h6>
-                      <p>{this.state.data.name}</p>
-                      <p>{this.state.data.deliveryAddressOne}</p>
-                      <p>{this.state.data.deliveryAddressTwo}</p>
-                      {/* <p>Pincode</p> */}
-                    </div>
-                    <div className="location col-6 pt-10 d-flex flex-column justify-content-around">
-                      <h6>
-                        {this.state.isEcommerce
-                          ? "Store Contact details"
-                          : "Restaurant Contact details"}{" "}
-                      </h6>
-                      <p>{this.state.data.restaurantContactNumber}</p>
-                      <br />
-                      <p>{this.state.data.restuarantEmailId}</p>
-                      <br />
-                      <p>{this.state.data.restuarantAddress}</p>
-                      <br />
-                    </div>
+              <div className="col-lg-6 col-sm-0 restaurantDetails">
+                <h3 className="mb-5">
+                  Your Order - {this.state.data.restuarantName}
+                </h3>
+                <div
+                  className={`${
+                    this.state.data.orderDetailMenus.length > 2 && "scroll"
+                  }`}
+                >
+                  {this.state.data.orderDetailMenus.map((item, index) => (
+                    <BillItem
+                      key={index}
+                      itemName={item.menu_quantity_measure_price.menu.name}
+                      price={item.order_detail.original_price}
+                      image={item.menu_quantity_measure_price.menu.image}
+                      quantity={item.order_detail.quantity}
+                      menuQuantity={item.menu_quantity_measure_price}
+                      statuspage={this.state.statuspage}
+                      discount={
+                        ((item.order_detail.original_price -
+                          item.order_detail.price) /
+                          item.order_detail.original_price) *
+                        100
+                      }
+                      discountPrice={item.order_detail.price}
+                      description={
+                        item.menu_quantity_measure_price.menu.short_description
+                      }
+                    />
+                  ))}
+                </div>
+
+                {this.state.data.paymentTypeId == 2 &&
+                  this.state.data.paymentStatusId == 2 && (
+                    <a
+                      href={this.state.data.paymentLink}
+                      className="paybutton"
+                      target="blank"
+                      onClick={() => {
+                        ReactGA.event({
+                          category: "status page",
+                          action: "Clicked on pay now button",
+                          label: "opens online payment link",
+                        });
+                      }}
+                    >
+                      Pay now
+                    </a>
+                  )}
+
+                {this.state.data.paymentTypeId == 2 &&
+                  this.state.data.paymentStatusId == 1 && (
+                    <button className="paybutton green">
+                      Successfully paid
+                    </button>
+                  )}
+                {this.state.data.paymentTypeId == 1 &&
+                  this.state.data.paymentStatusId == 2 && (
+                    <button className="paybutton">Cash on delivery</button>
+                  )}
+
+                <div className="row links mt-50">
+                  <div className="col-6">
+                    <button
+                      onClick={() => {
+                        ReactGA.event({
+                          category: "status page",
+                          action: "Clicked on Contact restaurant",
+                          label: `Restaurant number ${this.state.data.restaurantContactNumber}`,
+                        });
+                      }}
+                    >
+                      <a
+                        href={`tel:+91${this.state.data.restaurantContactNumber}`}
+                        target="blank"
+                      >
+                        Contact Restaurant
+                      </a>
+                    </button>
+                  </div>
+                  <div className="col-6">
+                    <button
+                      onClick={() => {
+                        ReactGA.event({
+                          category: "status page",
+                          action: `Clicked on Visit ${this.state.restuarantName}`,
+                          label: `Opens ${this.state.data.restuarantName}`,
+                        });
+                      }}
+                    >
+                      <a href="/" target="blank">
+                        {" "}
+                        Visit {this.state.data.restuarantName}
+                      </a>
+                    </button>
                   </div>
                 </div>
               </div>
