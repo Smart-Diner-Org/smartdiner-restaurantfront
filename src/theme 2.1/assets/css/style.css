@@ -516,6 +516,7 @@ p {
   margin: 20px;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .headlogo .tooltiptext {
