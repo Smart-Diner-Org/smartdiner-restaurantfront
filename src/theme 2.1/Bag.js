@@ -8,7 +8,7 @@ class Bag extends Component {
       <div className="bag-component">
         <header className="bag-header">
           <div className="row">
-            <div className="col-auto mr-auto">
+            <div className="col-auto mr-auto pl-0">
               <button className="bag-close" onClick={this.props.closePopup}>
                 X
               </button>
