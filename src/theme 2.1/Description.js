@@ -12,7 +12,7 @@ class Description extends React.Component {
 
   render() {
     return (
-      <section id="description" class="about-area description-content pt-50 ">
+      <section id="description" class="about-area description-content pt-50">
         <div class="container">
           {this.props.delivery_locations && (
             <div class="row mt-30">

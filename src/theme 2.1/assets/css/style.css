@@ -1352,10 +1352,12 @@ hr {
 /*===========================
      5.PRODUCT CARD css 
 ===========================*/
+
 @media (max-width: 767px) {
   .product-area {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 80px;
+    margin-bottom:-190px;
   }
 }
 /* Pop UP css */
@@ -1827,17 +1829,19 @@ hr {
      6.about css 
 ===========================*/
 
-.description-content {
-  margin-top: 50px;
+.about-area{
+  margin-top:-50px;
 }
 
 @media (max-width: 767px) {
   .about-area {
     padding-top: 75px;
     padding-bottom: 80px;
+    margin-top:50px;
+    margin-bottom:-160px;
   }
   .description-content {
-    margin-top: 0px;
+    margin-top:-110px;
   }
 }
 /*---*/
@@ -1945,7 +1949,16 @@ hr {
 /*===========================
      Google Map Location css 
 ===========================*/
-
+.location-section {
+  margin-top:-120px;
+  margin-bottom:50px;
+}
+@media (max-width: 767px) {
+  .location-section {
+    margin-top:30px;
+    margin-bottom:50px;
+  }
+}
 .google-map {
   position: relative;
   margin: 10px 0px;
@@ -2353,6 +2366,10 @@ hr {
 /*===========================
        11.CONTACT css 
 ===========================*/
+.contact-area{
+  margin-top:-120px;
+}
+
 .contact-area .contact-title .title {
   font-size: 60px;
   color: #333;
