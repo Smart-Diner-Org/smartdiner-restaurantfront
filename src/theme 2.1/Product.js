@@ -6,7 +6,7 @@ import FlipMove from "react-flip-move";
 class Product extends Component {
   render() {
     return (
-      <section id="product" className="product-area pt-30 ">
+      <section id="product" class="product-area pt-90">
         <div className="container">
           <div className="row ">
             <h2 className="col-lg-3 col-md-4 collection-tilte">Menu</h2>

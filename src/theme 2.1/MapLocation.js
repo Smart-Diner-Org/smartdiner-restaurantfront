@@ -2,9 +2,9 @@ import React from "react";
 
 function MapLocation(props) {
   return (
-    <section id="location" class="pt-120 pb-10">
+    <section id="location" class="pt-120 pb-10 location-section">
       <div className="container">
-        <div className="google-map ">
+        <div className="google-map">
           <iframe
             loading="lazy"
             frameBorder="0"
