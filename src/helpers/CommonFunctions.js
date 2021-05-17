@@ -22,6 +22,7 @@ export default function calculateTotalPrice(
   const totalWithTax = (total + CGST + SGST + deliveryCharge).toFixed(2);
   const totaftdis = total - (total * totaldiscount / 100).toFixed(2);
   const discountamt=total-totaftdis;
+  const topayafterdis = totaftdis+CGST+SGST;
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
   sessionStorage.setItem("SGST", SGST.toFixed(2));
@@ -30,6 +31,7 @@ export default function calculateTotalPrice(
   sessionStorage.setItem("deliveryCharge", deliveryCharge);
   sessionStorage.setItem("totaftdis", totaftdis.toFixed(2));
   sessionStorage.setItem("discountamt", discountamt.toFixed(2));
+  sessionStorage.setItem("topayafterdis", topayafterdis.toFixed(2));
   
-  return [total, CGST, SGST, totalWithTax, totaftdis,discountamt];
+  return [total, CGST, SGST, totalWithTax, totaftdis,discountamt,topayafterdis];
 }
