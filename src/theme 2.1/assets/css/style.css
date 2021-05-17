@@ -737,6 +737,10 @@ hr {
   text-decoration-color: #ffc009;
 }
 
+.text{
+  color:#ffc009;
+}
+
 .bill-container small {
   margin-left: 5px;
   color: #777;
