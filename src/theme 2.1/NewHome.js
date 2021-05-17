@@ -40,7 +40,8 @@ class NewHome extends Component {
       bagItems: [],
       distance: null,
       showLocationPopup: false,
-      showBag: false,
+      showBag: false
+      
     };
   }
 
@@ -155,6 +156,7 @@ class NewHome extends Component {
       restaurantDetails.push(item);
     });
     this.setState({ restaurantBranch: restaurantDetails });
+    
     let items = [];
 
     data.menus.map((item) => {
@@ -671,10 +673,13 @@ class NewHome extends Component {
                   total={this.state.total}
                   quantity={this.state.quantity}
                   editlocation={this.editlocation}
+                  disc1={this.state.restaurantBranch[0].discount_on_mrp}
                   restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
+                  
                   is_ecommerce={this.state.restaurant_info.is_ecommerce}
+                  
                   delivery_slots={
                     this.state.restaurantBranch[0] &&
                     this.state.restaurantBranch[0].delivery_slots &&
@@ -682,6 +687,8 @@ class NewHome extends Component {
                   }
                 />
               )}
+              />
+             
             <HeadComponent
               togglePopup={this.togglePopup}
               total={this.state.total}

@@ -27,15 +27,16 @@ class Bag extends Component {
             items={this.props.items}
             changequantity={this.props.changequantity}
             restaurant_website_detail={this.props.restaurant_website_detail}
+            disc2={this.props.disc1}
             delivery_slots={this.props.delivery_slots}
             is_ecommerce={this.props.is_ecommerce}
           />
         ) : (
-          <p className="mt-20 mb-20">
-            Your cart is empty.
+            <p className="mt-20 mb-20">
+              Your cart is empty.
             <br /> Please enjoy food by adding from our menus
           </p>
-        )}
+          )}
 
         <footer>
           <div className="foot-content">

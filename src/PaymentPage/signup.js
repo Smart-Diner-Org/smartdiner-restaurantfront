@@ -562,10 +562,10 @@ class SignUp extends Component {
                             })
                           }
                         >
-                          <label className="mb-20">
-                            <i class="lni lni-arrow-left"></i> Back to
-                            {sessionStorage.getItem("title")}
-                          </label>
+                            <label className="mb-20">
+                              <i class="lni lni-arrow-left"></i> Back to
+                              {sessionStorage.getItem("title")}
+                            </label>
                         </Link>
                         <h2>Customer Details</h2>
                       </div>

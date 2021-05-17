@@ -74,11 +74,15 @@ class BagItemList extends React.Component {
               />
             );
           })}
+          {/* <div>
+            <p>{this.props.disc2}</p>
+            </div> */}
         </FlipMove>
         <Bill
           items={this.props.items}
           payTax={this.props.restaurant_website_detail.should_calculate_gst}
           taxPercentage={this.props.restaurant_website_detail.gst_percentage}
+          disc3={this.props.disc2}
           default_delivery_charge={
             this.props.restaurant_website_detail.default_delivery_charge
           }

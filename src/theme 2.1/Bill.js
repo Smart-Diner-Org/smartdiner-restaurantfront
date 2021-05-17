@@ -3,21 +3,39 @@ import calculateTotalPrice from "../helpers/CommonFunctions";
 
 class Bill extends Component {
   render() {
-    const [total, CGST, SGST, totalWithTax] = calculateTotalPrice(
+    const [total, CGST, SGST, totalWithTax, totaftdis,discountamt] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
-      Number(this.props.default_delivery_charge)
+      Number(this.props.default_delivery_charge),
+      Number(this.props.disc3)
     );
     return (
       <div class="bill-container">
         <hr />
         <div className="container">
-          <div className="row">
+          {Number(this.props.disc3) > 0 && (
+            <>
+              <div className="row">
+                <label className="col-auto mr-auto">Total MRP</label>
+                <br />
+                <label className="col-auto"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
+                <br />
+              </div>
+              <div className="row">
+                <label className="col-auto mr-auto">Total After Discount</label>
+                <br />
+                <label className="col-auto">{`Rs ${totaftdis.toFixed(2)}`}</label>
+              <br />
+              </div>
+            </>
+          )}
+
+          {/* <div className="row">
             <label className="col-auto mr-auto">Total</label>
             <br />
             <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
             <br />
-          </div>
+          </div> */}
           {Number(this.props.taxPercentage) > 0 && (
             <>
               <div className="row">
