@@ -31,6 +31,7 @@ export default function calculateTotalPrice(
   sessionStorage.setItem("taxPercentageHalfed", taxPercentage / 2);
   sessionStorage.setItem("deliveryCharge", deliveryCharge);
   sessionStorage.setItem("discountAmt", discountAmt.toFixed(2));
+  sessionStorage.setItem("totalMrp", parseFloat(total).toFixed(2));
  
   
   return [total, CGST, SGST, totalWithTax, totAftDis,discountAmt];

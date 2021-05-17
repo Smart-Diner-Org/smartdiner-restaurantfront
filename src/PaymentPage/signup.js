@@ -342,6 +342,7 @@ class SignUp extends Component {
       date_of_delivery: sessionStorage.getItem("deliveryDate"),
       time_of_delivery: sessionStorage.getItem("deliveryTime"),
       paymentType: paymentType,
+      total_mrp_price: sessionStorage.getItem("totalMrp")
     };
     await axios
       .post(`${this.apiLink}after_login/order/place_order`, data, {
