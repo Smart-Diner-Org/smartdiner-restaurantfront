@@ -3,7 +3,7 @@ import calculateTotalPrice from "../helpers/CommonFunctions";
 
 class Bill extends Component {
   render() {
-    const [total, CGST, SGST, totalWithTax, totaftdis,discountamt] = calculateTotalPrice(
+    const [total, CGST, SGST, totalWithTax, totaftdis, discountamt, topayafterdis] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
       Number(this.props.default_delivery_charge),
@@ -18,24 +18,26 @@ class Bill extends Component {
               <div className="row">
                 <label className="col-auto mr-auto">Total MRP</label>
                 <br />
-                <label className="col-auto"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
+                <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
                 <br />
               </div>
               <div className="row">
                 <label className="col-auto mr-auto">Total After Discount</label>
                 <br />
                 <label className="col-auto">{`Rs ${totaftdis.toFixed(2)}`}</label>
-              <br />
+                <br />
               </div>
             </>
           )}
 
-          {/* <div className="row">
-            <label className="col-auto mr-auto">Total</label>
-            <br />
-            <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
-            <br />
-          </div> */}
+          {Number(this.props.disc3) === 0 && (
+            <div className="row">
+              <label className="col-auto mr-auto">Total</label>
+              <br />
+              <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
+              <br />
+            </div>
+          )}
           {Number(this.props.taxPercentage) > 0 && (
             <>
               <div className="row">
@@ -77,10 +79,10 @@ class Bill extends Component {
 
             <div class="col-6 total-amount">
               <label>
-                To Pay :<span>{`Rs${totalWithTax}`}</span>
+                To Pay :<span>{`Rs ${topayafterdis.toFixed(2)}`}</span>
               </label>
             </div>
-            {totalWithTax < Number(this.props.min_purchase_amount) && (
+            {topayafterdis < Number(this.props.min_purchase_amount) && (
               <small
                 className="col-12 text-right"
                 style={{ color: "#e22a28" }}
