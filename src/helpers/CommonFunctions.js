@@ -17,11 +17,13 @@ export default function calculateTotalPrice(
     const newTotal = accumulator + valueToBeAdded;
     return newTotal;
   }, 0);
-  const CGST = total * (taxPercentage / 2 / 100);
-  const SGST = total * (taxPercentage / 2 / 100);
+  
+  
   const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-  const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge);
-  const discountAmt=total-totAftDis;
+  const CGST = totAftDis * (taxPercentage / 2 / 100);
+  const SGST = totAftDis * (taxPercentage / 2 / 100);
+  const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
+  const discountAmt = total - totAftDis;
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
   sessionStorage.setItem("SGST", SGST.toFixed(2));
