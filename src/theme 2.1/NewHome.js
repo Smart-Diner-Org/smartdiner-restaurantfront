@@ -673,8 +673,8 @@ class NewHome extends Component {
                   total={this.state.total}
                   quantity={this.state.quantity}
                   editlocation={this.editlocation}
-                  disc1={this.state.restaurantBranch[0].discount_on_mrp}
-                  restaurant_website_detail={
+                 disc1={this.state.restaurantBranch[0].discount_on_mrp} 
+                 restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
                   

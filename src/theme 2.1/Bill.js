@@ -3,7 +3,7 @@ import calculateTotalPrice from "../helpers/CommonFunctions";
 
 class Bill extends Component {
   render() {
-    const [total, CGST, SGST, totalWithTax, totaftdis, discountamt, topayafterdis] = calculateTotalPrice(
+    const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
       Number(this.props.default_delivery_charge),
@@ -24,7 +24,7 @@ class Bill extends Component {
               <div className="row">
                 <label className="col-auto mr-auto">Total After Discount</label>
                 <br />
-                <label className="col-auto">{`Rs ${totaftdis.toFixed(2)}`}</label>
+                <label className="col-auto">{`Rs ${totAftDis.toFixed(2)}`}</label>
                 <br />
               </div>
             </>
@@ -79,10 +79,10 @@ class Bill extends Component {
 
             <div class="col-6 total-amount">
               <label>
-                To Pay :<span>{`Rs ${topayafterdis.toFixed(2)}`}</span>
+                To Pay :<span>{`Rs ${totalWithTax.toFixed(2)}`}</span>
               </label>
             </div>
-            {topayafterdis < Number(this.props.min_purchase_amount) && (
+            {totalWithTax < Number(this.props.min_purchase_amount) && (
               <small
                 className="col-12 text-right"
                 style={{ color: "#e22a28" }}

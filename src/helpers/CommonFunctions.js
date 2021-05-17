@@ -19,19 +19,18 @@ export default function calculateTotalPrice(
   }, 0);
   const CGST = total * (taxPercentage / 2 / 100);
   const SGST = total * (taxPercentage / 2 / 100);
-  const totalWithTax = (total + CGST + SGST + deliveryCharge).toFixed(2);
-  const totaftdis = total - (total * totaldiscount / 100).toFixed(2);
-  const discountamt=total-totaftdis;
-  const topayafterdis = totaftdis+CGST+SGST;
+  const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
+  const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge);
+  const discountAmt=total-totAftDis;
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
   sessionStorage.setItem("SGST", SGST.toFixed(2));
   sessionStorage.setItem("CGST", CGST.toFixed(2));
   sessionStorage.setItem("taxPercentageHalfed", taxPercentage / 2);
   sessionStorage.setItem("deliveryCharge", deliveryCharge);
-  sessionStorage.setItem("totaftdis", totaftdis.toFixed(2));
-  sessionStorage.setItem("discountamt", discountamt.toFixed(2));
-  sessionStorage.setItem("topayafterdis", topayafterdis.toFixed(2));
+  sessionStorage.setItem("totAftDis", totAftDis.toFixed(2));
+  sessionStorage.setItem("discountAmt", discountAmt.toFixed(2));
+ 
   
-  return [total, CGST, SGST, totalWithTax, totaftdis,discountamt,topayafterdis];
+  return [total, CGST, SGST, totalWithTax, totAftDis,discountAmt];
 }

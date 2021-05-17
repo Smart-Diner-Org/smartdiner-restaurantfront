@@ -144,14 +144,14 @@ class Payment extends React.Component {
                   }
                 )}
             </ul>
-            {Number(sessionStorage.getItem("discountamt")) > 0 && (
+            {Number(sessionStorage.getItem("discountAmt")) > 0 && (
               <div className="row" style={{ color: "#000466" }}>
                 <label className="col-auto mr-auto">
                   Discount Amount Applied{" "}
                 </label>
                 <br />
                 <label className="col-auto">
-                  Rs.{sessionStorage.getItem("discountamt")}
+                  Rs.{sessionStorage.getItem("discountAmt")}
                 </label>
                 <br />
               </div>
