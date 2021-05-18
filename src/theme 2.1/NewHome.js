@@ -695,7 +695,7 @@ class NewHome extends Component {
               logo={this.state.restaurant_info.logo}
               restaurantName={this.state.restaurant_info.name}
             />
-            <div className="mt-200">
+            <div className="mt-120">  
               <div
                 style={
                   this.state.showBag &&

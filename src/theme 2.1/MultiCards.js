@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function MultiCards(props) {
   return (
-    <div className="multi-cards">
+    <div className="multi-cards mb-10">
       {props.cards && (
         <Carousel
           additionalTransfrom={0}

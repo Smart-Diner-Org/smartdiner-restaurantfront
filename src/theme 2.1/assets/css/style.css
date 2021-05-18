@@ -569,6 +569,9 @@ p {
   position: absolute;
   width: auto;
   right: 0;
+  top: 0;
+  height: 100%;
+  overflow-y : auto;
   background-color: white;
   z-index: 99999;
   padding: 20px;
@@ -1000,15 +1003,19 @@ hr {
   padding: 0 50px;
 }
 
+.single-slider .slider-bg img {
+  width: 100%;
+}
+
 @media only screen and (max-width: 768px) {
   .single-slider-1 {
     padding: 0px 15px;
   }
 
-  .call-to-action-button {
+  /* .call-to-action-button {
     position: absolute;
     bottom: 20px;
-  }
+  } */
   .call-to-action-button a {
     font-size: 14px;
     border-radius: 14px;
