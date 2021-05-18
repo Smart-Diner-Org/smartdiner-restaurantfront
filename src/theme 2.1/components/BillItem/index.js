@@ -20,44 +20,49 @@ class BillItem extends Component {
                     </a>
                   </>
                 ) : (
-                  <a href="#">
-                    <img loading="lazy" src={BurgerImage} alt="Product" />
-                  </a>
-                )}
+                    <a href="#">
+                      <img loading="lazy" src={BurgerImage} alt="Product" />
+                    </a>
+                  )}
               </div>
             </div>
             <div className="col-10">
-              <div className="row">
-                <label
-                  className="col-auto mr-auto mb-0"
-                  style={{ color: "#e22a28" }}
-                >
-                  <i className="lni lni-dinner"></i>
-                </label>
-
-                {!this.props.statuspage && (
-                  <div className="col-auto pr-0">
-                    <button
-                      className="cancelbutton"
-                      onClick={this.props.removeItem}
+              <div className="row spoon-icon">
+                <span>
+                  {this.props.is_ecommerce === false && (
+                    <label
+                      className="col-auto mr-auto mb-0"
+                      style={{ color: "#e22a28" }}
                     >
-                      X
+                      <i className="lni lni-dinner"></i>
+                    </label>
+                  )}
+                </span>
+                <span>
+                  {!this.props.statuspage && (
+                    <div className="col-auto pr-0">
+                      <button
+                        className="cancelbutton"
+                        onClick={this.props.removeItem}
+                      >
+                        X
                     </button>
-                  </div>
-                )}
+                    </div>
+                  )}
+                </span>
               </div>
               <div className="row mt-10 mb-10">
                 <div className="col-5 des">
                   <h4 className="itemname">{this.props.itemName}</h4>
 
                   {this.props.description != null &&
-                  this.props.description.length > 37 ? (
-                    <h6 className="containment">
-                      {this.props.description.slice(0, 37).concat("...")}
-                    </h6>
-                  ) : (
-                    <h6 className="containment">{this.props.description}</h6>
-                  )}
+                    this.props.description.length > 37 ? (
+                      <h6 className="containment">
+                        {this.props.description.slice(0, 37).concat("...")}
+                      </h6>
+                    ) : (
+                      <h6 className="containment">{this.props.description}</h6>
+                    )}
                   {/* <h6 className="containment">{this.props.description}</h6> */}
                 </div>
 
@@ -71,7 +76,7 @@ class BillItem extends Component {
                 >
                   <h6 style={{ color: "#000466" }} className="containment">
                     {this.props.menuQuantity.quantity_values.quantity}
-                    {this.props.menuQuantity?.measure_values.name}
+                    {this.props.menuQuantity ?.measure_values.name}
                   </h6>
 
                   {this.props.discount > 0 ? (
@@ -82,8 +87,8 @@ class BillItem extends Component {
                       <label>Rs.{this.props.discountPrice}</label>
                     </>
                   ) : (
-                    <label>Rs.{this.props.price}</label>
-                  )}
+                      <label>Rs.{this.props.price}</label>
+                    )}
                 </div>
 
                 {this.props.statuspage ? (
@@ -94,26 +99,26 @@ class BillItem extends Component {
                     <label>{this.props.quantity}</label>
                   </div>
                 ) : (
-                  <div className="col-4 pr-0">
-                    <div className="quantity d-flex justify-content-around">
-                      <button
-                        name="sub"
-                        className="d-flex justify-content-center align-items-center "
-                        onClick={this.props.decreasequantity}
-                      >
-                        -
+                    <div className="col-4 pr-0">
+                      <div className="quantity d-flex justify-content-around">
+                        <button
+                          name="sub"
+                          className="d-flex justify-content-center align-items-center "
+                          onClick={this.props.decreasequantity}
+                        >
+                          -
                       </button>
-                      <label>{this.props.quantity}</label>
-                      <button
-                        name="add"
-                        className="d-flex justify-content-center align-items-center"
-                        onClick={this.props.increasequantity}
-                      >
-                        +
+                        <label>{this.props.quantity}</label>
+                        <button
+                          name="add"
+                          className="d-flex justify-content-center align-items-center"
+                          onClick={this.props.increasequantity}
+                        >
+                          +
                       </button>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
               </div>
               <div className="row"></div>
               <div className="row col-6">
@@ -124,10 +129,10 @@ class BillItem extends Component {
                     </h3>
                   </>
                 ) : (
-                  <div>
-                    <br />
-                  </div>
-                )}
+                    <div>
+                      <br />
+                    </div>
+                  )}
               </div>
               {/* <div className="row">
                             <div className='top-up'>
