@@ -613,6 +613,11 @@ hr {
   background-color: transparent;
 }
 
+.spoon-icon {
+  display: flex;
+  justify-content: space-between;
+}
+
 .bag-item {
   padding: 0.5em;
   border: 1px solid #000466;
