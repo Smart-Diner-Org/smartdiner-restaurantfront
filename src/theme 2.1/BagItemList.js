@@ -19,6 +19,7 @@ class BagItemList extends React.Component {
                 quantity={item.selectedMenuQuantity.quantity}
                 itemName={item.menu.name}
                 image={item.menu.image}
+                is_ecommerce={this.props.is_ecommerce}
                 price={item.selectedMenuQuantity.price}
                 discount={item.menu.discount}
                 discountPrice={
