@@ -14,7 +14,7 @@ class Slider extends Component {
     return (
       <section id="home" className="slider-area">
         <div className="container-fluid position-relative carousel-design ">
-          <Carousel autoplay>
+          {/* <Carousel autoplay>
             {this.state.slider.map((item, index) => {
               return (
                 <div
@@ -101,7 +101,7 @@ class Slider extends Component {
                 </div>
               );
             })}
-          </Carousel>
+          </Carousel> */}
           <div
             className="row d-flex justify-content-center call-to-action-button"
             style={{ position: "absolute", bottom: "20px" }}

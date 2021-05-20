@@ -883,11 +883,13 @@ hr {
 
 .multi-cards {
   padding: 0 80px;
+  margin-top:-50px;
   margin-bottom: -80px;
 }
 @media only screen and (max-width: 768px) {
   .multi-cards {
     padding: 0 20px;
+    margin-top:-95px;
     margin-bottom: -80px;
   }
 }
@@ -1372,6 +1374,9 @@ hr {
      5.PRODUCT CARD css 
 ===========================*/
 
+.product-area{
+  margin-top:-50px;
+}
 @media (max-width: 767px) {
   .product-area {
     padding-top: 60px;
