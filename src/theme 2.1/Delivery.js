@@ -75,7 +75,7 @@ class Delivery extends Component {
               .is_run_time_booking_enabled && (
               <button
                 className={`schedule-order-button ${
-                  Number(sessionStorage.getItem("totalWithTax")) <
+                  Number(sessionStorage.getItem("totalMrp")) <
                   Number(this.props.min_purchase_amount)
                     ? "disabled"
                     : ""
