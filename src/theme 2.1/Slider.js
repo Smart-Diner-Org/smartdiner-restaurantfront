@@ -79,20 +79,20 @@ class Slider extends Component {
                             )}
                             {item.buttons[1].button_link_type ===
                               "contact_info" && (
-                              <a
-                                href={`tel:+91${this.props.contact_number}`}
-                                target="blank"
-                                onClick={() =>
-                                  ReactGA.event({
-                                    category: "Slider Banner",
-                                    action: `Clicked ${item.buttons[1].content} button`,
-                                    label: `Opened contact App to make call`,
-                                  })
-                                }
-                              >
-                                {item.buttons[1].content}
-                              </a>
-                            )}
+                                <a
+                                  href={`tel:+91${this.props.contact_number}`}
+                                  target="blank"
+                                  onClick={() =>
+                                    ReactGA.event({
+                                      category: "Slider Banner",
+                                      action: `Clicked ${item.buttons[1].content} button`,
+                                      label: `Opened contact App to make call`,
+                                    })
+                                  }
+                                >
+                                  {item.buttons[1].content}
+                                </a>
+                              )}
                           </div>
                         )}
                       </div>
