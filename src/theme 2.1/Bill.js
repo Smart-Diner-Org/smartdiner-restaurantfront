@@ -82,7 +82,7 @@ class Bill extends Component {
                 To Pay :<span>{`Rs ${totalWithTax}`}</span>
               </label>
             </div>
-            {totalWithTax < Number(this.props.min_purchase_amount) && (
+            {total < Number(this.props.min_purchase_amount) && (
               <small
                 className="col-12 text-right"
                 style={{ color: "#e22a28" }}
