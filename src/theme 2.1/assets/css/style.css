@@ -883,20 +883,22 @@ hr {
 
 .slider-area{
   margin-top:-50px;
+  margin-bottom:65px;
 }
 
 .multi-cards {
   padding: 0 80px;
+  margin-top:-85px;
 }
 
 @media only screen and (max-width: 768px) {
   .multi-cards {
     padding: 0 20px;
-    margin-top:-100px;
+    margin-top:-120px;
   }
   .slider-area{
-    margin-top:-20px;
-    margin-bottom:50px;
+    /* margin-top:-20px; */
+    margin-bottom:65px;
   }
 }
 .react-multiple-carousel__arrow {
