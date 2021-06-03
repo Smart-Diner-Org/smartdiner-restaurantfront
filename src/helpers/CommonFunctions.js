@@ -20,8 +20,8 @@ export default function calculateTotalPrice(
   
   
   const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-  const CGST = totAftDis * (taxPercentage / 2 / 100);
-  const SGST = totAftDis * (taxPercentage / 2 / 100);
+  const CGST = (totAftDis+deliveryCharge) * (taxPercentage / 2 / 100);
+  const SGST = (totAftDis+deliveryCharge) * (taxPercentage / 2 / 100);
   const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
   const discountAmt = total - totAftDis;
 

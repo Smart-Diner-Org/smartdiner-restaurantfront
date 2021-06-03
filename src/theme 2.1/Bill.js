@@ -29,6 +29,16 @@ class Bill extends Component {
               </div>
             </>
           )}
+          {this.props.default_delivery_charge > 0 && (
+            <div className="row">
+              <label className="col-auto mr-auto">Delivery Charge</label>
+              <br />
+              <label className="col-auto">{`Rs ${Number(
+                this.props.default_delivery_charge
+              ).toFixed(2)}`}</label>
+              <br />
+            </div>
+          )}
 
           {Number(this.props.disc3) === 0 && (
             <div className="row">
@@ -60,16 +70,7 @@ class Bill extends Component {
               </div>
             </>
           )}
-          {this.props.default_delivery_charge > 0 && (
-            <div className="row">
-              <label className="col-auto mr-auto">Delivery Charge</label>
-              <br />
-              <label className="col-auto">{`Rs ${Number(
-                this.props.default_delivery_charge
-              ).toFixed(2)}`}</label>
-              <br />
-            </div>
-          )}
+          
           <div className="final-bill row">
             <div class="col-6">
               {/* <label >Coupon Code</label> */}

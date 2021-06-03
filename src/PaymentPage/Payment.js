@@ -156,6 +156,16 @@ class Payment extends React.Component {
                 <br />
               </div>
             )}
+            {Number(sessionStorage.getItem("deliveryCharge")) > 0 && (
+              <div className="row" style={{ color: "#000466" }}>
+                <label className="col-auto mr-auto">Delivery Charge</label>
+                <br />
+                <label className="col-auto">
+                  Rs.{sessionStorage.getItem("deliveryCharge")}
+                </label>
+                <br />
+              </div>
+            )}
             {Number(sessionStorage.getItem("CGST")) > 0 && (
               <div className="row" style={{ color: "#000466" }}>
                 <label className="col-auto mr-auto">
@@ -186,16 +196,7 @@ class Payment extends React.Component {
                 <br />
               </div>
             )}
-            {Number(sessionStorage.getItem("deliveryCharge")) > 0 && (
-              <div className="row" style={{ color: "#000466" }}>
-                <label className="col-auto mr-auto">Delivery Charge</label>
-                <br />
-                <label className="col-auto">
-                  Rs.{sessionStorage.getItem("deliveryCharge")}
-                </label>
-                <br />
-              </div>
-            )}
+            
           </div>
         </div>
         <div className="d-flex justify-content-around mt-20">
