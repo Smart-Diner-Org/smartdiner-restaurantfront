@@ -161,7 +161,7 @@ class Payment extends React.Component {
                 <label className="col-auto mr-auto">Delivery Charge</label>
                 <br />
                 <label className="col-auto">
-                  Rs.{sessionStorage.getItem("deliveryCharge")}
+                  Rs.{sessionStorage.getItem("deliveryChargeGST")}
                 </label>
                 <br />
               </div>
