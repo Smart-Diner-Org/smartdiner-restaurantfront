@@ -600,7 +600,7 @@ class StatusPage extends React.Component {
                 </div>
               </div>
 
-              <div className="col-lg-6 col-sm-0 restaurantDetails">
+              {/*<div className="col-lg-6 col-sm-0 restaurantDetails">
                 <h3 className="mb-5">
                   Your Order - {this.state.data.restuarantName}
                 </h3>
@@ -697,7 +697,7 @@ class StatusPage extends React.Component {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
           )}
 
