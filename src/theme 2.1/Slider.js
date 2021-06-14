@@ -14,6 +14,7 @@ class Slider extends Component {
     return (
       <section id="home" className="slider-area">
         <div className="container-fluid position-relative carousel-design ">
+           
           <Carousel autoplay>
             {this.state.slider.map((item, index) => {
               return (
@@ -50,7 +51,7 @@ class Slider extends Component {
                       : {}
                   }
                 >
-                  <div className="slider-bg row">
+                  <div className="slider-bg row" >
                     <>
                       <img src={item.url} alt="slider" />
                       <div className="slider-product-content">
@@ -62,7 +63,8 @@ class Slider extends Component {
                           {item.content ? item.content : " "}
                         </h1>
                         {item.buttons && (
-                          <div className="row call-to-action-button">
+                          <div className="row d-flex justify-content-center call-to-action-button"
+                          style={{ position: "absolute", bottom: "20px" }}>
                             {item.buttons[0].button_link_type === "menu" && (
                               <a
                                 href="#product"
@@ -99,16 +101,18 @@ class Slider extends Component {
                     </>
                   </div>
                 </div>
+              
               );
             })}
+            
           </Carousel>
-          {/*<div
+          {/* <div
             className="row d-flex justify-content-center call-to-action-button"
             style={{ position: "absolute", bottom: "20px" }}
           >
             <a href="#product">Place order</a>
             <a href="#footer">Call us</a>
-          </div>*/}
+          </div> */}
         </div>
       </section>
     );
