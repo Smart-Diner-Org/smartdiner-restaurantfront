@@ -26,7 +26,7 @@ export default function calculateTotalPrice(
   const deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
   const deliveryChargeGST = (deliveryChargeCGST+deliveryChargeSGST+deliveryCharge);
   const totalWithTax = (totAftDis + CGST + SGST + deliveryChargeGST).toFixed(2);
-  const discountAmt = total - totAftDis;
+  const discountAmt = (total - totAftDis);
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
   sessionStorage.setItem("SGST", SGST.toFixed(2));

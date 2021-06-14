@@ -156,9 +156,9 @@ class Payment extends React.Component {
                 <br />
               </div>
             )}
-            {Number(sessionStorage.getItem("deliveryCharge")) > 0 && (
+            {Number(sessionStorage.getItem("deliveryChargeGST")) > 0 && (
               <div className="row" style={{ color: "#000466" }}>
-                <label className="col-auto mr-auto">Delivery Charge</label>
+                <label className="col-auto mr-auto">Delivery Charge with GST</label>
                 <br />
                 <label className="col-auto">
                   Rs.{sessionStorage.getItem("deliveryChargeGST")}
