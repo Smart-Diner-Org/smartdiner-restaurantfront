@@ -20,19 +20,21 @@ export default function calculateTotalPrice(
   
   
   const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-  const CGST = totAftDis * (taxPercentage / 2 / 100);
-  const SGST = totAftDis * (taxPercentage / 2 / 100);
+  const deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+  const deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+  const CGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeCGST;
+  const SGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeSGST;
   const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
-  const discountAmt = total - totAftDis;
+  const discountAmt = (total - totAftDis);
 
   sessionStorage.setItem("totalWithTax", totalWithTax);
   sessionStorage.setItem("SGST", SGST.toFixed(2));
   sessionStorage.setItem("CGST", CGST.toFixed(2));
   sessionStorage.setItem("taxPercentageHalfed", taxPercentage / 2);
-  sessionStorage.setItem("deliveryCharge", deliveryCharge);
+  sessionStorage.setItem("deliveryCharge", deliveryCharge.toFixed(2));
   sessionStorage.setItem("discountAmt", discountAmt.toFixed(2));
   sessionStorage.setItem("totalMrp", parseFloat(total).toFixed(2));
  
   
-  return [total, CGST, SGST, totalWithTax, totAftDis,discountAmt];
+  return [total, CGST, SGST, totalWithTax, totAftDis,discountAmt,deliveryCharge];
 }

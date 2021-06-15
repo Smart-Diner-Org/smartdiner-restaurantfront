@@ -3,7 +3,7 @@ import calculateTotalPrice from "../helpers/CommonFunctions";
 
 class Bill extends Component {
   render() {
-    const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt] = calculateTotalPrice(
+    const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt,deliveryCharge] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
       Number(this.props.default_delivery_charge),
@@ -28,6 +28,14 @@ class Bill extends Component {
                 <br />
               </div>
             </>
+          )}
+          {this.props.default_delivery_charge > 0 && (
+            <div className="row">
+              <label className="col-auto mr-auto">Delivery Charge with GST</label>
+              <br />
+              <label className="col-auto">{`Rs ${deliveryCharge.toFixed(2)}`}</label>
+              <br />
+            </div>
           )}
 
           {Number(this.props.disc3) === 0 && (
@@ -60,16 +68,7 @@ class Bill extends Component {
               </div>
             </>
           )}
-          {this.props.default_delivery_charge > 0 && (
-            <div className="row">
-              <label className="col-auto mr-auto">Delivery Charge</label>
-              <br />
-              <label className="col-auto">{`Rs ${Number(
-                this.props.default_delivery_charge
-              ).toFixed(2)}`}</label>
-              <br />
-            </div>
-          )}
+          
           <div className="final-bill row">
             <div class="col-6">
               {/* <label >Coupon Code</label> */}
