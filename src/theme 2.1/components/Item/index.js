@@ -59,13 +59,13 @@ class Item extends Component {
       const valueToBeAdded = currentValue.quantity
         ? discount > 0
           ? (currentValue.price - currentValue.price * (discount / 100)) *
-            currentValue.quantity
+          currentValue.quantity
           : currentValue.price * currentValue.quantity
         : 0;
       const newTotal = accumulator + valueToBeAdded;
       return newTotal;
     },
-    0);
+      0);
     this.setState({ modalTotal: total });
   };
 
@@ -150,8 +150,8 @@ class Item extends Component {
                         </span>
                       </>
                     ) : (
-                      <span>Rs.{item.price}</span>
-                    )}
+                        <span>Rs.{item.price}</span>
+                      )}
                   </label>
                 </div>
                 <div className="col-auto p-0">
@@ -220,8 +220,8 @@ class Item extends Component {
             this.props.is_available
               ? {}
               : {
-                  opacity: "0.45",
-                }
+                opacity: "0.45",
+              }
           }
         >
           <div className="product-item-image">
@@ -232,10 +232,10 @@ class Item extends Component {
                 </a>
               </>
             ) : (
-              <a>
-                <img loading="lazy" src={Burger} alt="Product" />{" "}
-              </a>
-            )}
+                <a>
+                  <img loading="lazy" src={Burger} alt="Product" />{" "}
+                </a>
+              )}
 
             {this.props.discount > 0 && (
               <div className="product-discount-tag">
@@ -293,7 +293,10 @@ class Item extends Component {
                       Rs.
                       {this.props.priceList[0].price -
                         this.props.priceList[0].price *
-                          (this.props.discount / 100)}
+                        (this.props.discount / 100)}
+                      <span style={{ fontSize: "13px", fontWeight: "normal" }}>
+                        {this.props.priceList[0].quantity_values.quantity}{this.props.priceList[0].measure_values.name}
+                      </span>
                     </span>
                     <input
                       type="hidden"
@@ -306,22 +309,25 @@ class Item extends Component {
                       value={
                         this.props.priceList[0].price -
                         this.props.priceList[0].price *
-                          (this.props.discount / 100)
+                        (this.props.discount / 100)
                       }
                     ></input>
                   </>
                 ) : (
-                  <>
-                    <span style={{ color: "#000000" }}>
-                      Rs.{this.props.priceList[0].price}
-                    </span>
-                    <input
-                      type="hidden"
-                      id={"original_price_" + this.props.productId}
-                      value={this.props.priceList[0].price}
-                    ></input>
-                  </>
-                )}
+                    <>
+                      <span style={{ color: "#000000" }}>
+                        Rs.{this.props.priceList[0].price}
+                        <span style={{ fontSize: "13px", fontWeight: "normal" }}>
+                          {this.props.priceList[0].quantity_values.quantity}{this.props.priceList[0].measure_values.name}
+                        </span>
+                      </span>
+                      <input
+                        type="hidden"
+                        id={"original_price_" + this.props.productId}
+                        value={this.props.priceList[0].price}
+                      ></input>
+                    </>
+                  )}
 
                 <div className="d-flex flex-column justify-content-end">
                   <div>
@@ -359,95 +365,95 @@ class Item extends Component {
                           quantity={this.props.priceList[0].quantity}
                         />
                       ) : (
+                          <button
+                            className="btn add-to-cart"
+                            onClick={() => {
+                              ReactGA.event({
+                                category: `Product: ${this.props.itemName}`,
+                                action: `Clicked Add to Cart Button`,
+                                label: `Added item with 1 quantity`,
+                              });
+                              this.props.changequantity(
+                                1,
+                                this.props.categoryID,
+                                this.props.menuID,
+                                this.props.priceList[0].id,
+                                showDirectLocation
+                              );
+                            }}
+                            style={
+                              this.props.is_available
+                                ? {}
+                                : {
+                                  pointerEvents: "none",
+                                }
+                            }
+                          >
+                            {this.props.is_available
+                              ? "Add to Cart"
+                              : "Not availabe right now"}
+                          </button>
+                        )
+                    ) : (
                         <button
                           className="btn add-to-cart"
-                          onClick={() => {
-                            ReactGA.event({
-                              category: `Product: ${this.props.itemName}`,
-                              action: `Clicked Add to Cart Button`,
-                              label: `Added item with 1 quantity`,
-                            });
-                            this.props.changequantity(
-                              1,
-                              this.props.categoryID,
-                              this.props.menuID,
-                              this.props.priceList[0].id,
-                              showDirectLocation
-                            );
-                          }}
+                          onClick={() =>
+                            this.openPriceListModal(this.props.discount)
+                          }
                           style={
                             this.props.is_available
                               ? {}
                               : {
-                                  pointerEvents: "none",
-                                }
-                          }
-                        >
-                          {this.props.is_available
-                            ? "Add to Cart"
-                            : "Not availabe right now"}
-                        </button>
-                      )
-                    ) : (
-                      <button
-                        className="btn add-to-cart"
-                        onClick={() =>
-                          this.openPriceListModal(this.props.discount)
-                        }
-                        style={
-                          this.props.is_available
-                            ? {}
-                            : {
                                 pointerEvents: "none",
                               }
-                        }
-                      >
-                        {this.props.is_available ? (
-                          <>
-                            {this.state.modalTotal > 0 && this.props.total > 0
-                              ? "Edit"
-                              : "Add to Cart"}
-                          </>
-                        ) : (
-                          "Not availabe right now"
-                        )}
-                      </button>
-                    )}
+                          }
+                        >
+                          {this.props.is_available ? (
+                            <>
+                              {this.state.modalTotal > 0 && this.props.total > 0
+                                ? "Edit"
+                                : "Add to Cart"}
+                            </>
+                          ) : (
+                              "Not availabe right now"
+                            )}
+                        </button>
+                      )}
                   </div>
                 </div>
               </>
             ) : (
-              <>
-                <a
-                  href={`tel:+91${this.props.contact_number}`}
-                  className="custom-menu-call-button"
-                  target="blank"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: "menu-product-item",
-                      action: "clicked call button",
-                      label: this.props.itemName,
-                      transport: "beacon",
-                    });
-                  }}
-                  style={
-                    this.props.is_available
-                      ? {}
-                      : {
+                <>
+                  <a
+                    href={`tel:+91${this.props.contact_number}`}
+                    className="custom-menu-call-button"
+                    target="blank"
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "menu-product-item",
+                        action: "clicked call button",
+                        label: this.props.itemName,
+                        transport: "beacon",
+                      });
+                    }}
+                    style={
+                      this.props.is_available
+                        ? {}
+                        : {
                           pointerEvents: "none",
                         }
-                  }
-                >
-                  {this.props.is_available ? (
-                    <>
-                      Call now to book <i class="lni-phone-handset ml-10"></i>
-                    </>
-                  ) : (
-                    "Not availabe right now"
-                  )}
-                </a>
-              </>
-            )}
+                    }
+                  >
+                    {this.props.is_available ? (
+                      <>
+                        Call now to book <i class="lni-phone-handset ml-10"></i>
+                      </>
+                    ) : (
+                        "Not availabe right now"
+                      )}
+                  </a>
+                </>
+              )}
 
             {/* <ul className="rating">
                   <li><i className="lni-star-filled"></i></li>
