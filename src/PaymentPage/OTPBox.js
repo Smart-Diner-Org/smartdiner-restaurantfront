@@ -35,6 +35,7 @@ class OTPBox extends React.Component{
             <>
                 {elementsArray.map((k, i) => (
                       <input
+                        autoFocus={i==0}
                         className="otp-box "
                         type="number"
                         key={i}
