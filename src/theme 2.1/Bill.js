@@ -31,7 +31,7 @@ class Bill extends Component {
           )}
           {this.props.default_delivery_charge > 0 && (
             <div className="row">
-              <label className="col-auto mr-auto">Delivery Charge with GST</label>
+              <label className="col-auto mr-auto">Delivery Charge</label>
               <br />
               <label className="col-auto">{`Rs ${deliveryCharge.toFixed(2)}`}</label>
               <br />
