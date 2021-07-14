@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import calculateTotalPrice from "../helpers/CommonFunctions";
 
+let flag = 0
 class Bill extends Component {
   render() {
-    const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt,deliveryCharge] = calculateTotalPrice(
+    const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt, deliveryCharge] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
       Number(this.props.default_delivery_charge),
-      Number(this.props.disc3)
+      Number(this.props.disc3),
+    
     );
     return (
+
       <div class="bill-container">
         <hr />
         <div className="container">
@@ -19,6 +22,7 @@ class Bill extends Component {
                 <label className="col-auto mr-auto">Total MRP</label>
                 <br />
                 <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
+
                 <br />
               </div>
               <div className="row">
@@ -29,7 +33,8 @@ class Bill extends Component {
               </div>
             </>
           )}
-          {this.props.default_delivery_charge > 0 && (
+         
+          {Number(this.props.default_delivery_charge) > 0 && (
             <div className="row">
               <label className="col-auto mr-auto">Delivery Charge</label>
               <br />
@@ -68,7 +73,7 @@ class Bill extends Component {
               </div>
             </>
           )}
-          
+
           <div className="final-bill row">
             <div class="col-6">
               {/* <label >Coupon Code</label> */}
@@ -80,6 +85,7 @@ class Bill extends Component {
               <label>
                 To Pay :<span>{`Rs ${totalWithTax}`}</span>
               </label>
+
             </div>
             {total < Number(this.props.min_purchase_amount) && (
               <small
@@ -94,3 +100,4 @@ class Bill extends Component {
   }
 }
 export default Bill;
+

@@ -13,6 +13,8 @@ class BagItemList extends React.Component {
         <FlipMove duration={500}>
           {this.props.items.map((item, index) => {
             return (
+              
+             
               <BillItem
                 key={index}
                 description={item.menu.short_description}
@@ -73,16 +75,15 @@ class BagItemList extends React.Component {
                   );
                 }}
               />
+              
             );
           })}
-          {/* <div>
-            <p>{this.props.disc2}</p>
-            </div> */}
         </FlipMove>
         <Bill
           items={this.props.items}
           payTax={this.props.restaurant_website_detail.should_calculate_gst}
           taxPercentage={this.props.restaurant_website_detail.gst_percentage}
+          boundary={this.props.boundary}
           disc3={this.props.disc2}
           default_delivery_charge={
             this.props.restaurant_website_detail.default_delivery_charge
@@ -105,3 +106,4 @@ class BagItemList extends React.Component {
 }
 
 export default BagItemList;
+

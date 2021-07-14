@@ -16,7 +16,6 @@ import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
 import CheckoutButton from "./CheckoutButton";
 import MultiCards from "./MultiCards";
-import calculateTotalPrice from "../helpers/CommonFunctions";
 
 const google = window.google;
 
@@ -40,11 +39,12 @@ class NewHome extends Component {
       bagItems: [],
       distance: null,
       showLocationPopup: false,
-      showBag: false
-      
+      showBag: false,
+      totcharge:0,
     };
   }
 
+ 
   async componentDidMount() {
     //API call to get data from backend
     try {
@@ -148,7 +148,6 @@ class NewHome extends Component {
       alert("Not able to fetch data");
     }
   }
-
   getItems = (data) => {
     //Storing API data into our state
     let restaurantDetails = [];
@@ -346,6 +345,88 @@ class NewHome extends Component {
                     this.state.restaurantBranch[0].delivery_distance
                   );
                   distance = Math.abs(distance / 1000);
+                let check=0, a=0,originaldist
+                originaldist=Math.round(distance)                
+                const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
+                this.setState({
+                    totcharge:0
+                  })
+                  arr.map((item,index)=>{
+                     if(index===0){
+                      if(item.excempt_limit){
+                      if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                       item.excempt_limit===null ||
+                       item.excempt_limit === 0){ 
+                        a=1
+                        sessionStorage.setItem("allow",1);
+                        }
+                      }
+                      }
+                      if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
+                        a=0
+                        sessionStorage.setItem("allow",0);
+                    }
+                     if(a===1&&index!=0)  {
+                      if(originaldist<=0){check=1}
+                      else if(item.distance<originaldist)
+                      { 
+                        if(item.price_type==='fixed'){
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){ 
+                          this.setState({
+                            totcharge:this.state.totcharge+item.distance*item.price
+                            })
+                        }
+                        sessionStorage.setItem("totcharge",this.state.totcharge);
+                        originaldist=originaldist-item.distance
+                        if(originaldist<=0){
+                          check=1
+                        }
+                      }
+                      else if(item.distance>=originaldist)
+                      { 
+                        if(originaldist<=0){
+                          check=1
+                        }                           
+                        if(item.price_type==='fixed'){
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totcharge: this.state.totcharge+originaldist*item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                          originaldist=originaldist-item.distance
+                          if(originaldist<=0){
+                            check=1
+                          }
+                      }                 
+                      else if(check!==1)
+                      { 
+                        if(item.price_type==='fixed'){  
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totcharge:this.state.totcharge+originaldist*item.price
+                          })                          
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                      }
+                     else{}
+                     }     
+                  })
                   let withInDistance = false;
                   if (distance <= distanceLimit) {
                     withInDistance = true;
@@ -458,6 +539,7 @@ class NewHome extends Component {
             )}`,
           ];
           let destination = [`${latLng.lat},${latLng.lng}`];
+          
           const service = new google.maps.DistanceMatrixService();
           service.getDistanceMatrix(
             {
@@ -486,6 +568,88 @@ class NewHome extends Component {
                   this.state.restaurantBranch[0].delivery_distance
                 );
                 distance = Math.abs(distance / 1000);
+                let check=0, a=0,originaldist
+                originaldist=Math.round(distance)                
+                const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
+                this.setState({
+                    totcharge:0
+                  })
+                  arr.map((item,index)=>{
+                     if(index===0){
+                      if(item.excempt_limit){
+                      if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                       item.excempt_limit===null ||
+                       item.excempt_limit === 0){ 
+                        a=1
+                        sessionStorage.setItem("allow",1);
+                        }
+                      }
+                      }
+                      if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
+                        a=0
+                        sessionStorage.setItem("allow",0);
+                    }
+                     if(a===1&&index!=0)  {
+                      if(originaldist<=0){check=1}
+                      else if(item.distance<originaldist)
+                      { 
+                        if(item.price_type==='fixed'){
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){ 
+                          this.setState({
+                            totcharge:this.state.totcharge+item.distance*item.price
+                            })
+                        }
+                        sessionStorage.setItem("totcharge",this.state.totcharge);
+                        originaldist=originaldist-item.distance
+                        if(originaldist<=0){
+                          check=1
+                        }
+                      }
+                      else if(item.distance>=originaldist)
+                      { 
+                        if(originaldist<=0){
+                          check=1
+                        }                           
+                        if(item.price_type==='fixed'){
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totcharge: this.state.totcharge+originaldist*item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                          originaldist=originaldist-item.distance
+                          if(originaldist<=0){
+                            check=1
+                          }
+                      }                 
+                      else if(check!==1)
+                      { 
+                        if(item.price_type==='fixed'){  
+                          this.setState({
+                            totcharge:this.state.totcharge+item.price
+                          })
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totcharge:this.state.totcharge+originaldist*item.price
+                          })                          
+                          sessionStorage.setItem("totcharge",this.state.totcharge);
+                        }
+                      }
+                     else{}
+                     }     
+                  })
                 let withInDistance = false;
                 if (distance <= distanceLimit) {
                   withInDistance = true;
@@ -671,6 +835,7 @@ class NewHome extends Component {
                   changequantity={this.changequantity}
                   items={this.state.bagItems}
                   total={this.state.total}
+                  boundary={this.state.boundary}
                   quantity={this.state.quantity}
                   editlocation={this.editlocation}
                  disc1={this.state.restaurantBranch[0].discount_on_mrp} 
@@ -823,9 +988,12 @@ class NewHome extends Component {
             </div>
           </div>
         </div>
-      );
+        
+        );
+      
     }
   }
 }
 
 export default NewHome;
+
