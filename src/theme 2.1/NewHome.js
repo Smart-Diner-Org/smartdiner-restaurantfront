@@ -353,19 +353,22 @@ class NewHome extends Component {
                   })
                   arr.map((item,index)=>{
                      if(index===0){
-                      if(item.excempt_limit){
-                      if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
-                       item.excempt_limit===null ||
-                       item.excempt_limit === 0){ 
-                        a=1
-                        sessionStorage.setItem("allow",1);
-                        }
-                      }
-                      }
-                      if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
-                        a=0
-                        sessionStorage.setItem("allow",0);
-                    }
+                      if(item.distance){
+                       a=1
+                       sessionStorage.setItem("allow",1);}
+                     else{
+                     if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                      item.excempt_limit===null ||
+                      item.excempt_limit === 0){
+                       a=1
+                       sessionStorage.setItem("allow",1);
+                       }
+                     }
+                     }
+                     if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
+                       a=0
+                       sessionStorage.setItem("allow",0);
+                   }
                      if(a===1&&index!=0)  {
                       if(originaldist<=0){check=1}
                       else if(item.distance<originaldist)
@@ -576,19 +579,22 @@ class NewHome extends Component {
                   })
                   arr.map((item,index)=>{
                      if(index===0){
-                      if(item.excempt_limit){
-                      if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
-                       item.excempt_limit===null ||
-                       item.excempt_limit === 0){ 
-                        a=1
-                        sessionStorage.setItem("allow",1);
-                        }
-                      }
-                      }
-                      if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
-                        a=0
-                        sessionStorage.setItem("allow",0);
-                    }
+                      if(item.distance){
+                       a=1
+                       sessionStorage.setItem("allow",1);}
+                     else{
+                     if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                      item.excempt_limit===null ||
+                      item.excempt_limit === 0){
+                       a=1
+                       sessionStorage.setItem("allow",1);
+                       }
+                     }
+                     }
+                     if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
+                       a=0
+                       sessionStorage.setItem("allow",0);
+                   }
                      if(a===1&&index!=0)  {
                       if(originaldist<=0){check=1}
                       else if(item.distance<originaldist)
