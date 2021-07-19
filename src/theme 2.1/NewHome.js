@@ -345,7 +345,8 @@ class NewHome extends Component {
                     this.state.restaurantBranch[0].delivery_distance
                   );
                   distance = Math.abs(distance / 1000);
-                let check=0, a=0,originaldist
+                  sessionStorage.setItem("distance",distance);
+                  let check=0, a=0,originaldist
                 originaldist=Math.round(distance)                
                 const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
                 this.setState({
@@ -571,19 +572,20 @@ class NewHome extends Component {
                   this.state.restaurantBranch[0].delivery_distance
                 );
                 distance = Math.abs(distance / 1000);
+                sessionStorage.setItem("distance",distance);
                 let check=0, a=0,originaldist
-                originaldist=Math.round(distance)                
+                originaldist=Math.round(distance)                        
                 const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
                 this.setState({
                     totcharge:0
                   })
-                  arr.map((item,index)=>{
-                     if(index===0){
+                  arr.map((item,index)=>{ 
+                    if(index===0){
                       if(item.distance){
                        a=1
                        sessionStorage.setItem("allow",1);}
                      else{
-                     if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                     if(sessionStorage.getItem("totalWithTax")<item.excempt_limit || 
                       item.excempt_limit===null ||
                       item.excempt_limit === 0){
                        a=1
@@ -594,6 +596,7 @@ class NewHome extends Component {
                      if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
                        a=0
                        sessionStorage.setItem("allow",0);
+                       
                    }
                      if(a===1&&index!=0)  {
                       if(originaldist<=0){check=1}
@@ -1002,4 +1005,3 @@ class NewHome extends Component {
 }
 
 export default NewHome;
-
