@@ -205,10 +205,17 @@ function FootComponent(props) {
                     justifycontent: "space-between",
                   }}
                 >
-                  <p style={{ width: "70%" }}>
+                  <p style={{
+                    whiteSpace: "pre-line"
+                  }}>
                     All rights reserved.{" "}
                     <a href="/" rel="nofollow">
                       &copy; {props.restaurantName}
+                    </a>
+                    <span style={{ marginLeft: "100px" }}></span>
+                    Made in {" "}
+                    <a href="https://smartdiner.co/" rel="noopener noreferrer" target="_blank">
+                      Smart Diner
                     </a>
                   </p>
                 </div>
