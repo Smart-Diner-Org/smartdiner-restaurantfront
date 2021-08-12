@@ -7,28 +7,30 @@ class Bill extends Component {
       this.props.items,
       this.props.taxPercentage,
       Number(this.props.default_delivery_charge),
-      Number(this.props.disc3)
+      // Number(this.props.disc3)
+      this.props.disc3
     );
     return (
       <div class="bill-container">
         <hr />
         <div className="container">
-          {Number(this.props.disc3) > 0 && (
-            <>
-              <div className="row">
-                <label className="col-auto mr-auto">Total MRP</label>
-                <br />
-                <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
-                <br />
-              </div>
-              <div className="row">
+
+          <div className="row">
+            <label className="col-auto mr-auto">Total MRP</label>
+            <br />
+            <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
+            <br />
+          </div>             
+              {Number(total) && (                 
+                <div className="row">
                 <label className="col-auto mr-auto">Total After Discount</label>
                 <br />
                 <label className="col-auto">{`Rs ${totAftDis.toFixed(2)}`}</label>
                 <br />
               </div>
-            </>
-          )}
+              
+            )}
+              
           {this.props.default_delivery_charge > 0 && (
             <div className="row">
               <label className="col-auto mr-auto">Delivery Charge</label>
@@ -38,14 +40,7 @@ class Bill extends Component {
             </div>
           )}
 
-          {Number(this.props.disc3) === 0 && (
-            <div className="row">
-              <label className="col-auto mr-auto">Total</label>
-              <br />
-              <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
-              <br />
-            </div>
-          )}
+          
           {Number(this.props.taxPercentage) > 0 && (
             <>
               <div className="row">
@@ -78,7 +73,7 @@ class Bill extends Component {
 
             <div class="col-6 total-amount">
               <label>
-                To Pay :<span>{`Rs ${totalWithTax}`}</span>
+                To Pay :<span>{`Rs ${totalWithTax.toFixed(2)}`}</span>
               </label>
             </div>
             {total < Number(this.props.min_purchase_amount) && (
@@ -94,3 +89,4 @@ class Bill extends Component {
   }
 }
 export default Bill;
+
