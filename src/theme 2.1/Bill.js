@@ -20,16 +20,13 @@ class Bill extends Component {
             <br />
             <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
             <br />
-          </div>             
-              {Number(total) && (                 
-                <div className="row">
+          </div>
+          <div className="row">
                 <label className="col-auto mr-auto">Total After Discount</label>
                 <br />
                 <label className="col-auto">{`Rs ${totAftDis.toFixed(2)}`}</label>
                 <br />
               </div>
-              
-            )}
               
           {this.props.default_delivery_charge > 0 && (
             <div className="row">
@@ -85,6 +82,7 @@ class Bill extends Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }
