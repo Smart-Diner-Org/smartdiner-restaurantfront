@@ -5,6 +5,9 @@ export default function calculateTotalPrice(
   totaldiscount,
 
 ) {
+  let discountval,flag
+  var totAftDis,deliveryCharge,deliveryChargeCGST,deliveryChargeSGST,CGST,SGST,totalWithTax,discountAmt 
+
   const total = itemsList.reduce(function (accumulator, currentValue) {
     const valueToBeAdded =
       currentValue.menu.discount > 0
@@ -18,17 +21,49 @@ export default function calculateTotalPrice(
     return newTotal;
   }, 0);
 
- console.log(Number(sessionStorage.getItem("totaldeliverycharge")));
+ if(totaldiscount!=null){
+var string = totaldiscount;
+var separateNum = string.match(/\d+/g);
+var convToNum = separateNum
+var result = convToNum.map(function (x) { 
+  return parseInt(x, 10); 
+});
+
+let totalorderamt=result.filter((a,i)=>i%2===0);
+let discount=result.filter((a,i)=>i%2===1);
+let sortedamt = totalorderamt.sort((a, b) => b-a);
+let sortedisc = discount.sort((a, b) => b-a);
+
+for(var i=0;i<sortedamt.length;i++){
+  if(total>=sortedamt[i]&&sortedamt[i]!=0){
+    
+    discountval=sortedisc[i];
+    flag=0;
+    break;
+  }
+}
+if(flag!=0){ 
+ discountval=0;
+}
+ }
+else{  
+  totAftDis=0;
+ }
+
+
+
   if (Number(sessionStorage.getItem("DeliveryStatus")) === 1 && Number(sessionStorage.getItem("allownull")) != 1) {
-   console.log("if");
-    const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-    const deliveryCharge = Number(sessionStorage.getItem("totaldeliverycharge"));
-    const deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
-    const SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-    const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
-    const discountAmt = (total - totAftDis);
+   
+   if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
+   else{totAftDis = total - (total * 0 / 100).toFixed(2);}
+    
+     deliveryCharge = Number(sessionStorage.getItem("totaldeliverycharge"));
+     deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
+     SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
+     totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
+     discountAmt = (total - totAftDis);
 
     sessionStorage.setItem("totalWithTax", totalWithTax);
     sessionStorage.setItem("SGST", SGST.toFixed(2));
@@ -44,14 +79,15 @@ export default function calculateTotalPrice(
 
 
   if (Number(sessionStorage.getItem("DeliveryStatus")) === 0&&Number(sessionStorage.getItem("allownull")) != 1) {
-    console.log("else");
-    const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-    const deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
-    const SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-    const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
-    const discountAmt = (total - totAftDis);
+   
+    if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
+    else {totAftDis = total - (total * 0 / 100).toFixed(2);}
+     deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
+     SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
+     totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
+     discountAmt = (total - totAftDis);
 
     sessionStorage.setItem("totalWithTax", totalWithTax);
     sessionStorage.setItem("SGST", SGST.toFixed(2));
@@ -66,14 +102,16 @@ export default function calculateTotalPrice(
   }
 
 if(Number(sessionStorage.getItem("allownull")) === 1){
-    console.log("null");
-    const totAftDis = total - (total * totaldiscount / 100).toFixed(2);
-    const deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
-    const CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
-    const SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-    const totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
-    const discountAmt = (total - totAftDis);
+   
+    if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
+    else {totAftDis = total - (total * 0 / 100).toFixed(2);}
+     deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+     CGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
+     SGST = ((totAftDis) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
+     totalWithTax = (totAftDis + CGST + SGST).toFixed(2);
+     console.log(totalWithTax)
+     discountAmt = (total - totAftDis);
 
     sessionStorage.setItem("totalWithTax", totalWithTax);
     sessionStorage.setItem("SGST", SGST.toFixed(2));
@@ -86,7 +124,6 @@ if(Number(sessionStorage.getItem("allownull")) === 1){
 
     return [total, CGST, SGST, totalWithTax, totAftDis, discountAmt, deliveryCharge];
 }
-
 
 
 }
