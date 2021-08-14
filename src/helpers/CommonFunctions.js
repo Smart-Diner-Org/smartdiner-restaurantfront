@@ -20,6 +20,7 @@ export default function calculateTotalPrice(
   }, 0);
   
   
+  if(totaldiscount!=null){
 var string = totaldiscount;
 var separateNum = string.match(/\d+/g);
 var convToNum = separateNum
@@ -57,7 +58,16 @@ if(flag!=0){
   totalWithTax = total + CGST + SGST + deliveryCharge;
   discountAmt = (total - totAftDis);
 }
-
+}
+else{
+  totAftDis=0;
+  deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+  deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
+  CGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeCGST;
+  SGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeSGST;
+  totalWithTax = total + CGST + SGST + deliveryCharge;
+  discountAmt = (total - totAftDis); 
+}
 
 
 
