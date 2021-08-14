@@ -54,7 +54,7 @@ if(flag!=0){
   deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
   CGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeCGST;
   SGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeSGST;
-  totalWithTax = totAftDis + CGST + SGST + deliveryCharge;
+  totalWithTax = total + CGST + SGST + deliveryCharge;
   discountAmt = (total - totAftDis);
 }
 

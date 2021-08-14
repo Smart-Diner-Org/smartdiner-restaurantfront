@@ -60,11 +60,7 @@ class Bill extends Component {
                 <br />
                 <label className="col-auto">{`Rs ${SGST.toFixed(2)}`}</label>
                 <br />
-              </div>
-            </>
-          )}
-          
-          <div className="final-bill row">
+              </div>         <div className="final-bill row">
             <div class="col-6">
               {/* <label >Coupon Code</label> */}
               {/* <input type="textbox" placeholder="Coupon Code"/>
