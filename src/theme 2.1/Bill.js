@@ -30,7 +30,7 @@ class Bill extends Component {
                 <br />
               </div>
               )}
-
+              
           {this.props.default_delivery_charge > 0 && (
             <div className="row">
               <label className="col-auto mr-auto">Delivery Charge</label>
@@ -60,24 +60,31 @@ class Bill extends Component {
                 <br />
                 <label className="col-auto">{`Rs ${SGST.toFixed(2)}`}</label>
                 <br />
-              </div>         <div className="final-bill row">
+              </div>
+            </>
+          )}
+          
+          <div className="final-bill row">
             <div class="col-6">
               {/* <label >Coupon Code</label> */}
               {/* <input type="textbox" placeholder="Coupon Code"/>
                                     <button >Find</button> */}
             </div>
 
+         
             <div class="col-6 total-amount">
               <label>
                 To Pay :<span>{`Rs ${totalWithTax.toFixed(2)}`}</span>
               </label>
             </div>
+            
             {total < Number(this.props.min_purchase_amount) && (
               <small
                 className="col-12 text-right"
                 style={{ color: "#e22a28" }}
               >{`Minimum purchase of Rs ${this.props.min_purchase_amount} is required`}</small>
             )}
+           
           </div>
         </div>
       </div>
@@ -86,4 +93,3 @@ class Bill extends Component {
   }
 }
 export default Bill;
-
