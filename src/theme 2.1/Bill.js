@@ -34,7 +34,7 @@ class Bill extends Component {
             </>
           )}
          
-          {Number(this.props.default_delivery_charge) > 0 && (
+          {this.props.delivery_charges !== null && (
             <div className="row">
               <label className="col-auto mr-auto">Delivery Charge</label>
               <br />

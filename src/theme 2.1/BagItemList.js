@@ -88,11 +88,13 @@ class BagItemList extends React.Component {
           default_delivery_charge={
             this.props.restaurant_website_detail.default_delivery_charge
           }
+          delivery_charges={this.props.restaurant_website_detail.delivery_charges}
           is_ecommerce={this.props.is_ecommerce}
           min_purchase_amount={
             this.props.restaurant_website_detail.min_purchase_amount
           }
         />
+      
         <Delivery
           restaurant_website_detail={this.props.restaurant_website_detail}
           delivery_slots={this.props.delivery_slots}

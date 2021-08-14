@@ -40,7 +40,7 @@ class NewHome extends Component {
       distance: null,
       showLocationPopup: false,
       showBag: false,
-      totcharge:0,
+      totaldeliverycharge:0,
     };
   }
 
@@ -288,6 +288,119 @@ class NewHome extends Component {
     }
   };
 
+  calculateDeliveryDistanceCharge = (originaldist) => {
+  // originaldist=10;
+  alert(originaldist +" ");
+    var limit,check=0
+    const DeliveryCharge = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
+                this.setState({
+                    totaldeliverycharge:0
+                  })
+                if(originaldist===0){
+                  this.setState({
+                    totaldeliverycharge:0
+                  })
+                  sessionStorage.setItem("totaldeliverycharge",0);
+                }
+
+                DeliveryCharge.map((item,index)=>{ 
+                    if(index===0){
+                      if(item.distance){
+                       limit=1
+                       sessionStorage.setItem("DeliveryStatus",1);}
+                     else{
+                      
+                     if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
+                      item.excempt_limit===null ||
+                      item.excempt_limit === 0){
+                       limit=1
+                       sessionStorage.setItem("DeliveryStatus",1);
+                       }
+                     }
+                     }
+                     if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
+                       limit=1
+                       sessionStorage.setItem("DeliveryStatus",1);
+                       
+                   } 
+                     if(limit===1 && index!=0)  {
+                      if(originaldist<=0){check=1}
+                      else if(item.distance<originaldist)
+                      { 
+
+                        if(item.price_type==='fixed'){;
+                          this.setState({
+                            totaldeliverycharge:this.state.totaldeliverycharge+item.price
+                          });
+                        
+                          sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                     
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totaldeliverycharge:this.state.totaldeliverycharge+item.distance*item.price
+                            });
+                        
+                        sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                     
+                        }
+                        
+                        originaldist=originaldist-item.distance;
+                        if(originaldist<=0){
+                          check=1
+                        }
+                      }
+                      else if(item.distance>=originaldist)
+                      { 
+                        if(originaldist<=0){
+                          check=1
+                        }                           
+                        if(item.price_type==='fixed'){ 
+                          this.setState({
+                            totaldeliverycharge:this.state.totaldeliverycharge+item.price
+                          });
+                        
+                          sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                      
+                        }
+                        if(item.price_type==='variable'){
+                          this.setState({
+                            totaldeliverycharge: this.state.totaldeliverycharge+originaldist*item.price
+                          });
+                        
+                          sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                      
+
+                        }
+                          originaldist=originaldist-item.distance
+                          if(originaldist<=0){
+                            check=1
+                          }
+                      }                 
+                      else if(check!==1)
+                      { 
+                        if(item.price_type==='fixed'){   
+                          this.setState({
+                            totaldeliverycharge:this.state.totaldeliverycharge+item.price
+                          });
+                        
+                          sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                      
+                        }
+                        if(item.price_type==='variable'){ 
+                          this.setState({
+                            totaldeliverycharge:this.state.totaldeliverycharge+originaldist*item.price
+                          });
+                                                  
+                          sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge);
+                      
+                        }
+                      }
+                     else{}
+                     }     
+                  })
+
+  }
   checkDistance = () => {
     let distance;
     navigator.geolocation.getCurrentPosition(
@@ -346,91 +459,18 @@ class NewHome extends Component {
                   );
                   distance = Math.abs(distance / 1000);
                   sessionStorage.setItem("distance",distance);
-                  let check=0, a=0,originaldist
-                originaldist=Math.round(distance)                
-                const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
-                this.setState({
-                    totcharge:0
-                  })
-                  arr.map((item,index)=>{
-                     if(index===0){
-                      if(item.distance){
-                       a=1
-                       sessionStorage.setItem("allow",1);}
-                     else{
-                     if(sessionStorage.getItem("totalMrp")<item.excempt_limit || 
-                      item.excempt_limit===null ||
-                      item.excempt_limit === 0){
-                       a=1
-                       sessionStorage.setItem("allow",1);
-                       }
-                     }
-                     }
-                     if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
-                       a=0
-                       sessionStorage.setItem("allow",0);
-                   }
-                     if(a===1&&index!=0)  {
-                      if(originaldist<=0){check=1}
-                      else if(item.distance<originaldist)
-                      { 
-                        if(item.price_type==='fixed'){
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){ 
-                          this.setState({
-                            totcharge:this.state.totcharge+item.distance*item.price
-                            })
-                        }
-                        sessionStorage.setItem("totcharge",this.state.totcharge);
-                        originaldist=originaldist-item.distance
-                        if(originaldist<=0){
-                          check=1
-                        }
-                      }
-                      else if(item.distance>=originaldist)
-                      { 
-                        if(originaldist<=0){
-                          check=1
-                        }                           
-                        if(item.price_type==='fixed'){
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){
-                          this.setState({
-                            totcharge: this.state.totcharge+originaldist*item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                          originaldist=originaldist-item.distance
-                          if(originaldist<=0){
-                            check=1
-                          }
-                      }                 
-                      else if(check!==1)
-                      { 
-                        if(item.price_type==='fixed'){  
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){
-                          this.setState({
-                            totcharge:this.state.totcharge+originaldist*item.price
-                          })                          
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                      }
-                     else{}
-                     }     
-                  })
+                  
+                let originaldist=Math.round(distance)                
+                
+alert("distance"+distance);
+                if(this.state.restaurant_info.restaurant_website_detail.delivery_charges!==null){
+
+this.calculateDeliveryDistanceCharge(originaldist);
+
+                
+                }
+                
+
                   let withInDistance = false;
                   if (distance <= distanceLimit) {
                     withInDistance = true;
@@ -568,97 +608,24 @@ class NewHome extends Component {
                 sessionStorage.setItem("long", latLng.lng);
                 sessionStorage.setItem("address", address);
 
-                const distanceLimit = Number(
-                  this.state.restaurantBranch[0].delivery_distance
-                );
-                distance = Math.abs(distance / 1000);
-                sessionStorage.setItem("distance",distance);
-                let check=0, a=0,originaldist
-                originaldist=Math.round(distance)                        
-                const arr = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges) 
-                this.setState({
-                    totcharge:0
-                  })
-                  arr.map((item,index)=>{ 
-                    if(index===0){
-                      if(item.distance){
-                       a=1
-                       sessionStorage.setItem("allow",1);}
-                     else{
-                     if(sessionStorage.getItem("totalWithTax")<item.excempt_limit || 
-                      item.excempt_limit===null ||
-                      item.excempt_limit === 0){
-                       a=1
-                       sessionStorage.setItem("allow",1);
-                       }
-                     }
-                     }
-                     if(sessionStorage.getItem("totalMrp")>=item.excempt_limit){
-                       a=0
-                       sessionStorage.setItem("allow",0);
-                       
-                   }
-                     if(a===1&&index!=0)  {
-                      if(originaldist<=0){check=1}
-                      else if(item.distance<originaldist)
-                      { 
-                        if(item.price_type==='fixed'){
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){ 
-                          this.setState({
-                            totcharge:this.state.totcharge+item.distance*item.price
-                            })
-                        }
-                        sessionStorage.setItem("totcharge",this.state.totcharge);
-                        originaldist=originaldist-item.distance
-                        if(originaldist<=0){
-                          check=1
-                        }
-                      }
-                      else if(item.distance>=originaldist)
-                      { 
-                        if(originaldist<=0){
-                          check=1
-                        }                           
-                        if(item.price_type==='fixed'){
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){
-                          this.setState({
-                            totcharge: this.state.totcharge+originaldist*item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                          originaldist=originaldist-item.distance
-                          if(originaldist<=0){
-                            check=1
-                          }
-                      }                 
-                      else if(check!==1)
-                      { 
-                        if(item.price_type==='fixed'){  
-                          this.setState({
-                            totcharge:this.state.totcharge+item.price
-                          })
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                        if(item.price_type==='variable'){
-                          this.setState({
-                            totcharge:this.state.totcharge+originaldist*item.price
-                          })                          
-                          sessionStorage.setItem("totcharge",this.state.totcharge);
-                        }
-                      }
-                     else{}
-                     }     
-                  })
+                
+       const distanceLimit = Number(
+                    this.state.restaurantBranch[0].delivery_distance
+                  );
+                  distance = Math.abs(distance / 1000);
+                  console.log("distance:"+distance);
+                  sessionStorage.setItem("distance",distance);
+                  
+                let originaldist=Math.round(distance)                
+                
+
+alert("distance"+distance);
+                if(this.state.restaurant_info.restaurant_website_detail.delivery_charges!==null){
+
+this.calculateDeliveryDistanceCharge(originaldist);
+                
+                }
+
                 let withInDistance = false;
                 if (distance <= distanceLimit) {
                   withInDistance = true;
@@ -853,7 +820,7 @@ class NewHome extends Component {
                   }
                   
                   is_ecommerce={this.state.restaurant_info.is_ecommerce}
-                  
+                 
                   delivery_slots={
                     this.state.restaurantBranch[0] &&
                     this.state.restaurantBranch[0].delivery_slots &&
