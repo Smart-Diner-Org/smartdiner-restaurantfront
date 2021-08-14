@@ -5,7 +5,7 @@ export default function calculateTotalPrice(
   totaldiscount
   
 ) {
-  var totAftDis,deliveryChargeCGST,deliveryChargeSGST,CGST,SGST,totalWithTax,discountAmt,a
+  var totAftDis,deliveryChargeCGST,deliveryChargeSGST,CGST,SGST,totalWithTax,discountAmt,flag
   const total = itemsList.reduce(function (accumulator, currentValue) {
     const valueToBeAdded =
       currentValue.menu.discount > 0
@@ -21,14 +21,14 @@ export default function calculateTotalPrice(
   
   
 var string = totaldiscount;
-var matches = string.match(/\d+/g);
-var a = matches
-var result = a.map(function (x) { 
+var separateNum = string.match(/\d+/g);
+var convToNum = separateNum
+var result = convToNum.map(function (x) { 
   return parseInt(x, 10); 
 });
-var arr = result;
-let totalorderamt=arr.filter((a,i)=>i%2===0);
-let discount=arr.filter((a,i)=>i%2===1);
+
+let totalorderamt=result.filter((a,i)=>i%2===0);
+let discount=result.filter((a,i)=>i%2===1);
 let sortedamt = totalorderamt.sort((a, b) => b-a);
 let sortedisc = discount.sort((a, b) => b-a);
 
@@ -42,13 +42,13 @@ for(var i=0;i<sortedamt.length;i++){
     SGST = ((totAftDis) * (taxPercentage / 2 / 100))+deliveryChargeSGST;
     totalWithTax = totAftDis + CGST + SGST + deliveryCharge;
     discountAmt = (total - totAftDis);
-    a=0;
+    flag=0;
     break;
   }
 }
 
-if(a!=0){
-  console.log("below 100")
+if(flag!=0){
+
   totAftDis=0;
   deliveryChargeCGST = (deliveryCharge) * (taxPercentage / 2 / 100);
   deliveryChargeSGST = (deliveryCharge) * (taxPercentage / 2 / 100);
