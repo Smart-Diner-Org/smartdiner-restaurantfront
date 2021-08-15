@@ -289,7 +289,6 @@ class NewHome extends Component {
   };
 
   calculateDeliveryDistanceCharge = (originaldist) => {
-sessionStorage.setItem("allownull",0);  
   
     var limit,check=0
     const DeliveryCharge = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges)
@@ -468,7 +467,7 @@ sessionStorage.setItem("allownull",0);
 this.calculateDeliveryDistanceCharge(originaldist);
 
                 
-                }else{sessionStorage.setItem("allownull",1);}
+                }
                 
 
                   let withInDistance = false;
@@ -624,7 +623,7 @@ this.calculateDeliveryDistanceCharge(originaldist);
 
 this.calculateDeliveryDistanceCharge(originaldist);
                 
-                }else{sessionStorage.setItem("allownull",1);}
+                }
 
                 let withInDistance = false;
                 if (distance <= distanceLimit) {

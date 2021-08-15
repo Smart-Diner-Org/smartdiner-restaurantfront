@@ -85,9 +85,6 @@ class BagItemList extends React.Component {
           taxPercentage={this.props.restaurant_website_detail.gst_percentage}
           boundary={this.props.boundary}
           disc3={this.props.disc2}
-          default_delivery_charge={
-            this.props.restaurant_website_detail.default_delivery_charge
-          }
           delivery_charges={this.props.restaurant_website_detail.delivery_charges}
           is_ecommerce={this.props.is_ecommerce}
           min_purchase_amount={

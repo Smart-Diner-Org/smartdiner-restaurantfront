@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import calculateTotalPrice from "../helpers/CommonFunctions";
+// import displayTotalPrice from "../helpers/CalculateDiscountOnMrp"; 
 
 let flag = 0
 class Bill extends Component {
@@ -7,23 +8,35 @@ class Bill extends Component {
     const [total, CGST, SGST, totalWithTax, totAftDis, discountAmt, deliveryCharge] = calculateTotalPrice(
       this.props.items,
       this.props.taxPercentage,
-      Number(this.props.default_delivery_charge),
+      // Number(this.props.default_delivery_charge),
+      this.props.delivery_charges,
       this.props.disc3
     
     );
+    
     return (
 
       <div class="bill-container">
         <hr />
         <div className="container">
-          <div className="row">
+        {(this.props.disc3 !== null && discountAmt!==0) &&  (
+           <div className="row">
             <label className="col-auto mr-auto">Total MRP</label>
             <br />
             <label className="col-auto text"><strike>{`Rs ${total.toFixed(2)}`}</strike></label>
             <br />
           </div>
-
-          {totAftDis !== 0 && (
+          )}
+          {(this.props.disc3 === null || discountAmt===0) && (
+            <div className="row">
+              <label className="col-auto mr-auto">Total</label>
+              <br />
+              <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
+              <br />
+            </div>
+            
+          )}
+          {(totAftDis !== 0 && this.props.disc3 !== null && total != totAftDis) && (
           <div className="row">
                 <label className="col-auto mr-auto">Total After Discount</label>
                 <br />
@@ -41,14 +54,7 @@ class Bill extends Component {
             </div>
           )}
 
-          {Number(this.props.disc3) === 0 && (
-            <div className="row">
-              <label className="col-auto mr-auto">Total</label>
-              <br />
-              <label className="col-auto">{`Rs ${total.toFixed(2)}`}</label>
-              <br />
-            </div>
-          )}
+          
           {Number(this.props.taxPercentage) > 0 && (
             <>
               <div className="row">
