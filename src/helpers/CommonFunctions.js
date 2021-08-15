@@ -51,7 +51,7 @@ else{
  }
  
   if (Number(sessionStorage.getItem("DeliveryStatus")) === 1 && deliveryCharge !== null) {
-   console.log("both null2");
+
    if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
    else{totAftDis = total - (total * 0 / 100).toFixed(2);}
     
@@ -103,7 +103,6 @@ if(deliveryCharge === null){
    
     if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
     else {totAftDis = total - (total * 0 / 100).toFixed(2);
-console.log("both null");
     }
      deliveryCharge = 0;
      deliveryChargeCGST = 0*(taxPercentage / 2 / 100);

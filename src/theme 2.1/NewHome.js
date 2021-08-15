@@ -305,6 +305,7 @@ class NewHome extends Component {
                 DeliveryCharge.map((item,index)=>{ 
                     if(index===0){
                       if(item.distance){
+                        console.log(item.distance)
                        limit=1
                        sessionStorage.setItem("DeliveryStatus",1);}
                      else{
@@ -322,7 +323,7 @@ class NewHome extends Component {
                        sessionStorage.setItem("DeliveryStatus",1);
                        
                    } 
-                     if(limit===1 && index!=0)  {
+                     if(limit===1)  {
                       if(originaldist<=0){check=1}
                       else if(item.distance<originaldist)
                       { 
