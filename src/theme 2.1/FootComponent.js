@@ -1,26 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactGA from "react-ga";
 
-function useWindowSize() {
-  const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setSize([window.innerHeight, window.innerWidth]);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return size;
-}
-
 function FootComponent(props) {
-  const [height, width] = useWindowSize();
-  let isMobile = Boolean(width <= 768);
-
   return (
     <div>
       <section id="footer" class="footer-area mt-50">
@@ -217,45 +198,20 @@ function FootComponent(props) {
             </div>
             <div className="row">
               <div class="col-lg-12 mt-30">
-                {isMobile ?
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column"
-                    }}
-                  >
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifycontent: "space-between",
+                  }}
+                >
+                  <p style={{ width: "70%" }}>
                     All rights reserved.{" "}
-                    <p>
-                      <a href="/" rel="nofollow">
-                        &copy; {props.restaurantName}
-                      </a>
-                    </p>
-                    <p>
-                      Made in {" "}
-                      <a href="https://smartdiner.co/" rel="noopener noreferrer" target="_blank">
-                        Smart Diner
+                    <a href="/" rel="nofollow">
+                      &copy; {props.restaurantName}
                     </a>
-                    </p>
-                  </div>
-                  :
-                  <div
-                    style={{
-                      width: "100%",
-                      display: "flex"
-                    }}>
-                    <p>
-                      All rights reserved.{" "}
-                      <a href="/" rel="nofollow">
-                        &copy; {props.restaurantName}
-                      </a>
-                      <span style={{ marginLeft: "50px" }}></span>
-                      Made in {" "}
-                      <a href="https://smartdiner.co/" rel="noopener noreferrer" target="_blank">
-                        Smart Diner
-                    </a>
-                    </p>
-                  </div>
-                }
+                  </p>
+                </div>
               </div>
             </div>
           </div>
