@@ -7,7 +7,7 @@ export default function calculateTotalPrice(
 ) {
   
   var total,totAftDis,deliveryCharge,deliveryChargeCGST,deliveryChargeSGST,CGST,SGST,totalWithTax,discountAmt 
-  var discountval,flag
+  var discountval,flag,Gst
    total = itemsList.reduce(function (accumulator, currentValue) {
     const valueToBeAdded =
       currentValue.menu.discount > 0
@@ -60,7 +60,9 @@ else{
      deliveryChargeSGST = 0*(taxPercentage / 2 / 100);
      CGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
      SGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-     totalWithTax = (totAftDis + CGST + SGST + deliveryCharge).toFixed(2);
+     Gst=CGST.toFixed(2);
+     
+     totalWithTax = (totAftDis +  deliveryCharge + Gst*2).toFixed(2);
      discountAmt = (total - totAftDis);
 
     sessionStorage.setItem("totalWithTax", totalWithTax);
@@ -86,7 +88,10 @@ if(deliveryCharge === null){
      deliveryChargeSGST = 0*(taxPercentage / 2 / 100);
      CGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
      SGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-     totalWithTax = (totAftDis + CGST + SGST).toFixed(2);     
+     Gst=CGST.toFixed(2);
+     
+     totalWithTax = (totAftDis + Gst*2).toFixed(2);
+          
      discountAmt = (total - totAftDis);
 
     sessionStorage.setItem("totalWithTax", totalWithTax);
