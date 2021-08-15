@@ -289,7 +289,6 @@ class NewHome extends Component {
   };
 
   calculateDeliveryDistanceCharge = (originaldist) => {
-  
     var limit,check=0
     const DeliveryCharge = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges)
                 this.setState({
@@ -305,7 +304,6 @@ class NewHome extends Component {
                 DeliveryCharge.map((item,index)=>{ 
                     if(index===0){
                       if(item.distance){
-                        console.log(item.distance)
                        limit=1
                        sessionStorage.setItem("DeliveryStatus",1);}
                      else{
@@ -462,14 +460,9 @@ class NewHome extends Component {
                   
                 let originaldist=Math.round(distance)                
                 
-
                 if(this.state.restaurant_info.restaurant_website_detail.delivery_charges!==null){
-
-this.calculateDeliveryDistanceCharge(originaldist);
-
-                
+                   this.calculateDeliveryDistanceCharge(originaldist);
                 }
-                
 
                   let withInDistance = false;
                   if (distance <= distanceLimit) {
@@ -617,15 +610,10 @@ this.calculateDeliveryDistanceCharge(originaldist);
                   sessionStorage.setItem("distance",distance);
                   
                 let originaldist=Math.round(distance)                
-                
-
-
+        
                 if(this.state.restaurant_info.restaurant_website_detail.delivery_charges!==null){
-
-this.calculateDeliveryDistanceCharge(originaldist);
-                
+                this.calculateDeliveryDistanceCharge(originaldist);
                 }
-
                 let withInDistance = false;
                 if (distance <= distanceLimit) {
                   withInDistance = true;

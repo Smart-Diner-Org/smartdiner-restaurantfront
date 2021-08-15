@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import calculateTotalPrice from "../helpers/CommonFunctions";
-// import displayTotalPrice from "../helpers/CalculateDiscountOnMrp"; 
+// import displayTotalPrice from "../helpers/CalculateDiscountOnMrp";
 
 let flag = 0
 class Bill extends Component {
