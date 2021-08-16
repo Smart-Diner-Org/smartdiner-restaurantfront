@@ -60,7 +60,7 @@ else{
      deliveryChargeSGST = 0*(taxPercentage / 2 / 100);
      CGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
      SGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-     Gst=CGST.toFixed(2);
+     Gst=CGST;
      
      totalWithTax = (totAftDis +  deliveryCharge + Gst*2).toFixed(2);
      discountAmt = (total - totAftDis);
@@ -88,7 +88,7 @@ if(deliveryCharge === null){
      deliveryChargeSGST = 0*(taxPercentage / 2 / 100);
      CGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeCGST;
      SGST = ((totAftDis+deliveryCharge) * (taxPercentage / 2 / 100)) + deliveryChargeSGST;
-     Gst=CGST.toFixed(2);
+     Gst=CGST;
      
      totalWithTax = (totAftDis + Gst*2).toFixed(2);
           
