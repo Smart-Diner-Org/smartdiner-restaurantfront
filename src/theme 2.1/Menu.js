@@ -103,7 +103,9 @@ class Menu extends Component {
                     return false;
                   }}
                 >
-                  {category.name}
+                  {category.name.toLowerCase().split(' ')
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+          .split(' ').filter(s=>s).join(' ')}
                 </a>
               );
             })}
