@@ -27,6 +27,7 @@ class Bag extends Component {
             items={this.props.items}
             changequantity={this.props.changequantity}
             restaurant_website_detail={this.props.restaurant_website_detail}
+            boundary={this.props.boundary}
             disc2={this.props.disc1}
             delivery_slots={this.props.delivery_slots}
             is_ecommerce={this.props.is_ecommerce}
@@ -52,3 +53,4 @@ class Bag extends Component {
 }
 
 export default Bag;
+
