@@ -32,13 +32,17 @@ var result = convToNum.map(function (x) {
 let totalorderamt=result.filter((a,i)=>i%2===0);
 let discount=result.filter((a,i)=>i%2===1);
 let sortedamt = totalorderamt.sort((a, b) => b-a);
+console.log(sortedamt)
 let sortedisc = discount.sort((a, b) => b-a);
+console.log(sortedisc)
 
 for(var i=0;i<sortedamt.length;i++){
-  if(total>=sortedamt[i]&&sortedamt[i]!=0){
+  if(total>=sortedamt[i]!=0){
     
     discountval=sortedisc[i];
+    console.log("**************",discountval)
     flag=0;
+    
     break;
   }
 }
@@ -52,7 +56,9 @@ else{
  
   if (Number(sessionStorage.getItem("DeliveryStatus")) === 1 && deliveryCharge !== null) {
 
-   if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
+
+   if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);
+    console.log("totAftDis",totAftDis)}
    else{totAftDis = total - (total * 0 / 100).toFixed(2);}
     
      deliveryCharge = Number(sessionStorage.getItem("totaldeliverycharge"));
