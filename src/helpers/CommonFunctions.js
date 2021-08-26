@@ -35,10 +35,11 @@ let sortedamt = totalorderamt.sort((a, b) => b-a);
 let sortedisc = discount.sort((a, b) => b-a);
 
 for(var i=0;i<sortedamt.length;i++){
-  if(total>=sortedamt[i]&&sortedamt[i]!=0){
+  if(total>=sortedamt[i]!=0){
     
     discountval=sortedisc[i];
     flag=0;
+    
     break;
   }
 }
@@ -52,7 +53,9 @@ else{
  
   if (Number(sessionStorage.getItem("DeliveryStatus")) === 1 && deliveryCharge !== null) {
 
+
    if(totaldiscount!=null){totAftDis = total - (total * discountval / 100).toFixed(2);}
+   
    else{totAftDis = total - (total * 0 / 100).toFixed(2);}
     
      deliveryCharge = Number(sessionStorage.getItem("totaldeliverycharge"));

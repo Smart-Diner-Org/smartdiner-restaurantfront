@@ -44,7 +44,7 @@ class NewHome extends Component {
     };
   }
 
- 
+
   async componentDidMount() {
     //API call to get data from backend
     try {
@@ -89,6 +89,15 @@ class NewHome extends Component {
             "PaymentType",
             JSON.stringify(data.restaurant.payment_types)
           );
+           
+          const DeliveryCharge = JSON.parse(this.state.restaurant_info.restaurant_website_detail.delivery_charges);
+            DeliveryCharge.map((item,index)=>{
+                    if(index===0){
+                    this.setState({
+                        totaldeliverycharge:item.price
+                    });
+                  }
+                  })
 
           if (
             sessionStorage.getItem("items") &&
@@ -741,9 +750,12 @@ class NewHome extends Component {
       showLocationPopup: true,
     });
   };
-  // ends here
 
+  //ends here
+
+           
   render() {
+
     const { isLoaded } = this.state;
     if (!isLoaded) {
       return (
@@ -758,7 +770,9 @@ class NewHome extends Component {
       );
     } else {
       return (
+
         <div>
+
           {this.state.restaurant_info.get_location_info.get_location_type_id ===
             "1" &&
             this.state.showLocationPopup && (
@@ -791,7 +805,7 @@ class NewHome extends Component {
                 : {}
             }
           >
-            {this.state.showBag &&
+            {this.state.showBag && 
               !this.state.showLocationPopup &&
               this.state.total !== 0 && (
                 <Bag
@@ -802,8 +816,8 @@ class NewHome extends Component {
                   boundary={this.state.boundary}
                   quantity={this.state.quantity}
                   editlocation={this.editlocation}
-                 disc1={this.state.restaurantBranch[0].discount_on_mrp} 
-                 restaurant_website_detail={
+                  disc1={this.state.restaurantBranch[0].discount_on_mrp} 
+                  restaurant_website_detail={
                     this.state.restaurant_info.restaurant_website_detail
                   }
                   
@@ -814,6 +828,12 @@ class NewHome extends Component {
                     this.state.restaurantBranch[0].delivery_slots &&
                     this.state.restaurantBranch[0].delivery_slots.split(",")
                   }
+                 
+                  withoutLocation = {
+                           this.state.restaurant_info.get_location_info.get_location_type_id ==="2" && (
+                             sessionStorage.setItem("totaldeliverycharge",this.state.totaldeliverycharge),
+                                sessionStorage.setItem("DeliveryStatus",1))                        
+                           }
                 />
               )}
               />

@@ -87,6 +87,7 @@ class BagItemList extends React.Component {
           disc3={this.props.disc2}
           delivery_charges={this.props.restaurant_website_detail.delivery_charges}
           is_ecommerce={this.props.is_ecommerce}
+          withoutLocation={this.props.withoutLocation}
           min_purchase_amount={
             this.props.restaurant_website_detail.min_purchase_amount
           }
