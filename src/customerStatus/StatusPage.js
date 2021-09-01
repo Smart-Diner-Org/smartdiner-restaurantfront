@@ -5,6 +5,8 @@ import Alert from "react-bootstrap/Alert";
 import OTPpage from "./OTPpage";
 import ReactGA from "react-ga";
 import BillItem from "../theme 2.1/components/BillItem";
+import { roles_and_IDs } from "../helpers/constant";
+
 const orderNotFound = "Order not found";
 const invalidOrder = "Invalid Order";
 const wrongOrderMessage =
@@ -61,7 +63,8 @@ class StatusPage extends React.Component {
     const data = {
       mobile: this.state.data.customerContactNumber,
       otp: otp,
-    };
+      roleId:roles_and_IDs["Customer"]
+    }
     await axios
       .post(`${process.env.REACT_APP_BASE_URL}/verify_otp`, data)
       .then((res) => {
@@ -92,6 +95,7 @@ class StatusPage extends React.Component {
     this.setState({ errorMessage: "" });
     const data = {
       mobile: this.state.data.customerContactNumber,
+      roleId:roles_and_IDs["Customer"]
     };
     sessionStorage.removeItem("token");
     await axios
