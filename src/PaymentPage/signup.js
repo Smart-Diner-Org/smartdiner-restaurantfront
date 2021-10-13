@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import { Link, Redirect } from "react-router-dom";
 import ReactGA from "react-ga";
 import NavHeader from "./NavHeader";
+import { roles_and_IDs } from "../helpers/constant";
+
 
 let myInterval;
 sessionStorage.removeItem("token");
@@ -160,7 +162,7 @@ class SignUp extends Component {
       this.setState({ requestedOTP: true });
       const data = {
         mobile: this.state.mobile,
-        roleId: 4,
+        roleId: roles_and_IDs["Customer"]
       };
       clearInterval(myInterval);
       myInterval = setInterval(() => {
@@ -207,6 +209,7 @@ class SignUp extends Component {
     const data = {
       mobile: this.state.mobile,
       otp: otp,
+      roleId:roles_and_IDs["Customer"]
     };
     await axios
       .post(`${this.apiLink}auth/verify_otp`, data)
@@ -239,6 +242,7 @@ class SignUp extends Component {
     event.preventDefault();
     const data = {
       mobile: this.state.mobile,
+      roleId: roles_and_IDs["Customer"]
     };
     sessionStorage.removeItem("token");
     await axios

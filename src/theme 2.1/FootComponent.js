@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
 
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize([window.innerHeight, window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return size;
+}
+
+
+
 function FootComponent(props) {
+  const [height, width] = useWindowSize();
+  let isMobile = Boolean(width <= 768);
+  var count = 0
+  var contactNumber = props.contact_number.split(",")
   return (
     <div>
       <section id="footer" class="footer-area mt-50">
@@ -29,19 +51,54 @@ function FootComponent(props) {
                         </div>
                         <div class="info-content">
                           <p>
-                            <a
-                              onClick={() =>
-                                ReactGA.event({
-                                  category: "Home Page Footer",
-                                  action: `Clicked Mobile Number Link`,
-                                  label: `Opened contact App to make call`,
-                                })
-                              }
-                              href={`tel:+91${props.contact_number}`}
-                              target="blank"
-                            >
-                              +91 {props.contact_number}
-                            </a>
+                            {contactNumber ?
+                              <>
+                                {contactNumber.map(function (value, index) {
+                                  count = count + 1
+                                  return <>
+                                    {
+                                      value.length <= 10 ?
+                                        <><a
+                                          onClick={() =>
+                                            ReactGA.event({
+                                              category: "Home Page Footer",
+                                              action: `Clicked Mobile Number Link`,
+                                              label: `Opened contact App to make call`,
+                                            })
+                                          }
+                                          href={`tel:+91${value}`}
+                                          target="blank"
+                                        >
+                                          +91 {value}
+
+                                        </a></>
+                                        :
+                                        <a
+                                          onClick={() =>
+                                            ReactGA.event({
+                                              category: "Home Page Footer",
+                                              action: `Clicked Mobile Number Link`,
+                                              label: `Opened contact App to make call`,
+                                            })
+                                          }
+                                          href={`tel:${value}`}
+                                          target="blank"
+                                        >
+                                          {value}
+
+                                        </a>
+                                    }
+                                    {count !== contactNumber.length ?
+                                      <span style={{ color: 'white' }}>{','}&emsp;</span>
+                                      :
+                                      <></>
+                                    }
+                                  </>;
+                                })}
+                              </>
+
+                              : <></>
+                            }
                           </p>
                         </div>
                       </div>
@@ -60,7 +117,7 @@ function FootComponent(props) {
                         <div class="info-content">
                           <p>
                             <a
-                              href={`https://api.whatsapp.com/send?phone=91${props.contact_number}`}
+                              href={`https://api.whatsapp.com/send?phone=91${contactNumber[0]}`}
                               target="blank"
                               onClick={() =>
                                 ReactGA.event({
@@ -70,7 +127,7 @@ function FootComponent(props) {
                                 })
                               }
                             >
-                              +91 {props.contact_number}
+                              +91 {contactNumber[0]}
                             </a>
                           </p>
                         </div>
@@ -198,20 +255,45 @@ function FootComponent(props) {
             </div>
             <div className="row">
               <div class="col-lg-12 mt-30">
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifycontent: "space-between",
-                  }}
-                >
-                  <p style={{ width: "70%" }}>
+                {isMobile ?
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column"
+                    }}
+                  >
                     All rights reserved.{" "}
-                    <a href="/" rel="nofollow">
-                      &copy; {props.restaurantName}
+                    <p>
+                      <a href="/" rel="nofollow">
+                        &copy; {props.restaurantName}
+                      </a>
+                    </p>
+                    <p>
+                      Made in {" "}
+                      <a href="https://smartdiner.co/" rel="noopener noreferrer" target="_blank">
+                        Smart Diner
                     </a>
-                  </p>
-                </div>
+                    </p>
+                  </div>
+                  :
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex"
+                    }}>
+                    <p>
+                      All rights reserved.{" "}
+                      <a href="/" rel="nofollow">
+                        &copy; {props.restaurantName}
+                      </a>
+                      <span style={{ marginLeft: "50px" }}></span>
+                      Made in {" "}
+                      <a href="https://smartdiner.co/" rel="noopener noreferrer" target="_blank">
+                        Smart Diner
+                    </a>
+                    </p>
+                  </div>
+                }
               </div>
             </div>
           </div>
