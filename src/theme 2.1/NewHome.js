@@ -48,15 +48,15 @@ class NewHome extends Component {
 
   async componentDidMount() {
 
-    if(window.location.hostname == "dessertdrizzle.com"){
-      console.log("Found dessertdrizzle");
+    if(window.location.hostname == "brijwasisweetschennai.com"){
+      console.log("Found brijwasisweetschennai.com");
       const tagManagerArgs = {
-          // gtmId: 'GTM-TCPFS86'
-          gtmId: 'GTM-TCPFS86'
+          gtmId: 'GTM-5XFGLCM' // brijiwasi sweets
+          // gtmId: 'GTM-TCPFS86' // dessert drizzle
       }
       TagManager.initialize(tagManagerArgs)
     }
-    else console.log("Couldn't found dessertdrizzle");
+    else console.log("Couldn't found brijwasisweetschennai.com");
 
     //API call to get data from backend
     try {
