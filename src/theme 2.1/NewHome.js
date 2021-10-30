@@ -14,6 +14,7 @@ import Geocode from "react-geocode";
 import GetLocation from "./GetLocation";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 import ReactGA from "react-ga";
+import TagManager from 'react-gtm-module'
 import CheckoutButton from "./CheckoutButton";
 import MultiCards from "./MultiCards";
 
@@ -46,6 +47,17 @@ class NewHome extends Component {
 
 
   async componentDidMount() {
+
+    if(window.location.hostname == "dessertdrizzle.com"){
+      console.log("Found dessertdrizzle");
+      const tagManagerArgs = {
+          // gtmId: 'GTM-TCPFS86'
+          gtmId: 'GTM-TCPFS86'
+      }
+      TagManager.initialize(tagManagerArgs)
+    }
+    else console.log("Couldn't found dessertdrizzle");
+
     //API call to get data from backend
     try {
       await axios
